@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `general_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `general_info` (
-  `idgeneral_info` int(11) NOT NULL,
+  `idgeneral_info` int(11) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(45) DEFAULT NULL,
   `first_name` varchar(45) DEFAULT NULL,
   `middle_initial` varchar(1) DEFAULT NULL,
@@ -199,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-13 20:49:23
+-- Dump completed on 2016-01-20 22:26:17
