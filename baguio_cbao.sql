@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `costs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `costs` (
-  `idcosts` int(11) NOT NULL,
+  `idcosts` int(11) NOT NULL AUTO_INCREMENT,
   `building` decimal(9,2) DEFAULT NULL,
   `electrical` decimal(9,2) DEFAULT NULL,
   `mechanical` decimal(9,2) DEFAULT NULL,
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `in_charge_of_construction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `in_charge_of_construction` (
-  `idin_charge_of_construction` int(11) NOT NULL,
+  `idin_charge_of_construction` int(11) NOT NULL AUTO_INCREMENT,
   `prc_registration_number` int(11) DEFAULT NULL,
   `engineer_last_name` varchar(45) DEFAULT NULL,
   `engineer_first_name` varchar(45) DEFAULT NULL,
@@ -119,7 +119,7 @@ DROP TABLE IF EXISTS `lot_owner`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lot_owner` (
-  `idlot_owner` int(11) NOT NULL,
+  `idlot_owner` int(11) NOT NULL AUTO_INCREMENT,
   `tct_oct_number` int(11) DEFAULT NULL,
   `owner_last_name` varchar(45) DEFAULT NULL,
   `owner_first_name` varchar(45) DEFAULT NULL,
@@ -147,7 +147,7 @@ DROP TABLE IF EXISTS `plans_and_specifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `plans_and_specifications` (
-  `idplans_and_specifications` int(11) NOT NULL,
+  `idplans_and_specifications` int(11) NOT NULL AUTO_INCREMENT,
   `prc_registration_number` int(11) DEFAULT NULL,
   `engineer_last_name` varchar(45) DEFAULT NULL,
   `engineer_first_name` varchar(45) DEFAULT NULL,
@@ -174,7 +174,7 @@ DROP TABLE IF EXISTS `tracking_accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tracking_accounts` (
-  `idtracking_accounts` int(11) NOT NULL,
+  `idtracking_accounts` int(11) NOT NULL AUTO_INCREMENT,
   `email_address` varchar(60) DEFAULT NULL,
   `password` varchar(18) DEFAULT NULL,
   PRIMARY KEY (`idtracking_accounts`)
@@ -199,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-20 22:26:17
+-- Dump completed on 2016-01-21 17:50:29
