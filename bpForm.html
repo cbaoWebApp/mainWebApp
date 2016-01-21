@@ -4,6 +4,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Building Permit Form</title>
+		<style>
+			.tooltip{
+				cursor:pointer;
+				padding: 0px 4px;
+				margin-left: 10px;
+				background: white;
+				color:black;
+				font-size: 12px;
+				font-family: Courier;
+				font-weight: bold;
+				border: 2px solid black;
+				border-radius: 20px;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -32,16 +46,16 @@
 					<input type="text" name="mName"><br>
 					
 					Tax Account Number:  <br>
-					 <input type="text" name="taxNum"><br>
+					<input type="text" name="taxNum"><span class="tooltip" title="The Tax Account Number can be found at...">?</span><br>
 					Address: <br>
 					<input type="text" name="address"><br>
 					
 					Enterprise Name: <br>
 					<input type="text" name="ent"><br>
 					*Form of Ownership:  <br>
-					 <input type="text" name="ownership"><br>
+					 <input type="text" name="ownership"><span class="tooltip" title="...">?</span><br>
 					Kind of Business: <br>
-					<input type="text" name="bKind"><br>
+					<input type="text" name="bKind"><span class="tooltip" title="...">?</span><br>
 					*Contact No.: <br>
 					<input type="text" name="contact"><br>
 					
