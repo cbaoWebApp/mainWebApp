@@ -8,13 +8,13 @@
 		top:5px;
 		position: relative;	
 		}
-	.rotate {cursor:pointer;}
+	.show {cursor:pointer;}
 	</style>
 	</head>
 	<body>
 		<div id="main-container">
 			<div class="collapsible">
-				<img class="rotate" src="green-triangle.png"/><h3>Applicant is the registered owner</h3>
+				<div class="show"><img  class="rotate" src="green-triangle.png"/><h3>Applicant is the registered owner</h3></div>
 				<div class="contents">
 					<ul>
 						<li> Certified true copy of the title (updated for more than 3 mos.), or <br> 
@@ -23,7 +23,7 @@
 					</ul>
 				</div>
 				
-				<img src="green-triangle.png"/><h3>Applicant is not the registered owner</h3>
+				<div class="show"><img class="rotate" src="green-triangle.png"/><h3>Applicant is not the registered owner</h3></div>
 				<div class="contents">
 					<ul>
 						<li>Certified Photocopy / Original / duplicate copy of the Contract of Lease, or </li>
@@ -46,7 +46,7 @@
 				<img src="green-triangle.png"/><h3>Clear latest picture of site/area (Taken at least a week before application)</h3>
 				<img src="green-triangle.png"/><h3>Soil analysis for concrete and commercial/residential buildings with 3 storeys or over</h3>
 				
-				<img class="rotate" src="green-triangle.png"/><h3>Environmental Compliance Certificate for building as follows:</h3>
+				<div class="show"><img class="rotate" src="green-triangle.png"/><h3>Environmental Compliance Certificate for building as follows:</h3></div>
 				<div class="contents">
 					<ul>
 						<li> 3 storeys with basement</li>
@@ -62,8 +62,8 @@
 				<img src="green-triangle.png"/><h3 >Construction Logbook</h3>
 				<img src="green-triangle.png"/><h3>Construction Tarpaulin</h3>
 				
-				<img class="rotate" src="green-triangle.png"/><h3 class="heading">Clearances from other government agencies, pursuant to no. 12 (B) of Section 302 of <br>
-                 the IRR of the National Building Code (P.D. 1096), if applicable</h3>
+				<div class="show"><img class="rotate" src="green-triangle.png"/><h3 class="heading">Clearances from other government agencies, pursuant to no. 12 (B) of Section 302 of <br>
+                 the IRR of the National Building Code (P.D. 1096), if applicable</h3></div>
 				 <div class="contents">
 					<ul>
 						<li>DPWH-if property is located alongside national road</li>
@@ -82,13 +82,13 @@
 		<script>
 			$(document).ready(function(){
 				$(".collapsible .contents").hide();
-				$(".collapsible .rotate").click(function(){
-					if (  $( this ).css( "transform" ) == 'none' ){
-						$(this).css("transform","rotate(90deg)");
-						$(this).next().next().toggle();
+				$(".collapsible .show").click(function(){
+					if (  $(this).children(".rotate").css( "transform" ) == 'none' ){
+						$(this).children(".rotate").css("transform","rotate(90deg)");
+						$(this).next().toggle();
 					} else {
-						$(this).css("transform","" );
-						$(this).next().next().toggle();
+						$(this).children(".rotate").css("transform","" );
+						$(this).next().toggle();
 					}
 				});
 			});
