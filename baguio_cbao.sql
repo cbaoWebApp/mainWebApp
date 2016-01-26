@@ -18,6 +18,31 @@ USE `baguio_cbao`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `community_tax_certificate`
+--
+
+DROP TABLE IF EXISTS `community_tax_certificate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `community_tax_certificate` (
+  `id_community_tax_certificate` int(11) NOT NULL,
+  `community_tax_certificate` varchar(45) DEFAULT NULL,
+  `date_issued` date DEFAULT NULL,
+  `place_issued` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_community_tax_certificate`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `community_tax_certificate`
+--
+
+LOCK TABLES `community_tax_certificate` WRITE;
+/*!40000 ALTER TABLE `community_tax_certificate` DISABLE KEYS */;
+/*!40000 ALTER TABLE `community_tax_certificate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `costs`
 --
 
@@ -25,7 +50,7 @@ DROP TABLE IF EXISTS `costs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `costs` (
-  `idcosts` int(11) NOT NULL AUTO_INCREMENT,
+  `id_costs` int(11) NOT NULL,
   `building` decimal(9,2) DEFAULT NULL,
   `electrical` decimal(9,2) DEFAULT NULL,
   `mechanical` decimal(9,2) DEFAULT NULL,
@@ -36,7 +61,7 @@ CREATE TABLE `costs` (
   `floor_area` decimal(6,2) DEFAULT NULL,
   `proposed_construction_date` date DEFAULT NULL,
   `construction_materials` text,
-  PRIMARY KEY (`idcosts`)
+  PRIMARY KEY (`id_costs`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,7 +82,7 @@ DROP TABLE IF EXISTS `general_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `general_info` (
-  `idgeneral_info` int(11) NOT NULL AUTO_INCREMENT,
+  `id_general_info` int(11) NOT NULL,
   `last_name` varchar(45) DEFAULT NULL,
   `first_name` varchar(45) DEFAULT NULL,
   `middle_initial` varchar(1) DEFAULT NULL,
@@ -67,7 +92,12 @@ CREATE TABLE `general_info` (
   `ownership_form` varchar(45) DEFAULT NULL,
   `business` varchar(45) DEFAULT NULL,
   `contact_number` int(12) DEFAULT NULL,
-  PRIMARY KEY (`idgeneral_info`)
+  `scope_of_work` varchar(45) DEFAULT NULL,
+  `units` int(11) DEFAULT NULL,
+  `general_type_occupancy` varchar(45) DEFAULT NULL,
+  `specific_type_occupancy` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_general_info`),
+  CONSTRAINT `community_tax_cert` FOREIGN KEY (`id_general_info`) REFERENCES `community_tax_certificate` (`id_community_tax_certificate`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -88,17 +118,17 @@ DROP TABLE IF EXISTS `in_charge_of_construction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `in_charge_of_construction` (
-  `idin_charge_of_construction` int(11) NOT NULL AUTO_INCREMENT,
+  `id_in_charge_of_construction` int(11) NOT NULL,
   `prc_registration_number` int(11) DEFAULT NULL,
-  `engineer_last_name` varchar(45) DEFAULT NULL,
-  `engineer_first_name` varchar(45) DEFAULT NULL,
-  `engineer_middle_initial` varchar(1) DEFAULT NULL,
-  `engineer_address` varchar(100) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `middle_initial` varchar(10) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
   `ptr_number` int(11) DEFAULT NULL,
   `date_issued` date DEFAULT NULL,
   `place_issued` varchar(45) DEFAULT NULL,
   `tin` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idin_charge_of_construction`)
+  PRIMARY KEY (`id_in_charge_of_construction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,14 +149,14 @@ DROP TABLE IF EXISTS `lot_owner`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lot_owner` (
-  `idlot_owner` int(11) NOT NULL AUTO_INCREMENT,
+  `id_lot_owner` int(11) NOT NULL,
   `tct_oct_number` int(11) DEFAULT NULL,
   `owner_last_name` varchar(45) DEFAULT NULL,
   `owner_first_name` varchar(45) DEFAULT NULL,
   `owner_middle_initial` varchar(1) DEFAULT NULL,
   `owner_address` varchar(100) DEFAULT NULL,
-  `community_tax_certificate` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idlot_owner`)
+  PRIMARY KEY (`id_lot_owner`),
+  CONSTRAINT `community_tax_cert` FOREIGN KEY (`id_lot_owner`) REFERENCES `community_tax_certificate` (`id_community_tax_certificate`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -147,13 +177,13 @@ DROP TABLE IF EXISTS `plans_and_specifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `plans_and_specifications` (
-  `idplans_and_specifications` int(11) NOT NULL AUTO_INCREMENT,
+  `id_plans_and_specifications` int(11) NOT NULL,
   `prc_registration_number` int(11) DEFAULT NULL,
-  `engineer_last_name` varchar(45) DEFAULT NULL,
-  `engineer_first_name` varchar(45) DEFAULT NULL,
-  `engineer_middle_initial` varchar(1) DEFAULT NULL,
-  `engineer_address` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`idplans_and_specifications`)
+  `last_name` varchar(45) DEFAULT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `middle_initial` varchar(10) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id_plans_and_specifications`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -174,10 +204,10 @@ DROP TABLE IF EXISTS `tracking_accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tracking_accounts` (
-  `idtracking_accounts` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tracking_accounts` int(11) NOT NULL,
   `email_address` varchar(60) DEFAULT NULL,
   `password` varchar(18) DEFAULT NULL,
-  PRIMARY KEY (`idtracking_accounts`)
+  PRIMARY KEY (`id_tracking_accounts`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,4 +229,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-21 17:50:29
+-- Dump completed on 2016-01-26 15:36:05
