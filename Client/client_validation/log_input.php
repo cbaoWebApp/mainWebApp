@@ -6,7 +6,7 @@ $sanitized_pw = \filter_input(INPUT_POST, "pw", \FILTER_SANITIZE_STRING);
 if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
     echo "error!";
 } else {
-    require_once 'log_input_credentials.php';
+    require_once 'credentials.php';
 
     $conn = open_db_conn();
 
