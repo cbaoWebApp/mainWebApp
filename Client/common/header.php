@@ -1,7 +1,7 @@
 <div class="header">
     <div class = "row">
         <div class = "col-md-4">
-            <p><img class = "img-responsive" src="../../Client/img/seal.png" alt=""></p>
+            <img id = "seal"  src="../../Client/img/seal.png" alt="">
         </div>
         <div class = "col-md-4">
             <p>City Government of Baguio</p>

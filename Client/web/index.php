@@ -26,12 +26,18 @@
 
                     <h1 id = "heading">Building Permit Application</h1>
                     <p>Apply for a building permit now!</p>
+                    <br>
 
                     <div class = "buttons">
-                        <p><a href="bpForm.html" class="btn1">Apply</a></p>
-                        <p class="btn2">Track Application</p>
+                        <input type ="button" id = "apply" value = "Apply"
+                               onclick="apply_redirect()"/>
+
+                        <input type ="button" id = "trackApplication" class="btn2" 
+                               value = "Track Application" onclick="hide_field()"/>
+                              <br>
                         <div class = "logFields">
                             <br>
+                            
                             <?php
                             if (!empty($_SESSION['login_error_msg'])) {
                                 //display the message however you want
@@ -43,15 +49,15 @@
                             <form class="form-signin" action="../client_validation/log_input.php" method="POST" id="logInputForm">                                                                
                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required>
                                 <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>
-                                <input type="submit" class="btn1" value="Search">
+                                <br>
+                                <input type="submit" id = "search" class="btn1" value="Search">
+                                <button id = "cancel">Cancel</button>
                             </form>                            
-                            <a href="index.html" class="btn2">Cancel</a>
                         </div>
-                        <br>
-                        <br>
-                        <p><a href="homerequirements.html" id = "link">View Application Requirements</a></p>
+                              
                     </div>
-
+                    <br>
+                              <h4><a href="homerequirements.html" id = "link">View Application Requirements</a></h4>
                     <!-- PC -->
 
                     <p><img class="img-responsive" src="../../Client/img/pc.png" alt=""></p>
@@ -59,7 +65,7 @@
                     <p>Get realtime updates on your application</p>
                     <p>Save time and experience hassle free application procedures</p>
                     <br>
-                    <p><a href="#" id = "link">Get to know more</a></p>
+                    <h4><a href="#" id = "link">Get to know more</a></h4>
                 </div>
             </div>
         </div>
@@ -68,12 +74,17 @@
 
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $(".buttons .logFields").hide();
-                $(".buttons .btn2").click(function () {
-                    $(this).next().toggle();
-                });
-            });
+                            function hide_field() {
+                                $(".buttons .logFields").hide();
+                                $(".buttons .btn2").click(function () {
+                                    $(this).next().toggle();
+                                });
+                            }
+                            ;
+                            
+                            function apply_redirect(){
+                                window.location.assign('../../Client/registration/bpForm.php');
+                            }
         </script>
 
     </body>
