@@ -263,13 +263,17 @@ Single styles
 }
 
 
-	.rotate {cursor:pointer;
+.rotate {cursor:pointer;
 	float:left;
 		width:10px;
 		height:10px;
 		top:5px;
 		position: relative}
 
+#login-popup{
+    background-color: graytext;
+}
+		
 /* -----------------------
 Wide styles
 ------------------------*/

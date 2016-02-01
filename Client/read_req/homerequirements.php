@@ -5,6 +5,10 @@
 
         <link rel="stylesheet" href="../../Client/css/homeReq.css">
         <link rel="stylesheet" href="../../Client/btstrp/css/bootstrap.css">
+        
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     </head>
 
     <body>
@@ -84,52 +88,36 @@
                     <br>
                     <!-- Buttons -->
                     <div class = "buttons">
-                        <p><a href="../../Client/registration/bpForm.php" class="btn1">Apply</a></p>
-                        <p class="btn2">Track Application</p>
+                        <input type="button" id="apply" class="btn1" value="Apply" onclick="apply_redirect()"/>
+                        <input type="button" id="trackApplication" class="btn2" value="Track Application"/>
+                        
                         <div class = "logFields">
                             <br>
-                            <form class="form-signin" action="../client_validation/log_input.php" method="POST" id="logInputForm">                                                                
-                                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required>
-                                <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>
-                                <input type="submit" class="btn1" value="Search">
-                            </form>                             
-                                <a href="homerequirements.html" class="btn2">Cancel</a></p>
+                            <div id="error_area"></div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
 
+        <div id="login-popup">
+            <form class="form-signin" action="../client_validation/log_input.php" method="POST" id="logInputForm">                                  
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus="true">
+                <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
+                <br>
+                <input type="submit" id = "search" class="btn1" value="Search">
+                <input type="button" id="cancel" value="Cancel" onclick="cancel()">                         
+            </form>
+        </div>
+        
         <?php include '../../Client/common/footer.php'; ?>
 
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $(".collapsible .contents").hide();
-                $(".collapsible .heading").click(function () {
-                    $(this).next().toggle();
-                });
-            });
-        </script>
-
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $(".buttons .logFields").hide();
-                $(".buttons .btn2").click(function () {
-                    $(this).next().toggle();
-                });
-            });
-        </script>
-
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script>
+        
+        <script>        
             $(document).ready(function () {
                 $(".collapsible .contents").hide();
                 $(".collapsible .rotate").click(function () {
-                    if ($(this).css("transform") == 'none') {
+                    if ($(this).css("transform") === 'none') {
                         $(this).css("transform", "rotate(90deg)");
                         $(this).next().next().toggle();
                     } else {
@@ -138,8 +126,38 @@
                     }
                 });
             });
-        </script>
+        
+            function apply_redirect() {
+                window.location.assign('../../Client/registration/bpForm.php');
+            }
+            
+            $(function () {
+                $("#login-popup").dialog({
+                    autoOpen: false,
+                    closeOnEscape: true,
+                    open: function (event, ui) {
+                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                    },
+                    position: {
+                        my: "center center",
+                        at: "center center",
+                        of: window,
+                        collision: "none"
+                    },
+                    height: 200,
+                    width: 400
+                });
 
+                $("#trackApplication").click(function () {
+                    $("#login-popup").dialog("open");
+                });
+                $("#cancel").click(function () {
+                    $("#inputEmail").val("");
+                    $("#inputPassword").val("");
+                    $("#login-popup").dialog("close");
+                });
+            });
+        </script>
     </body>
 </html>
 

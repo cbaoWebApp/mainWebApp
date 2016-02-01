@@ -16,6 +16,9 @@
                 ?>
             }
         </style>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
     </head>
     <body>
         <?php include '../../Client/common/header.php'; ?>
@@ -33,11 +36,10 @@
                                onclick="apply_redirect()"/>
 
                         <input type ="button" id = "trackApplication" class="btn2" 
-                               value = "Track Application" onclick="hide_field()"/>
-                              <br>
+                               value = "Track Application"/>
+                        <br>
                         <div class = "logFields">
                             <br>
-                            
                             <?php
                             if (!empty($_SESSION['login_error_msg'])) {
                                 //display the message however you want
@@ -46,18 +48,12 @@
                             }
                             ?>
                             <div id="error_area"></div>
-                            <form class="form-signin" action="../client_validation/log_input.php" method="POST" id="logInputForm">                                                                
-                                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required>
-                                <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>
-                                <br>
-                                <input type="submit" id = "search" class="btn1" value="Search">
-                                <button id = "cancel">Cancel</button>
-                            </form>                            
+
                         </div>
-                              
                     </div>
+
                     <br>
-                              <h4><a href="homerequirements.html" id = "link">View Application Requirements</a></h4>
+                    <h4><a href="../../Client/read_req/homerequirements.php" id = "link">View Application Requirements</a></h4>
                     <!-- PC -->
 
                     <p><img class="img-responsive" src="../../Client/img/pc.png" alt=""></p>
@@ -70,24 +66,50 @@
             </div>
         </div>
 
+        <div id="login-popup">
+            <form class="form-signin" action="../client_validation/log_input.php" method="POST" id="logInputForm">                                  
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus="true">
+                <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
+                <br>
+                <input type="submit" id = "search" class="btn1" value="Search">
+                <input type="button" id="cancel" value="Cancel" onclick="cancel()">                         
+            </form>
+        </div>
+
         <?php include '../../Client/common/footer.php'; ?>
 
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script>
-                            function hide_field() {
-                                $(".buttons .logFields").hide();
-                                $(".buttons .btn2").click(function () {
-                                    $(this).next().toggle();
-                                });
-                            }
-                            ;
-                            
-                            function apply_redirect(){
-                                window.location.assign('../../Client/registration/bpForm.php');
-                            }
+            function apply_redirect() {
+                window.location.assign('../../Client/registration/bpForm.php');
+            }
+
+            $(function () {
+                $("#login-popup").dialog({
+                    autoOpen: false,
+                    closeOnEscape: true,
+                    open: function (event, ui) {
+                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                    },
+                    position: {
+                        my: "center center",
+                        at: "center center",
+                        of: window,
+                        collision: "none"
+                    },
+                    height: 200,
+                    width: 400
+                });
+
+                $("#trackApplication").click(function () {
+                    $("#login-popup").dialog("open");
+                });
+                $("#cancel").click(function () {
+                    $("#inputEmail").val("");
+                    $("#inputPassword").val("");
+                    $("#login-popup").dialog("close");
+                });
+            });
         </script>
 
     </body>
 </html>
-
-

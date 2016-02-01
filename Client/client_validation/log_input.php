@@ -4,7 +4,11 @@ $sanitized_email = \filter_input(INPUT_POST, "email", \FILTER_SANITIZE_EMAIL);
 $sanitized_pw = \filter_input(INPUT_POST, "pw", \FILTER_SANITIZE_STRING);
 
 if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
-    echo "error!";
+    echo <<<_MULTI
+                    <script> 
+                        window.location = "../../Client/web/index.php";                                               
+                    </script>
+_MULTI;
 } else {
     require_once 'credentials.php';
 
@@ -33,7 +37,13 @@ if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
         if ($size == 1) {
             echo "Successful log in!";
         } else {
-            echo "What's a good error message here?";
+            echo <<<_MULTI
+                    <script> 
+                        window.location = "../../Client/web/index.php";                                               
+                    </script>
+_MULTI;
+            
+            
         }
     }
 
