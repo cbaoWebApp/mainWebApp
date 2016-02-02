@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $sanitized_email = \filter_input(INPUT_POST, "email", \FILTER_SANITIZE_EMAIL);
 $sanitized_pw = \filter_input(INPUT_POST, "pw", \FILTER_SANITIZE_STRING);
@@ -6,7 +7,8 @@ $sanitized_pw = \filter_input(INPUT_POST, "pw", \FILTER_SANITIZE_STRING);
 if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
     echo <<<_MULTI
                     <script> 
-                        window.location = "../../Client/web/index.php";                                               
+                        window.location = "../../Client/web/index.php"; 
+                        alert("Invalid Email entered.");
                     </script>
 _MULTI;
 } else {
@@ -36,18 +38,14 @@ _MULTI;
 
         if ($size == 1) {
             echo "Successful log in!";
+            //allow client to track his own records
         } else {
-            echo <<<_MULTI
-                    <script> 
-                        window.location = "../../Client/web/index.php";                                               
-                    </script>
-_MULTI;
-            
+            $_SESSION['login_error_msg'] = "Incorrect Credentials";
+            header("Location: /Thesis/Client/web/index.php");
             
         }
     }
 
     close_db_conn($conn);
 }
-
 ?>

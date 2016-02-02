@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,14 +10,25 @@
         <link rel="stylesheet" href="../../Client/btstrp/css/bootstrap.css">
 
         <style>
-            .logFields{
+            .ui-dialog-titlebar-close {
                 <?php
-                session_start();
                 if (!empty($_SESSION['login_error_msg'])) {
-                    echo "display:block !important;";
+                echo "visibility: hidden !important;";
                 }
                 ?>
             }
+            div.ui-dialog{
+                <?php
+                if (!empty($_SESSION['login_error_msg'])) {
+                    echo "display:block !important;";
+                    echo "position: relative !important;";
+                    echo "height: auto !important;"; 
+                    echo "width: 400px !important;"; 
+                    echo "top: -1103.63px !important;"; 
+                    echo "left: 474.5px !important;";
+                }
+                ?>
+            }   
         </style>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -39,16 +53,7 @@
                                value = "Track Application"/>
                         <br>
                         <div class = "logFields">
-                            <br>
-                            <?php
-                            if (!empty($_SESSION['login_error_msg'])) {
-                                //display the message however you want
-                                echo "<p>" . $_SESSION['login_error_msg'] . "</p>";
-                                unset($_SESSION['login_error_msg']);
-                            }
-                            ?>
-                            <div id="error_area"></div>
-
+                            <br>                           
                         </div>
                     </div>
 
@@ -67,14 +72,25 @@
         </div>
 
         <div id="login-popup">
-            <form class="form-signin" action="../client_validation/log_input.php" method="POST" id="logInputForm">                                  
+            <div id="err_area">
+                <?php
+                if (!empty($_SESSION['login_error_msg'])) {
+                    //display the message however you want
+                    echo "<p>" . $_SESSION['login_error_msg'] . "</p>";
+                    unset($_SESSION['login_error_msg']);
+                }
+                ?> 
+            </div>
+            <form class="form-signin" id="logInputForm" action="../client_validation/log_input.php" method="POST">                                  
                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus="true">
                 <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
                 <br>
                 <input type="submit" id = "search" class="btn1" value="Search">
-                <input type="button" id="cancel" value="Cancel" onclick="cancel()">                         
+                <input type="button" id="cancel" value="Cancel">                         
             </form>
         </div>
+
+
 
         <?php include '../../Client/common/footer.php'; ?>
 
@@ -107,6 +123,7 @@
                     $("#inputEmail").val("");
                     $("#inputPassword").val("");
                     $("#login-popup").dialog("close");
+                    
                 });
             });
         </script>
