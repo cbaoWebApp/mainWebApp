@@ -1,458 +1,37 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'baguio_cbao');
-$db = mysqli_select_db($conn, 'baguio_cbao');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$message = "";
-$message1 = "";
-$message2 = "";
-$message3 = "";
-$message4 = "";
-$message5 = "";
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-$lnameErr = "";
-$fnameErr = "";
-$mnameErr = "";
-$formOfOwnershipErr = "";
-$TaxAccNoErr = "";
-$entNameErr = "";
-$kindOfBusinessErr = "";
-$AddressErr = "";
-$contactNumberErr = "";
-$locationErr = "";
-$tec1Err = "";
-$tec2Err = "";
-$tec3Err = "";
-$tec4Err = "";
-$tec5Err = "";
-$storeyErr = "";
-$floorAreaErr = "";
-$constructionDateErr = "";
-$o4Err = "";
-$SPRCErr = "";
-$SlastNameErr = "";
-$SmiddleInitialErr = "";
-$SFirstNameErr = "";
-$SaddressErr = "";
-$CPRCErr = "";
-$ClastNameErr = "";
-$CFirstNameErr = "";
-$CmiddleInitialErr = "";
-$CcaddressErr = "";
-$ptrNoErr = "";
-$dateIssuedErr = "";
-$placeIssuedErr = "";
-$tinErr = "";
-$ctcErr = "";
-$ctcDateErr = "";
-$ctcPlaceErr = "";
-$tctErr = "";
-$OlastNameErr = "";
-$OFirstNameErr = "";
-$OmiddleInitialErr = "";
-$OcaddressErr = "";
-$OctcErr = "";
-$emailErr = "";
-$pwErr = "";
-$cpwErr = "";
-
-if (isset($_POST['save'])) {
-
-    $lName = "";
-    if (empty($_POST["lastName"])) {
-        $lnameErr = "*Last Name is required";
-    } else {
-        $lName = test_input($_POST["lastName"]);
-    }
-
-    $fName = "";
-    if (empty($_POST["firstName"])) {
-        $fnameErr = "*First Name is required";
-    } else {
-        $fName = test_input($_POST["firstName"]);
-    }
-
-    $mName = "";
-    if (empty($_POST["middleInitial"])) {
-        $mnameErr = "*Middle Initial is required";
-    } else {
-        $mName = test_input($_POST["middleInitial"]);
-    }
-
-    $TaxAccNo = "";
-    if (empty($_POST["TaxAccNo"])) {
-        $TaxAccNoErr = "*Tax Account Number is required";
-    } else {
-        $TaxAccNo = test_input($_POST["TaxAccNo"]);
-    }
-
-    $formOfOwnership = "";
-    if (empty($_POST["formOfOwnership"])) {
-        $formOfOwnershipErr = "*Form of Ownership is required";
-    } else {
-        $formOfOwnership = test_input($_POST["formOfOwnership"]);
-    }
-
-    $entName = "";
-    if (empty($_POST["enterpriseName"])) {
-        $entNameErr = "*Enterprise Name is required";
-    } else {
-        $entName = test_input($_POST["enterpriseName"]);
-    }
-
-    $contactNumber = "";
-    if (empty($_POST["contactNumber"])) {
-        $contactNumberErr = "*Contact Number is required";
-    } else {
-        $contactNumber = test_input($_POST["contactNumber"]);
-    }
-
-    $kindOfBusiness = "";
-    if (empty($_POST["kindOfBusiness"])) {
-        $kindOfBusinessErr = "*Kind of Business is required";
-    } else {
-        $kindOfBusiness = test_input($_POST["kindOfBusiness"]);
-    }
-
-    $Address = "";
-    if (empty($_POST["Address"])) {
-        $AddressErr = "*Address is required";
-    } else {
-        $Address = test_input($_POST["Address"]);
-    }
-
-    $location = "";
-    if (empty($_POST["location"])) {
-        $locationErr = "*Location is required";
-    } else {
-        $location = test_input($_POST["location"]);
-    }
-
-    $tec1 = "";
-    if (empty($_POST["tec1"])) {
-        $tec1Err = "*Cost is required";
-    } else {
-        $tec1 = test_input($_POST["tec1"]);
-    }
-
-    $tec2 = "asd";
-    if (empty($_POST["tec2"])) {
-        $tec2Err = "*Cost is required";
-    } else {
-        $tec2 = test_input($_POST["tec2"]);
-    }
-
-    $tec3 = "";
-    if (empty($_POST["tec3"])) {
-        $tec3Err = "*Cost is required";
-    } else {
-        $tec3 = test_input($_POST["tec3"]);
-    }
-
-    $tec4 = "";
-    if (empty($_POST["tec4"])) {
-        $tec4Err = "*Cost is required";
-    } else {
-        $tec4 = test_input($_POST["tec4"]);
-    }
-
-    $tec5 = "";
-    if (empty($_POST["tec5"])) {
-        $tec5Err = "*Cost is required";
-    } else {
-        $tec5 = test_input($_POST["tec5"]);
-    }
-
-    $tec6 = "";
-    $tec6 = $tec1 + $tec2 + $tec3 + $tec4 + $tec5;
-
-    $storey = "";
-    if (empty($_POST["storey"])) {
-        $storeyErr = "*Number of Storeys is required";
-    } else {
-        $storey = test_input($_POST["storey"]);
-    }
-
-    $floorArea = "";
-    if (empty($_POST["floorArea"])) {
-        $floorAreaErr = "*Floor Area is required";
-    } else {
-        $floorArea = test_input($_POST["floorArea"]);
-    }
-
-    $constructionDate = "";
-    if (empty($_POST["constructionDate"])) {
-        $constructionDateErr = "*Proposed Date of Conctruction is required";
-    } else {
-        $constructionDate = test_input($_POST["constructionDate"]);
-    }
-
-    $o4 = test_input($_POST["o4"]);
-
-    $SPRC = "";
-    if (empty($_POST["SPRC"])) {
-        $SPRCErr = "*PRC Reg. Number is required";
-    } else {
-        $SPRC = test_input($_POST["SPRC"]);
-    }
-
-    $SlastName = "";
-    if (empty($_POST["SlastName"])) {
-        $SlastNameErr = "*Last Name is required";
-    } else {
-        $SlastName = test_input($_POST["SlastName"]);
-    }
-
-    $SmiddleInitial = "";
-    if (empty($_POST["SmiddleInitial"])) {
-        $SmiddleInitialErr = "*Middle Initial is required";
-    } else {
-        $SmiddleInitial = test_input($_POST["SmiddleInitial"]);
-    }
-
-    $SFirstName = "";
-    if (empty($_POST["SFirstName"])) {
-        $SFirstNameErr = "*First Name is required";
-    } else {
-        $SFirstName = test_input($_POST["SFirstName"]);
-    }
-
-    $Saddress = "";
-    if (empty($_POST["Saddress"])) {
-        $SaddressErr = "*Address is required";
-    } else {
-        $Saddress = test_input($_POST["Saddress"]);
-    }
-
-    $CPRC = "";
-    if (empty($_POST["CPRC"])) {
-        $CPRCErr = "*PRC Reg. Number is required";
-    } else {
-        $CPRC = test_input($_POST["CPRC"]);
-    }
-
-    $ClastName = "";
-    if (empty($_POST["ClastName"])) {
-        $ClastNameErr = "*Last Name is required";
-    } else {
-        $ClastName = test_input($_POST["ClastName"]);
-    }
-
-    $CFirstName = "";
-    if (empty($_POST["CFirstName"])) {
-        $CFirstNameErr = "*First Name is required";
-    } else {
-        $CFirstName = test_input($_POST["CFirstName"]);
-    }
-
-    $CmiddleInitial = "";
-    if (empty($_POST["CmiddleInitial"])) {
-        $CmiddleInitialErr = "*MIddle Initial is required";
-    } else {
-        $CmiddleInitial = test_input($_POST["CmiddleInitial"]);
-    }
-
-    $Ccaddress = "";
-    if (empty($_POST["Ccaddress"])) {
-        $CcaddressErr = "*Address is required";
-    } else {
-        $Ccaddress = test_input($_POST["Ccaddress"]);
-    }
-
-    $ptrNo = "";
-    if (empty($_POST["ptrNo"])) {
-        $ptrNoErr = "*PTR Number is required";
-    } else {
-        $ptrNo = test_input($_POST["ptrNo"]);
-    }
-
-    $dateIssued = "";
-    if (empty($_POST["dateIssued"])) {
-        $dateIssuedErr = "*Date Issued is required";
-    } else {
-        $dateIssued = test_input($_POST["dateIssued"]);
-    }
-
-    $placeIssued = "";
-    if (empty($_POST["placeIssued"])) {
-        $placeIssuedErr = "*Place Issued is required";
-    } else {
-        $placeIssued = test_input($_POST["placeIssued"]);
-    }
-
-
-    $tin = "";
-    if (empty($_POST["tin"])) {
-        $tinErr = "*Place Issued is required";
-    } else {
-        $tin = test_input($_POST["tin"]);
-    }
-
-    $ctc = "";
-    if (empty($_POST["ctc"])) {
-        $ctcErr = "*Community Tax Certificate is required";
-    } else {
-        $ctc = test_input($_POST["ctc"]);
-    }
-
-    $ctcDate = "";
-    if (empty($_POST["ctcDate"])) {
-        $ctcDateErr = "*Date Issued is required";
-    } else {
-        $ctcDate = test_input($_POST["ctcDate"]);
-    }
-
-    $ctcPlace = "";
-    if (empty($_POST["ctcPlace"])) {
-        $ctcPlaceErr = "*Place Issued is required";
-    } else {
-        $ctcPlace = test_input($_POST["ctcPlace"]);
-    }
-
-    $tct = "";
-    if (empty($_POST["tct"])) {
-        $tctErr = "*TCT/OCT Number is required";
-    } else {
-        $tct = test_input($_POST["tct"]);
-    }
-
-    $OlastName = "";
-    if (empty($_POST["OlastName"])) {
-        $OlastNameErr = "*Last Name is required";
-    } else {
-        $OlastName = test_input($_POST["OlastName"]);
-    }
-
-    $OFirstName = "";
-    if (empty($_POST["OFirstName"])) {
-        $OFirstNameErr = "*First Name is required";
-    } else {
-        $OFirstName = test_input($_POST["OFirstName"]);
-    }
-
-    $OmiddleInitial = "";
-    if (empty($_POST["OmiddleInitial"])) {
-        $OmiddleInitialErr = "*Middle Initial is required";
-    } else {
-        $OmiddleInitial = test_input($_POST["OmiddleInitial"]);
-    }
-
-    $Ocaddress = "";
-    if (empty($_POST["Ocaddress"])) {
-        $OcaddressErr = "*Address is required";
-    } else {
-        $Ocaddress = test_input($_POST["Ocaddress"]);
-    }
-
-    $Octc = "";
-    if (empty($_POST["Octc"])) {
-        $OctcErr = "*Community Tax Certificate is required";
-    } else {
-        $Octc = test_input($_POST["Octc"]);
-    }
-
-    $email = "";
-    if (empty($_POST["email"])) {
-        $emailErr = "*Email Address is required";
-    } else {
-        $email = test_input($_POST["email"]);
-    }
-
-    $pw = "";
-    if (empty($_POST["pw"])) {
-        $pwErr = "*Password is required";
-    } else {
-        $pw = test_input($_POST["pw"]);
-    }
-
-    $cpw = "";
-    if (empty($_POST["cpw"])) {
-        $cpwErr = "*Password is required";
-    } else {
-        $cpw = test_input($_POST["cpw"]);
-    }
-
-    if ($pw != $cpw) {
-        $pwErr = "*Passwords do not match";
-        $cpwErr = "*Passwords do not match";
-    } else {
-        
-    }
-
-    if (empty($_POST["lastName"]) || empty($_POST["firstName"]) || empty($_POST["middleInitial"]) || empty($_POST["TaxAccNo"]) || empty($_POST["formOfOwnership"]) || empty($_POST["enterpriseName"]) || empty($_POST["contactNumber"]) || empty($_POST["kindOfBusiness"]) || empty($_POST["Address"]) || empty($_POST["location"]) || empty($_POST["tec1"]) || empty($_POST["tec2"]) || empty($_POST["tec3"]) || empty($_POST["tec4"]) || empty($_POST["tec5"]) || empty($_POST["storey"]) || empty($_POST["floorArea"]) || empty($_POST["constructionDate"]) || empty($_POST["SPRC"]) || empty($_POST["SlastName"]) || empty($_POST["SmiddleInitial"]) || empty($_POST["SFirstName"]) || empty($_POST["Saddress"]) || empty($_POST["CPRC"]) || empty($_POST["ClastName"]) || empty($_POST["CFirstName"]) || empty($_POST["CmiddleInitial"]) || empty($_POST["Ccaddress"]) || empty($_POST["ptrNo"]) || empty($_POST["dateIssued"]) || empty($_POST["placeIssued"]) || empty($_POST["tin"]) || empty($_POST["ctc"]) || empty($_POST["ctcDate"]) || empty($_POST["ctcPlace"]) || empty($_POST["tct"]) || empty($_POST["OlastName"]) || empty($_POST["OFirstName"]) || empty($_POST["OmiddleInitial"]) || empty($_POST["Ocaddress"]) || empty($_POST["Octc"]) || empty($_POST["email"]) || ($pw != $cpw)) {
-        $message = "asdadas";
-    } else {
-        $sql = "INSERT INTO general_info (last_name,first_name,middle_initial,tax_no,address,enterprise_name,ownership_form,business,contact_number) VALUES ('$lName','$fName','$mName','$TaxAccNo','$Address','$entName','$formOfOwnership','$kindOfBusiness','$contactNumber')";
-
-        if ($conn->query($sql) === TRUE) {
-            $message = "New record created successfully";
-        } else {
-            $message = "Error: " . $sql . "<br>" . $conn->error;
-        }
-
-        $sql1 = "INSERT INTO costs (building,electrical,mechanical,plumbing,others,total_cost,number_of_storeys,floor_area,proposed_construction_date,construction_materials) VALUES ('$tec1','$tec2','$tec3','$tec4','$tec5','$tec6','$storey','$floorArea','$constructionDate','$o4')";
-        $sql2 = "INSERT INTO in_charge_of_construction (prc_registration_number,engineer_last_name,engineer_first_name,engineer_middle_initial,engineer_address,ptr_number,date_issued,place_issued,tin) VALUES ('$CPRC','$ClastName','$CFirstName','$CmiddleInitial','$Ccaddress','$ptrNo','$dateIssued','$placeIssued','$tin')";
-        $sql3 = "INSERT INTO lot_owner (tct_oct_number,owner_last_name,owner_first_name,owner_middle_initial,owner_address,community_tax_certificate) VALUES ('$tct','$OlastName','$OFirstName','$OmiddleInitial','$Ocaddress','$Octc')";
-        $sql4 = "INSERT INTO plans_and_specifications (prc_registration_number,engineer_last_name,engineer_first_name,engineer_middle_initial,engineer_address) VALUES ('$SPRC','$SlastName','$SFirstName','$SmiddleInitial','$Saddress')";
-        $sql5 = "INSERT INTO tracking_accounts (email_address,password) VALUES ('$email','$pw')";
-
-
-
-        if ($conn->query($sql1) === TRUE) {
-            $message1 = "sql1";
-        } else {
-            $message1 = "Error1: " . $sql1 . "<br>" . $conn->error;
-        }
-
-        if ($conn->query($sql2) === TRUE) {
-            $message2 = "sql2";
-        } else {
-            $message2 = "Error2: " . $sql . "<br>" . $conn->error;
-        }
-
-        if ($conn->query($sql3) === TRUE) {
-            $message3 = "sql3";
-        } else {
-            $message3 = "Error3: " . $sql . "<br>" . $conn->error;
-        }
-        if ($conn->query($sql4) === TRUE) {
-            $message4 = "sql4";
-        } else {
-            $message4 = "Error4: " . $sql . "<br>" . $conn->error;
-        }
-        if ($conn->query($sql5) === TRUE) {
-            $message5 = "sql5";
-        } else {
-            $message5 = "Error5: " . $sql . "<br>" . $conn->error;
-        }
-    }
-
-
-
-    $conn->close();
-}
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../../Client/common/head.php'; ?>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CBAO Web Application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" lang="en" content="CBAO Web Application">
+        <meta name="author" content="SLUSCIS">
+        <meta name="robots" content="index, follow">
 
-        <link rel="stylesheet" href="../../Client/css/bpForm.css">
-        <link rel="stylesheet" href="../../Client/btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="css/bpForm.css">
+        <link rel="stylesheet" href="btstrp/css/bootstrap.css">
+		
     </head>
-      
-        <?php include '../../Client/common/header.php'; ?>
-
+    <body>  
+        <div class="header">
+            <div class = "row">
+                <div class = "col-md-4">
+                    <p><img class = "img-responsive" src="img/seal.png" alt=""></p>
+                </div>
+                <div class = "col-md-4">
+                    <p>City Government of Baguio</p>
+					
+                </div>
+                <div class = "col-md-4">
+                    <p id = "cbao">CBAO</p>
+                </div>
+            </div>
+        </div>
+		
         <div class="content">
             <div class="main">
                 <h1 id = "heading">Building Permit Form</h1>
@@ -469,7 +48,7 @@ if (isset($_POST['save'])) {
                             <li><a href="#box3A"><div>Costs</div></a></li>
                             <li><a href="#box6"><div>Arch./Civil Eng. (Plans and Specifications)</div></a></li>
                             <li><a href="#box7"><div>Arch./Civil Eng. (Construction)</div></a></li>
-                            <li><a href="#box8"><div>Community Tax Certificate</div></a></li>
+                             <li><a href="#box8"><div>Community Tax Certificate</div></a></li>
                             <li><a href="#box9"><div>Lot Owner</div></a></li>
                             <li><a href="#trackingAcc"><div>Tracking Account Credentials</div></a></li>
                         </ul>
@@ -480,454 +59,489 @@ if (isset($_POST['save'])) {
                     <p><a href="index.html" class="btn2">Cancel Application</a></p>
                 </div>
             </div>
-
+					
             <div class = "col-md-9">
                 <div class = "scroll">
                     <section id="box1">
                         <h4>General Information</h4>
-                        <form class="form-horizontal"action="bpForm.php" method="post">
+						 <form class="form-horizontal" action="processBpForm.php" method="post">
                             <div class="form-group">
                                 <label for="lastName" class="control-label col-xs-4">* Last Name:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="lastName" name="lastName" value="<?= (isset($lName) ? $lName : "") ?>" placeholder="Last Name"><?php echo $lnameErr; ?> 
+                                    <input type="text" class="form-control" id="lastName" name="lastName" value="<?php if(!empty($_SESSION['$lName'])){echo $_SESSION['$lName']; unset($_SESSION['$lName']);}?>" placeholder="Last Name"><?php if(!empty($_SESSION['$lnameErr'])){echo $_SESSION['$lnameErr']; unset($_SESSION['$lnameErr']);}?> 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="firstName" class="control-label col-xs-4">* First Name:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="firstName" name="firstName" value="<?= (isset($fName) ? $fName : "") ?>" placeholder="First Name"><?php echo $fnameErr; ?>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" value="<?php if(!empty($_SESSION['$fName'])){echo $_SESSION['$fName']; unset($_SESSION['$fName']);}?>" placeholder="First Name"><?php if(!empty($_SESSION['$fnameErr'])){echo $_SESSION['$fnameErr']; unset($_SESSION['$fnameErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="middleInitial" class="control-label col-xs-4">* Middle Initial:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="middleInitial" name="middleInitial"  value="<?= (isset($mName) ? $mName : "") ?>"placeholder="Middle Initial"><?php echo $mnameErr; ?>
+                                    <input type="text" class="form-control" id="middleInitial" name="middleInitial"  value="<?php if(!empty($_SESSION['$mName'])){echo $_SESSION['$mName']; unset($_SESSION['$mName']);}?>" placeholder="Middle Initial"><?php if(!empty($_SESSION['$mnameErr'])){echo $_SESSION['$mnameErr']; unset($_SESSION['$mnameErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="TaxAccNo" class="control-label col-xs-4">TIN:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="TaxAccNo" name="TaxAccNo" value="<?= (isset($TaxAccNo) ? $TaxAccNo : "") ?>" placeholder="Tax Account Number"><?php echo $TaxAccNoErr; ?>
+                                    <input type="text" class="form-control" id="TaxAccNo" name="TaxAccNo" value="<?php if(!empty($_SESSION['$TaxAccNo'])){echo $_SESSION['$TaxAccNo']; unset($_SESSION['$TaxAccNo']);}?>" placeholder="Tax Account Number"><?php if(!empty($_SESSION['$TaxAccNoErr'])){echo $_SESSION['$TaxAccNoErr']; unset($_SESSION['$TaxAccNoErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="enterpriseName" class="control-label col-xs-4">Enterprise Name:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="enterpriseName" name="enterpriseName" value="<?= (isset($entName) ? $entName : "") ?>"placeholder="Enterprise Name"><?php echo $entNameErr; ?>
+                                    <input type="text" class="form-control" id="enterpriseName" name="enterpriseName" value="<?php if(!empty($_SESSION['$entName'])){echo $_SESSION['$entName']; unset($_SESSION['$entName']);}?>" placeholder="Enterprise Name"><?php if(!empty($_SESSION['$entNameErr'])){echo $_SESSION['$entNameErr']; unset($_SESSION['$entNameErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="formOfOwnership" class="control-label col-xs-4">* Form of Ownership:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="formOfOwnership" name="formOfOwnership" value="<?= (isset($formOfOwnership) ? $formOfOwnership : "") ?>"placeholder="Form of Ownership"><?php echo $formOfOwnershipErr; ?>
+                                    <input type="text" class="form-control" id="formOfOwnership" name="formOfOwnership" value="<?php if(!empty($_SESSION['$formOfOwnership'])){echo $_SESSION['$formOfOwnership']; unset($_SESSION['$formOfOwnership']);}?>" placeholder="Form of Ownership"><?php if(!empty($_SESSION['$formOfOwnershipErr'])){echo $_SESSION['$formOfOwnershipErr']; unset($_SESSION['$formOfOwnershipErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="kindOfBusiness" class="control-label col-xs-4">Kind of Business:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="kindOfBusiness" name="kindOfBusiness"value="<?= (isset($kindOfBusiness) ? $kindOfBusiness : "") ?>" placeholder="Kind of Business"><?php echo $kindOfBusinessErr; ?>
+                                    <input type="text" class="form-control" id="kindOfBusiness" name="kindOfBusiness" value="<?php if(!empty($_SESSION['$kindOfBusiness'])){echo $_SESSION['$kindOfBusiness']; unset($_SESSION['$kindOfBusiness']);}?>" placeholder="Kind of Business"><?php if(!empty($_SESSION['$kindOfBusinessErr'])){echo $_SESSION['$kindOfBusinessErr']; unset($_SESSION['$kindOfBusinessErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="Address" class="control-label col-xs-4">Address:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="Address" name="Address" value="<?= (isset($Address) ? $Address : "") ?>" placeholder="Address"><?php echo $AddressErr; ?>
+                                    <input type="text" class="form-control" id="Address" name="Address" value="<?php if(!empty($_SESSION['$Address'])){echo $_SESSION['$Address']; unset($_SESSION['$Address']);}?>" placeholder="Address"><?php if(!empty($_SESSION['$AddressErr'])){echo $_SESSION['$AddressErr']; unset($_SESSION['$AddressErr']);}?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="contactNumber" class="control-label col-xs-4">Contact Number:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control"  id="contactNumber" name="contactNumber" value="<?= (isset($contactNumber) ? $contactNumber : "") ?>" placeholder="Contact Number"><?php echo $contactNumberErr; ?>
+                                    <input type="text" class="form-control"  id="contactNumber" name="contactNumber" value="<?php if(!empty($_SESSION['$contactNumber'])){echo $_SESSION['$contactNumber']; unset($_SESSION['$contactNumber']);}?>" placeholder="Contact Number"><?php if(!empty($_SESSION['$contactNumberErr'])){echo $_SESSION['$contactNumberErr']; unset($_SESSION['$contactNumberErr']);}?>
                                 </div>
                             </div>                          
                             <div class="form-group">
                                 <label for="location" class="control-label col-xs-4">Location of Construction:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control"  id="location" name="location" value="<?= (isset($location) ? $location : "") ?>" placeholder="Location of Construction"><?php echo $locationErr; ?>
+                                    <input type="text" class="form-control"  id="location" name="location" value="<?php if(!empty($_SESSION['$location'])){echo $_SESSION['$location']; unset($_SESSION['$location']);}?>" placeholder="Location of Construction"><?php if(!empty($_SESSION['$locationErr'])){echo $_SESSION['$locationErr']; unset($_SESSION['$locationErr']);}?>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="scope" class="control-label col-xs-4">Scope of work</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="newConstruction" class="control-label col-xs-4">New construction:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="newConstruction" name="newConstruction"/>
+							<div class="form-group">
+								<label for="scope" class="control-label col-xs-4">Scope of work</label>
+							</div>
+							<div class="form-group">
+								<label for="newConstruction" class="control-label col-xs-4">New construction:</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="newConstruction" name="newConstruction" value="<?php if(!empty($_SESSION['$newConstruction'])){echo $_SESSION['$newConstruction']; unset($_SESSION['$newConstruction']);}?>"/><?php if(!empty($_SESSION['$newConstructionErr'])){echo $_SESSION['$newConstructionErr']; unset($_SESSION['$newConstructionErr']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="additionOf" class="control-label col-xs-4">Addition of:</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="additionOf" name="additionOf" value="<?php if(!empty($_SESSION['$additionOf'])){echo $_SESSION['$additionOf']; unset($_SESSION['$additionOf']);}?>"/><?php if(!empty($_SESSION['$additionOfErr'])){echo $_SESSION['$additionOfErr']; unset($_SESSION['$additionOfErr']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="repairOf" class="control-label col-xs-4">Repair of:</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="repairOf" name="repairOf" value="<?php if(!empty($_SESSION['$repairOf'])){echo $_SESSION['$repairOf']; unset($_SESSION['$repairOf']);}?>"/><?php if(!empty($_SESSION['$repairOfErr'])){echo $_SESSION['$repairOfErr']; unset($_SESSION['$repairOfErr']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="renovationOf" class="control-label col-xs-4">Renovation of:</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="renovationOf" name="renovationOf" value="<?php if(!empty($_SESSION['$renovationOf'])){echo $_SESSION['$renovationOf']; unset($_SESSION['$renovationOf']);}?>"/><?php if(!empty($_SESSION['$renovationOfErr'])){echo $_SESSION['$renovationOfErr']; unset($_SESSION['$renovationOfErr']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="demolitionOf" class="control-label col-xs-4">Demolition of:</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="demolitionOf" name="demolitionOf" value="<?php if(!empty($_SESSION['$demolitionOf'])){echo $_SESSION['$demolitionOf']; unset($_SESSION['$demolitionOf']);}?>"/><?php if(!empty($_SESSION['$demolitionOfErr'])){echo $_SESSION['$demolitionOfErr']; unset($_SESSION['$demolitionOfErr']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="repairOf" class="control-label col-xs-4">Others</label>
+							</div>
+							<div class="form-group">
+								<span class="col-xs-4"></span>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" id="others1" name="others1" value="<?php if(!empty($_SESSION['$others1'])){echo $_SESSION['$others1']; unset($_SESSION['$others1']);}?>"/>
+								</div>
+								<div class="col-xs-1">
+									<label>of</label>
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" id="others2" name="others2" value="<?php if(!empty($_SESSION['$others2'])){echo $_SESSION['$others2']; unset($_SESSION['$others2']);}?>"/><?php if(!empty($_SESSION['$others1and2Err'])){echo $_SESSION['$others1and2Err']; unset($_SESSION['$others1and2Err']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<span class="col-xs-4"></span>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" id="others3" name="others3" value="<?php if(!empty($_SESSION['$others3'])){echo $_SESSION['$others3']; unset($_SESSION['$others3']);}?>"/>
+								</div>
+								<div class="col-xs-1">
+									<label>of</label>
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" id="others4" name="others4" value="<?php if(!empty($_SESSION['$others4'])){echo $_SESSION['$others4']; unset($_SESSION['$others4']);}?>"/><?php if(!empty($_SESSION['$others3and4Err'])){echo $_SESSION['$others3and4Err']; unset($_SESSION['$others3and4Err']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="numberOfUnits" class="control-label col-xs-4">Number of units:</label>
+								<div class="col-xs-8">
+									<input type="number" class="form-control" id="numberOfUnits" name="numberOfUnits" value="<?php if(!empty($_SESSION['$numberOfUnits'])){echo $_SESSION['$numberOfUnits']; unset($_SESSION['$numberOfUnits']);}?>"/><?php if(!empty($_SESSION['$numberOfUnitsErr'])){echo $_SESSION['$numberOfUnitsErr']; unset($_SESSION['$numberOfUnitsErr']);}?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="typeOfOccupancy" class="control-label col-xs-4">Type of Occupancy</label>
+							</div>
+							<div class="form-group">
+									<span class="col-xs-4"></span>
+                                    <div class="col-xs-8">
+                                        <select id="parent_typeOfOccupancy"  name="parent_typeOfOccupancy">
+											<option option disabled selected>SELECT TYPE OF OCCUPANCY</option>
+                                            <option value="residential" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential') echo ' selected="selected"';?>>RESIDENTIAL</option>
+                                            <option value="commercial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'commercial') echo ' selected="selected"';?>>COMMERCIAL</option>
+                                            <option value="street furniture, landscaping, signboards" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'street furniture, landscaping, signboards') echo ' selected="selected"';?>>STREET FURNITURE, LANDSCAPING, SIGNBOARDS</option>
+											<option value="industrial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'industrial') echo ' selected="selected"';?>>INDUSTRIAL</option>
+											<option value="institutional" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'institutional') echo ' selected="selected"';?>>INSTITUTIONAL</option>
+											<option value="agricultural" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'agricultural') echo ' selected="selected"';?>>AGRICULTURAL</option>
+											<option value="others" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'others') echo ' selected="selected"';?>>OTHER CONSTRUCTION</option>
+										</select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="additionOf" class="control-label col-xs-4">Addition of:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="additionOf" name="additionOf"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="repairOf" class="control-label col-xs-4">Repair of:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="repairOf" name="repairOf"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="renovationOf" class="control-label col-xs-4">Renovation of:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="renovationOf" name="renovationOf"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="demolitionOf" class="control-label col-xs-4">Demolition of:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="demolitionOf" name="demolitionOf"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="repairOf" class="control-label col-xs-4">Others</label>
-                            </div>
-                            <div class="form-group">
-                                <span class="col-xs-4"></span>
-                                <div class="col-xs-3">
-                                    <input type="text" class="form-control" id="others1" name="others1"/>
-                                </div>
-                                <div class="col-xs-1">
-                                    <label>of</label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="text" class="form-control" id="others2" name="others2"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="col-xs-4"></span>
-                                <div class="col-xs-3">
-                                    <input type="text" class="form-control" id="others3" name="others3"/>
-                                </div>
-                                <div class="col-xs-1">
-                                    <label>of</label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="text" class="form-control" id="others4" name="others4"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="numberOfUnits" class="control-label col-xs-4">Number of units:</label>
-                                <div class="col-xs-8">
-                                    <input type="number" class="form-control" id="numberOfUnits" name="numberOfUnits"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="typeOfOccupancy" class="control-label col-xs-4">Type of Occupancy</label>
-                            </div>
-                            <div class="form-group">
-                                <span class="col-xs-4"></span>
-                                <div class="col-xs-8">
-                                    <select id="parent_typeOfOccupancy"  name="parent_typeOfOccupancy">
-                                        <option value="residential">RESIDENTIAL</option>
-                                        <option value="commercial">COMMERCIAL</option>
-                                        <option value="other construction">STEEL</option>
-                                        <option value="street furniture, landscaping, signboards">STREET FURNITURE, LANDSCAPING, SIGNBOARDS</option>
-                                        <option value="industrial">INDUSTRIAL</option>
-                                        <option value="institutional">INSTITUTIONAL</option>
-                                        <option value="agricultural">AGRICULTURAL</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="col-xs-4"></span>
-                                <div class="col-xs-8">
-                                    <select id="child_typeOfOccupancy"  name="child_typeOfOccupancy">
-                                    </select>
-                                </div>
-                            </div>
+								<div class="form-group">
+									<span class="col-xs-4"></span>
+									<div class="col-xs-8">
+											<div id="child_typeOfOccupancy"></div>
+										</div>
+								</div>
+								<div class="form-group">
+									<span class="col-xs-4"></span>
+									<div class="col-xs-8">
+											<div id="other_typeOfOccupancy"></div>
+										</div>
+								</div>
+								
+                            <!-- scope of work and use or type of occupancy code should go here-->
+                     <!--   </form>-->
                     </section>
                     <hr>
                     <section id="box3A">
                         <h4>Total Estimated Cost</h4>
-                        <label>Building</label>
-                        <div class="form-group">
-                            <label for="tec1" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1.00" min="0.00"  id="tec1" name="tec1"  value="<?= (isset($tec1) ? $tec1 : "") ?>" placeholder="0.00"><?php echo $tec1Err; ?>
+                            <label>Building</label>
+                            <div class="form-group">
+                                <label for="tec1" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" step="1.00" min="0.00"  id="tec1" name="tec1"  value="<?php if(!empty($_SESSION['$tec1'])){echo $_SESSION['$tec1']; unset($_SESSION['$tec1']);}?>" placeholder="0.00"><?php if(!empty($_SESSION['$tec1Err'])){echo $_SESSION['$tec1Err']; unset($_SESSION['$tec1Err']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <label>Electrical</label>
-                        <div class="form-group">
-                            <label for="tec2" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1.00" min="0.00" id="tec2" name="tec2" value="<?= (isset($tec2) ? $tec2 : "") ?>" placeholder="0.00"><?php echo $tec2Err; ?>
+                            <label>Electrical</label>
+                            <div class="form-group">
+                                <label for="tec2" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec2" name="tec2" value="<?php if(!empty($_SESSION['$tec2'])){echo $_SESSION['$tec2']; unset($_SESSION['$tec2']);}?>" placeholder="0.00"><?php if(!empty($_SESSION['$tec2Err'])){echo $_SESSION['$tec2Err']; unset($_SESSION['$tec2Err']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <label>Mechanical</label>
-                        <div class="form-group">
-                            <label for="tec3" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1.00" min="0.00" id="tec3" name="tec3" value="<?= (isset($tec3) ? $tec3 : "") ?>" placeholder="0.00"><?php echo $tec3Err; ?>
+                            <label>Mechanical</label>
+                            <div class="form-group">
+                                <label for="tec3" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec3" name="tec3" value="<?php if(!empty($_SESSION['$tec3'])){echo $_SESSION['$tec3']; unset($_SESSION['$tec3']);}?>" placeholder="0.00"><?php if(!empty($_SESSION['$tec3Err'])){echo $_SESSION['$tec3Err']; unset($_SESSION['$tec3Err']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <label>Plumbing</label>
-                        <div class="form-group">
-                            <label for="tec4" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1.00" min="0.00" id="tec4"  name="tec4" value="<?= (isset($tec4) ? $tec4 : "") ?>" placeholder="0.00"><?php echo $tec4Err; ?>
+                            <label>Plumbing</label>
+                            <div class="form-group">
+                                <label for="tec4" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec4"  name="tec4" value="<?php if(!empty($_SESSION['$tec4'])){echo $_SESSION['$tec4']; unset($_SESSION['$tec4']);}?>" placeholder="0.00"><?php if(!empty($_SESSION['$tec4Err'])){echo $_SESSION['$tec4Err']; unset($_SESSION['$tec4Err']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <label>Others</label>
-                        <div class="form-group">
-                            <label for="tec5" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1.00" min="0.00" id="tec5"  name="tec5" value="<?= (isset($tec5) ? $tec5 : "") ?>" placeholder="0.00"><?php echo $tec5Err; ?>
+                            <label>Others</label>
+                            <div class="form-group">
+                                <label for="tec5" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec5"  name="tec5" value="<?php if(!empty($_SESSION['$tec5'])){echo $_SESSION['$tec5']; unset($_SESSION['$tec5']);}?>" placeholder="0.00"><?php if(!empty($_SESSION['$tec5Err'])){echo $_SESSION['$tec5Err']; unset($_SESSION['$tec5Err']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <label>Total Cost</label>
-                        <div class="form-group">
-                            <label for="tec6" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1.00" min="0.00" id="tec6"   name="tec6"  placeholder="0.00">
-                            </div>
-                        </div
+                            <label>Total Cost</label>
+                            <div class="form-group">
+                                <label for="tec6" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec6"   name="tec6" value="<?php if(!empty($_SESSION['$tec6'])){echo $_SESSION['$tec6']; unset($_SESSION['$tec6']);}?>" placeholder="0.00">
+                                </div>
+                            </div
 
-                        <!-- Cost of Equipment Installed -->
-                        <hr>
-                        <h4>Cost of Equipment Installed</h4>
-                        <div class="form-group">
-                            <label for="cei1" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="0.01" min="0.00" id="cei1"  placeholder="0.00">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="cei1" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="0.01" min="0.00" id="cei1" placeholder="0.00">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="cei1" class="control-label col-xs-4">&#8369</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="0.01" min="0.00" id="cei1" placeholder="0.00">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="storey" class="control-label col-xs-4">Number of Storeys:</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1" min="1"  id="storey" name="storey" value="<?= (isset($storey) ? $storey : "") ?>"placeholder="0"><?php echo $storeyErr; ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="floorArea" class="control-label col-xs-4">Total Floor Area:</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="form-control" step="1" min="1" id="floorArea" name="floorArea" value="<?= (isset($floorArea) ? $floorArea : "") ?>"placeholder="0"><?php echo $floorAreaErr; ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="constructionDate" class="control-label col-xs-4">Proposed Date of Conctruction:</label>
-                            <div class="col-xs-8">
-                                <input type="date" class="form-control" id="constructionDate" name="constructionDate" value="<?= (isset($constructionDate) ? $constructionDate : "") ?>" ><?php echo $constructionDateErr; ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="constructionDate" class="control-label col-xs-4">Materials of Conctruction:</label>
-                            <div class="col-xs-8">
-                                <select id="o4"  name="o4">
-                                    <option value="wood">WOOD</option>
-                                    <option value="concrete">CONCRETE</option>
-                                    <option value="steel">STEEL</option>
-                                    <option value="mixed">MIXED</option>
-                                </select>
-                            </div>
-                        </div>
+                            <!-- Cost of Equipment Installed -->
+                            <hr>
+                            <h4>Cost of Equipment Installed</h4>
+                                <div class="form-group">
+                                    <label for="cei1" class="control-label col-xs-4">&#8369</label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei1"  name="cei1" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei1'])){echo $_SESSION['$cei1']; unset($_SESSION['$cei1']);}?>"><?php if(!empty($_SESSION['$cei1Err'])){echo $_SESSION['$cei1Err']; unset($_SESSION['$cei1Err']);}?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cei1" class="control-label col-xs-4">&#8369</label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei1" name="cei2" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei2'])){echo $_SESSION['$cei2']; unset($_SESSION['$cei2']);}?>"><?php if(!empty($_SESSION['$cei2Err'])){echo $_SESSION['$cei2Err']; unset($_SESSION['$cei2Err']);}?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cei1" class="control-label col-xs-4">&#8369</label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei1" name="cei3" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei3'])){echo $_SESSION['$cei3']; unset($_SESSION['$cei3']);}?>"><?php if(!empty($_SESSION['$cei3Err'])){echo $_SESSION['$cei3Err']; unset($_SESSION['$cei3Err']);}?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="storey" class="control-label col-xs-4">Number of Storeys:</label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control" step="1" min="1"  id="storey" name="storey" value="<?php if(!empty($_SESSION['$storey'])){echo $_SESSION['$storey']; unset($_SESSION['$storey']);}?>"placeholder="0"><?php if(!empty($_SESSION['$storeyErr'])){echo $_SESSION['$storeyErr']; unset($_SESSION['$storeyErr']);}?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="floorArea" class="control-label col-xs-4">Total Floor Area:</label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control" step="1" min="1" id="floorArea" name="floorArea" value="<?php if(!empty($_SESSION['$floorArea'])){echo $_SESSION['$floorArea']; unset($_SESSION['$floorArea']);}?>"placeholder="0"><?php if(!empty($_SESSION['$floorAreaErr'])){echo $_SESSION['$floorAreaErr']; unset($_SESSION['$floorAreaErr']);}?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="constructionDate" class="control-label col-xs-4">Proposed Date of Construction:</label>
+                                    <div class="col-xs-8">
+                                        <input type="date" class="form-control" id="constructionDate" name="constructionDate" value="<?php if(!empty($_SESSION['$constructionDate'])){echo $_SESSION['$constructionDate']; unset($_SESSION['$constructionDate']);}?>" ><?php if(!empty($_SESSION['$constructionDateErr'])){echo $_SESSION['$constructionDateErr']; unset($_SESSION['$constructionDateErr']);}?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="constructionDate" class="control-label col-xs-4">Materials of Conctruction:</label>
+                                    <div class="col-xs-8">
+                                        <select id="o4"  name="o4">
+											<option>SELECT MATERIALS OF CONSTRUCTION</option>
+                                            <option value="wood">WOOD</option>
+                                            <option value="concrete">CONCRETE</option>
+                                            <option value="steel">STEEL</option>
+                                            <option value="mixed">MIXED</option>
+                                        </select>
+                                    </div>
+                                </div>
 
+                           <!--   </form>-->
                     </section>
                     <section id="box6">
                         <hr>
                         <h4>Architect/Civil Engineer</h4>
                         <h6>Signed and Sealed Plans and Specifications</h6>
-                        <div class="form-group">
-                            <label for="SPRC" class="control-label col-xs-4">PRC Reg. Number:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="SPRC" name="SPRC" value="<?= (isset($SPRC) ? $SPRC : "") ?>" placeholder="PRC Registration Number"><?php echo $SPRCErr; ?>
+                            <div class="form-group">
+                                <label for="SPRC" class="control-label col-xs-4">PRC Reg. Number:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="SPRC" name="SPRC" value="<?php if(!empty($_SESSION['$SPRC'])){echo $_SESSION['$SPRC']; unset($_SESSION['$SPRC']);}?>" placeholder="PRC Registration Number"><?php if(!empty($_SESSION['$SPRCErr'])){echo $_SESSION['$SPRCErr']; unset($_SESSION['$SPRCErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="SlastName" class="control-label col-xs-4">Last Name:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="SlastName" name="SlastName" value="<?= (isset($SlastName) ? $SlastName : "") ?>"placeholder="Last Name"><?php echo $SlastNameErr; ?>
+                            <div class="form-group">
+                                <label for="SlastName" class="control-label col-xs-4">Last Name:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="SlastName" name="SlastName" value="<?php if(!empty($_SESSION['$SlastName'])){echo $_SESSION['$SlastName']; unset($_SESSION['$SlastName']);}?>"placeholder="Last Name"><?php if(!empty($_SESSION['$SlastNameErr'])){echo $_SESSION['$SlastNameErr']; unset($_SESSION['$SlastNameErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="SfirstName" class="control-label col-xs-4">First Name:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="SFirstName" name="SFirstName"value="<?= (isset($SFirstName) ? $SFirstName : "") ?>" placeholder="First Name"><?php echo $SFirstNameErr; ?>
+                            <div class="form-group">
+                                <label for="SfirstName" class="control-label col-xs-4">First Name:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="SFirstName" name="SFirstName"value="<?php if(!empty($_SESSION['$SFirstName'])){echo $_SESSION['$SFirstName']; unset($_SESSION['$SFirstName']);}?>" placeholder="First Name"><?php if(!empty($_SESSION['$SFirstNameErr'])){echo $_SESSION['$SFirstNameErr']; unset($_SESSION['$SFirstNameErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="SmiddleInitial" class="control-label col-xs-4">Middle Initial:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="SmiddleInitial" name="SmiddleInitial" value="<?= (isset($SmiddleInitial) ? $SmiddleInitial : "") ?>"placeholder="Middle Initial"><?php echo $SmiddleInitialErr; ?>
+                            <div class="form-group">
+                                <label for="SmiddleInitial" class="control-label col-xs-4">Middle Initial:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="SmiddleInitial" name="SmiddleInitial" value="<?php if(!empty($_SESSION['$SmiddleInitial'])){echo $_SESSION['$SmiddleInitial']; unset($_SESSION['$SmiddleInitial']);}?>"placeholder="Middle Initial"><?php if(!empty($_SESSION['$SmiddleInitialErr'])){echo $_SESSION['$SmiddleInitialErr']; unset($_SESSION['$SmiddleInitialErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Saddress" class="control-label col-xs-4">Address:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="Saddress" name="Saddress" value="<?= (isset($Saddress) ? $Saddress : "") ?>"placeholder="Address"><?php echo $SaddressErr; ?>
+                            <div class="form-group">
+                                <label for="Saddress" class="control-label col-xs-4">Address:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="Saddress" name="Saddress" value="<?php if(!empty($_SESSION['$Saddress'])){echo $_SESSION['$Saddress']; unset($_SESSION['$Saddress']);}?>"placeholder="Address"><?php if(!empty($_SESSION['$SaddressErr'])){echo $_SESSION['$SaddressErr']; unset($_SESSION['$SaddressErr']);}?>
+                                </div>
                             </div>
-                        </div>
                     </section>
 
                     <section id="box7">
                         <hr>
                         <h4>Architect/Civil Engineer</h4>
                         <h6>In-charge of Construction</h6>
-                        <div class="form-group">
-                            <label for="CPRC" class="control-label col-xs-4">PRC Reg. Number:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="CPRC" name="CPRC" value="<?= (isset($CPRC) ? $CPRC : "") ?>"placeholder="PRC Registration Number"><?php echo $CPRCErr; ?>
+                            <div class="form-group">
+                                <label for="CPRC" class="control-label col-xs-4">PRC Reg. Number:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="CPRC" name="CPRC" value="<?php if(!empty($_SESSION['$CPRC'])){echo $_SESSION['$CPRC']; unset($_SESSION['$CPRC']);}?>"placeholder="PRC Registration Number"><?php if(!empty($_SESSION['$CPRCErr'])){echo $_SESSION['$CPRCErr']; unset($_SESSION['$CPRCErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="ClastName" class="control-label col-xs-4">Last Name:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="ClastName" name="ClastName" value="<?= (isset($ClastName) ? $ClastName : "") ?>"placeholder="Last Name"><?php echo $ClastNameErr; ?>
+                            <div class="form-group">
+                                <label for="ClastName" class="control-label col-xs-4">Last Name:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="ClastName" name="ClastName" value="<?php if(!empty($_SESSION['$ClastName'])){echo $_SESSION['$ClastName']; unset($_SESSION['$ClastName']);}?>"placeholder="Last Name"><?php if(!empty($_SESSION['$ClastNameErr'])){echo $_SESSION['$ClastNameErr']; unset($_SESSION['$ClastNameErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="CfirstName" class="control-label col-xs-4">First Name:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="CFirstName" name="CFirstName" value="<?= (isset($CFirstName) ? $CFirstName : "") ?>"placeholder="First Name"><?php echo $CFirstNameErr; ?>
+                            <div class="form-group">
+                                <label for="CfirstName" class="control-label col-xs-4">First Name:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="CFirstName" name="CFirstName" value="<?php if(!empty($_SESSION['$CFirstName'])){echo $_SESSION['$CFirstName']; unset($_SESSION['$CFirstName']);}?>"placeholder="First Name"><?php if(!empty($_SESSION['$CFirstNameErr'])){echo $_SESSION['$CFirstNameErr']; unset($_SESSION['$CFirstNameErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="CmiddleInitial" class="control-label col-xs-4">Middle Initial:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="CmiddleInitial" name="CmiddleInitial" value="<?= (isset($CmiddleInitial) ? $CmiddleInitial : "") ?>"placeholder="Middle Initial"><?php echo $CmiddleInitialErr; ?>
+                            <div class="form-group">
+                                <label for="CmiddleInitial" class="control-label col-xs-4">Middle Initial:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="CmiddleInitial" name="CmiddleInitial" value="<?php if(!empty($_SESSION['$CmiddleInitial'])){echo $_SESSION['$CmiddleInitial']; unset($_SESSION['$CmiddleInitial']);}?>"placeholder="Middle Initial"><?php if(!empty($_SESSION['$CmiddleInitialErr'])){echo $_SESSION['$CmiddleInitialErr']; unset($_SESSION['$CmiddleInitialErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Caddress" class="control-label col-xs-4">Address:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="Ccaddress" name="Ccaddress" value="<?= (isset($Ccaddress) ? $Ccaddress : "") ?>"placeholder="Address"><?php echo $CcaddressErr; ?>
+                            <div class="form-group">
+                                <label for="Caddress" class="control-label col-xs-4">Address:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="Ccaddress" name="Ccaddress" value="<?php if(!empty($_SESSION['$Ccaddress'])){echo $_SESSION['$Ccaddress']; unset($_SESSION['$Ccaddress']);}?>"placeholder="Address"><?php if(!empty($_SESSION['$CcaddressErr'])){echo $_SESSION['$CcaddressErr']; unset($_SESSION['$CcaddressErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="ptrNo" class="control-label col-xs-4">PTR Number:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="ptrNo" name="ptrNo" value="<?= (isset($ptrNo) ? $ptrNo : "") ?>"placeholder="PTR Number"><?php echo $ptrNoErr; ?>
+                            <div class="form-group">
+                                <label for="ptrNo" class="control-label col-xs-4">PTR Number:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="ptrNo" name="ptrNo" value="<?php if(!empty($_SESSION['$ptrNo'])){echo $_SESSION['$ptrNo']; unset($_SESSION['$ptrNo']);}?>"placeholder="PTR Number"><?php if(!empty($_SESSION['$ptrNoErr'])){echo $_SESSION['$ptrNoErr']; unset($_SESSION['$ptrNoErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="dateIssued" class="control-label col-xs-4">Date Issued:</label>
-                            <div class="col-xs-8">
-                                <input type="date" class="form-control" id="dateIssued" name="dateIssued" value="<?= (isset($dateIssued) ? $dateIssued : "") ?>"><?php echo $dateIssuedErr; ?>
+                            <div class="form-group">
+                                <label for="dateIssued" class="control-label col-xs-4">Date Issued:</label>
+                                <div class="col-xs-8">
+                                    <input type="date" class="form-control" id="dateIssued" name="dateIssued" value="<?php if(!empty($_SESSION['$dateIssued'])){echo $_SESSION['$dateIssued']; unset($_SESSION['$dateIssued']);}?>"><?php if(!empty($_SESSION['$dateIssuedErr'])){echo $_SESSION['$dateIssuedErr']; unset($_SESSION['$dateIssuedErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="placeIssued" class="control-label col-xs-4">Place Issued:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="placeIssued" name="placeIssued" value="<?= (isset($placeIssued) ? $placeIssued : "") ?>"placeholder="Place Issued"><?php echo $placeIssuedErr; ?>
+                            <div class="form-group">
+                                <label for="placeIssued" class="control-label col-xs-4">Place Issued:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="placeIssued" name="placeIssued" value="<?php if(!empty($_SESSION['$placeIssued'])){echo $_SESSION['$placeIssued']; unset($_SESSION['$placeIssued']);}?>"placeholder="Place Issued"><?php if(!empty($_SESSION['$placeIssuedErr'])){echo $_SESSION['$placeIssuedErr']; unset($_SESSION['$placeIssuedErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="tin" class="control-label col-xs-4">Tin:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="tin" name="tin" value="<?= (isset($tin) ? $tin : "") ?>"placeholder="Tin"><?php echo $tinErr; ?>
-                            </div>
-                        </div> 
+                            <div class="form-group">
+                                <label for="tin" class="control-label col-xs-4">Tin:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="tin" name="tin" value="<?php if(!empty($_SESSION['$tin'])){echo $_SESSION['$tin']; unset($_SESSION['$tin']);}?>"placeholder="Tin"><?php if(!empty($_SESSION['$tinErr'])){echo $_SESSION['$tinErr']; unset($_SESSION['$tinErr']);}?>
+                                </div>
+                            </div> 
                     </section>
-
+                    
                     <section id="box8">
                         <hr>
                         <h4>Community Tax Certificate</h4>
                         <div class="form-group">
-                            <label for="tin" class="control-label col-xs-4">Community Tax Certificate:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="ctc" name="ctc" value="<?= (isset($ctc) ? $ctc : "") ?>"placeholder="Community Tax Certificate"><?php echo $ctcErr; ?>
-                            </div>
+                                <label for="tin" class="control-label col-xs-4">Community Tax Certificate:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="ctc" name="ctc" value="<?php if(!empty($_SESSION['$ctc'])){echo $_SESSION['$ctc']; unset($_SESSION['$ctc']);}?>"placeholder="Community Tax Certificate"><?php if(!empty($_SESSION['$ctcErr'])){echo $_SESSION['$ctcErr']; unset($_SESSION['$ctcErr']);}?>
+                                </div>
                         </div> 
                         <div class="form-group">
-                            <label for="tin" class="control-label col-xs-4">Date Issued:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="ctcDate" name="ctcDate" value="<?= (isset($ctcDate) ? $ctcDate : "") ?>"placeholder="Date Issued"><?php echo $ctcDateErr; ?>
-                            </div>
+                                <label for="tin" class="control-label col-xs-4">Date Issued:</label>
+                                <div class="col-xs-8">
+                                    <input type="date" class="form-control" id="ctcDate" name="ctcDate" value="<?php if(!empty($_SESSION['$ctcDate'])){echo $_SESSION['$ctcDate']; unset($_SESSION['$ctcDate']);}?>"placeholder="Date Issued"><?php if(!empty($_SESSION['$ctcDateErr'])){echo $_SESSION['$ctcDateErr']; unset($_SESSION['$ctcDateErr']);}?>
+                                </div>
                         </div> 
                         <div class="form-group">
-                            <label for="tin" class="control-label col-xs-4">Place Issued:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="ctcPlace" name="ctcPlace" value="<?= (isset($ctcPlace) ? $ctcPlace : "") ?>"placeholder="Place Issued"><?php echo $ctcPlaceErr; ?>
-                            </div>
+                                <label for="tin" class="control-label col-xs-4">Place Issued:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="ctcPlace" name="ctcPlace" value="<?php if(!empty($_SESSION['$ctcPlace'])){echo $_SESSION['$ctcPlace']; unset($_SESSION['$ctcPlace']);}?>"placeholder="Place Issued"><?php if(!empty($_SESSION['$ctcPlaceErr'])){echo $_SESSION['$ctcPlaceErr']; unset($_SESSION['$ctcPlaceErr']);}?>
+                                </div>
                         </div>   
                     </section>
                     <section id="box9">
                         <hr>
                         <h4>To be Accomplished by Lot Owner</h4>
-                        <div class="form-group">
-                            <label for="tct" class="control-label col-xs-4">TCT/OCT Number:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="tct" name="tct" value="<?= (isset($tct) ? $tct : "") ?>"placeholder="TCT/OCT Number"><?php echo $tctErr; ?>
+                            <div class="form-group">
+                                <label for="tct" class="control-label col-xs-4">TCT/OCT Number:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="tct" name="tct" value="<?php if(!empty($_SESSION['$tct'])){echo $_SESSION['$tct']; unset($_SESSION['$tct']);}?>"placeholder="TCT/OCT Number"><?php if(!empty($_SESSION['$tctErr'])){echo $_SESSION['$tctErr']; unset($_SESSION['$tctErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="OlastName" class="control-label col-xs-4">Last Name:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="OlastName" name="OlastName" value="<?= (isset($OlastName) ? $OlastName : "") ?>"placeholder="Last Name"><?php echo $OlastNameErr; ?>
+                            <div class="form-group">
+                                <label for="OlastName" class="control-label col-xs-4">Last Name:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="OlastName" name="OlastName" value="<?php if(!empty($_SESSION['$OlastName'])){echo $_SESSION['$OlastName']; unset($_SESSION['$OlastName']);}?>"placeholder="Last Name"><?php if(!empty($_SESSION['$OlastNameErr'])){echo $_SESSION['$OlastNameErr']; unset($_SESSION['$OlastNameErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="OfirstName" class="control-label col-xs-4">First Name:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="OFirstName" name="OFirstName" value="<?= (isset($OFirstName) ? $OFirstName : "") ?>"placeholder="First Name"><?php echo $OFirstNameErr; ?>
+                            <div class="form-group">
+                                <label for="OfirstName" class="control-label col-xs-4">First Name:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="OFirstName" name="OFirstName" value="<?php if(!empty($_SESSION['$OFirstName'])){echo $_SESSION['$OFirstName']; unset($_SESSION['$OFirstName']);}?>"placeholder="First Name"><?php if(!empty($_SESSION['$OFirstNameErr'])){echo $_SESSION['$OFirstNameErr']; unset($_SESSION['$OFirstNameErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="OmiddleInitial" class="control-label col-xs-4">Middle Initial:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="OmiddleInitial" name="OmiddleInitial" value="<?= (isset($OmiddleInitial) ? $OmiddleInitial : "") ?>"placeholder="Middle Initial"><?php echo $OmiddleInitialErr; ?>
+                            <div class="form-group">
+                                <label for="OmiddleInitial" class="control-label col-xs-4">Middle Initial:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="OmiddleInitial" name="OmiddleInitial" value="<?php if(!empty($_SESSION['$OmiddleInitial'])){echo $_SESSION['$OmiddleInitial']; unset($_SESSION['$OmiddleInitial']);}?>"placeholder="Middle Initial"><?php if(!empty($_SESSION['$OmiddleInitialErr'])){echo $_SESSION['$OmiddleInitialErr']; unset($_SESSION['$OmiddleInitialErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Oaddress" class="control-label col-xs-4">Address:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="Ocaddress" name="Ocaddress" value="<?= (isset($Ocaddress) ? $Ocaddress : "") ?>"placeholder="Address"><?php echo $OcaddressErr; ?>
+                            <div class="form-group">
+                                <label for="Oaddress" class="control-label col-xs-4">Address:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="Ocaddress" name="Ocaddress" value="<?php if(!empty($_SESSION['$Ocaddress'])){echo $_SESSION['$Ocaddress']; unset($_SESSION['$Ocaddress']);}?>"placeholder="Address"><?php if(!empty($_SESSION['$OcaddressErr'])){echo $_SESSION['$OcaddressErr']; unset($_SESSION['$OcaddressErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Octc" class="control-label col-xs-4">Community Tax Certificate:</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="Octc" name="Octc" value="<?= (isset($Octc) ? $Octc : "") ?>"placeholder="Community tax Certificate"><?php echo $OctcErr; ?>
+                            <div class="form-group">
+                                <label for="Octc" class="control-label col-xs-4">Community Tax Certificate:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="Octc" name="Octc" value="<?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?>"placeholder="Community tax Certificate"><?php if(!empty($_SESSION['$OctcErr'])){echo $_SESSION['$OctcErr']; unset($_SESSION['$OctcErr']);}?>
+                                </div>
                             </div>
-                        </div>
                     </section>
 
                     <section id="trackingAcc">
                         <hr>
                         <h4>Tracking Account Credentials</h4>
-                        <div class="form-group">
-                            <label for="email" class="control-label col-xs-4">Email Address:</label>
-                            <div class="col-xs-8">
-                                <input type="email" class="form-control" id="email" name="email" value="<?= (isset($email) ? $email : "") ?>"placeholder="Email Address"><?php echo $emailErr; ?>
+                            <div class="form-group">
+                                <label for="email" class="control-label col-xs-4">Email Address:</label>
+                                <div class="col-xs-8">
+                                    <input type="email" class="form-control" id="email" name="email" value="<?php if(!empty($_SESSION['$email'])){echo $_SESSION['$email']; unset($_SESSION['$email']);}?>"placeholder="Email Address"><?php if(!empty($_SESSION['$emailErr'])){echo $_SESSION['$emailErr']; unset($_SESSION['$emailErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pw" class="control-label col-xs-4">Password:</label>
-                            <div class="col-xs-8">
-                                <input type="password" class="form-control" id="pw" name="pw" placeholder="Password"><?php echo $pwErr; ?>
+                            <div class="form-group">
+                                <label for="pw" class="control-label col-xs-4">Password:</label>
+                                <div class="col-xs-8">
+                                    <input type="password" class="form-control" id="pw" name="pw" placeholder="Password"><?php if(!empty($_SESSION['$pwErr'])){echo $_SESSION['$pwErr']; unset($_SESSION['$pwErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="cpw" class="control-label col-xs-4">Confirm Password:</label>
-                            <div class="col-xs-8">
-                                <input type="password" class="form-control" id="cpw"name="cpw" placeholder="Confirm Password"><?php echo $cpwErr; ?>
+                            <div class="form-group">
+                                <label for="cpw" class="control-label col-xs-4">Confirm Password:</label>
+                                <div class="col-xs-8">
+                                    <input type="password" class="form-control" id="cpw"name="cpw" placeholder="Confirm Password"><?php if(!empty($_SESSION['$cpwErr'])){echo $_SESSION['$cpwErr']; unset($_SESSION['$cpwErr']);}?>
+                                </div>
                             </div>
-                        </div>
-                        <h6>Note: This password will be used for tracking your application request</h6>
-                    </section>
-
-                    <div class = "buttons"> 
-                        <button id = "regSub" type="submit" name = "save"  value="save">Submit</button>                  
+                            <h6>Note: This password will be used for tracking your application request</h6>
+                    <!--   </form>--></section>
+					<!--   </form>-->
+					<div class = "buttons">
+						<input type="submit" value="Go"/>
                     </div>
+					</form>
                 </div>                                      
             </div>
         </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
 
-<?php include '../../Client/common/footer.php'; ?>
+<div class="footer">
+    <div class = "row">
+        <div class = "col-xs-8">
+            <div class="contact">
+                <p>Contact Us</p>
+                <p>(074)-998-7654<br>
+                    cbao_baguio@gmail.com<br>
+                    http:www.baguio.gov.ph<br>
+                </p>
+            </div>
+        </div>
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <div class = "col-xs-3">
+            <div class="contact2">
+                <p>&copy; Copyright 2016</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
         $(window).scroll(function () {
@@ -986,88 +600,136 @@ if (isset($_POST['save'])) {
                 }
             }
         });
-
-        /**
-         * Select option.
-         */
-
-        var residential = [
-            {display: "SINGLE", value: "single"},
-            {display: "DUPLEX", value: "duplex"},
-            {display: "ROWHOUSE/ACCESSORIA", value: "rowhouse/accessoria"}];
-
-        var commercial = [
-            {display: "BANK", value: "bank"},
-            {display: "STORE", value: "store"},
-            {display: "HOTEL,MOTEL, ETC.", value: "hotel,motel, etc."},
-            {display: "OFFICE CONDOMINIUM/BUSINESS OFFICE BUILDING", value: "office condominium/business office building"},
-            {display: "RESTAURANT, ETC.", value: "restaurant, etc."},
-            {display: "SHOP (E.G. DRESS SHOP, TAILORING SHOP, BARBER SHOP, ETC.", value: "shop"},
-            {display: "GASOLINE STATION", value: "gasoline station"},
-            {display: "MARKET", value: "market"},
-            {display: "DORMITORY OR OTHER LODGING HOUSE", value: "dormitory or other lodging house"}];
-
-        var street = [
-            {display: "PARKS, PLAZAS, MONUMENTS, POOLS, PLANT BOXES, ETC.", value: "parks, plazas, monuments, pools, plant boxes, etc."},
-            {display: "SIDEWALKS, PROMENADES, TARRACES, LAMPPOSTS, ELECTRIC POLES, TELEPHONE POLES, ETC.", value: "duplex"},
-            {display: "OUTDOOR ADS, SIGNBOARDS, ETC.", value: "outdoor ads, signboards, etc."},
-            {display: "FENCE ENCLOSURE", value: "fence enclosure"}];
-
-        var industrial = [
-            {display: "FACTORY/PLANT", value: "factory/plant"},
-            {display: "REPAIR SHOP, MACHINE SHOP", value: "repair shop, machine shop"},
-            {display: "REFINERY", value: "refinery"},
-            {display: "PRINTING PRESS", value: "printing press"},
-            {display: "WAREHOUSE", value: "warehouse"}];
-
-        var institutional = [
-            {display: "SCHOOL", value: "school"},
-            {display: "CHURCH AND OTHER RELIGIOUS STRUCTURES", value: "church and other religious structures"},
-            {display: "HOSPITAL OR SIMILAR STRUCTURE", value: "hospital or similar structure"},
-            {display: "WELFARE AND CHARITABLE STRUCTURES", value: "welfare and charitable structures"},
-            {display: "THEATER, AUDITORIUM, GYMNASIUM, COURT", value: "theater, auditorium, gymnasium, court"}];
-
-        var agricultural = [
-            {display: "BARN(S) POULTRY HOUSE(S), ETC.", value: "barn(s) poultry house(s), etc."},
-            {display: "GRAIN MILL", value: "grain mill"}];
-        //If parent option is changed
-        $("#parent_typeOfOccupancy").change(function () {
-            var parent = $(this).val(); //get option value from parent 
-
-            switch (parent) { //using switch compare selected option and populate child
-                case 'residential':
-                    list(residential);
-                    break;
-                case 'commercial':
-                    list(commercial);
-                    break;
-                case 'street':
-                    list(street);
-                    break;
-
-                case 'industrial':
-                    list(industrial);
-                    break;
-                case 'institutional':
-                    list(institutional);
-                    break;
-                case 'agricultural':
-                    list(agricultural);
-                    break;
-            }
-        });
-
-        //function to populate child select box
-        function list(array_list)
-        {
-            $("#child_typeOfOccupancy").html(""); //reset child options
-            $(array_list).each(function (i) { //populate child options 
-                $("#child_typeOfOccupancy").append("<option value=\"" + array_list[i].value + "\">" + array_list[i].display + "</option>");
-            });
-        }
+		
+		/**
+		* Select option.
+		*/
     });
 </script>
 
+<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script>
+ $(document).ready(function () {
+var residential = [
+		{display:"SINGLE", value:"single"},
+		{display:"DUPLEX", value:"duplex"},
+		{display:"ROWHOUSE/ACCESSORIA", value:"rowhouse/accessoria"},
+		{display:"OTHERS", value:"others"}];
+		
+		var commercial = [
+		{display:"BANK", value:"bank"},
+		{display:"STORE", value:"store"},
+		{display:"HOTEL,MOTEL, ETC.", value:"hotel,motel, etc."},
+		{display:"OFFICE CONDOMINIUM/BUSINESS OFFICE BUILDING", value:"office condominium/business office building"},
+		{display:"RESTAURANT, ETC.", value:"restaurant, etc."},
+		{display:"SHOP (E.G. DRESS SHOP, TAILORING SHOP, BARBER SHOP, ETC.", value:"shop"},
+		{display:"GASOLINE STATION", value:"gasoline station"},
+		{display:"MARKET", value:"market"},
+		{display:"DORMITORY OR OTHER LODGING HOUSE", value:"dormitory or other lodging house"},
+		{display:"OTHERS", value:"others"}];
+				
+		var street = [
+		{display:"PARKS, PLAZAS, MONUMENTS, POOLS, PLANT BOXES, ETC.", value:"parks, plazas, monuments, pools, plant boxes, etc."},
+		{display:"SIDEWALKS, PROMENADES, TARRACES, LAMPPOSTS, ELECTRIC POLES, TELEPHONE POLES, ETC.", value:"duplex"},
+		{display:"OUTDOOR ADS, SIGNBOARDS, ETC.", value:"outdoor ads, signboards, etc."},
+		{display:"FENCE ENCLOSURE", value:"fence enclosure"}];
 
+		var industrial = [
+		{display:"FACTORY/PLANT", value:"factory/plant"},
+		{display:"REPAIR SHOP, MACHINE SHOP", value:"repair shop, machine shop"},
+		{display:"REFINERY", value:"refinery"},
+		{display:"PRINTING PRESS", value:"printing press"},
+		{display:"WAREHOUSE", value:"warehouse"},
+		{display:"OTHERS", value:"others"}];
+		
+		var institutional = [
+		{display:"SCHOOL", value:"school"},
+		{display:"CHURCH AND OTHER RELIGIOUS STRUCTURES", value:"church and other religious structures"},
+		{display:"HOSPITAL OR SIMILAR STRUCTURE", value:"hospital or similar structure"},
+		{display:"WELFARE AND CHARITABLE STRUCTURES", value:"welfare and charitable structures"},
+		{display:"THEATER, AUDITORIUM, GYMNASIUM, COURT", value:"theater, auditorium, gymnasium, court"},
+		{display:"OTHERS", value:"others"}];
+		
+		var agricultural = [
+		{display:"BARN(S) POULTRY HOUSE(S), ETC.", value:"barn(s) poultry house(s), etc."},
+		{display:"GRAIN MILL", value:"grain mill"},
+		{display:"OTHERS", value:"others"}];
+		
+		
+		//If parent option is changed
+		$("#parent_typeOfOccupancy").change(function() {
+				var parent = $(this).val(); //get option value from parent 
+				
+				switch(parent){ //using switch compare selected option and populate child
+					case 'residential':
+						list(residential);
+						$("#other_typeOfOccupancy").html("");
+						break;
+					case 'commercial':
+						list(commercial);
+						$("#other_typeOfOccupancy").html("");
+						break;              
+					case 'street furniture, landscaping, signboards':
+						list(street);
+						$("#other_typeOfOccupancy").html("");
+						break;
+					
+					case 'industrial':
+						list(industrial);
+						$("#other_typeOfOccupancy").html("");
+						break;
+					
+					case 'institutional':
+						list(institutional);
+						$("#other_typeOfOccupancy").html("");
+						break;              
+					
+					case 'agricultural':
+						list(agricultural);
+						$("#other_typeOfOccupancy").html("");
+						break;
+						
+					case 'others':
+						createTextField();
+						$("#other_typeOfOccupancy").html("");
+						break;
+				   }
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#select_typeOfOccupancy", function(){
+			var child = $(this).val();
+			
+			switch(child){
+				case "others":
+					$("#other_typeOfOccupancy").append("<input type=\"text\" id=\"specific2\"/>");
+					break;
+					
+				default:
+					$("#other_typeOfOccupancy").html("");
+					break;
+			}
+		});
+
+		//function to populate child select box
+		function list(array_list)
+		{
+			$("#child_typeOfOccupancy").html(""); //reset child options
+			$("#child_typeOfOccupancy").append("<select id=\"select_typeOfOccupancy\">");
+			$("#select_typeOfOccupancy").append("<option disabled selected>SELECT SPECIFIC TYPE OF OCCUPANCY</option>");
+			$(array_list).each(function (i) { //populate child options 
+				$("#select_typeOfOccupancy").append("<option value=\""+array_list[i].value+"\">"+array_list[i].display+"</option>");
+			});
+			$("#child_typeOfOccupancy").append("</select>");
+		}
+		
+		function createTextField(){
+			$("#child_typeOfOccupancy").html(""); 
+			$("#child_typeOfOccupancy").append("<input type=\"text\" id=\"specific1\">");
+		}
+		
+		})(jQuery);
+</script>
+ 
+</body>
 
 </html>
