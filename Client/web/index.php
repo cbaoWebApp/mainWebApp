@@ -9,29 +9,34 @@ session_start();
         <link rel="stylesheet" href="../../Client/css/styles.css"> 
         <link rel="stylesheet" href="../../Client/btstrp/css/bootstrap.css">
 
-        <style>
-            .ui-dialog-titlebar-close {
-                <?php
-                if (!empty($_SESSION['login_error_msg'])) {
-                echo "visibility: hidden !important;";
-                }
-                ?>
-            }
-            div.ui-dialog{
-                <?php
-                if (!empty($_SESSION['login_error_msg'])) {
-                    echo "display:block !important;";
-                    echo "position: relative !important;";
-                    echo "height: auto !important;"; 
-                    echo "width: 400px !important;"; 
-                    echo "top: -1103.63px !important;"; 
-                    echo "left: 474.5px !important;";
-                }
-                ?>
-            }   
-        </style>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		
+		<?php
+			if(!empty($_SESSION['login_error_msg'])){
+				echo "
+				<script>
+				$(function () {
+                $(\"#login-popup\").dialog({
+                    autoOpen: true,
+                    closeOnEscape: true,
+                    open: function (event, ui) {
+                        $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
+                    },
+                    position: {
+                        my: \"center center\",
+                        at: \"center center\",
+                        of: window,
+                        collision: \"none\"
+                    },
+                    height: 200,
+                    width: 400
+					});
+				});
+				</script>
+				";
+			}
+		?>
 
     </head>
     <body>
@@ -123,7 +128,7 @@ session_start();
                     $("#inputEmail").val("");
                     $("#inputPassword").val("");
                     $("#login-popup").dialog("close");
-                    
+					$("#err_area").val("");
                 });
             });
         </script>
