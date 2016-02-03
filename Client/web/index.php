@@ -11,32 +11,32 @@ session_start();
 
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-		
-		<?php
-			if(!empty($_SESSION['login_error_msg'])){
-				echo "
-				<script>
-				$(function () {
-                $(\"#login-popup\").dialog({
-                    autoOpen: true,
-                    closeOnEscape: true,
-                    open: function (event, ui) {
-                        $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
-                    },
-                    position: {
-                        my: \"center center\",
-                        at: \"center center\",
-                        of: window,
-                        collision: \"none\"
-                    },
-                    height: 200,
-                    width: 400
-					});
-				});
-				</script>
-				";
-			}
-		?>
+
+        <?php
+        if (!empty($_SESSION['login_error_msg'])) {
+            echo "
+		<script>
+                    $(function () {
+                        $(\"#login-popup\").dialog({
+                            autoOpen: true,
+                            closeOnEscape: true,
+                            open: function (event, ui){
+                                $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
+                            },
+                            position: {
+                                my: \"center center\",
+                                at: \"center center\",
+                                of: window,
+                                collision: \"none\"
+                            },
+                            height: 200,
+                            width: 400
+                        });
+                    });
+		</script>
+            ";
+        }
+        ?>
 
     </head>
     <body>
@@ -57,9 +57,7 @@ session_start();
                         <input type ="button" id = "trackApplication" class="btn2" 
                                value = "Track Application"/>
                         <br>
-                        <div class = "logFields">
-                            <br>                           
-                        </div>
+                        <br>
                     </div>
 
                     <br>
@@ -80,7 +78,6 @@ session_start();
             <div id="err_area">
                 <?php
                 if (!empty($_SESSION['login_error_msg'])) {
-                    //display the message however you want
                     echo "<p>" . $_SESSION['login_error_msg'] . "</p>";
                     unset($_SESSION['login_error_msg']);
                 }
@@ -91,7 +88,8 @@ session_start();
                 <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
                 <br>
                 <input type="submit" id = "search" class="btn1" value="Search">
-                <input type="button" id="cancel" value="Cancel">                         
+                <input type="button" id="cancel" value="Cancel"> 
+                <input type="hidden" name="page_location" value="index">
             </form>
         </div>
 
@@ -125,7 +123,7 @@ session_start();
                     $("#err_area").html("");
                     $("#login-popup").dialog("open");
                 });
-                
+
                 $("#cancel").click(function () {
                     $("#inputEmail").val("");
                     $("#inputPassword").val("");

@@ -1,16 +1,14 @@
 <?php
+
 session_start();
 
+$page_loc = \filter_input(INPUT_POST, "page_location");
 $sanitized_email = \filter_input(INPUT_POST, "email", \FILTER_SANITIZE_EMAIL);
 $sanitized_pw = \filter_input(INPUT_POST, "pw", \FILTER_SANITIZE_STRING);
 
 if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
-    echo <<<_MULTI
-                    <script> 
-                        window.location = "../../Client/web/index.php"; 
-                        alert("Invalid Email entered.");
-                    </script>
-_MULTI;
+    $_SESSION['login_error_msg'] = "Invalid Email";
+    header("Location: /Thesis/Client/web/index.php");
 } else {
     require_once 'credentials.php';
 
@@ -41,8 +39,17 @@ _MULTI;
             //allow client to track his own records
         } else {
             $_SESSION['login_error_msg'] = "Incorrect Credentials";
-            header("Location: /Thesis/Client/web/index.php");
-            
+            switch($page_loc){
+                case 'index':
+                    header("Location: /Thesis/Client/web/index.php");
+                    break;
+                case 'home_req':
+                    header("Location: /Thesis/Client/read_req/homerequirements.php");
+                    break;
+                default:
+					//place default error page
+                    break;
+            }
         }
     }
 
