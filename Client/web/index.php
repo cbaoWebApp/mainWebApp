@@ -122,13 +122,15 @@ session_start();
                 });
 
                 $("#trackApplication").click(function () {
+                    $("#err_area").html("");
                     $("#login-popup").dialog("open");
                 });
+                
                 $("#cancel").click(function () {
                     $("#inputEmail").val("");
                     $("#inputPassword").val("");
                     $("#login-popup").dialog("close");
-					$("#err_area").val("");
+                    $("#err_area").html("");
                 });
             });
         </script>
