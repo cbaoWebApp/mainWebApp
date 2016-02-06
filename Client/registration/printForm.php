@@ -1,473 +1,2085 @@
 <?php
-	session_start();
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CBAO Web Application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" lang="en" content="CBAO Web Application">
+        <meta name="author" content="SLUSCIS">
+        <meta name="robots" content="index, follow">
 
-	function test_input($data) {
-	   $data = trim($data);
-	   $data = stripslashes($data);
-	   $data = htmlspecialchars($data);
-	   return $data;
-	}
-	   
-		if (empty($_POST["lastName"])) {
-			 $_SESSION['$lnameErr'] = "*Last Name is required";
-	    } else {
-			$_SESSION['$lName'] = test_input($_POST["lastName"]);
-		}
-		
-		if (empty($_POST["firstName"])) {
-			$_SESSION['$fnameErr'] = "*First Name is required";
-	    } else {
-			$_SESSION['$fName'] = test_input($_POST["firstName"]);
-		}
-		
-		if (empty($_POST["middleInitial"])) {
-			$_SESSION['$mnameErr'] = "*Middle Initial is required";
-	    } else {
-			$_SESSION['$mName'] = test_input($_POST["middleInitial"]);
-		}
-		
-		if (empty($_POST["TaxAccNo"])) {
-			$_SESSION['$TaxAccNoErr'] = "*Tax Account Number is required";
-	    } else {
-			$_SESSION['$TaxAccNo'] = test_input($_POST["TaxAccNo"]);
-		}
-		
-		if (empty($_POST["formOfOwnership"])) {
-			$_SESSION['$formOfOwnershipErr'] = "*Form of Ownership is required";
-	    } else {
-			$_SESSION['$formOfOwnership'] = test_input($_POST["formOfOwnership"]);
-		}
-	
-		if (empty($_POST["enterpriseName"])) {
-			$_SESSION['$entNameErr'] = "*Enterprise Name is required";
-	    } else {
-			$_SESSION['$entName'] = test_input($_POST["enterpriseName"]);
-		}
-	    
-		if (empty($_POST["contactNumber"])) {
-			$_SESSION['$contactNumberErr'] = "*Contact Number is required";
-	    } else {
-			$_SESSION['$contactNumber'] = test_input($_POST["contactNumber"]);
-		}
-		
-		if (empty($_POST["location"])) {
-			$_SESSION['$locationErr'] = "*Location of construction is required";
-	    } else {
-			$_SESSION['$location'] = test_input($_POST["location"]);
-		}
-		
-		if (empty($_POST["newConstruction"])) {
-			$_SESSION['$newConstructionErr'] = "*This field is required";
-	    } else {
-			$_SESSION['$newConstruction'] = test_input($_POST["newConstruction"]);
-		}
-		
-		if (empty($_POST["additionOf"])) {
-			$_SESSION['$additionOfErr'] = "*This field is required";
-	    } else {
-			$_SESSION['$additionOf'] = test_input($_POST["additionOf"]);
-		}
-		
-		if (empty($_POST["repairOf"])) {
-			$_SESSION['$repairOfErr'] = "*This field is required";
-	    } else {
-			$_SESSION['$repairOf'] = test_input($_POST["repairOf"]);
-		}
-		
-		if (empty($_POST["demolitionOf"])) {
-			$_SESSION['$demolitionOfErr'] = "*This field is required";
-	    } else {
-			$_SESSION['$demolitionOf'] = test_input($_POST["demolitionOf"]);
-		}
-		
-		if (empty($_POST["renovationOf"])) {
-			$_SESSION['$renovationOfErr'] = "*This field is required";
-	    } else {
-			$_SESSION['$renovationOf'] = test_input($_POST["renovationOf"]);
-		}
-		
-		if (empty($_POST["others1"]) || empty($_POST["others2"])) {
-			$_SESSION['$others1and2Err'] = "*These fields are required";
-	    } else {
-			$_SESSION['$others1'] = test_input($_POST["others1"]);
-			$_SESSION['$others2'] = test_input($_POST["others2"]);
-		}
-		
-		if (empty($_POST["others3"]) || empty($_POST["others4"])) {
-			$_SESSION['$others3and4Err'] = "*These fields are required";
-	    } else {
-			$_SESSION['$others3'] = test_input($_POST["others3"]);
-			$_SESSION['$others4'] = test_input($_POST["others4"]);
-		}
-		
-		if (empty($_POST["numberOfUnits"])) {
-			$_SESSION['$numberOfUnitsErr'] = "*Number of units is required";
-	    } else {
-			$_SESSION['$numberOfUnits'] = test_input($_POST["numberOfUnits"]);
-		}
-		
-		if (empty($_POST["parent_typeOfOccupancy"])) {
-			$_SESSION['$parent_typeOfOccupancyErr'] = "*Please select type of occupancy";
-	    } else {
-			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
-		}
-		
-//		if (($_POST["parent_typeOfOccupancy"])&&empty($_POST["specific1"])) {
-//			$_SESSION['$specific1Err'] = "*Please specify";
-//	    } else {
-//			$_SESSION['$specific1'] = test_input($_POST["specific1"]);
-//		}
-		
-//		if ((($_POST["parent_typeOfOccupancy"])&&($_POST["specific1"]))&&empty($_POST["specific2"])) {
-//			$_SESSION['$specific2Err'] = "*Please specify";
-//	    } else {
-//			$_SESSION['$specific2'] = test_input($_POST["specific2"]);
-//		}
-		
-	    if (empty($_POST["kindOfBusiness"])) {
-			$_SESSION['$kindOfBusinessErr'] = "*Kind of Business is required";
-	    } else {
-			$_SESSION['$kindOfBusiness'] = test_input($_POST["kindOfBusiness"]);
-		}
-		
-	    if (empty($_POST["Address"])) {
-			$_SESSION['$AddressErr'] = "*Address is required";
-	    } else {
-			$_SESSION['$Address'] = test_input($_POST["Address"]);
-		}
-		
-	    if (empty($_POST["tec1"])) {
-			$_SESSION['$tec1Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec1'] = test_input($_POST["tec1"]);
-		}
-		
-	    if (empty($_POST["tec2"])) {
-			$_SESSION['$tec2Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec2'] = test_input($_POST["tec2"]);
-		}
-		
-	    if (empty($_POST["tec3"])) {
-			$_SESSION['$tec3Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec3'] = test_input($_POST["tec3"]);
-		}
-		
-	    if (empty($_POST["tec4"])) {
-			$_SESSION['$tec4Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec4'] = test_input($_POST["tec4"]);
-		}
-		
-	    if (empty($_POST["tec5"])) {
-			$_SESSION['$tec5Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec5'] = test_input($_POST["tec5"]);
-		}
-	
-		$_SESSION['$tec6'] = $_POST["tec1"]+ $_POST["tec2"]+$_POST["tec3"]+$_POST["tec4"]+$_POST["tec5"]+$_POST["tec6"];
-		
-	    if (empty($_POST["cei1"])) {
-			$_SESSION['$cei1Err'] = "*This field is required";
-	    } else {
-			$_SESSION['$cei1'] = test_input($_POST["cei1"]);
-		}
-		
-		if (empty($_POST["cei2"])) {
-			$_SESSION['$cei2Err'] = "*This field is required";
-	    } else {
-			$_SESSION['$cei2'] = test_input($_POST["cei2"]);
-		}
-		
-		if (empty($_POST["cei3"])) {
-			$_SESSION['$cei3Err'] = "*This field is required";
-	    } else {
-			$_SESSION['$cei3'] = test_input($_POST["cei3"]);
-		}
-		
-		if (empty($_POST["storey"])) {
-			$_SESSION['$storeyErr'] = "*Number of Storeys is required";
-	    } else {
-			$_SESSION['$storey'] = test_input($_POST["storey"]);
-		}	
-		
-	    if (empty($_POST["floorArea"])) {
-			$_SESSION['$floorAreaErr'] = "*Floor Area is required";
-	    } else {
-			$_SESSION['$floorArea'] = test_input($_POST["floorArea"]);
-		}
+        <!-- Body -->
+		<link rel="stylesheet" href="main2.css">
+		<link rel="stylesheet" href="main3.css">
+        <!--<link rel="stylesheet" href="css/printForm.css">-->
+        <!--<link rel="stylesheet" href="btstrp/css/bootstrap.css">-->
+        
+        <script type="text/javascript" language="javascript" src="jquery.js"></script>
+        <script type="text/javascript" language="javascript" src="html2canvas.min.js"></script>
+        <script type="text/javascript" language="javascript" src="jquery.plugin.html2canvas.js"></script>
+        <script type="text/javascript" language="javascript" src="script.js"></script>
 
-	    if (empty($_POST["constructionDate"])) {
-			$_SESSION['$constructionDateErr'] = "*Proposed Date of Conctruction is required";
-	    } else {
-			$_SESSION['$constructionDate'] = test_input($_POST["constructionDate"]);
-		}	
-		
-		if (empty($_POST["o4"])) {
-			$_SESSION['$o4Err'] = "*Materials of construction is required";
-	    } else {
-			$_SESSION['$o4'] = test_input($_POST["o4"]);
-		}	
-		
-	    if (empty($_POST["SPRC"])) {
-			$_SESSION['$SPRCErr'] = "*PRC Reg. Number is required";
-	    } else {
-			$_SESSION['$SPRC'] = test_input($_POST["SPRC"]);
-		}
-		
-	    if (empty($_POST["SlastName"])) {
-			$_SESSION['$SlastNameErr'] = "*Last Name is required";
-	    } else {
-			$_SESSION['$SlastName'] = test_input($_POST["SlastName"]);
-		}
-		
-	    if (empty($_POST["SmiddleInitial"])) {
-			$_SESSION['$SmiddleInitialErr'] = "*Middle Initial is required";
-	    } else {
-			$_SESSION['$SmiddleInitial'] = test_input($_POST["SmiddleInitial"]);
-		}
-		
-	    if (empty($_POST["SFirstName"])) {
-			$_SESSION['$SFirstNameErr'] = "*First Name is required";
-	    } else {
-			$_SESSION['$SFirstName'] = test_input($_POST["SFirstName"]);
-		}
-		
-	    if (empty($_POST["Saddress"])) {
-			$_SESSION['$SaddressErr'] = "*Address is required";
-	    } else {
-			$_SESSION['$Saddress'] = test_input($_POST["Saddress"]);
-		}
-		
-	    if (empty($_POST["CPRC"])) {
-			$_SESSION['$CPRCErr'] = "*PRC Reg. Number is required";
-	    } else {
-			$_SESSION['$CPRC'] = test_input($_POST["CPRC"]);
-		}
-		
-	    if (empty($_POST["ClastName"])) {
-			$_SESSION['$ClastNameErr'] = "*Last Name is required";
-	    } else {
-			$_SESSION['$ClastName'] = test_input($_POST["ClastName"]);
-		}
-		
-	    if (empty($_POST["CFirstName"])) {
-			$_SESSION['$CFirstNameErr'] = "*First Name is required";
-	    } else {
-			$_SESSION['$CFirstName'] = test_input($_POST["CFirstName"]);
-		}
-		
-	    if (empty($_POST["CmiddleInitial"])) {
-			$_SESSION['$CmiddleInitialErr'] = "*MIddle Initial is required";
-	    } else {
-			$_SESSION['$CmiddleInitial'] = test_input($_POST["CmiddleInitial"]);
-		}
-		
-	    if (empty($_POST["Ccaddress"])) {
-			$_SESSION['$CcaddressErr'] = "*Address is required";
-	    } else {
-			$_SESSION['$Ccaddress'] = test_input($_POST["Ccaddress"]);
-		}
-		
-	    if (empty($_POST["ptrNo"])) {
-			$_SESSION['$ptrNoErr'] = "*PTR Number is required";
-	    } else {
-			$_SESSION['$ptrNo'] = test_input($_POST["ptrNo"]);
-		}
-		
-	    if (empty($_POST["dateIssued"])) {
-			$_SESSION['$dateIssuedErr'] = "*Date Issued is required";
-	    } else {
-			$_SESSION['$dateIssued'] = test_input($_POST["dateIssued"]);
-		}
-		
-	    if (empty($_POST["placeIssued"])) {
-			$_SESSION['$placeIssuedErr'] = "*Place Issued is required";
-	    } else {
-			$_SESSION['$placeIssued'] = test_input($_POST["placeIssued"]);
-		}
-		
-	    if (empty($_POST["tin"])) {
-			$_SESSION['$tinErr'] = "*Place Issued is required";
-	    } else {
-			$_SESSION['$tin'] = test_input($_POST["tin"]);
-		}
-		
-	    if (empty($_POST["ctc"])) {
-			$_SESSION['$ctcErr'] = "*Community Tax Certificate is required";
-	    } else {
-			$_SESSION['$ctc'] = test_input($_POST["ctc"]);
-		}
+    </head>
+    <body>
 
-	    if (empty($_POST["ctcDate"])) {
-			$_SESSION['$ctcDateErr'] = "*Date Issued is required";
-	    } else {
-			$_SESSION['$ctcDate'] = test_input($_POST["ctcDate"]);
-		}
-		
-	    if (empty($_POST["ctcPlace"])) {
-			$_SESSION['$ctcPlaceErr'] = "*Place Issued is required";
-	    } else {
-			$_SESSION['$ctcPlace'] = test_input($_POST["ctcPlace"]);
-		}
-		
-	    if (empty($_POST["tct"])) {
-			$_SESSION['$tctErr'] = "*TCT/OCT Number is required";
-	    } else {
-			$_SESSION['$tct'] = test_input($_POST["tct"]);
-		}
-		
-	    if (empty($_POST["OlastName"])) {
-			$_SESSION['$OlastNameErr'] = "*Last Name is required";
-	    } else {
-			$_SESSION['$OlastName'] = test_input($_POST["OlastName"]);
-		}
-		
-	    if (empty($_POST["OFirstName"])) {
-			$_SESSION['$OFirstNameErr'] = "*First Name is required";
-	    } else {
-			$_SESSION['$OFirstName'] = test_input($_POST["OFirstName"]);
-		}
-		
-	    if (empty($_POST["OmiddleInitial"])) {
-			$_SESSION['$OmiddleInitialErr'] = "*Middle Initial is required";
-	    } else {
-			$_SESSION['$OmiddleInitial'] = test_input($_POST["OmiddleInitial"]);
-		}
-		
-	    if (empty($_POST["Ocaddress"])) {
-			$_SESSION['$OcaddressErr'] = "*Address is required";
-	    } else {
-			$_SESSION['$Ocaddress'] = test_input($_POST["Ocaddress"]);
-		}
-		
-	    if (empty($_POST["Octc"])) {
-			$_SESSION['$OctcErr'] = "*Community Tax Certificate is required";
-	    } else {
-			$_SESSION['$Octc'] = test_input($_POST["Octc"]);
-		}
-		
-	    if (empty($_POST["email"])) {
-			$_SESSION['$emailErr'] = "*Email Address is required";
-	    } else {
-			$_SESSION['$email'] = test_input($_POST["email"]);
-		}
-		
-	    if (empty($_POST["pw"])) {
-			$_SESSION['$pwErr'] = "*Password is required";
-	    } else {
-			$_SESSION['$pw'] = test_input($_POST["pw"]);
-		}
+        <div class="header">
+            <div class = "row">
+                <div class = "col-md-4">
+                    <p><img class = "img-responsive" src="img/seal.png" alt=""></p>
+                </div>
+                <div class = "col-md-4">
+                    <p>City Government of Baguio</p>
+                </div>
+                <div class = "col-md-4">
+                    <p id = "cbao">CBAO</p>
+                </div>
+            </div>
+        </div>
 
-	    if (empty($_POST["cpw"])) {
-			$_SESSION['$cpwErr'] = "*Password is required";
-	    } else {
-			$_SESSION['$cpw'] = test_input($_POST["cpw"]);
-		}
-		
-		if($_SESSION['$pw'] != $_SESSION['$cpw']){
-			$_SESSION['$pwErr']="*Passwords do not match";
-			$_SESSION['$cpwErr']="*Passwords do not match";
-		}
-		
-		if( isset($_SESSION['$lnameErr'])||
-			isset($_SESSION['$fnameErr'])||
-			isset($_SESSION['$mnameErr'])||
-			isset($_SESSION['$TaxAccNoErr'])||
-			isset($_SESSION['$formOfOwnershipErr'])||
-			isset($_SESSION['$entNameErr'])|| 
-			isset($_SESSION['$contactNumberErr'])||
-			isset($_SESSION['$kindOfBusinessErr'])||
-			isset($_SESSION['newConstructionErr'])||
-			isset($_SESSION['additionOfErr'])||
-			isset($_SESSION['repairOfErr'])||
-			isset($_SESSION['renovationOfErr'])||
-			isset($_SESSION['demolitionOfErr'])||
-			isset($_SESSION['others1and2Err'])||
-			isset($_SESSION['others3and4Err'])||
-			isset($_SESSION['numberOfUnits'])||
-			isset($_SESSION['parent_typeOfOccupancyErr'])||
-			isset($_SESSION['specific1Err'])||
-			isset($_SESSION['specific2Err'])||
-			isset($_SESSION['$AddressErr'])||
-			isset($_SESSION['$locationErr'])||
-			isset($_SESSION['$tec1Err'])||
-			isset($_SESSION['$tec2Err'])||
-			isset($_SESSION['$tec3Err'])||
-			isset($_SESSION['$tec4Err'])||
-			isset($_SESSION['$tec5Err'])||
-			isset($_SESSION['cei1Err'])||
-			isset($_SESSION['cei2Err'])||
-			isset($_SESSION['cei3Err'])||
-			isset($_SESSION['$storeyErr'])||
-			isset($_SESSION['$floorAreaErr'])||
-			isset($_SESSION['$constructionDateErr'])||
-			isset($_SESSION['o4Err'])||
-			isset($_SESSION['$SPRCErr'])||
-			isset($_SESSION['$SlastNameErr'])||
-			isset($_SESSION['$SmiddleInitialErr'])||
-			isset($_SESSION['$SFirstNameErr'])||
-			isset($_SESSION['$SaddressErr'])||
-			isset($_SESSION['$CPRCErr'])||
-			isset($_SESSION['$ClastNameErr'])||
-			isset($_SESSION['$CFirstNameErr'])||
-			isset($_SESSION['$CmiddleInitialErr'])||
-			isset($_SESSION['$CcaddressErr'])||
-			isset($_SESSION['$ptrNoErr'])||
-			isset($_SESSION['$dateIssuedErr'])||
-			isset($_SESSION['$placeIssuedErr'])||
-			isset($_SESSION['$tinErr'])||
-			isset($_SESSION['$ctcErr'])||
-			isset($_SESSION['$ctcDateErr'])||
-			isset($_SESSION['$ctcPlaceErr'])||
-			isset($_SESSION['$tctErr'])||
-			isset($_SESSION['$OlastNameErr'])||
-			isset($_SESSION['$OFirstNameErr'])||
-			isset($_SESSION['$OmiddleInitialErr'])||
-			isset($_SESSION['$OcaddressErr'])||
-			isset($_SESSION['$OctcErr'])||
-			isset($_SESSION['$emailErr'])||
-			isset($_SESSION['$pwErr'])||
-			isset($_SESSION['$cpwErr'])){
-		
-			header("Location: /CBAO/Client/registration/bpForm.php");
-		}else{
-			$conn=mysqli_connect('localhost','root','','baguio_cbao');
-			$db  =mysqli_select_db($conn,'baguio_cbao');
+        <div class="container">
 
-			if (!$conn) {
-					die('Could not connect: '.mysqli_connect_error());  
-				}
-			$sql1    = "INSERT INTO general_info (last_name,first_name,middle_initial,tax_no,address,enterprise_name,ownership_form,business,contact_number) VALUES ('{$_SESSION['$lName']}','{$_SESSION['$fName']}','{$_SESSION['$mName']}','{$_SESSION['$TaxAccNo']}','{$_SESSION['$Address']}','{$_SESSION['$entName']}','{$_SESSION['$formOfOwnership']}','{$_SESSION['$kindOfBusiness']}','{$_SESSION['$contactNumber']}')";
-			$sql2    = "INSERT INTO costs (building,electrical,mechanical,plumbing,others,total_cost,number_of_storeys,floor_area,proposed_construction_date,construction_materials) VALUES ('{$_SESSION['$tec1']}','{$_SESSION['$tec2']}','{$_SESSION['$tec3']}','{$_SESSION['$tec4']}','{$_SESSION['$tec5']}','{$_SESSION['$tec6']}','{$_SESSION['$storey']}','{$_SESSION['$floorArea']}','{$_SESSION['$constructionDate']}','{$_SESSION['$o4']}')";
-			$sql3    = "INSERT INTO in_charge_of_construction (prc_registration_number,last_name,first_name,middle_initial,address,ptr_number,date_issued,place_issued,tin) VALUES ('{$_SESSION['$CPRC']}','{$_SESSION['$ClastName']}','{$_SESSION['$CFirstName']}','{$_SESSION['$CmiddleInitial']}','{$_SESSION['$Ccaddress']}','{$_SESSION['$ptrNo']}','{$_SESSION['$dateIssued']}','{$_SESSION['$placeIssued']}','{$_SESSION['$tin']}')";
-			$sql4	 = "INSERT INTO community_tax_certificate(community_tax_certificate, date_issued, place_issued) VALUES ('{$_SESSION['$ctc']}', '{$_SESSION['$ctcDate']}', '{$_SESSION['$ctcPlace']}')";
-			$sql5    = "INSERT INTO lot_owner (tct_oct_number,owner_last_name,owner_first_name,owner_middle_initial,owner_address,community_tax_cert) VALUES ('{$_SESSION['$tct']}','{$_SESSION['$OlastName']}','{$_SESSION['$OFirstName']}','{$_SESSION['$OmiddleInitial']}','{$_SESSION['$Ocaddress']}','{$_SESSION['$Octc']}')";
-			$sql6    = "INSERT INTO plans_and_specifications (prc_registration_number,last_name,first_name,middle_initial,address) VALUES ('{$_SESSION['$SPRC']}','{$_SESSION['$SlastName']}','{$_SESSION['$SFirstName']}','{$_SESSION['$SmiddleInitial']}','{$_SESSION['$Saddress']}')";
-			$sql7    = "INSERT INTO tracking_accounts (email_address,password) VALUES ('{$_SESSION['$email']}','{$_SESSION['$pw']}')";
-			if(!mysqli_query($conn, $sql1)){
-				echo "sql1:".mysqli_error($conn)."<br>";
-			}
-			if(!mysqli_query($conn, $sql2)){
-				echo "sql2:".mysqli_error($conn)."<br>";
-			}
-			if(!mysqli_query($conn, $sql3)){
-				echo "sql3:".mysqli_error($conn)."<br>";
-			}
-			if(!mysqli_query($conn, $sql4)){
-				echo "sql4:".mysqli_error($conn)."<br>";
-			}
-			if(!mysqli_query($conn, $sql5)){
-				echo "sql5:".mysqli_error($conn)."<br>";
-			}
-			if(!mysqli_query($conn, $sql6)){
-				echo "sql6:".mysqli_error($conn)."<br>";
-			}
-			if(!mysqli_query($conn, $sql7)){
-				echo "sql7:".mysqli_error($conn)."<br>";
-			}
-			header("Location: /CBAO/Client/registration/printForm.php");
-		}
-$conn->close();
-	?>
+            <div class="content">
+                <div class="main">
+
+                    <h1 id = "heading">Print Form</h1>
+                    <p>Print or Download the form to be submitted together with your permit requirements</p>
+
+                        <div id="target">
+                            <div id="header" class="fnt-tmplt">
+                                <p id="fhead">
+                                    REPUBLIC OF THE PHILIPPINES<br>
+                                    OFFICE OF THE CITY/MUNICIPAL MAYOR<br>
+                                    <br><br>
+                                    <u>BAGUIO CITY</u>
+                                    <br>
+                                    CITY/MUNICIPALITY
+                                </p>
+                            </div>
+
+                            <div id="bp-info">
+                                <div id="app-no">
+                                    <p class="box-title">APPLICATION NUMBER</p>
+                                    <table id="app-table" style="border-collapse: collapse;">
+                                        <tr id="app-row" class="no-tplt">
+                                            <td id="a1"></td>
+                                            <td id="a2"></td>
+                                            <td id="a3"></td>
+                                            <td id="a4"></td>
+                                            <td id="a5"></td>
+                                            <td id="a6"></td>
+                                            <td id="a7"></td>
+                                            <td id="a8"></td>
+                                            <td id="a9"></td>
+                                            <td id="a10"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div id="bp" class="fnt-tmplt">
+                                    <p id="bp-name">BUILDING PERMIT</p>
+                                </div>
+
+                                <div id="p-no">
+                                    <p class="box-title">PERMIT NUMBER</p>
+                                    <table id="p-no-table"style="border-collapse: collapse;">
+                                        <tr id="pNo-row" class="no-tplt">
+                                            <td id="p1"></td>
+                                            <td id="p2"></td>
+                                            <td id="p3"></td>
+                                            <td id="p4"></td>
+                                            <td id="p5"></td>
+                                            <td id="p6"></td>
+                                            <td id="p7"></td>
+                                            <td id="p8"></td>
+                                            <td id="p9"></td>
+                                            <td id="p10"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div id="doa">
+                                    <div id="doa-box"></div>
+                                    <p id="doa-name" class="fnt-tmplt"> DATE OF APPLICATION</p>
+                                </div>
+
+                                <div id="di">
+                                    <div id="di-box"></div>
+                                    <p id="di-name" class="fnt-tmplt">DATE ISSUED</p>
+                                </div>
+
+                                <div id="state" class="fnt-tmplt">
+                                    <div id="orig">
+                                        <div class="state-box" id="o"></div>
+                                        <p id="o-name">ORIGINAL</p>
+                                    </div>
+
+                                    <div id="renew">
+                                        <div class="state-box" id="r"></div>
+                                        <p id="r-name">RENEWAL</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="nso-box">
+                                <div id="nso-box-title">
+                                    <p class="fnt-tmplt">
+                                        DO NOT FILL-UP (NSO USE ONLY)
+                                    </p>
+                                </div>
+
+                                <div id="nso-box-table">
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                    </div>			
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>						
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                    </div>
+                                    <div class="nso-box-row">
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="bb">
+                                            </div>						
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                        <div class="nso-box-cell">
+                                            <div class="wb">
+                                            </div>					
+                                        </div>
+                                    </div>						
+                                </div>
+                            </div>
+
+                            <div id="box-1">
+                                <div id="applicant-info">
+                                    <div id="box-1-title">	
+                                        <p id="box-1-name" class="no-tplt">
+                                            BOX 1 (TO BE ACCOMPLISHED BY DESIGNING ARCHITECT/CIVIL ENGINEER IN PRINT)
+                                        </p>
+                                    </div>
+
+                                    <div id="box-1-info">
+                                        <div id="r1" class="box-1-template">
+                                            <div id="r1-c1" class="box-1-template">
+                                                <div id="r1-c1-d1" class="box-1-name-template">
+                                                    <p id="r1-c1-d1-dt1">OWNER</p>
+                                                    <p id="r1-c1-d1-dt2">LAST NAME</p>
+                                                    <p id="r1-c1-d1-dt3">FIRST NAME</p>
+                                                    <p id="r1-c1-d1-dt4">M.I.</p>
+
+                                                </div>
+                                                <div id="r1-c1-d2" class="box-1-val-template">
+                                                    <div id="r1-c1-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$lName'];?></div>
+                                                    <div id="r1-c1-d2-i2" class="box-1-val-template-i"><?php echo $_SESSION['$fName'];?></div>
+                                                    <div id="r1-c1-d2-i3" class="box-1-val-template-i"><?php echo $_SESSION['$mName'];?></div>
+                                                </div>
+                                            </div>
+                                            <div id="r1-c2" class="box-1-template">
+                                                <div id="r1-c2-d1" class="box-1-name-template">
+                                                    <p id="r1-c2-d1-dt1">TAX ACCT. NO.</p>
+                                                </div>
+                                                <div id="r1-c2-d2" class="box-1-val-template">
+                                                    <div id="r1-c2-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$TaxAccNo'];?></div>
+                                                </div>
+                                            </div>					
+                                        </div>
+                                        <div id="r2" class="box-1-template">	
+                                            <div id="r2-c1" class="box-1-template">
+                                                <div id="r2-c1-d1" class="box-1-name-template">
+                                                    <p id="r2-c1-d1-dt1">FOR CONSTRUCTION OWNED</p>
+                                                    <p id="r2-c1-d1-dt2">BY AN ENTERPRISE</p>
+                                                </div>						
+                                            </div>
+                                            <div id="r2-c2" class="box-1-template">
+                                                <div id="r2-c2-d1" class="box-1-name-template">
+                                                    <p id="r2-c2-d1-dt1">FORM OF OWNERSHIP</p>						
+                                                </div>
+                                                <div id="r2-c2-d2" class="box-1-val-template">
+                                                    <div id="r2-c2-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$formOfOwnership'];?></div>
+                                                </div>							
+                                            </div>
+                                            <div id="r2-c3" class="box-1-template">
+                                                <div id="r2-c3-d1" class="box-1-name-template">
+                                                    <p id="r2-c3-d1-dt1">MAIN ECONOMIC ACTIVITY/KIND OF BUSINESS</p>						
+                                                </div>
+                                                <div id="r2-c3-d2" class="box-1-val-template">
+                                                    <div id="r2-c3-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$kindOfBusiness'];?></div>
+                                                </div>							
+                                            </div>
+                                        </div>
+                                        <div id="r3" class="box-1-template">
+                                            <div id="r3-c1" class="box-1-template">
+                                                <div id="r3-c1-d1" class="box-1-name-template">
+                                                    <p id="r3-c1-d1-dt1">ADDRESS</p>						
+                                                </div>
+                                                <div id="r3-c1-d2" class="box-1-val-template">
+                                                    <div id="r3-c1-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$Address'];?></div>
+                                                </div>							
+                                            </div>
+                                            <div id="r3-c2" class="box-1-template">
+                                                <div id="r3-c2-d1" class="box-1-name-template">
+                                                    <p id="r3-c2-d1-dt1">TEL NO.</p>						
+                                                </div>
+                                                <div id="r3-c2-d2" class="box-1-val-template">
+                                                    <div id="r3-c2-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$contactNumber'];?></div>
+                                                </div>						
+                                            </div>
+                                        </div>
+                                        <div id="r4" class="box-1-template">
+                                            <div id="r4-c1" class="box-1-template">
+                                                <div id="r4-c1-d1" class="box-1-name-template">
+                                                    <p id="r4-c1-d1-dt1">LOCATION OF CONSTRUCTION</p>						
+                                                </div>
+                                                <div id="r4-c1-d2" class="box-1-val-template">
+                                                    <div id="r4-c1-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$location'];?></div>
+                                                </div>							
+                                            </div>
+                                        </div>
+                                        <div id="r5">
+                                            <div id="r5-c1">
+                                                <p id="r5-c1-d1-dt1" class="sow-fnt-tmplt">SCOPE OF WORK</p>
+                                            </div>
+
+                                            <div id="r5-c2">
+                                                <p id="r5-c2-dt1" class="sow-fnt-tmplt">1 NEW CONSTRUCTION</p>
+                                                <div id="r5-c2-dt1-i" class="sow-i-tmplt"><?php echo $_SESSION['$newConstruction'];?></div>
+
+                                                <p id="r5-c2-dt2" class="sow-fnt-tmplt">2 ADDITION OF</p>
+                                                <div id="r5-c2-dt2-i" class="sow-i-tmplt"><?php echo $_SESSION['$additionOf'];?></div>
+
+                                                <p id="r5-c2-dt3" class="sow-fnt-tmplt">3 REPAIR OF</p>
+                                                <div id="r5-c2-dt3-i" class="sow-i-tmplt"><?php echo $_SESSION['$repairOf'];?></div>
+
+                                                <p id="r5-c2-dt4" class="sow-fnt-tmplt">4 RENOVATION OF</p>
+                                                <div id="r5-c2-dt4-i" class="sow-i-tmplt"><?php echo $_SESSION['$renovationOf'];?></div>
+
+                                                <p id="r5-c2-dt5" class="sow-fnt-tmplt">5 DEMOLITION OF</p>
+                                                <div id="r5-c2-dt5-i" class="sow-i-tmplt"><?php echo $_SESSION['$demolitionOf'];?></div>
+                                            </div>
+
+                                            <div id="r5-c3">
+                                                <p id="r5-c3-dt1" class="sow-fnt-tmplt">OTHERS</p>
+
+                                                <p id="r5-c3-dt2" class="sow-fnt-tmplt">6</p>
+                                                <div id="r5-c3-dt2-i" class="sow-i-tmplt"><?php echo $_SESSION['$others1'];?></div>
+                                                <p id="r5-c3-dt3" class="sow-fnt-tmplt">OF</p>
+                                                <div id="r5-c3-dt3-i" class="sow-i-tmplt"><?php echo $_SESSION['$others2'];?></div>
+
+                                                <p id="r5-c3-dt4" class="sow-fnt-tmplt">7</p>
+                                                <div id="r5-c3-dt4-i" class="sow-i-tmplt"><?php echo $_SESSION['$others3'];?></div>
+                                                <p id="r5-c3-dt5" class="sow-fnt-tmplt">OF</p>
+                                                <div id="r5-c3-dt5-i" class="sow-i-tmplt"><?php echo $_SESSION['$others4'];?></div>							
+                                            </div>
+
+                                            <div id="r5-c4">
+                                                <p id="r5-c4-dt1" class="sow-fnt-tmplt">NUMBER OF UNITS</p>
+                                                <div id="r5-c4-dt1-i" class="sow-i-tmplt"><?php echo $_SESSION['$numberOfUnits'];?></div>
+                                            </div>
+                                        </div>
+                                        <div id="r6">
+                                            <p id="r6-name" class="fnt-tmplt">
+                                                USE OR TYPE OF OCCUPANCY
+                                            </p>
+                                            <div id="r6-c1">
+                                                <div id="r6-c1-d1" class="fnt-tmplt">
+                                                    <p id="r6-c1-d1-dt1" class="r6-tmplt">RESIDENTIAL</p>
+                                                    <p id="r6-c1-d1-dt2" class="r6-tmplt">11 SINGLE</p>
+                                                    <p id="r6-c1-d1-dt3" class="r6-tmplt">12 DUPLEX</p>
+                                                    <p id="r6-c1-d1-dt4" class="r6-tmplt">13 ROWHOUSE/ACCESSORIA</p>
+                                                    <p id="r6-c1-d1-dt5" class="r6-tmplt">10 OTHERS (SPECIFY)</p>
+                                                    <div id="r6-c1-d1-i" class="r6-i-tmplt"></div>
+                                                </div>
+                                                <div id="r6-c1-d2" class="fnt-tmplt">
+                                                    <p id="r6-c1-d2-dt1">COMMERCIAL</p>
+                                                    <p id="r6-c1-d2-dt2" class="r6-tmplt">21 BANK</p>
+                                                    <p id="r6-c1-d2-dt3" class="r6-tmplt">22 STORE</p>
+                                                    <p id="r6-c1-d2-dt4" class="r6-tmplt">23 HOTEL/MOTEL, ETC.</p>
+                                                    <p id="r6-c1-d2-dt5" class="r6-tmplt">24 OFFICE CONDOMINIUM/BUSINESS OFFICE BUILDING</p>
+                                                    <p id="r6-c1-d2-dt6" class="r6-tmplt">25 RESTAURANT, ETC.</p>
+                                                    <p id="r6-c1-d2-dt6" class="r6-tmplt">26 SHOP (E.G. DRESS SHOP, TAILORING SHOP, BARBER SHOP, ETC.)</p>
+                                                    <p id="r6-c1-d2-dt6" class="r6-tmplt">27 GASOLINE STATION</p>
+                                                    <p id="r6-c1-d2-dt6" class="r6-tmplt">28 MARKET</p>
+                                                    <p id="r6-c1-d2-dt6" class="r6-tmplt">29 DORMITORY OR OTHER LODGING HOUSE</p>
+                                                    <p id="r6-c1-d2-dt6" class="r6-tmplt">20 OTHERS (SPECIFY)</p>
+
+                                                    <div id="r6-c1-d2-i" class="r6-i-tmplt"></div>							
+                                                </div>
+                                                <div id="r6-c1-d3" class="fnt-tmplt">
+                                                    <p id="r6-c1-d3-dt1" class="r6-tmplt">OTHER CONSTRUCTION</p>							
+                                                    <p id="r6-c1-d3-dt2" class="r6-tmplt">60 SPECIFY</p>
+
+                                                    <div id="r6-c1-d3-i" class="r6-i-tmplt"></div>							
+                                                </div>
+                                            </div>
+                                            <div id="r6-c2">
+                                                <div id="r6-c2-d1" class="fnt-tmplt">
+                                                    <p id="r6-c2-d1-dt1" class="r6-tmplt">INDUSTRIAL</p>
+                                                    <p id="r6-c2-d1-dt2" class="r6-tmplt">31 FACTORY/PLANT</p>
+                                                    <p id="r6-c2-d1-dt3" class="r6-tmplt">32 REPAIR SHOP, MACHINE SHOP</p>
+                                                    <p id="r6-c2-d1-dt4" class="r6-tmplt">33 REFINERY</p>
+                                                    <p id="r6-c2-d1-dt5" class="r6-tmplt">34 PRINTING PRESS</p>
+                                                    <p id="r6-c2-d1-dt6" class="r6-tmplt">35 WAREHOUSE</p>
+                                                    <p id="r6-c2-d1-dt7" class="r6-tmplt">30 OTHERS (SPECIFY)</p>								
+                                                    <div id="r6-c2-d1-i" class="r6-i-tmplt"></div>							
+                                                </div>
+                                                <div id="r6-c2-d2" class="fnt-tmplt">
+                                                    <p id="r6-c2-d2-dt1" class="r6-tmplt">INSTITUTIONAL</p>
+                                                    <p id="r6-c2-d2-dt2" class="r6-tmplt">41 SCHOOL</p>
+                                                    <p id="r6-c2-d2-dt3" class="r6-tmplt">42 CHURCH AND OTHER RELIGIOUS STRUCTURES</p>
+                                                    <p id="r6-c2-d2-dt4" class="r6-tmplt">43 HOSPITAL OR SIMILAR STRUCTURE</p>
+                                                    <p id="r6-c2-d2-dt5" class="r6-tmplt">44 WELFARE AND CHARITABLE STRUCTURES</p>
+                                                    <p id="r6-c2-d2-dt6" class="r6-tmplt">45 THEATER, AUDITORIUM, GYMNASIUM, COURT</p>
+                                                    <p id="r6-c2-d2-dt7" class="r6-tmplt">40 OTHERS (SPECIFY)</p>								
+                                                    <div id="r6-c2-d2-i" class="r6-i-tmplt"></div>								
+                                                </div>
+                                                <div id="r6-c2-d3" class="fnt-tmplt">
+                                                    <p id="r6-c2-d3-dt1" class="r6-tmplt">AGRICULTURAL</p>
+                                                    <p id="r6-c2-d3-dt2" class="r6-tmplt">51 BARN(S), POULTRY HOUSE(S), ETC.</p>
+                                                    <p id="r6-c2-d3-dt3" class="r6-tmplt">52 GRAIN MILL</p>
+                                                    <p id="r6-c2-d3-dt4" class="r6-tmplt">50 OTHERS (SPECIFY)</p>
+                                                    <div id="r6-c2-d3-i" class="r6-i-tmplt"></div>							
+                                                </div>
+                                            </div>
+                                            <div id="r6-c3" class="fnt-tmplt">
+                                                <p id="r6-c3-d1-dt1" class="r6-tmplt">STREET FURNITURE, LANDSCAPING, SIGNBOARDS</p>
+                                                <p id="r6-c3-d1-dt2" class="r6-tmplt">71 PARKS, PLAZAS, MONUMENTS, POOLS, PLANT BOXES, ETC.</p>
+                                                <p id="r6-c3-d1-dt3" class="r6-tmplt">72 SIDEWALKS, PROMENADES, TARRACES, LAMPPOSTS, ELECTRIC POLES, TELEPHONE POLES, ETC.</p>
+                                                <p id="r6-c3-d1-dt4" class="r6-tmplt">73 OUTDOOR ADS, SIGNBOARDS, ETC.</p>
+                                                <p id="r6-c3-d1-dt5" class="r6-tmplt">74 FENCE ENCLOSURE</p>						
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="box-2">
+                                <div id="box-2-c1" class="box-2-3-name-tmplt">
+                                    <p id="box-2-c1-dt1">BOX 2 (TO BE ACCOMPLISHED BY THE RECEIVING & RECORDING SECTION)</p>
+                                </div>
+                                <div id="box-2-c2" class="fnt-tmplt">
+                                    <p id="box-2-c2-dt1">BUILDING DOCUMENTS (FIVE SETS EACH)</p>
+                                    <div id="box-2-c2-d1">
+                                        <p id="box-2-c2-dt2">SITE DEVELOPMENT AND LOCATION PLAN</p>
+                                        <p id="box-2-c2-dt3" class="box-2-c2-d2-tmplt">ARCHITECTURAL PLANS & SPECIFICATIONS</p>
+                                        <p id="box-2-c2-dt4" class="box-2-c2-d2-tmplt">STRUCTURAL DESIGN & COMPUTATIONS</p>
+                                        <p id="box-2-c2-dt5" class="box-2-c2-d2-tmplt">SANITARY/PLUMBING PLANS & SPECIFICATIONS</p>
+                                        <p id="box-2-c2-dt6" class="box-2-c2-d2-tmplt">ELECTRICAL PLANS & SPECIFICATIONS</p>				
+                                    </div>
+                                    <div id="box-2-c2-d2">
+                                        <p id="box-2-c2-dt7">MECHANICAL PLANS & SPECIFICATIONS</p>
+                                        <p id="box-2-c2-dt8" class="box-2-c2-d2-tmplt">LOGBOOK (1 COPY)</p>
+                                        <p id="box-2-c2-dt9" class="box-2-c2-d2-tmplt">OTHERS (SPECIFY)</p>
+
+                                        <div id="box-2-c2-i1" class="box-2-c2-i-tmplt"></div>
+                                        <div id="box-2-c2-i2" class="box-2-c2-i-tmplt"></div>
+                                        <div id="box-2-c2-i3" class="box-2-c2-i-tmplt"></div>
+                                    </div>				
+                                </div>
+                            </div>
+
+                            <div id="box-3">
+                                <div id="box-3-c1" class="box-2-3-name-tmplt">
+                                    <p id="box-3-c1-dt1">BOX 3 (TO BE ACCOMPLISHED BY THE BUILDING OFFICIAL)</p>			
+                                </div>	
+                                <div id="box-3-c1-d1" class="fnt-tmplt">
+                                    <p id="box-3-c1-dt1">ACTION TAKEN:</p>
+                                    <p id="box-3-c1-dt2">PERMIT IS HEREBY GRANTED SUBJECT TO THE FOLLOWING CONDITIONS:</p>
+                                    <p id="box-3-c1-dt3">1.</p>
+                                    <div id="box-3-c1-i1" class="box-3-c1-i">
+                                        <p id="box-3-c1-i1-t1" class="fnt-tmplt">
+                                            THAT THE PROPOSED CONSTRUCTION/ADDITION/REPAIR/RENOVATIONS/ <br>
+                                            DEMOLITION/INSTALLATION ETC SHALL BE IN CONFORMITY WITH THE <br>
+                                            NATIONAL BUILDING CODE (P.D. 1096) AND 119 CORRESPONDING IMPLEMEN- <br>
+                                            TING RULES AND REGULATIONS.
+                                        </p>				
+                                    </div>
+
+                                    <p id="box-3-c1-dt4">2.</p>
+                                    <div id="box-3-c1-i2" class="box-3-c1-i">
+                                        <p id="box-3-c1-i2-t1" class="fnt-tmplt">
+                                            THAT A DULY LICENSED ARCHITECT/CIVIL ENGINEER HAS BEEN ENGAGED TO <br>
+                                            PREPARE PLANS AND SPECIFICATIONS AND UNDERTAKE THE SUPERVISION <br>
+                                            /INSPECTION OF THE CONSTRUCTION OF THE PROJECT. 
+                                        </p>				
+                                    </div>								
+                                    <p id="box-3-c1-dt5">3.</p>
+                                    <div id="box-3-c1-i3" class="box-3-c1-i">
+                                        <p id="box-3-c1-i3-t1" class="fnt-tmplt">
+                                            THAT A CERTIFICATE OF COMPLETION DULY SIGNED AND SEALED BY THE <br>
+                                            DESIGNING ARCHITECT/CIVIL ENGINEER AND THE ARCHITECT/ENGINEER IN-CHARGE <br>
+                                            OF CONSTRUCTION SHALL BE SUBMITTED NOT LATER THAN SEVEN (7) DAYS <br>
+                                            AFTER COMPLETION OF THE CONSTRUCTION OF THE PROJECT. 
+                                        </p>				
+                                    </div>
+                                    <p id="box-3-c1-dt6">4.</p>
+                                    <div id="box-3-c1-i4" class="box-3-c1-i">
+                                        <p id="box-3-c1-i3-t1" class="fnt-tmplt">
+                                            THAT A "CERTIFICATE OF OCCUPANCY" SHALL BE SECURED PRIOR TO ACTUAL <br>
+                                            OCCUPANCY OF THE BUILDING.
+                                        </p>				
+                                    </div>				
+                                </div>
+                                <div id="box-3-c1-d2" class="fnt-tmplt">
+                                    <div id="box-3-c1-d2-i1" class="box-3-c1-d2-i"></div>
+                                    <p id="box-3-c1-d2-dt1">BUILDING OFFICIAL</p>
+
+                                    <div id="box-3-c1-d2-i2" class="box-3-c1-d2-i"></div>
+                                    <p id="box-3-c1-d2-dt2">DATE</p>
+                                </div>
+                                <div id="box-3-c1-d3" class="fnt-tmplt">
+                                    <p id="box-3-c1-d3-dt1">NOTE:</p>
+                                    <p id="box-3-c1-d3-dt2">
+                                        THIS PERMIT MAY BE CANCELLED OR REVOKED
+                                        PURSUANT TO SECTION 305 & 306 OF THE NATIONAL 
+                                        BUILDING CODE
+                                    </p>	
+                                </div>
+                            </div>
+                    </div>
+					
+		<div id="target-2">
+		<div id="nso-box-2">
+			<div id="nso-box-title">
+				<p class="fnt-tmplt">
+					DO NOT FILL-UP (NSO USE ONLY)
+				</p>
+			</div>
+			
+			<div id="nso-box-table">
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+				<div class="nso-box-row">
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="bb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>					
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+					<div class="nso-box-cell">
+						<div class="wb">
+						</div>						
+					</div>
+				</div>
+
+				</div>
+		</div>
+
+		<div id="box-3a">
+
+				<div id="box-3a-title">	
+					<p id="box-3a-name" class="no-tplt">
+						BOX 3A (TO BE ACCOMPLISHED BY DESIGNING ARCHITECT/CIVIL ENGINEER IN PRINT)
+					</p>
+				</div>
+				
+				<div id="box-3a-info">
+					<div id="box-3a-r1">
+						<div id="box-3a-r1-c1">		
+							<div id="box-3a-r1-c1-d1">
+								<p id="box-3a-r1-c1-d1-dt1">TOTAL ESTIMATED COST</p>
+								<p id="box-3a-r1-c1-d1-dt2">BUILDING</p>
+								<p id="box-3a-r1-c1-d1-dt3">ELECTRICAL</p>
+								<p id="box-3a-r1-c1-d1-dt4">MECHANICAL</p>
+								<p id="box-3a-r1-c1-d1-dt5">PLUMBING</p>
+								<p id="box-3a-r1-c1-d1-dt6">OTHERS</p>
+								<p id="box-3a-r1-c1-d1-dt7">TOTAL COST</p>
+								
+								
+							</div>				
+							<div id="box-3a-r1-c1-d2">
+								<p id="box-3a-r1-c1-d2-dt1" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec1']?></div>
+								
+								<p id="box-3a-r1-c1-d2-dt2" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec2']?></div>
+								<p id="box-3a-r1-c1-d2-dt3" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec3']?></div>
+								<p id="box-3a-r1-c1-d2-dt4" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec4']?></div>
+								<p id="box-3a-r1-c1-d2-dt5" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec5']?></div>
+								<p id="box-3a-r1-c1-d2-dt6" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec6']?></div>
+							
+							</div>
+						</div>
+						<div id="box-3a-r1-c2">
+							<div id="box-3a-r1-c2-d1">
+								<p id="box-3a-r1-c2-d1-dt1">COST OF EQUIPMENT INSTALLED</p>
+							</div>
+							<div id="box-3a-r1-c2-d2">
+								<p id="box-3a-r1-c2-d2-dt1" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$cei1']?></div>
+								
+								<p id="box-3a-r1-c2-d2-dt2" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$cei2']?></div>
+								
+								<p id="box-3a-r1-c2-d2-dt3" class="sow-fnt-tmplt">P</p>
+								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$cei3']?></div>
+								
+							</div>
+						</div>
+						
+						<div id="box-3a-r1-c3">
+							<p id="box-3a-r1-c3-d1-dt1">NO. OF STOREYS</p>
+							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php echo $_SESSION['$storey']?></div>
+							<p id="box-3a-r1-c3-d1-dt2">TOTAL FLOOR</p>
+							<p id="box-3a-r1-c3-d1-dt3">AREA</p>
+							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php echo $_SESSION['$floorArea']?></div>
+							<p id="box-3a-r1-c3-d1-dt4">PROPOSED DATE</p>
+							<p id="box-3a-r1-c3-d1-dt5">OF CONSTRUCTION</p>
+							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php echo $_SESSION['$constructionDate']?></div>
+							<p id="box-3a-r1-c3-d1-dt6">MATERIALS OF CONST</p>
+							<p id="box-3a-r1-c3-d1-dt7">(WOOD, CONC, STEEL, MIXED)</p>
+						</div>
+						
+					</div>
+				</div>
+
+		</div>					
+					
+		<div id="box-4">			
+
+			<div id="box-4-title">
+				<p id="box-4-name" class="no-tplt">
+					BOX 4 (TO BE ACCOMPLISHED BY THE DIVISION/SECTION CONCERNED)
+				</p>
+			</div>
+				
+			<div id="box-4-info">
+				<div id="box-4-r1" class="box-4-template">
+					<div id="box-4-r1-c1" class="box-4-template">
+						<div id="box-4-r1-c1-d1" class="box-4-name-template">
+							<p id="box-4-r1-c1-d1-dt1">ASSESSED FEES</p>
+						</div>
+					</div>
+				</div>
+					
+				<div id="box-4-r2" class="box-4-table">
+					
+					<table id="box-4-r2-table">
+						<tr>
+							<td></td>
+							<td>AMOUNT DUE</td>
+							<td>ASSESSED BY</td>
+							<td>O.R NUMBER</td>
+							<td>DATE PAID</td>
+						</tr>
+						<tr>
+							<td>LAND USE/ZONING</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>LAND & GRADE</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>BUILDING</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>PLUMBING</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>ELECTRICAL</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>MECHANICAL</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>INSPECTION FEE</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>TOTAL</td>
+							<td></td>
+							<td></td>
+						</tr>
+						
+					</table>
+
+				</div>
+					
+				<div id="box-4-r3" class="box-4-template">
+						<div id="box-4-r3-d1" class="box-4-name-template">
+							<p id="box-4-r3-d1-dt1">REVIEWED BY: CHIEF, PROCESSING DIVISION/SECTION</p>
+						</div>
+					</div>
+				
+					
+					
+				</div>
+		</div>		
+
+		<div id="box-5">
+			
+				<div id="box-5-title">
+					<p id="box-5-name" class="no-tplt">
+						BOX 5 (TO BE ACCOMPLISHED BY THE DIVISION/SECTION CONCERNED)
+					</p>
+				</div>
+				
+				<div id="box-5-info">
+					<div id="box-5-r1" class="box-5-template">
+						<div id="box-5-r1-c1" class="box-5-template">
+							<div id="box-5-r1-c1-d1" class="box-5-name-template">
+								<p id="box-5-r1-c1-d1-dt1">PROGRESS FLOW</p>
+							</div>
+						</div>
+					</div>
+					
+					<div id="box-5-r2" class="box-5-template">
+						
+						<table id="box-5-r2-table">
+							<tr>
+								<td>NOTED</td>
+								<td colspan="2">IN</td>
+								<td colspan="2">OUT</td>
+								<td>ACTION</td>
+								<td>PROCESSING</td>
+							</tr>
+
+							<tr>
+								<td>CHIEF PROCESSING DIVISION/SECTION</td>
+								<td>TIME</td>
+								<td>DATE</td>
+								<td>TIME</td>
+								<td>DATE</td>
+								<td>REMARKS</td>
+								<td>BY</td>
+							</tr>
+							<tr>
+								<td>RECEIVING and RECORDING</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td>LAND USE and ZONING</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>GEODETIC (LINE & GRADE)</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>ARCHITECTURAL</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>STRUCTURAL</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>SANITARY/PLUMBING</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>ELECTRICAL</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>MECHANICAL</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+						</table>
+					</div>
+					
+					<div id="box-5-r4" class="box-5-template">
+						<div id="box-5-r4-c1" class="box-5-template">
+							<div id="box-5-r4-c1-d1" class="box-5-name-template">
+								<p id="box-5-r4-c1-d1-dt1">WE HEREBY AFFIX OUR HANDS SIGNIFYING OUR CONFORMITY TO THE INFORMATION HEREIN ABOVE SETFORTH</p>
+							</div>
+						</div>
+						
+						
+					</div>
+					
+
+			</div>
+
+
+		</div>
+		
+
+		
+		<div id="box-6">
+			<div id="box-6-title">
+				<p id="box-6-name" class="no-tplt">BOX 6</p>
+			</div>
+			
+			<div id="box-6-info">
+				<div id="box-6-r1" class="box-6-template">
+					<div id="box-6-r1-c1" class="box-6-template">
+						<p id="box-6-r1-c1-dt1">ARCHITECT/CIVIL ENGINEER</p>
+						<p id="box-6-r1-c1-dt2">SIGNED AND SEALED PLANS & SPECIFICATIONS</p>
+					</div>
+					<div id="box-6-r1-c2" class="box-6-template">
+						<p id="box-6-r1-c2-dt1">PRC REG. NO</p>
+						<div id="box-6-r1-c1-d1-i" class="box-6-name-template"><?php echo $_SESSION['$SPRC']?></div>
+					</div>
+				</div>
+				<div id="box-6-r2" class="box-6-name-template">
+					<div id="box-6-r2-c1" class="box-6-name-template">
+						<p id="box-6-r2-c1-dt1" class="box-6-name-template">PRINT NAME</p>
+						<div id="box-6-r2-c1-i" class="box-6-name-template"><?php echo $_SESSION['$SFirstName'].$_SESSION['$SmiddleInitial'].$_SESSION['$SlastName']?></div>
+					</div> 
+				</div>
+				
+				<div id="box-6-r3" class="box-6-name-template">
+					<div id="box-6-r3-c1" class="box-6-name-template">
+						<p id="box-6-r3-c1-d1-dt1" class="box-6-name-template">ADDRESS</p>
+						<div id="box-6-r3-c1-d1-i" class="box-6-name-template"><?php echo $_SESSION['$Saddress']?></div>
+					</div> 
+				</div>
+				<div id="box-6-r4" class="box-6-name-template">
+					<div id="box-6-r4-c1" class="box-6-name-template">
+						<p id="box-6-r4-c1-d1-dt1" class="box-6-name-template">SIGNATURE</p>
+						<div id="box-6-r4-c1-d1-i" class="box-6-name-template"></div>
+					</div> 
+				</div>
+				
+				
+			</div>
+		
+		</div>
+
+		
+		<div id="box-8">
+			<div id="box-8-title">
+				<p id="box-8-name" class="no-tplt">BOX 8</p>
+			</div>
+			
+			<div id="box-8-info">
+				<div id="box-8-r1" class="box-8-template">
+					<div id="box-8-r1-c1" class="box-8-template">
+						<p id="box-8-r1-c1-dt1">SIGNATURE</p>
+						<div id="box-8-r1-c1-i1"></div>
+						<p id="box-8-r1-c1-dt2">APPLICANT</p>
+						<div id="box-8-r1-c1-i2"></div>
+					</div>
+					
+				</div>
+				<div id="box-8-r2" class="box-8-name-template">
+					<div id="box-8-r2-c1" class="box-8-name-template">	
+						<div id="box-8-r2-c1-d1" class="box-8-name-template">
+							<p id="box-8-r2-c1-d1-dt1" class="box-8-name-template">COMMUNITY TAX & CERT</p>
+						</div> 
+					</div>
+					<div id="box-8-r2-c2" class="box-8-name-template">	
+						<div id="box-8-r2-c2-d1" class="box-8-name-template">
+							<p id="box-8-r2-c2-d1-dt1" class="box-8-name-template">DATE ISSUED</p>
+						</div> 
+					</div>
+					<div id="box-8-r2-c3" class="box-8-name-template">	
+						<div id="box-8-r2-c3-d1" class="box-8-name-template">
+							<p id="box-8-r2-c3-d1-dt1" class="box-8-name-template">PLACE ISSUED</p>
+						</div> 
+					</div>
+				</div>
+				
+				<div id="box-8-r3" class="box-8-name-temdivlate">
+					<div id="box-8-r3-c1-d1" class="box-8-name-temdivlate">	
+						<div id="box-8-r3-c1-d1" class="box-8-name-temdivlate">
+							<div id="box-8-r3-c1-d1-i1" class="box-8-name-temdivlate"><?php echo $_SESSION['$Octc']?></div>
+						</div> 
+					</div>
+					<div id="box-8-r3-c2-d1" class="box-8-name-temdivlate">	
+						<div id="box-8-r3-c2-d1" class="box-8-name-temdivlate">
+							<div id="box-8-r3-c2-d1-i1" class="box-8-name-temdivlate"><?php echo $_SESSION['$ctcDate']?></div>
+						</div> 
+					</div>
+					<div id="box-8-r3-c3-d1" class="box-8-name-temdivlate">	
+						<div id="box-8-r3-c3-d1" class="box-8-name-temdivlate">
+							<div id="box-8-r3-c3-d1-i1" class="box-8-name-temdivlate"><?php echo $_SESSION['$ctcPlace']?></div>
+						</div> 
+					</div>
+				</div>
+				
+				
+			</div>
+		
+		</div>
+		<div id="box-7">
+			<div id="box-7-title">
+				<p id="box-7-name" class="no-tplt">BOX 7</p>
+			</div>
+			
+			<div id="box-7-info">
+				<div id="box-7-r1" class="box-7-template">
+					<div id="box-7-r1-c1" class="box-7-template">
+						<p id="box-7-r1-c1-dt1">ARCHITECT/CIVIL ENGINEER</p>
+						<p id="box-7-r1-c1-dt2">IN-CHARGE OF CONSTRUCTION</p>
+					</div>
+					<div id="box-7-r1-c2" class="box-7-template">
+						<p id="box-7-r1-c2-dt1">PRC REG. NO</p>
+						<div id="box-7-r1-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$CPRC']?></div>
+					</div>
+				</div>
+				<div id="box-7-r2" class="box-7-name-template">
+					<div id="box-7-r2-c1-d1" class="box-7-name-template">	
+						<div id="box-7-r2-c1-d1" class="box-7-name-template">
+							<p id="box-7-r2-c1-d1-dt1" class="box-7-name-template">PRINT NAME</p>
+							<div id="box-7-r2-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$CFirstName']." ".$_SESSION['$CmiddleInitial']." ".$_SESSION['$ClastName']?></div>
+						</div> 
+					</div>
+				</div>
+				
+				<div id="box-7-r3" class="box-7-name-template">
+					<div id="box-7-r3-c1" class="box-7-name-template"> 
+						<div id="box-7-r3-c1-d1" class="box-7-name-template">
+							<p id="box-7-r3-c1-d1-dt1" class="box-7-name-template">ADDRESS</p>
+							<div id="box-7-r3-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$Ccaddress']?></div>
+						</div> 
+					</div>
+				</div>
+				<div id="box-7-r4" class="box-7-name-template">
+					<div id="box-7-r4-c1" class="box-7-name-template">
+						<div id="box-7-r4-c1-d1" class="box-7-name-template">
+							<p id="box-7-r4-c1-d1-dt1" class="box-7-name-template">P.T.R NO</p>
+							<div id="box-7-r4-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$ptrNo']?></div>
+						</div> 
+					</div>
+					<div id="box-7-r4-c2" class="box-7-name-template">
+						<div id="box-7-r4-c2-d1" class="box-7-name-template">
+							<p id="box-7-r4-c2-d1-dt1" class="box-7-name-template">DATE ISSUED</p>
+							<div id="box-7-r4-c2-d1-i" class="box-7-name-template"><?php echo $_SESSION['$dateIssued']?></div>
+						</div>
+					</div>
+					<div id="box-7-r4-c3" class="box-7-name-template">
+						<div id="box-7-r4-c3-d1" class="box-7-name-template">
+							<p id="box-7-r4-c3-d1-dt1" class="box-7-name-template">PLACE ISSUED</p>
+							<div id="box-7-r4-c3-d1-i" class="box-7-name-template"><?php echo $_SESSION['$placeIssued']?></div>
+						</div>
+					</div>
+				</div>
+				<div id="box-7-r5" class="box-7-name-template">
+					<div id="box-7-r5-c1" class="box-7-name-template">
+						<div id="box-7-r5-c1-d1" class="box-7-name-template">
+							<p id="box-7-r5-c1-d1-dt1" class="box-7-name-template">SIGNATURE</p>
+							<div id="box-7-r5-c1-d1-i" class="box-7-name-template"></div>
+						</div> 
+					</div>
+					<div id="box-7-r5-c2" class="box-7-name-template">
+						<div id="box-7-r5-c2-d1" class="box-7-name-template">
+							<p id="box-7-r5-c2-d1-dt1" class="box-7-name-template">TIN</p>
+							<div id="box-7-r5-c2-d1-i" class="box-7-name-template"><?php echo $_SESSION['$tin']?></div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		
+		</div>
+
+		<div id="box-9">
+			<div id="box-9-title">
+				<p id="box-9-name" class="no-tplt">BOX 9(TO BE ACCOMPLISHED BY LOT OWNER)</p>
+			</div>
+			
+			<div id="box-9-info">
+				<div id="box-9-r1" class="box-9-template">
+					<div id="box-9-r1-c1" class="box-9-template">
+						<p id="box-9-r1-c1-dt1">TCT/OCT NO.</p>
+						<div id="box-9-r1-c1-i"><?php echo $_SESSION['$tct']?></div>
+					</div>
+					
+				</div>
+				<div id="box-9-r2" class="box-9-name-template">
+					<div id="box-9-r2-c1-d1" class="box-9-name-template">	
+						<div id="box-9-r2-c1-d1" class="box-9-name-template">
+							<p id="box-9-r2-c1-d1-dt1" class="box-9-name-template">PRINT NAME OF LOT OWNER</p>
+							<div id="box-9-r2-c1-d1-i" class="box-9-name-template"><?php echo $_SESSION['$OFirstName']." ".$_SESSION['$OmiddleInitial']." ".$_SESSION['$OlastName']?></div>
+						</div> 
+					</div>
+				</div>
+				
+				<div id="box-9-r3" class="box-9-name-template">
+					<div id="box-9-r3-c1" class="box-9-name-template"> 
+						<div id="box-9-r3-c1-d1" class="box-9-name-template">
+							<p id="box-9-r3-c1-d1-dt1" class="box-9-name-template">ADDRESS</p>
+							<div id="box-9-r3-c1-d1-i" class="box-9-name-template"><?php echo $_SESSION['$Ocaddress']?></div>
+						</div> 
+					</div>
+				</div>
+				<div id="box-9-r4" class="box-9-name-template">
+					<div id="box-9-r4-c1" class="box-9-name-template">
+						<div id="box-9-r4-c1-d1" class="box-9-name-template">
+							<p id="box-9-r4-c1-d1-dt1" class="box-9-name-template">COMMUNITY TAX CERT</p>
+							<div id="box-9-r4-c1-d1-i" class="box-9-name-template"><?php echo $_SESSION['$Octc']?></div>
+						</div> 
+					</div>
+				</div>
+				<div id="box-9-r5" class="box-9-name-template">
+					<div id="box-9-r5-c1" class="box-9-name-template">
+						<div id="box-9-r5-c1-d1" class="box-9-name-template">
+							<p id="box-9-r5-c1-d1-dt1" class="box-9-name-template">SIGNATURE</p>
+							<div id="box-9-r5-c1-d1-i" class="box-9-name-template"></div>
+						</div> 
+					</div>					
+				</div>
+				
+				
+			</div>
+		
+		</div>
+		</div>
+
+                    <div class = "buttons">
+                        <button id="myP" type="button" onclick="myFunction()">Print</button>
+						<button id="downloadBtn" type="button" onclick="downloadBtn()">Download</button>
+                    </div>
+
+                    <!-- PC -->
+
+					</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class = "row">
+                <div class = "col-xs-8">
+                    <div class="contact">
+                        <p>Contact Us</p>
+                        <p>(074)-998-7654<br>
+                            cbao_baguio@gmail.com<br>
+                            http:www.baguio.gov.ph<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class = "col-xs-3">
+                    <div class="contact2">
+                        <p>&copy; Copyright 2016</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
