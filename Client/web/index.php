@@ -4,10 +4,10 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../../Client/common/head.php'; ?>
+        <?php include '../common/head.php'; ?>
 
-        <link rel="stylesheet" href="../../Client/css/styles.css"> 
-        <link rel="stylesheet" href="../../Client/btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="../css/styles.css"> 
+        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -22,15 +22,9 @@ session_start();
                             closeOnEscape: true,
                             open: function (event, ui){
                                 $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
-                            },
-                            position: {
-                                my: \"center center\",
-                                at: \"center center\",
-                                of: window,
-                                collision: \"none\"
-                            },
-                            height: 200,
-                            width: 400
+                            },                            
+                            height: 'auto',
+                            width: 'auto'                           
                         });
                     });
 		</script>
@@ -40,7 +34,7 @@ session_start();
 
     </head>
     <body>
-        <?php include '../../Client/common/header.php'; ?>
+        <?php include '../common/header.php'; ?>
 
         <div class="container">
             <div class="content">
@@ -61,10 +55,10 @@ session_start();
                     </div>
 
                     <br>
-                    <h4><a href="../../Client/read_req/homerequirements.php" id = "link">View Application Requirements</a></h4>
+                    <h4><a href="../read_req/homerequirements.php" id = "link">View Application Requirements</a></h4>
                     <!-- PC -->
 
-                    <p><img class="img-responsive" src="../../Client/img/pc.png" alt=""></p>
+                    <p><img class="img-responsive" src="../img/pc.png" alt=""></p>
                     <br>
                     <p>Get realtime updates on your application</p>
                     <p>Save time and experience hassle free application procedures</p>
@@ -95,11 +89,11 @@ session_start();
 
 
 
-        <?php include '../../Client/common/footer.php'; ?>
+        <?php include '../common/footer.php'; ?>
 
         <script>
             function apply_redirect() {
-                window.location.assign('../../Client/registration/bpForm.php');
+                window.location.assign('../registration/bpForm.php');
             }
 
             $(function () {
@@ -108,15 +102,9 @@ session_start();
                     closeOnEscape: true,
                     open: function (event, ui) {
                         $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },
-                    position: {
-                        my: "center center",
-                        at: "center center",
-                        of: window,
-                        collision: "none"
-                    },
-                    height: 200,
-                    width: 400
+                    },                   
+                    height: 'auto',
+                    width: 'auto'
                 });
 
                 $("#trackApplication").click(function () {

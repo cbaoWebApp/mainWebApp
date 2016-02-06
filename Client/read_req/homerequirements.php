@@ -1,15 +1,18 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../../Client/common/head.php'; ?>
+        <?php include '../common/head.php'; ?>
 
-        <link rel="stylesheet" href="../../Client/css/homeReq.css">
-        <link rel="stylesheet" href="../../Client/btstrp/css/bootstrap.css">
-        
+        <link rel="stylesheet" href="../css/homeReq.css">
+        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
+
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    
+
         <?php
         if (!empty($_SESSION['login_error_msg'])) {
             echo "
@@ -20,26 +23,20 @@
                             closeOnEscape: true,
                             open: function (event, ui){
                                 $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
-                            },
-                            position: {
-                                my: \"center center\",
-                                at: \"center center\",
-                                of: window,
-                                collision: \"none\"
-                            },
-                            height: 200,
-                            width: 400
+                            },                            
+                            height: 'auto',
+                            width: 'auto'  
                         });
                     });
 		</script>
             ";
         }
         ?>
-    
+
     </head>
 
     <body>
-        <?php include '../../Client/common/header.php'; ?>
+        <?php include '../common/header.php'; ?>
 
         <div class = "container">
             <div class="content">
@@ -49,7 +46,7 @@
                     <br>
                     <br>
                     <div class="collapsible">
-                        <p class="heading"><img class="rotate" src="../../Client/img/green-triangle.png"/>&nbsp; Applicant is the registered owner</p>
+                        <img class="rotate" src="../img/green-triangle.png"/><p class="heading">&nbsp; Applicant is the registered owner</p>
                         <div class="contents">
                             <ul>
                                 <li> Certified true copy of the title (updated for more than 3 mos.), or <br> 
@@ -58,7 +55,7 @@
                             </ul>
                         </div>
 
-                        <img class="rotate" src="../../Client/img/green-triangle.png"/><p class="heading">&nbsp; Applicant is not the registered owner</p>
+                        <img class="rotate" src="../img/green-triangle.png"/><p class="heading">&nbsp; Applicant is not the registered owner</p>
                         <div class="contents">
                             <ul>
                                 <li>Certified Photocopy / Original / duplicate copy of the Contract of Lease, or </li>
@@ -81,7 +78,7 @@
                         <p>Clear latest picture of site/area (Taken at least a week before application)</p>
                         <p>Soil analysis for concrete and commercial/residential buildings with 3 storeys or over</p>
 
-                        <img class="rotate" src="../../Client/img/green-triangle.png"/><p class="heading">&nbsp; Environmental Compliance Certificate for building as follows:</p>
+                        <img class="rotate" src="../img/green-triangle.png"/><p class="heading">&nbsp; Environmental Compliance Certificate for building as follows:</p>
                         <div class="contents">
                             <ul>
                                 <li> 3 storeys with basement</li>
@@ -97,7 +94,7 @@
                         <p >Construction Logbook</p>
                         <p>Construction Tarpaulin</p>
 
-                        <img class="rotate" src="../../Client/img/green-triangle.png"/><p class="heading">&nbsp; Clearances from other government agencies, pursuant to no. 12 (B) of Section 302 of <br>
+                        <img class="rotate" src="../img/green-triangle.png"/><p class="heading">&nbsp; Clearances from other government agencies, pursuant to no. 12 (B) of Section 302 of <br>
                             the IRR of the National Building Code (P.D. 1096), if applicable</p>
                         <div class="contents">
                             <ul>
@@ -117,6 +114,8 @@
                     <div class = "buttons">
                         <input type="button" id="apply" class="btn1" value="Apply" onclick="apply_redirect()"/>
                         <input type="button" id="trackApplication" class="btn2" value="Track Application"/>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -136,15 +135,15 @@
                 <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
                 <br>
                 <input type="submit" id = "search" class="btn1" value="Search">
-                <input type="button" id="cancel" value="Cancel">                         
+                <input type="button" id="cancel" class="btn2" value="Cancel">                         
                 <input type="hidden" name="page_location" value="home_req">
             </form>
         </div>
-        
-        <?php include '../../Client/common/footer.php'; ?>
 
-        
-        <script>        
+        <?php include '../common/footer.php'; ?>
+
+
+        <script>
             $(document).ready(function () {
                 $(".collapsible .contents").hide();
                 $(".collapsible .rotate").click(function () {
@@ -157,26 +156,26 @@
                     }
                 });
             });
-        
+
             function apply_redirect() {
-                window.location.assign('../../Client/registration/bpForm.php');
+                window.location.assign('../registration/bpForm.php');
             }
-            
+
             $(function () {
                 $("#login-popup").dialog({
                     autoOpen: false,
                     closeOnEscape: true,
                     open: function (event, ui) {
                         $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },
+                    },  
                     position: {
                         my: "center center",
                         at: "center center",
                         of: window,
                         collision: "none"
                     },
-                    height: 200,
-                    width: 400
+                    height: 'auto',
+                    width: 'auto'
                 });
 
                 $("#trackApplication").click(function () {
