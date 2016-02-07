@@ -352,6 +352,6 @@ if ($conn->query($sqls) === TRUE) {
 		
 		
 		 $conn->close();
-		 header("Location: /New folder/Receiving Section/receivingHome.php");
+		 header("Location: /Receiving Section/receivingHome.php");
 
 ?>

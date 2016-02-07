@@ -36,7 +36,7 @@ session_start();
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="receivingHome.html">Receiving Office</a>
+              <a class="navbar-brand" href="receivingHome.php">Receiving Office</a>
             </div>
             <ul class="nav navbar-nav">
               

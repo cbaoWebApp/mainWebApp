@@ -48,5 +48,5 @@ $sql1     = "SELECT * FROM Requirement WHERE idRequirement = '$id'";
 			}
 			
 			 $conn->close();
-			 header("Location: /New folder/Receiving Section/receivingRequirements.php");
+			 header("Location: /Receiving Section/receivingRequirements.php");
 ?>
