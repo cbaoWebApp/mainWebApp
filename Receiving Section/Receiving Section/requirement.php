@@ -8,7 +8,21 @@ if ($conn->connect_error) {
 }
 
 	if( isset($_POST['viewReq']) ){
-	
+		if (isset($_POST['owner'])) {
+			$_SESSION["owner"] = "true";
+   
+		} else {
+			$_SESSION['owner'] = "false";
+   
+		}
+		
+		if (isset($_POST['notowner'])) {
+			$_SESSION["notowner"] = "true";
+   
+		} else {
+			$_SESSION['notowner'] = "false";
+   
+		}
 		
 		if (isset($_POST['trueTitle'])) {
 			$_SESSION["trueTitle"] = "true";
@@ -246,15 +260,18 @@ if ($conn->connect_error) {
 		
 		
 		} else{
-			echo 'sht';
+			echo 'wrong';
 		}
 		
 		// $sql     = "INSERT INTO Requirement (trueTitle) VALUES ('$trueTitle')";
 		
 			$sqls = 
-			"UPDATE Requirement SET trueTitle='$_SESSION[trueTitle]',
+			"UPDATE Requirement SET 
+			owner='$_SESSION[owner]',
+			notowner='$_SESSION[notowner]',
+			trueTitle='$_SESSION[trueTitle]',
 			surveyPlan='$_SESSION[surveyPlan]',
-			contractLease=' $_SESSION[contractLease]',
+			contractLease='$_SESSION[contractLease]',
 			deedSale='$_SESSION[deedSale]',
 			conDeedSale='$_SESSION[conDeedSale]',
 			constAuth='$_SESSION[constAuth]',
@@ -320,10 +337,12 @@ if ($conn->connect_error) {
 			WHERE id='$id';
 			
 			$sql     = "INSERT INTO Requirement 
-(trueTitle,surveyPlan,contractLease,deedSale,conDeedSale,constAuth,taxDec,realPropTax,bpForm,BuilPlan,StrucDesign,BuildSpec,billMat,picSite,
+(owner,notowner,trueTitle,surveyPlan,contractLease,deedSale,conDeedSale,constAuth,taxDec,realPropTax,bpForm,BuilPlan,StrucDesign,BuildSpec,billMat,picSite,
 soilAnal,ecc,stor3,stor4,taxReceipt,zoningCert,FireCert,wmsCert,logbook,tarpaulin,clearance,dpwh,aviation,psg,notarized) 
 VALUES 
-('{$_SESSION['trueTitle']}', 
+('{$_SESSION['owner']}', 
+'{$_SESSION['notowner']}', 
+'{$_SESSION['trueTitle']}', 
 '{$_SESSION['surveyPlan']}', 
 '{$_SESSION['contractLease']}', 
 '{$_SESSION['deedSale']}', 
@@ -352,6 +371,6 @@ if ($conn->query($sqls) === TRUE) {
 		
 		
 		 $conn->close();
-		 header("Location: /Receiving Section/receivingHome.php");
+		 header("Location: /New folder/Receiving Section/receivingHome.php");
 
 ?>

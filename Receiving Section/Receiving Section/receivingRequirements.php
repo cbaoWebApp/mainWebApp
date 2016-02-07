@@ -17,6 +17,49 @@ session_start();
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
           <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		  
+		  <script language="javascript" type="text/javascript">
+			function uncheck(obj){
+						
+						if ($('#owner').is(':checked')) {
+							$('#notown :input').attr('disabled', true);
+						} else {
+							$('#notown :input').removeAttr('disabled');
+						}   
+			}
+			
+			function uncheck1(obj){
+						
+						if ($('#notowner').is(':checked')) {
+							$('#own :input').attr('disabled', true);
+						} else {
+							$('#own :input').removeAttr('disabled');
+						}   
+			}
+			
+			function stor1(obj){
+						
+						if ($('#stor3').is(':checked')) {
+							$('#stor4x :input').attr('disabled', true);
+						} else {
+							$('#stor4x :input').removeAttr('disabled');
+						}   
+			}
+			
+			function stor2(obj){
+						
+						if ($('#stor4').is(':checked')) {
+							$('#stor3x :input').attr('disabled', true);
+						} else {
+							$('#stor3x :input').removeAttr('disabled');
+						}   
+			}
+					
+		
+			
+        
+</script>
+
     </head>
     <body>
     <div class="header">
@@ -36,7 +79,7 @@ session_start();
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="receivingHome.php">Receiving Office</a>
+              <a class="navbar-brand" href="receivingHome.html">Receiving Office</a>
             </div>
             <ul class="nav navbar-nav">
               
@@ -55,8 +98,9 @@ session_start();
             <div class="content">
                 <div class="main">
                     <div class="collapsible">
-                        <p class="heading">&nbsp; Applicant is the registered owner</img></p>
-                        <div class="contents">
+                       
+                        <div id="own" class="contents">
+						 <input type="checkbox" id="owner" name="owner" value="owner" onclick="javascript:uncheck(this);" <?php echo ($_SESSION["owner1"] == 'true' ? 'checked' : ''); ?> >Applicant is the registered owner</input>
                             <ul>
                                 <input type="checkbox" id="trueTitle" name="trueTitle" value="trueTitle" <?php echo ($_SESSION["trueTitle1"] == 'true' ? 'checked' : ''); ?> > Certified true copy of the title (updated for more than 3 mos.), or  
                                     Copy of Award </input><br>
@@ -64,8 +108,9 @@ session_start();
                             </ul>
                         </div>
 
-                        <p class="heading">&nbsp; Applicant is not the registered owner</p>
-                        <div class="contents">
+                        
+                        <div id="notown" class="contents">
+						<input type="checkbox" id="notowner" name="notowner" value="notowner" onclick="javascript:uncheck1(this);" <?php echo ($_SESSION["notowner1"] == 'true' ? 'checked' : ''); ?>>Applicant is not the registered owner</input>
                             <ul>
                                   <input type="checkbox" id="contractLease" name="contractLease" value="contractLease" <?php echo ($_SESSION["contractLease1"] == 'true' ? 'checked' : ''); ?>> Certified Photocopy / Original / duplicate copy of the Contract of Lease, or </input><br>
                                   <input type="checkbox" id="deedSale" name="deedSale" value="deedSale" <?php echo ($_SESSION["deedSale1"] == 'true' ? 'checked' : ''); ?>> Certified Photocopy / Original / duplicate copy of the Absolute Deed of Sale, or </input><br>
@@ -87,12 +132,16 @@ session_start();
                         <input type="checkbox" id="picSite" name="picSite" value="picSite" <?php echo ($_SESSION["picSite1"] == 'true' ? 'checked' : ''); ?>>Clear latest picture of site/area (Taken at least a week before application)</input><br>
                         <input type="checkbox" id="soilAnal" name="soilAnal" value="soilAnal" <?php echo ($_SESSION["soilAnal1"] == 'true' ? 'checked' : ''); ?>>Soil analysis for concrete and commercial/residential buildings with 3 storeys or over</input><br>
 
-                        <input type="checkbox" id="ecc" name="ecc" value="ecc">Environmental Compliance Certificate for building as follows:</p>
+                        <input type="checkbox" id="ecc" name="ecc" value="ecc"<?php echo ($_SESSION["ecc1"] == 'true' ? 'checked' : ''); ?>>Environmental Compliance Certificate for building as follows:</p>
                         <div class="contents">
                             <ul>
-                                <input type="checkbox" id="stor3" name="stor3" value="stor3" <?php echo ($_SESSION["stor31"] == 'true' ? 'checked' : ''); ?>> 3 storeys with basement</input><br>
-                                <input type="checkbox" id="stor4" name="stor4" value="stor4" <?php echo ($_SESSION["stor41"] == 'true' ? 'checked' : ''); ?>> 4 storeys and above</input><br>
-                            </ul>
+							<div id="stor3x">
+                                <input type="checkbox" id="stor3" name="stor3" value="stor3" onclick="javascript:stor1(this);" <?php echo ($_SESSION["stor31"] == 'true' ? 'checked' : ''); ?>> 3 storeys with basement</input><br>
+                              </div>
+							 <div id="stor4x"> 
+								<input type="checkbox" id="stor4" name="stor4" value="stor4" onclick="javascript:stor2(this);"<?php echo ($_SESSION["stor41"] == 'true' ? 'checked' : ''); ?>> 4 storeys and above</input><br>
+                            </div>
+							</ul>
                         </div>
                         <input type="checkbox" id="taxReceipt" name="taxReceipt" value="taxReceipt"<?php echo ($_SESSION["taxReceipt1"] == 'true' ? 'checked' : ''); ?> >Photocopy of updated professional tax receipt and Professional Requlations </input><br>
                             <p>Commision (PRC) identification of all professional signatories to the application forms <br>

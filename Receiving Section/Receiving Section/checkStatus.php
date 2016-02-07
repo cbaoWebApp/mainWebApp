@@ -14,6 +14,8 @@ $sql1     = "SELECT * FROM Requirement WHERE idRequirement = '$id'";
 		 $result = $conn->query($sql1) ;
 		 
 			while($row = mysqli_fetch_array($result)){
+				$_SESSION['owner1'] =  $row['owner'];
+				$_SESSION['notowner1'] =  $row['notowner'];
 				$_SESSION['trueTitle1'] =  $row['trueTitle'];
 				$_SESSION['surveyPlan1'] =  $row['surveyPlan'];
 				$_SESSION['contractLease1'] =  $row['contractLease'];
@@ -48,5 +50,5 @@ $sql1     = "SELECT * FROM Requirement WHERE idRequirement = '$id'";
 			}
 			
 			 $conn->close();
-			 header("Location: /Receiving Section/receivingRequirements.php");
+			 header("Location: /New folder/Receiving Section/receivingRequirements.php");
 ?>
