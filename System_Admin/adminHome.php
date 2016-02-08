@@ -1,4 +1,11 @@
 <!DOCTYPE HTML>
+<?php
+  session_start();
+  if(!isset($_SESSION['section'])){
+   header("Location: index.php"); 
+   exit();
+  }
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -11,11 +18,13 @@
 
         <link rel="stylesheet" href="css/adminHome.css">
         <link rel="stylesheet" href="btstrp/css/bootstrap.css">
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script src="jquery-1.12.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="tablesorter-master/jquery.tablesorter.js"></script> 
+        <!--<script src="jquery-ui.js"></script>-->
 
     </head>
     <body>
@@ -44,7 +53,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Accounts</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp; Log History</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+              <li><button id="admin-logout"><span class="glyphicon glyphicon-log-out"></span> Log out</button></li>
             </ul>
           </div>
         </nav>
@@ -52,33 +61,29 @@
   <br>
          
         <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-              <h4>
-                <?php
-                  $monthNum = date("m");
-                  $monthName = date("F", mktime(0, 0, 0, $monthNum, 10));
-                  echo $monthName." ".date("d").", ".date("Y");
+			<div class="row">
+			  <div class="col-md-12">
+				  <h4>
+					<?php
+					  $monthNum = date("m");
+					  $monthName = date("F", mktime(0, 0, 0, $monthNum, 10));
+					  echo $monthName." ".date("d").", ".date("Y");
+					?>
+				  </h4>
 
-                ?>
-              </h4>
-
-          </div>
-          
-        </div>
+			  </div>
+			  
+			</div>
         
         <div class="row">
-        <div class="col-md-6">
-          <h4>
-            <?php
-              date_default_timezone_set("Asia/Manila");
-              echo date("h:i a"); 
-            ?>
-          </h4>
-        </div>
-        <div class="col-md-6">
+			<div class="col-md-6">
+			  <h4 id="time-display">
+			  
+			  </h4>
+			</div>
+			<div class="col-md-6">
             <div class="input-group" id="adv-search">
-                <input type="text" class="form-control" placeholder="Search" />
+                <input type="text" class="form-control" placeholder="Search" id="search-val"/>
                 <div class="input-group-btn">
                     <div class="btn-group" role="group">
                         <div class="dropdown dropdown-lg">
@@ -87,15 +92,13 @@
                                 <form class="form-horizontal" role="form">
                                   <div class="form-group">
                                     <label for="filter">Filter by</label>
-                                    <select class="form-control">
-                                        <option value="0" selected>Control No.</option>
-                                        <option value="1">Permit No.</option>
-                                        <option value="2">Application No.</option>
-                                        <option value="3">Date of Application</option>
-                                        <option value="4">Status</option>
+                                    <select class="form-control" id="filter-options">
+                                        <option value="tinNo" selected>Tin No.</option>
+                                        <option value="name">Name</option>
+                                        <option value="position">Position</option>
+                                        <option value="section">Section</option>
                                     </select>
                                   </div>
-                                  <button type="submit" class="btn btn-primary" id = "filter">Filter</button>
                                 </form>
                             </div>
                         </div>
@@ -105,12 +108,11 @@
             </div>
 
           </div> 
-
-    </div>
+		</div>
         <br>
        
           
-          <div class = "table">
+    <div class = "table" id="main-table">
       <div class="table-responsive">
         <table id="admin-home-table" class="table table-radius table-hover">
           <thead>
@@ -256,7 +258,7 @@
 </body>
 </html>
 
-<!--Javascript for Add Account popup window, Add Account button, dynamic table, Edit button, and Delete button-->
+<!--Javascript-->
 <script>
   var tinNo;
   var name;
@@ -279,7 +281,7 @@
             text: "Add",
             "class": 'dialog-add-account',
             click: function() {
-              tinNo = document.getElementById("tinNo").value;
+              tinNo = $("#tinNo").val();
               name = document.getElementById("name").value;
               section = document.getElementById("section").value;
               position = document.getElementById("position").value;
@@ -289,6 +291,12 @@
                 alert("Passwords did not match.");
               }else if(tinNo=="" || name=="" || section=="" || position=="" || password=="" || confirm_password==""){
                 alert("Fields cannot be blank.");
+              }else if(!checkTinNo(tinNo)){
+                alert("Invalid Tin Number.");
+              }else if(!checkSection(section)){
+                alert("Invalid Section.");
+              }else if(!checkPosition(position)){
+                alert("Invalid Position.")
               }else{
                 performAddAccount();
               }
@@ -353,6 +361,8 @@
                 alert("Passwords did not match.");
               }else if(tinNo=="" || name=="" || section=="" || position=="" || password=="" || confirm_password==""){
                 alert("Fields cannot be blank.");
+              }else if(!checkTinNo(tinNo)){
+                alert("Invalid Tin Number.");
               }else{
                 performEditAccount();
               }
@@ -437,12 +447,135 @@ $(function() {
   function performDeleteAccount(){
     var xml = new XMLHttpRequest();
     xml.onreadystatechange = function(){
-      if(xml.readyState == 4 && xml.status ==200){
+      if(xml.readyState == 4 && xml.status == 200){
         window.location.href = "functions.php?action=deleteAccount&tinNo=" + tinNo;
        }
     };
     xml.open("GET", "functions.php", true);
     xml.send();
   }
+  
+  //for displaying the time realtime
+	window.onload = updateClock();
+  function updateClock(){	
+		function pad(n) {
+      return (n < 10) ? '0' + n : n;
+    }
+
+    var now = new Date();
+    var hour = pad(now.getUTCHours()+8);
+    var min = pad(now.getUTCMinutes());
+    var newHour = hour;
+    var ampm = "AM";
+
+    if(hour >= 12){
+      newHour = hour-12;
+      ampm = "PM";
+    }
+    if(newHour == 0){
+      newhour = 12;
+    }
+
+    var s = newHour + ":" + min + " " + ampm;
+
+    document.getElementById('time-display').innerHTML = s;
+
+    var delay = 1000 - (now % 1000);
+    setTimeout(updateClock, delay);
+	};
+
+  //for validation of tin number input by user
+  function checkTinNo(tinNo){
+    //check if valid length
+    if(tinNo.length != 11){
+      return false;
+    }
+
+    //check if digits are valid integers
+    for(var i = 0; i <= 2; i++){
+      var c = tinNo.charAt(i);
+      if(!(c >= '0' && c <= '9')){
+        return false;
+      }
+    }
+    for(var i = 4; i <= 6; i++){
+      var c = tinNo.charAt(i);
+      if(!(c >= '0' && c <= '9')){
+        return false;
+      }
+    }
+    for(var i = 8; i <= 10; i++){
+      var c = tinNo.charAt(i);
+      if(!(c >= '0' && c <= '9')){
+        return false;
+      }
+    }
+
+    //check if valid format
+    if(tinNo.charAt(3) != '-' || tinNo.charAt(7) != '-'){
+      return false;
+    }
+
+    return true;
+  }
+
+  //for validation of section input by user
+  function checkSection(section){
+    switch(section){
+      case "Line and Grade": return true; break;
+      case "Structural": return true; break;
+      case "Architectural": return true; break;
+      case "Electrical": return true; break;
+      case "Sanitary/Plumbing": return true; break;
+      case "Mechanical": return true; break;
+      case "Receiving": return true; break;
+      case "Admin": return true; break;
+      default: return false; break;
+    }
+  }
+
+  //for validation of position input by user
+  function checkPosition(position){
+    switch(position){
+      case "Head": return true; break;
+      case "Substitute": return true; break;
+      default: return false; break;
+    }
+  }
+
+  //for search feature
+  $("#searchIcon").click(function() {
+    var options = document.getElementById("filter-options");
+    var option = options.options[options.selectedIndex].value;
+    var value = document.getElementById("search-val").value;
+    var xml = new XMLHttpRequest();
+    xml.onreadystatechange = function(){
+      if(xml.readyState == 4 && xml.status == 200){
+        document.getElementById("main-table").innerHTML = xml.responseText;
+       }
+    };
+
+    xml.open("GET", "functions.php?action=search&option=" + option + "&value=" + value, true);
+    xml.send();    
+  });
+
+  //logout
+  $("#admin-logout").click(function(){
+    var xml = new XMLHttpRequest();
+    xml.onreadystatechange = function(){
+      if(xml.readyState == 4 && xml.status == 200){
+        window.location.href = "functions.php?action=logout";
+       }
+    };
+
+    xml.open("GET", "functions.php", true);
+    xml.send();  
+  })
+
+  //give table to tablesorter
+  $(document).ready(function() {
+    $("#admin-home-table").tablesorter();
+  });
 </script>
-<!--End of Javascript for popup window, Add Account button, and dynamic table-->
+
+<!--End of JavaScript-->

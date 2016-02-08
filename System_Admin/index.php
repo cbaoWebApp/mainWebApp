@@ -39,7 +39,7 @@
                         <div class = "logFields">
                             <br>
                             <form class="form-signin">
-                                <input type="number" id="inputTinNo" class="form-control" placeholder="Tin Number" required autofocus>
+                                <input type="text" id="inputTinNo" class="form-control" placeholder="Tin Number" required autofocus>
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                               </form>
                             <p><button id="personnel-login-btn" class="btn1" onclick="login()">Log in</button>

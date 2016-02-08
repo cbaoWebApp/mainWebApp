@@ -17,11 +17,30 @@
       case 'deleteAccount';
         deleteAccount();
         break;
+      case 'search':
+        search();
+        break;
+      case 'logout';
+        logout();
+        break;
       default:
         die('No such function!');
     }
   }else{
-    echo "No action read";
+    if(!isset($_SESSION['section'])){
+     header("Location: index.php"); 
+     exit();
+    }else{
+      $section = $_SESSION['section'];
+      switch($section){
+          case 'Receiving': 
+            header("location: receivingHome.php"); 
+            break;
+          case 'Admin' : 
+            header("location: adminHome.php"); 
+            break;
+        }
+    }
   }
 
   function connectDb($sn, $un, $p, $d){
@@ -46,10 +65,10 @@
       VALUES ('$tinNo','$name','$section','$position','$password')";
 
     if($conn->query($sql) === true){
-          echo "<script type=\"text/javascript\">".
-          "alert('Account Successfully Added.');".
-          "window.location.href='adminHome.php'".
-          "</script>";
+      echo ("<script type='text/javascript'>
+            alert('Account Sucessfully Added.');
+            window.location.href='adminHome.php'
+            </script>");
     }else{
       echo "Error: " .$sql."<br>".$conn->error;
     }
@@ -74,7 +93,21 @@
           "</script>";
     }else{
       //row found
-      echo "found";
+      session_start();
+
+      if($row = mysqli_fetch_array($result)){
+        $section = $row["section"];
+        $_SESSION['section'] = $section;
+
+        switch($section){
+          case 'Receiving': 
+            header("location: receivingHome.php"); 
+            break;
+          case 'Admin' : 
+            header("location: adminHome.php"); 
+            break;
+        }
+      }
     }
 
     $conn->close();
@@ -92,7 +125,7 @@
     
     $sql = "UPDATE admin SET tinNo=?, name=?, section=?, position=?, password=? WHERE tinNo = '$originalTin'";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('issss',$newTin, $name, $section, $position, $password);
+    $stmt->bind_param('sssss',$newTin, $name, $section, $position, $password);
     $stmt->execute();
 
     if($stmt->errno){
@@ -122,6 +155,55 @@
     }else{
       echo "Error: " .$sql."<br>".$conn->error;
     }
+  }
+  
+  function search(){
+    $option = $_GET['option'];
+    $value = $_GET['value'];
+    $conn = connectDb("localhost", "root", "", "trial_system_admin");
+
+    $sql = "SELECT * FROM admin WHERE $option = '$value'";
+    $result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result) == 0){
+      echo "<p style='color:red;'>No Results Found.</p>";
+    }else{
+      echo "<div class='table-responsive'><table class='table table-radius table-hover'>
+          <thead>
+            <th>Tin No.</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Section</th>
+            <th>Edit Account</th>
+            <th>Delete Account</th>
+          </thead><tbody>";
+      while($row = mysqli_fetch_array($result)){
+        echo "<tr><td>".$row["tinNo"]."</td>";
+        echo "<td>".$row["name"]."</td>";
+        echo "<td>".$row["position"]."</td>";
+        echo "<td>".$row["section"]."</td>";
+        echo "<td>button</td>";
+        echo "<td>button</td>";
+      }
+      echo "</tbody></table></div>";
+    }
+  }
+
+  function logout(){
+    session_start();
+    //unset($_SESSION['section']);
+    $_SESSION = array();
+
+    if (ini_get("session.use_cookies")) {
+      $params = session_get_cookie_params();
+      setcookie(session_name(), '', time() - 42000,
+          $params["path"], $params["domain"],
+          $params["secure"], $params["httponly"]
+      );
+    }
+
+    session_destroy();
+    header("location: index.php");
   }
 ?>
 <!--End of php collection-->
