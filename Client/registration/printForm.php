@@ -13,8 +13,8 @@ session_start();
         <meta name="robots" content="index, follow">
 
         <!-- Body -->
-		<link rel="stylesheet" href="main2.css">
-		<link rel="stylesheet" href="main3.css">
+		<link rel="stylesheet" href="css/main2.css">
+		<link rel="stylesheet" href="css/main3.css">
         <!--<link rel="stylesheet" href="css/printForm.css">-->
         <!--<link rel="stylesheet" href="btstrp/css/bootstrap.css">-->
         
@@ -493,9 +493,9 @@ session_start();
 
                                                 </div>
                                                 <div id="r1-c1-d2" class="box-1-val-template">
-                                                    <div id="r1-c1-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$lName'];?></div>
-                                                    <div id="r1-c1-d2-i2" class="box-1-val-template-i"><?php echo $_SESSION['$fName'];?></div>
-                                                    <div id="r1-c1-d2-i3" class="box-1-val-template-i"><?php echo $_SESSION['$mName'];?></div>
+                                                    <div id="r1-c1-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$lName'])){echo $_SESSION['$lName']; unset($_SESSION['$lName']);}?></div>
+                                                    <div id="r1-c1-d2-i2" class="box-1-val-template-i"><?php if(!empty($_SESSION['$fName'])){echo $_SESSION['$fName']; unset($_SESSION['$fName']);}?></div>
+                                                    <div id="r1-c1-d2-i3" class="box-1-val-template-i"><?php if(!empty($_SESSION['$mName'])){echo $_SESSION['$mName']; unset($_SESSION['$mName']);}?></div>
                                                 </div>
                                             </div>
                                             <div id="r1-c2" class="box-1-template">
@@ -503,7 +503,7 @@ session_start();
                                                     <p id="r1-c2-d1-dt1">TAX ACCT. NO.</p>
                                                 </div>
                                                 <div id="r1-c2-d2" class="box-1-val-template">
-                                                    <div id="r1-c2-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$TaxAccNo'];?></div>
+                                                    <div id="r1-c2-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$TaxAccNo'])){echo $_SESSION['$TaxAccNo']; unset($_SESSION['$TaxAccNo']);}?></div>
                                                 </div>
                                             </div>					
                                         </div>
@@ -519,7 +519,7 @@ session_start();
                                                     <p id="r2-c2-d1-dt1">FORM OF OWNERSHIP</p>						
                                                 </div>
                                                 <div id="r2-c2-d2" class="box-1-val-template">
-                                                    <div id="r2-c2-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$formOfOwnership'];?></div>
+                                                    <div id="r2-c2-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$formOfOwnership'])){echo $_SESSION['$formOfOwnership']; unset($_SESSION['$formOfOwnership']);}?></div>
                                                 </div>							
                                             </div>
                                             <div id="r2-c3" class="box-1-template">
@@ -527,7 +527,7 @@ session_start();
                                                     <p id="r2-c3-d1-dt1">MAIN ECONOMIC ACTIVITY/KIND OF BUSINESS</p>						
                                                 </div>
                                                 <div id="r2-c3-d2" class="box-1-val-template">
-                                                    <div id="r2-c3-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$kindOfBusiness'];?></div>
+                                                    <div id="r2-c3-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$kindOfBusiness'])){echo $_SESSION['$kindOfBusiness']; unset($_SESSION['$kindOfBusiness']);}?></div>
                                                 </div>							
                                             </div>
                                         </div>
@@ -537,7 +537,7 @@ session_start();
                                                     <p id="r3-c1-d1-dt1">ADDRESS</p>						
                                                 </div>
                                                 <div id="r3-c1-d2" class="box-1-val-template">
-                                                    <div id="r3-c1-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$Address'];?></div>
+                                                    <div id="r3-c1-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$Address'])){echo $_SESSION['$Address']; unset($_SESSION['$Address']);}?></div>
                                                 </div>							
                                             </div>
                                             <div id="r3-c2" class="box-1-template">
@@ -545,7 +545,7 @@ session_start();
                                                     <p id="r3-c2-d1-dt1">TEL NO.</p>						
                                                 </div>
                                                 <div id="r3-c2-d2" class="box-1-val-template">
-                                                    <div id="r3-c2-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$contactNumber'];?></div>
+                                                    <div id="r3-c2-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$contactNumber'])){echo $_SESSION['$contactNumber']; unset($_SESSION['$contactNumber']);}?></div>
                                                 </div>						
                                             </div>
                                         </div>
@@ -555,7 +555,7 @@ session_start();
                                                     <p id="r4-c1-d1-dt1">LOCATION OF CONSTRUCTION</p>						
                                                 </div>
                                                 <div id="r4-c1-d2" class="box-1-val-template">
-                                                    <div id="r4-c1-d2-i1" class="box-1-val-template-i"><?php echo $_SESSION['$location'];?></div>
+                                                    <div id="r4-c1-d2-i1" class="box-1-val-template-i"><?php if(!empty($_SESSION['$location'])){echo $_SESSION['$location']; unset($_SESSION['$location']);}?></div>
                                                 </div>							
                                             </div>
                                         </div>
@@ -566,38 +566,38 @@ session_start();
 
                                             <div id="r5-c2">
                                                 <p id="r5-c2-dt1" class="sow-fnt-tmplt">1 NEW CONSTRUCTION</p>
-                                                <div id="r5-c2-dt1-i" class="sow-i-tmplt"><?php echo $_SESSION['$newConstruction'];?></div>
+                                                <div id="r5-c2-dt1-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$newConstruction'])){echo $_SESSION['$newConstruction']; unset($_SESSION['$newConstruction']);}?></div>
 
                                                 <p id="r5-c2-dt2" class="sow-fnt-tmplt">2 ADDITION OF</p>
-                                                <div id="r5-c2-dt2-i" class="sow-i-tmplt"><?php echo $_SESSION['$additionOf'];?></div>
+                                                <div id="r5-c2-dt2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$additionOf'])){echo $_SESSION['$additionOf']; unset($_SESSION['$additionOf']);}?></div>
 
                                                 <p id="r5-c2-dt3" class="sow-fnt-tmplt">3 REPAIR OF</p>
-                                                <div id="r5-c2-dt3-i" class="sow-i-tmplt"><?php echo $_SESSION['$repairOf'];?></div>
+                                                <div id="r5-c2-dt3-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$repairOf'])){echo $_SESSION['$repairOf']; unset($_SESSION['$repairOf']);}?></div>
 
                                                 <p id="r5-c2-dt4" class="sow-fnt-tmplt">4 RENOVATION OF</p>
-                                                <div id="r5-c2-dt4-i" class="sow-i-tmplt"><?php echo $_SESSION['$renovationOf'];?></div>
+                                                <div id="r5-c2-dt4-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$renovationOf'])){echo $_SESSION['$renovationOf']; unset($_SESSION['$renovationOf']);}?></div>
 
                                                 <p id="r5-c2-dt5" class="sow-fnt-tmplt">5 DEMOLITION OF</p>
-                                                <div id="r5-c2-dt5-i" class="sow-i-tmplt"><?php echo $_SESSION['$demolitionOf'];?></div>
+                                                <div id="r5-c2-dt5-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$demolitionOf'])){echo $_SESSION['$demolitionOf']; unset($_SESSION['$demolitionOf']);}?></div>
                                             </div>
 
                                             <div id="r5-c3">
                                                 <p id="r5-c3-dt1" class="sow-fnt-tmplt">OTHERS</p>
 
                                                 <p id="r5-c3-dt2" class="sow-fnt-tmplt">6</p>
-                                                <div id="r5-c3-dt2-i" class="sow-i-tmplt"><?php echo $_SESSION['$others1'];?></div>
+                                                <div id="r5-c3-dt2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$others1'])){echo $_SESSION['$others1']; unset($_SESSION['$others1']);}?></div>
                                                 <p id="r5-c3-dt3" class="sow-fnt-tmplt">OF</p>
-                                                <div id="r5-c3-dt3-i" class="sow-i-tmplt"><?php echo $_SESSION['$others2'];?></div>
+                                                <div id="r5-c3-dt3-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$others2'])){echo $_SESSION['$others2']; unset($_SESSION['$others2']);}?></div>
 
                                                 <p id="r5-c3-dt4" class="sow-fnt-tmplt">7</p>
-                                                <div id="r5-c3-dt4-i" class="sow-i-tmplt"><?php echo $_SESSION['$others3'];?></div>
+                                                <div id="r5-c3-dt4-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$others3'])){echo $_SESSION['$others3']; unset($_SESSION['$others3']);}?></div>
                                                 <p id="r5-c3-dt5" class="sow-fnt-tmplt">OF</p>
-                                                <div id="r5-c3-dt5-i" class="sow-i-tmplt"><?php echo $_SESSION['$others4'];?></div>							
+                                                <div id="r5-c3-dt5-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$others4'])){echo $_SESSION['$others4']; unset($_SESSION['$others4']);}?></div>							
                                             </div>
 
                                             <div id="r5-c4">
                                                 <p id="r5-c4-dt1" class="sow-fnt-tmplt">NUMBER OF UNITS</p>
-                                                <div id="r5-c4-dt1-i" class="sow-i-tmplt"><?php echo $_SESSION['$numberOfUnits'];?></div>
+                                                <div id="r5-c4-dt1-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$numberOfUnits'])){echo $_SESSION['$numberOfUnits']; unset($_SESSION['$numberOfUnits']);}?></div>
                                             </div>
                                         </div>
                                         <div id="r6">
@@ -1548,18 +1548,18 @@ session_start();
 							</div>				
 							<div id="box-3a-r1-c1-d2">
 								<p id="box-3a-r1-c1-d2-dt1" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec1']?></div>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$tec1'])){echo $_SESSION['$tec1']; unset($_SESSION['$tec1']);}?></div>
 								
 								<p id="box-3a-r1-c1-d2-dt2" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec2']?></div>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$tec2'])){echo $_SESSION['$tec2']; unset($_SESSION['$tec2']);}?></div>
 								<p id="box-3a-r1-c1-d2-dt3" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec3']?></div>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$tec3'])){echo $_SESSION['$tec3']; unset($_SESSION['$tec3']);}?></div>
 								<p id="box-3a-r1-c1-d2-dt4" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec4']?></div>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$tec4'])){echo $_SESSION['$tec4']; unset($_SESSION['$tec4']);}?></div>
 								<p id="box-3a-r1-c1-d2-dt5" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec5']?></div>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$tec5'])){echo $_SESSION['$tec5']; unset($_SESSION['$tec5']);}?></div>
 								<p id="box-3a-r1-c1-d2-dt6" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$tec6']?></div>
+								<div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$tec6'])){echo $_SESSION['$tec6']; unset($_SESSION['$tec6']);}?></div>
 							
 							</div>
 						</div>
@@ -1569,26 +1569,26 @@ session_start();
 							</div>
 							<div id="box-3a-r1-c2-d2">
 								<p id="box-3a-r1-c2-d2-dt1" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$cei1']?></div>
+								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$cei1'])){echo $_SESSION['$cei1']; unset($_SESSION['$cei1']);}?></div>
 								
 								<p id="box-3a-r1-c2-d2-dt2" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$cei2']?></div>
+								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$cei2'])){echo $_SESSION['$cei2']; unset($_SESSION['$cei2']);}?></div>
 								
 								<p id="box-3a-r1-c2-d2-dt3" class="sow-fnt-tmplt">P</p>
-								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php echo $_SESSION['$cei3']?></div>
+								<div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$cei3'])){echo $_SESSION['$cei3']; unset($_SESSION['$cei3']);}?></div>
 								
 							</div>
 						</div>
 						
 						<div id="box-3a-r1-c3">
 							<p id="box-3a-r1-c3-d1-dt1">NO. OF STOREYS</p>
-							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php echo $_SESSION['$storey']?></div>
+							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$storey'])){echo $_SESSION['$storey']; unset($_SESSION['$storey']);}?></div>
 							<p id="box-3a-r1-c3-d1-dt2">TOTAL FLOOR</p>
 							<p id="box-3a-r1-c3-d1-dt3">AREA</p>
-							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php echo $_SESSION['$floorArea']?></div>
+							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$floorArea'])){echo $_SESSION['$floorArea']; unset($_SESSION['$floorArea']);}?></div>
 							<p id="box-3a-r1-c3-d1-dt4">PROPOSED DATE</p>
 							<p id="box-3a-r1-c3-d1-dt5">OF CONSTRUCTION</p>
-							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php echo $_SESSION['$constructionDate']?></div>
+							<div id="box-3a-r1-c3-d1-i" class="sow-i-tmplt"><?php if(!empty($_SESSION['$constructionDate'])){echo $_SESSION['$constructionDate']; unset($_SESSION['$constructionDate']);}?></div>
 							<p id="box-3a-r1-c3-d1-dt6">MATERIALS OF CONST</p>
 							<p id="box-3a-r1-c3-d1-dt7">(WOOD, CONC, STEEL, MIXED)</p>
 						</div>
@@ -1840,20 +1840,20 @@ session_start();
 					</div>
 					<div id="box-6-r1-c2" class="box-6-template">
 						<p id="box-6-r1-c2-dt1">PRC REG. NO</p>
-						<div id="box-6-r1-c1-d1-i" class="box-6-name-template"><?php echo $_SESSION['$SPRC']?></div>
+						<div id="box-6-r1-c1-d1-i" class="box-6-name-template"><?php if(!empty($_SESSION['$SPRC'])){echo $_SESSION['$SPRC']; unset($_SESSION['$SPRC']);}?></div>
 					</div>
 				</div>
 				<div id="box-6-r2" class="box-6-name-template">
 					<div id="box-6-r2-c1" class="box-6-name-template">
 						<p id="box-6-r2-c1-dt1" class="box-6-name-template">PRINT NAME</p>
-						<div id="box-6-r2-c1-i" class="box-6-name-template"><?php echo $_SESSION['$SFirstName'].$_SESSION['$SmiddleInitial'].$_SESSION['$SlastName']?></div>
+						<div id="box-6-r2-c1-i" class="box-6-name-template"><?php if(!empty($_SESSION['$SFirstName'])&&!empty($_SESSION['$SmiddleInitial'])&&!empty($_SESSION['$SlastName'])){echo $_SESSION['$SFirstName']." ".$_SESSION['$SmiddleInitial']." ".$_SESSION['$SlastName']; unset($_SESSION['$SFirstName']); unset($_SESSION['$SmiddleInitial']); unset($_SESSION['$SlastName']);}?></div>
 					</div> 
 				</div>
 				
 				<div id="box-6-r3" class="box-6-name-template">
 					<div id="box-6-r3-c1" class="box-6-name-template">
 						<p id="box-6-r3-c1-d1-dt1" class="box-6-name-template">ADDRESS</p>
-						<div id="box-6-r3-c1-d1-i" class="box-6-name-template"><?php echo $_SESSION['$Saddress']?></div>
+						<div id="box-6-r3-c1-d1-i" class="box-6-name-template"><?php if(!empty($_SESSION['$Saddress'])){echo $_SESSION['$Saddress']; unset($_SESSION['$Saddress']);}?></div>
 					</div> 
 				</div>
 				<div id="box-6-r4" class="box-6-name-template">
@@ -1888,16 +1888,19 @@ session_start();
 					<div id="box-8-r2-c1" class="box-8-name-template">	
 						<div id="box-8-r2-c1-d1" class="box-8-name-template">
 							<p id="box-8-r2-c1-d1-dt1" class="box-8-name-template">COMMUNITY TAX & CERT</p>
+							<div id="box-8-r2-c1-d1-i" class="box-8-name-template"><?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?></div>
 						</div> 
 					</div>
 					<div id="box-8-r2-c2" class="box-8-name-template">	
 						<div id="box-8-r2-c2-d1" class="box-8-name-template">
 							<p id="box-8-r2-c2-d1-dt1" class="box-8-name-template">DATE ISSUED</p>
+							<div id="box-8-r2-c2-d1-i" class="box-8-name-template"><?php if(!empty($_SESSION['$ctcDate'])){echo $_SESSION['$ctcDate']; unset($_SESSION['$ctcDate']);}?></div>
 						</div> 
 					</div>
 					<div id="box-8-r2-c3" class="box-8-name-template">	
 						<div id="box-8-r2-c3-d1" class="box-8-name-template">
 							<p id="box-8-r2-c3-d1-dt1" class="box-8-name-template">PLACE ISSUED</p>
+							<div id="box-8-r2-c3-d1-i" class="box-8-name-template"><?php if(!empty($_SESSION['$ctcPlace'])){echo $_SESSION['$ctcPlace']; unset($_SESSION['$ctcPlace']);}?></div>
 						</div> 
 					</div>
 				</div>
@@ -1905,17 +1908,17 @@ session_start();
 				<div id="box-8-r3" class="box-8-name-temdivlate">
 					<div id="box-8-r3-c1-d1" class="box-8-name-temdivlate">	
 						<div id="box-8-r3-c1-d1" class="box-8-name-temdivlate">
-							<div id="box-8-r3-c1-d1-i1" class="box-8-name-temdivlate"><?php echo $_SESSION['$Octc']?></div>
+							<div id="box-8-r3-c1-d1-i1" class="box-8-name-temdivlate"></div>
 						</div> 
 					</div>
 					<div id="box-8-r3-c2-d1" class="box-8-name-temdivlate">	
 						<div id="box-8-r3-c2-d1" class="box-8-name-temdivlate">
-							<div id="box-8-r3-c2-d1-i1" class="box-8-name-temdivlate"><?php echo $_SESSION['$ctcDate']?></div>
+							<div id="box-8-r3-c2-d1-i1" class="box-8-name-temdivlate"></div>
 						</div> 
 					</div>
 					<div id="box-8-r3-c3-d1" class="box-8-name-temdivlate">	
 						<div id="box-8-r3-c3-d1" class="box-8-name-temdivlate">
-							<div id="box-8-r3-c3-d1-i1" class="box-8-name-temdivlate"><?php echo $_SESSION['$ctcPlace']?></div>
+							<div id="box-8-r3-c3-d1-i1" class="box-8-name-temdivlate"></div>
 						</div> 
 					</div>
 				</div>
@@ -1937,14 +1940,14 @@ session_start();
 					</div>
 					<div id="box-7-r1-c2" class="box-7-template">
 						<p id="box-7-r1-c2-dt1">PRC REG. NO</p>
-						<div id="box-7-r1-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$CPRC']?></div>
+						<div id="box-7-r1-c1-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$CPRC'])){echo $_SESSION['$CPRC']; unset($_SESSION['$CPRC']);}?></div>
 					</div>
 				</div>
 				<div id="box-7-r2" class="box-7-name-template">
 					<div id="box-7-r2-c1-d1" class="box-7-name-template">	
 						<div id="box-7-r2-c1-d1" class="box-7-name-template">
 							<p id="box-7-r2-c1-d1-dt1" class="box-7-name-template">PRINT NAME</p>
-							<div id="box-7-r2-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$CFirstName']." ".$_SESSION['$CmiddleInitial']." ".$_SESSION['$ClastName']?></div>
+							<div id="box-7-r2-c1-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$CFirstName'])&&!empty($_SESSION['$CmiddleInitial'])&&!empty($_SESSION['$ClastName'])){echo $_SESSION['$CFirstName']." ".$_SESSION['$CmiddleInitial']." ".$_SESSION['$ClastName']; unset($_SESSION['$CFirstName']); unset($_SESSION['$CmiddleInitial']); unset($_SESSION['$ClastName']);}?></div>
 						</div> 
 					</div>
 				</div>
@@ -1953,7 +1956,7 @@ session_start();
 					<div id="box-7-r3-c1" class="box-7-name-template"> 
 						<div id="box-7-r3-c1-d1" class="box-7-name-template">
 							<p id="box-7-r3-c1-d1-dt1" class="box-7-name-template">ADDRESS</p>
-							<div id="box-7-r3-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$Ccaddress']?></div>
+							<div id="box-7-r3-c1-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$Ccaddress'])){echo $_SESSION['$Ccaddress']; unset($_SESSION['$Ccaddress']);}?></div>
 						</div> 
 					</div>
 				</div>
@@ -1961,19 +1964,19 @@ session_start();
 					<div id="box-7-r4-c1" class="box-7-name-template">
 						<div id="box-7-r4-c1-d1" class="box-7-name-template">
 							<p id="box-7-r4-c1-d1-dt1" class="box-7-name-template">P.T.R NO</p>
-							<div id="box-7-r4-c1-d1-i" class="box-7-name-template"><?php echo $_SESSION['$ptrNo']?></div>
+							<div id="box-7-r4-c1-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$ptrNo'])){echo $_SESSION['$ptrNo']; unset($_SESSION['$ptrNo']);}?></div>
 						</div> 
 					</div>
 					<div id="box-7-r4-c2" class="box-7-name-template">
 						<div id="box-7-r4-c2-d1" class="box-7-name-template">
 							<p id="box-7-r4-c2-d1-dt1" class="box-7-name-template">DATE ISSUED</p>
-							<div id="box-7-r4-c2-d1-i" class="box-7-name-template"><?php echo $_SESSION['$dateIssued']?></div>
+							<div id="box-7-r4-c2-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$dateIssued'])){echo $_SESSION['$dateIssued']; unset($_SESSION['$dateIssued']);}?></div>
 						</div>
 					</div>
 					<div id="box-7-r4-c3" class="box-7-name-template">
 						<div id="box-7-r4-c3-d1" class="box-7-name-template">
 							<p id="box-7-r4-c3-d1-dt1" class="box-7-name-template">PLACE ISSUED</p>
-							<div id="box-7-r4-c3-d1-i" class="box-7-name-template"><?php echo $_SESSION['$placeIssued']?></div>
+							<div id="box-7-r4-c3-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$placeIssued'])){echo $_SESSION['$placeIssued']; unset($_SESSION['$placeIssued']);}?></div>
 						</div>
 					</div>
 				</div>
@@ -1987,7 +1990,7 @@ session_start();
 					<div id="box-7-r5-c2" class="box-7-name-template">
 						<div id="box-7-r5-c2-d1" class="box-7-name-template">
 							<p id="box-7-r5-c2-d1-dt1" class="box-7-name-template">TIN</p>
-							<div id="box-7-r5-c2-d1-i" class="box-7-name-template"><?php echo $_SESSION['$tin']?></div>
+							<div id="box-7-r5-c2-d1-i" class="box-7-name-template"><?php if(!empty($_SESSION['$tin'])){echo $_SESSION['$tin']; unset($_SESSION['$tin']);}?></div>
 						</div>
 					</div>
 				</div>
@@ -2006,7 +2009,7 @@ session_start();
 				<div id="box-9-r1" class="box-9-template">
 					<div id="box-9-r1-c1" class="box-9-template">
 						<p id="box-9-r1-c1-dt1">TCT/OCT NO.</p>
-						<div id="box-9-r1-c1-i"><?php echo $_SESSION['$tct']?></div>
+						<div id="box-9-r1-c1-i"><?php if(!empty($_SESSION['$tct'])){echo $_SESSION['$tct']; unset($_SESSION['$tct']);}?></div>
 					</div>
 					
 				</div>
@@ -2014,7 +2017,7 @@ session_start();
 					<div id="box-9-r2-c1-d1" class="box-9-name-template">	
 						<div id="box-9-r2-c1-d1" class="box-9-name-template">
 							<p id="box-9-r2-c1-d1-dt1" class="box-9-name-template">PRINT NAME OF LOT OWNER</p>
-							<div id="box-9-r2-c1-d1-i" class="box-9-name-template"><?php echo $_SESSION['$OFirstName']." ".$_SESSION['$OmiddleInitial']." ".$_SESSION['$OlastName']?></div>
+							<div id="box-9-r2-c1-d1-i" class="box-9-name-template"><?php if(!empty($_SESSION['$OFirstName'])&&!empty($_SESSION['$0middleInitial'])&&!empty($_SESSION['$OlastName'])){echo $_SESSION['$OFirstName']." ".$_SESSION['$OmiddleInitial']." ".$_SESSION['$OlastName']; unset($_SESSION['$OFirstName']); unset($_SESSION['$OmiddleInitial']); unset($_SESSION['$OlastName']);}?></div>
 						</div> 
 					</div>
 				</div>
@@ -2023,7 +2026,7 @@ session_start();
 					<div id="box-9-r3-c1" class="box-9-name-template"> 
 						<div id="box-9-r3-c1-d1" class="box-9-name-template">
 							<p id="box-9-r3-c1-d1-dt1" class="box-9-name-template">ADDRESS</p>
-							<div id="box-9-r3-c1-d1-i" class="box-9-name-template"><?php echo $_SESSION['$Ocaddress']?></div>
+							<div id="box-9-r3-c1-d1-i" class="box-9-name-template"><?php if(!empty($_SESSION['$Ocaddress'])){echo $_SESSION['$Ocaddress']; unset($_SESSION['$Ocaddress']);}?></div>
 						</div> 
 					</div>
 				</div>
@@ -2031,7 +2034,7 @@ session_start();
 					<div id="box-9-r4-c1" class="box-9-name-template">
 						<div id="box-9-r4-c1-d1" class="box-9-name-template">
 							<p id="box-9-r4-c1-d1-dt1" class="box-9-name-template">COMMUNITY TAX CERT</p>
-							<div id="box-9-r4-c1-d1-i" class="box-9-name-template"><?php echo $_SESSION['$Octc']?></div>
+							<div id="box-9-r4-c1-d1-i" class="box-9-name-template"><?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?></div>
 						</div> 
 					</div>
 				</div>
