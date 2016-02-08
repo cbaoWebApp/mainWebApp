@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2016 at 10:34 AM
+-- Generation Time: Feb 08, 2016 at 10:41 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `applicant` (
 --
 
 INSERT INTO `applicant` (`applicant_id`, `last_name`, `first_name`, `middle_initial`, `address`, `contact_number`, `tin`, `form_ownership`, `main_economic_activity`, `email`, `password`, `ctc_id`) VALUES
-(1, 'Alvarez', 'Neil Patrick', 'U', 'Bakakeng, Baguio City, Benguet, Philippines', 2147483647, '123-456-789-000', NULL, NULL, 'neilpatrick02@gmail.com', '123Pass!@#$', 1);
+(1, 'Alvarez', 'Neil Patrick', 'U', 'Bakakeng, Baguio City, Benguet, Philippines', 2147483647, '123-456-789-000', NULL, NULL, 'neilpatrick02@gmail.com', 'neil', 1);
 
 -- --------------------------------------------------------
 
@@ -147,6 +147,11 @@ CREATE TABLE IF NOT EXISTS `checklist` (
   `checklist_id` int(11) NOT NULL AUTO_INCREMENT,
   `documents_id` int(11) DEFAULT NULL,
   `bpform_id` int(11) DEFAULT NULL,
+  `controlNum` varchar(45) DEFAULT NULL,
+  `permitNum` varchar(45) DEFAULT NULL,
+  `appNum` varchar(45) DEFAULT NULL,
+  `dateOfApp` date DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`checklist_id`),
   KEY `documents_id_idx` (`documents_id`),
   KEY `bpform_id_fk_idx` (`bpform_id`)
@@ -156,8 +161,8 @@ CREATE TABLE IF NOT EXISTS `checklist` (
 -- Dumping data for table `checklist`
 --
 
-INSERT INTO `checklist` (`checklist_id`, `documents_id`, `bpform_id`) VALUES
-(1, 1, 1);
+INSERT INTO `checklist` (`checklist_id`, `documents_id`, `bpform_id`, `controlNum`, `permitNum`, `appNum`, `dateOfApp`, `status`) VALUES
+(1, 1, 1, '1', '1', '1', '0000-00-00', '1');
 
 -- --------------------------------------------------------
 
@@ -236,35 +241,38 @@ INSERT INTO `ctc` (`ctc_id`, `ctc_no`, `date_issued`, `place_issued`) VALUES
 
 CREATE TABLE IF NOT EXISTS `documents` (
   `documents_id` int(11) NOT NULL AUTO_INCREMENT,
-  `i_a` varchar(5) DEFAULT NULL,
-  `i_b` varchar(5) DEFAULT NULL,
-  `i_c` varchar(5) DEFAULT NULL,
-  `ii_a` varchar(5) DEFAULT NULL,
-  `ii_b` varchar(5) DEFAULT NULL,
-  `ii_c` varchar(5) DEFAULT NULL,
-  `ii_d` varchar(5) DEFAULT NULL,
-  `iii` varchar(5) DEFAULT NULL,
-  `iv` varchar(5) DEFAULT NULL,
-  `v` varchar(5) DEFAULT NULL,
-  `vi` varchar(5) DEFAULT NULL,
-  `vii` varchar(5) DEFAULT NULL,
-  `viii` varchar(5) DEFAULT NULL,
-  `ix` varchar(5) DEFAULT NULL,
-  `x` varchar(5) DEFAULT NULL,
-  `xi` varchar(5) DEFAULT NULL,
-  `xii_a` varchar(5) DEFAULT NULL,
-  `xii_b` varchar(5) DEFAULT NULL,
-  `xiii` varchar(5) DEFAULT NULL,
-  `xiv` varchar(5) DEFAULT NULL,
-  `xv` varchar(5) DEFAULT NULL,
-  `xvi` varchar(5) DEFAULT NULL,
-  `xvii` varchar(5) DEFAULT NULL,
-  `xviii` varchar(5) DEFAULT NULL,
-  `xix_a` varchar(5) DEFAULT NULL,
-  `xix_b` varchar(5) DEFAULT NULL,
-  `xix_c` varchar(5) DEFAULT NULL,
-  `xx` varchar(5) DEFAULT NULL,
+  `owner` varchar(5) DEFAULT NULL,
+  `notowner` varchar(5) DEFAULT NULL,
+  `trueTitle` varchar(5) DEFAULT NULL,
+  `surveyPlan` varchar(5) DEFAULT NULL,
+  `contractLease` varchar(5) DEFAULT NULL,
+  `deedSale` varchar(5) DEFAULT NULL,
+  `conDeedSale` varchar(5) DEFAULT NULL,
+  `taxDec` varchar(5) DEFAULT NULL,
+  `realPropTax` varchar(5) DEFAULT NULL,
+  `bpForm` varchar(5) DEFAULT NULL,
+  `BuilPlan` varchar(5) DEFAULT NULL,
+  `StrucDesign` varchar(5) DEFAULT NULL,
+  `BuildSpec` varchar(5) DEFAULT NULL,
+  `billMat` varchar(5) DEFAULT NULL,
+  `picSite` varchar(5) DEFAULT NULL,
+  `soilAnal` varchar(5) DEFAULT NULL,
+  `ecc` varchar(5) DEFAULT NULL,
+  `3stor` varchar(5) DEFAULT NULL,
+  `4stor` varchar(5) DEFAULT NULL,
+  `taxReceipt` varchar(5) DEFAULT NULL,
+  `zoningCert` varchar(5) DEFAULT NULL,
+  `FireCert` varchar(5) DEFAULT NULL,
+  `wmsCert` varchar(5) DEFAULT NULL,
+  `logbook` varchar(5) DEFAULT NULL,
+  `tarpaulin` varchar(5) DEFAULT NULL,
+  `clearance` varchar(5) DEFAULT NULL,
+  `dpwh` varchar(5) DEFAULT NULL,
+  `aviation` varchar(5) DEFAULT NULL,
   `personnel_id` int(11) DEFAULT NULL,
+  `psg` varchar(45) DEFAULT NULL,
+  `notarized` varchar(45) DEFAULT NULL,
+  `constAuth` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`documents_id`),
   KEY `personnel_id_idx` (`personnel_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -273,8 +281,8 @@ CREATE TABLE IF NOT EXISTS `documents` (
 -- Dumping data for table `documents`
 --
 
-INSERT INTO `documents` (`documents_id`, `i_a`, `i_b`, `i_c`, `ii_a`, `ii_b`, `ii_c`, `ii_d`, `iii`, `iv`, `v`, `vi`, `vii`, `viii`, `ix`, `x`, `xi`, `xii_a`, `xii_b`, `xiii`, `xiv`, `xv`, `xvi`, `xvii`, `xviii`, `xix_a`, `xix_b`, `xix_c`, `xx`, `personnel_id`) VALUES
-(1, 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 2);
+INSERT INTO `documents` (`documents_id`, `owner`, `notowner`, `trueTitle`, `surveyPlan`, `contractLease`, `deedSale`, `conDeedSale`, `taxDec`, `realPropTax`, `bpForm`, `BuilPlan`, `StrucDesign`, `BuildSpec`, `billMat`, `picSite`, `soilAnal`, `ecc`, `3stor`, `4stor`, `taxReceipt`, `zoningCert`, `FireCert`, `wmsCert`, `logbook`, `tarpaulin`, `clearance`, `dpwh`, `aviation`, `personnel_id`, `psg`, `notarized`, `constAuth`) VALUES
+(1, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false');
 
 -- --------------------------------------------------------
 
@@ -673,15 +681,15 @@ ALTER TABLE `assessed_costs`
 --
 ALTER TABLE `bpform`
   ADD CONSTRAINT `applicant_id` FOREIGN KEY (`applicant_id`) REFERENCES `applicant` (`applicant_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `scope_of_work_id` FOREIGN KEY (`scope_of_work_id`) REFERENCES `scope_of_work` (`scope_of_work_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `type_of_occupancy_id` FOREIGN KEY (`type_of_occupancy_id`) REFERENCES `type_of_occupancy` (`type_of_occupancy_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `costs_id` FOREIGN KEY (`costs_id`) REFERENCES `costs` (`costs_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `storey_id` FOREIGN KEY (`storey_id`) REFERENCES `storey` (`storey_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fees_id` FOREIGN KEY (`fees_id`) REFERENCES `total_fees` (`fees_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `engr_plans_id` FOREIGN KEY (`engr_plans_id`) REFERENCES `engr_plans` (`engr_plans_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `engr_oic_id` FOREIGN KEY (`engr_oic_id`) REFERENCES `engr_oic` (`engr_oic_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `lot_owner_id` FOREIGN KEY (`lot_owner_id`) REFERENCES `lot_owner` (`lot_owner_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `engr_plans_id` FOREIGN KEY (`engr_plans_id`) REFERENCES `engr_plans` (`engr_plans_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fees_id` FOREIGN KEY (`fees_id`) REFERENCES `total_fees` (`fees_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lot_owner_id` FOREIGN KEY (`lot_owner_id`) REFERENCES `lot_owner` (`lot_owner_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `scope_of_work_id` FOREIGN KEY (`scope_of_work_id`) REFERENCES `scope_of_work` (`scope_of_work_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `storey_id` FOREIGN KEY (`storey_id`) REFERENCES `storey` (`storey_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `type_of_occupancy_id` FOREIGN KEY (`type_of_occupancy_id`) REFERENCES `type_of_occupancy` (`type_of_occupancy_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `checklist`
@@ -706,8 +714,8 @@ ALTER TABLE `documents`
 -- Constraints for table `routing_slip`
 --
 ALTER TABLE `routing_slip`
-  ADD CONSTRAINT `comments_id` FOREIGN KEY (`comments_id`) REFERENCES `comments` (`comments_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `bpform_id` FOREIGN KEY (`bpform_id`) REFERENCES `bpform` (`bpform_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `bpform_id` FOREIGN KEY (`bpform_id`) REFERENCES `bpform` (`bpform_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `comments_id` FOREIGN KEY (`comments_id`) REFERENCES `comments` (`comments_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `total_fees`
