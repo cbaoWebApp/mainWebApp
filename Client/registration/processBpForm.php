@@ -602,7 +602,7 @@
 			if(!mysqli_query($conn, $sql13)){
 				echo "sql13:".mysqli_error($conn)."<br>";
 			}
-			//header("Location: /CBAO/Client/registration/printForm.php");
+			header("Location: /CBAO/Client/registration/printForm.php");
 		}
 $conn->close();
 	?>
