@@ -491,7 +491,7 @@ session_start();
                             <div class="form-group">
                                 <label for="Octc" class="control-label col-xs-4">Community Tax Certificate:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="Octc" name="Octc" value="<?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?>"placeholder="Community tax Certificate"><span class="error-msg"><?php if(!empty($_SESSION['$OctcErr'])){echo $_SESSION['$OctcErr']; unset($_SESSION['$OctcErr']);}?></span>
+                                    <input type="text" class="form-control" id="Octc" name="Octc" value="<?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?>" placeholder="Community tax Certificate"><span class="error-msg"><?php if(!empty($_SESSION['$OctcErr'])){echo $_SESSION['$OctcErr']; unset($_SESSION['$OctcErr']);}?></span>
                                 </div>
                             </div>
                         <hr>
@@ -505,13 +505,13 @@ session_start();
                             <div class="form-group">
                                 <label for="pw" class="control-label col-xs-4">Password:</label>
                                 <div class="col-xs-8">
-                                    <input type="password" class="form-control" id="pw" name="pw" placeholder="Password"><span class="error-msg"><?php if(!empty($_SESSION['$pwErr'])){echo $_SESSION['$pwErr']; unset($_SESSION['$pwErr']);}?></span>
+                                    <input type="password" class="form-control" id="pw" name="pw" value="<?php if(!empty($_SESSION['$pw'])){echo $_SESSION['$pw']; unset($_SESSION['$pw']);}?>" placeholder="Password"><span class="error-msg"><?php if(!empty($_SESSION['$pwErr'])){echo $_SESSION['$pwErr']; unset($_SESSION['$pwErr']);}?><?php if(!empty($_SESSION['$pwErr2'])){echo $_SESSION['$pwErr2']; unset($_SESSION['$pwErr2']);}?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="cpw" class="control-label col-xs-4">Confirm Password:</label>
                                 <div class="col-xs-8">
-                                    <input type="password" class="form-control" id="cpw"name="cpw" placeholder="Confirm Password"><span class="error-msg"><?php if(!empty($_SESSION['$cpwErr'])){echo $_SESSION['$cpwErr']; unset($_SESSION['$cpwErr']);}?></span>
+                                    <input type="password" class="form-control" id="cpw"name="cpw" value="<?php if(!empty($_SESSION['$cpw'])){echo $_SESSION['$cpw']; unset($_SESSION['$cpw']);}?>" placeholder="Confirm Password"><span class="error-msg"><?php if(!empty($_SESSION['$cpwErr'])){echo $_SESSION['$cpwErr']; unset($_SESSION['$cpwErr']);}?></span>
                                 </div>
                             </div>
                             <h6>Note: This password will be used for tracking your application request</h6>
