@@ -66,13 +66,13 @@
 	}
 	clean($tinNo);
 	clean($password);
-    $sql = "SELECT * FROM admin WHERE tinNo =  '$tinNo'  && password =  '$password'";
+    $sql = "SELECT * FROM personnel WHERE username =  '$tinNo'  && password =  '$password'";
     $result = mysqli_query($conn, $sql);
-
+$fff= "raxe";
     if(mysqli_num_rows($result) == 0){
       //row not found
       echo "<script type=\"text/javascript\">".
-          "alert('Tin Number and/or Password Not Found.');".
+          "alert('Tin Number".$tinNo."and/or ".$password."Password Not Found.');".
           "window.location.href='index.php'".
           "</script>";
     }else{
@@ -80,11 +80,11 @@
       session_start();
 
       if($row = mysqli_fetch_array($result)){
-		$uss = $row["tinNo"];
+		$uss = $row["username"];
 		$passs = $row["password"];
 		if($password != $passs){
 			echo "<script type=\"text/javascript\">".
-          "alert('Tin Number and/or Password Not Found.');".
+          "alert('Tin Number".$fff." and/or".$passs." Password Not Found.');".
           "window.location.href='index.php'".
           "</script>";
 		} if($uss != $tinNo){

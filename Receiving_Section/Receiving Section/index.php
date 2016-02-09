@@ -72,7 +72,7 @@ session_start();
             </div>            
             <br>
             <form class="form-signin" id="logInputForm" action="functions.php" method="POST">
-                <input type="number" id="inputTinNo" class="form-control" placeholder="Tin Number" name="tinNo" required autofocus="true">
+                <input type="text" id="inputTinNo" class="form-control" placeholder="Username" name="tinNo" required autofocus="true">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                 <br>
                 <input type="submit" id="admin-login-btn" class="btn1" onclick="login()" value="Log In">

@@ -54,21 +54,6 @@ function filterTable($query)
     return $filter_Result;
 }
 
-
-
-	
-// function to connect and execute the query
-/*
-<?php while($row = mysqli_fetch_array($search_result)):?>
-                <tr>
-                    <td><?php echo $row['controlNum'];?></td>
-                    <td><?php echo $row['permitNum'];?></td>
-                    <td><?php echo $row['dateOfApp'];?></td>
-                    <td><?php echo $row['status'];?></td>
-					<td><?php echo $row['appNum'];?></td>
-                </tr>
-                <?php endwhile;?>
-*/
 ?>
 
 <!DOCTYPE HTML>
@@ -105,17 +90,7 @@ $(document).ready(function() {
        }
       });
      }
-	 
-
-	 
-	 //var table = $('#tables');
-     // refresh every second
-   //  var refresher = setInterval(function(){
-    //   table.load("tableRef.php");
-    // }, 1000);
-	 
-	
-	 
+		 
 	 $(".table table-radius table-hover").tablesorter({ sortList: [[0,0], [1,0]] });
 	 update();
 
@@ -179,11 +154,7 @@ $(document).ready(function() {
         <div class="row">
         <div class="col-md-6">
 		 
-          <h4 id="timer">
-		  <!--
-		  		
-		-->
-			</h4>
+          <h4 id="timer"></h4>
 
         </div>
         <div class="col-md-6">
@@ -263,9 +234,7 @@ $(document).ready(function() {
                   echo "<td>". $dateOfApp." </td>";
 				  echo "<td><button id = '$controlNum' class='viewMe' name='viewReq'>View Requirements</button>";
 				  echo "<td>".$status."</td>";
-                  echo "</tr>";
-                
-                //mysqli_close($conn);
+                  echo "</tr>";                
               
             } 
 	}
@@ -349,17 +318,5 @@ $( ".viewMe" ).click(function(event) {
     xml.open("GET", "functions.php", true);
     xml.send();  
   })
-  /*
-		function key(){
- 
- 
-	    var x = document.getElementById("searched").value;
-		
-		if(x == ''){
-			alert("asd");
-			var call = document.write('<?php' filterTable($_SESSION['query']);'?>');
-		}
-    
-	}*/
 
 </script>
