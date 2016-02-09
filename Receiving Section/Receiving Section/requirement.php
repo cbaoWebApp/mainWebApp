@@ -1,7 +1,7 @@
 <?php 
 session_start();
-$conn=mysqli_connect('localhost','root','','trial_system_admin');
-$db  =mysqli_select_db($conn,'trial_system_admin');
+$conn=mysqli_connect('localhost','root','','baguio_cbao');
+$db  =mysqli_select_db($conn,'baguio_cbao');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -266,7 +266,7 @@ if ($conn->connect_error) {
 		// $sql     = "INSERT INTO Requirement (trueTitle) VALUES ('$trueTitle')";
 		
 			$sqls = 
-			"UPDATE Requirement SET 
+			"UPDATE documents SET 
 			owner='$_SESSION[owner]',
 			notowner='$_SESSION[notowner]',
 			trueTitle='$_SESSION[trueTitle]',
@@ -298,7 +298,7 @@ if ($conn->connect_error) {
 			aviation='$_SESSION[aviation]',
 			psg='$_SESSION[psg]',
 			notarized='$_SESSION[notarized]'	
-			WHERE idRequirement='$_SESSION[id]'";
+			WHERE documents_id='$_SESSION[id]'";
 
 		/**
 		
@@ -371,6 +371,6 @@ if ($conn->query($sqls) === TRUE) {
 		
 		
 		 $conn->close();
-		 header("Location: /New folder/Receiving Section/receivingHome.php");
+		 header("Location: receivingHome.php");
 
 ?>

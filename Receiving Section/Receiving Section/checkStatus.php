@@ -1,7 +1,7 @@
 <?php
 session_start();
-$conn=mysqli_connect('localhost','root','','trial_system_admin');
-$db=mysqli_select_db($conn,'trial_system_admin');
+$conn=mysqli_connect('localhost','root','','baguio_cbao');
+$db=mysqli_select_db($conn,'baguio_cbao');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -9,10 +9,13 @@ if ($conn->connect_error) {
 
 $id = $_GET['id'];
 $_SESSION['id'] = $id;
-$sql1     = "SELECT * FROM Requirement WHERE idRequirement = '$id'";
-		 
-		 $result = $conn->query($sql1) ;
-		 
+$sql1     = "SELECT * FROM documents WHERE documents_id = '$id'";
+$result = $conn->query($sql1) ;
+			 if(mysqli_num_rows($result) == 0){
+				
+						$error= "n/a";
+						echo "No results found";
+						} else {
 			while($row = mysqli_fetch_array($result)){
 				$_SESSION['owner1'] =  $row['owner'];
 				$_SESSION['notowner1'] =  $row['notowner'];
@@ -48,7 +51,7 @@ $sql1     = "SELECT * FROM Requirement WHERE idRequirement = '$id'";
 				'echo passed';
 				
 			}
-			
+						}
 			 $conn->close();
-			 header("Location: /New folder/Receiving Section/receivingRequirements.php");
+			 header("Location: receivingRequirements.php");
 ?>

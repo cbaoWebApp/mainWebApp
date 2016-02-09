@@ -13,37 +13,43 @@ if(isset($_POST['searchIcon']))
 	
     // search in all table columns
     // using concat mysql function
-	 $select=$_POST['drop'];
+		function clean($string) {
+	   $string = str_replace('%', ' ', $string); // Replaces all spaces with hyphens.
+
+		return preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $string); // Removes special chars.
+	}
+	 clean($valueToSearch);
+$select=$_POST['drop'];
 	 if($select == 0){
-		 $_SESSION['query'] = "SELECT * FROM fetches WHERE controlNum LIKE '%".$valueToSearch."%'";
+		 $_SESSION['query'] = "SELECT * FROM checklist WHERE controlNum LIKE '%".$valueToSearch."%'";
 		 $search_result = filterTable($_SESSION['query']);
 			 
 		  if(!empty($filter_Result)){
 			  $error = "Record Not Found";
 		  }
 	 } else if($select == 1){
-		 $_SESSION['query'] = "SELECT * FROM fetches WHERE permitNum LIKE '%".$valueToSearch."%'";
+		 $_SESSION['query'] = "SELECT * FROM checklist WHERE permitNum LIKE '%".$valueToSearch."%'";
 		 $search_result  = filterTable($_SESSION['query']);
 	 } else if($select == 2){
-		 $_SESSION['query'] = "SELECT * FROM fetches WHERE appNum LIKE '%".$valueToSearch."%'";
+		 $_SESSION['query'] = "SELECT * FROM checklist WHERE appNum LIKE '%".$valueToSearch."%'";
 		  $search_result  = filterTable($_SESSION['query']);
 	 } else if($select == 3){
-		 $_SESSION['query'] = "SELECT * FROM fetches WHERE dateOfApp LIKE '%".$valueToSearch."%'";
+		 $_SESSION['query'] = "SELECT * FROM checklist WHERE dateOfApp LIKE '%".$valueToSearch."%'";
 		  $search_result  = filterTable($_SESSION['query']);
 	 } else if($select == 4){
-		 $_SESSION['query'] = "SELECT * FROM fetches WHERE status LIKE '%".$valueToSearch."%'";
+		 $_SESSION['query'] = "SELECT * FROM checklist WHERE status LIKE '%".$valueToSearch."%'";
 		 $search_result  = filterTable($_SESSION['query']);
 	 } 
     
 }
  else {
-    $_SESSION['query'] = "SELECT * FROM fetches";
+    $_SESSION['query'] = "SELECT * FROM checklist";
     $search_result = filterTable($_SESSION['query']);
 }
 
 function filterTable($query)
 {
-    $connect = mysqli_connect("localhost", "root", "", "trial_system_admin");
+    $connect = mysqli_connect("localhost", "root", "", "baguio_cbao");
     $filter_Result = mysqli_query($connect, $query);
     return $filter_Result;
 }
@@ -99,6 +105,8 @@ $(document).ready(function() {
        }
       });
      }
+	 
+
 	 
 	 //var table = $('#tables');
      // refresh every second
@@ -181,7 +189,7 @@ $(document).ready(function() {
         <div class="col-md-6">
            <div class="input-group" id="adv-search">
 		   <form action="receivingHome.php" method="post">
-                <input type="text" class="form-control" name="valueToSearch" value="<?=(isset($valueToSearch) ? $valueToSearch : "")?>" placeholder="Search" />
+                <input type="text" id="searched" class="form-control" name="valueToSearch" onkeyup="key()" value="<?=(isset($valueToSearch) ? $valueToSearch : "")?>" placeholder="Search" />
                 <div class="input-group-btn">
                     <div class="btn-group" role="group">
                         <div class="dropdown dropdown-lg">
@@ -223,6 +231,22 @@ $(document).ready(function() {
           </thead>
           <tbody id="tables">
 		  <?php
+		  
+		  if(mysqli_num_rows($search_result) == 0){
+				
+						$error= "n/a";
+						echo "<tr>";
+						
+						echo "<td>".$error."</td>";
+						echo "<td>".$error."</td>";
+						echo "<td>".$error."</td>";
+						echo "<td>".$error."</td>";
+						echo "<td>".$error."</td>";
+						
+						echo "<td>".$error."</td>";
+						
+						echo "</tr>";
+						} else {
 			while($row = mysqli_fetch_array($search_result)){
                   $controlNum = $row['controlNum'];
                   $permitNum = $row['permitNum'];
@@ -243,22 +267,8 @@ $(document).ready(function() {
                 
                 //mysqli_close($conn);
               
-            }
-	if(mysqli_num_rows($search_result) == 0){
-				
-						$error= "n/a";
-						echo "<tr>";
-						
-						echo "<td>".$error."</td>";
-						echo "<td>".$error."</td>";
-						echo "<td>".$error."</td>";
-						echo "<td>".$error."</td>";
-						echo "<td>".$error."</td>";
-						
-						echo "<td>".$error."</td>";
-						
-						echo "</tr>";
-						}
+            } 
+	}
 			?>
              
          
@@ -314,7 +324,7 @@ $(document).ready(function() {
   </html>
   
 			
-<script>
+<script type="text/javascript">
 $( ".viewMe" ).click(function(event) {
         id = event.target.id; 
         //alert(id);
@@ -339,6 +349,17 @@ $( ".viewMe" ).click(function(event) {
     xml.open("GET", "functions.php", true);
     xml.send();  
   })
+  /*
+		function key(){
+ 
+ 
+	    var x = document.getElementById("searched").value;
 		
+		if(x == ''){
+			alert("asd");
+			var call = document.write('<?php' filterTable($_SESSION['query']);'?>');
+		}
+    
+	}*/
 
 </script>
