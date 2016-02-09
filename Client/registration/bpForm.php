@@ -4,16 +4,10 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CBAO Web Application</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" lang="en" content="CBAO Web Application">
-        <meta name="author" content="SLUSCIS">
-        <meta name="robots" content="index, follow">
+        <?php include '../common/head.php'; ?>
 
-        <link rel="stylesheet" href="css/bpForm.css">
-        <link rel="stylesheet" href="btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="../css/bpForm.css">
+        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 		
 		<style>
 			.right-inner-addon {
@@ -31,7 +25,7 @@ session_start();
 		
     </head>
     <body>  
-        <?php include '../../Client/common/header.php'; ?>
+        <?php include '../common/header.php'; ?>
 		
         <div class="content">
             <div class="main">
@@ -529,7 +523,7 @@ session_start();
 </div>
 </div>
 
-<?php include '../../Client/common/footer.php'; ?>
+<?php include '../common/footer.php'; ?>
 
 <script>
 $(function () {

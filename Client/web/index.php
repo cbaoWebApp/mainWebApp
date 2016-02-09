@@ -11,6 +11,7 @@ session_start();
 
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="../js/index.js"></script>
 
         <?php
         if (!empty($_SESSION['login_error_msg'])) {
@@ -87,39 +88,7 @@ session_start();
             </form>
         </div>
 
-
-
         <?php include '../common/footer.php'; ?>
-
-        <script>
-            function apply_redirect() {
-                window.location.assign('../registration/bpForm.php');
-            }
-
-            $(function () {
-                $("#login-popup").dialog({
-                    autoOpen: false,
-                    closeOnEscape: true,
-                    open: function (event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },                   
-                    height: 'auto',
-                    width: 'auto'
-                });
-
-                $("#trackApplication").click(function () {
-                    $("#err_area").html("");
-                    $("#login-popup").dialog("open");
-                });
-
-                $("#cancel").click(function () {
-                    $("#inputEmail").val("");
-                    $("#inputPassword").val("");
-                    $("#login-popup").dialog("close");
-                    $("#err_area").html("");
-                });
-            });
-        </script>
 
     </body>
 </html>

@@ -8,7 +8,7 @@ $sanitized_pw = \filter_input(INPUT_POST, "pw", \FILTER_SANITIZE_STRING);
 
 if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
     $_SESSION['login_error_msg'] = "Invalid Email";
-    header("Location: /Thesis/Client/web/index.php");
+    header("Location: ../web/index.php");
 } else {
     require_once 'credentials.php';
 
@@ -21,9 +21,9 @@ if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
     if (isset($sanitized_email) &&
             isset($sanitized_pw)) {
 
-        $query = "SELECT email_address, password
-				 FROM $database.$track_account
-				 WHERE email_address = \"$sanitized_email\" AND
+        $query = "SELECT email, password
+				 FROM $database.$applicant
+				 WHERE email = \"$sanitized_email\" AND
 				 password = \"$sanitized_pw\"";
 
         $result = $conn->query($query);
@@ -41,10 +41,10 @@ if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
             $_SESSION['login_error_msg'] = "Incorrect Credentials";
             switch($page_loc){
                 case 'index':
-                    header("Location: /Thesis/Client/web/index.php");
+                    header("Location: ../web/index.php");
                     break;
                 case 'home_req':
-                    header("Location: /Thesis/Client/read_req/homerequirements.php");
+                    header("Location: ../read_req/homerequirements.php");
                     break;
                 default:
 					//place default error page

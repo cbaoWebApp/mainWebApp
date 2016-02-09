@@ -527,7 +527,7 @@
 			isset($_SESSION['$pwErr2'])||
 			isset($_SESSION['$cpwErr'])){
 		
-			header("Location: /CBAO/Client/registration/bpForm.php");
+			header("Location: bpForm.php");
 		}else{
 			$db  =mysqli_select_db($conn,'baguio_cbao');
 
@@ -610,7 +610,7 @@
 			if(!mysqli_query($conn, $sql13)){
 				echo "sql13:".mysqli_error($conn)."<br>";
 			}
-			header("Location: /CBAO/Client/registration/printForm.php");
+			header("Location: printForm.php");
 		}
 $conn->close();
 	?>

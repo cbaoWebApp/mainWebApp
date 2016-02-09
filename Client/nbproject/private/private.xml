@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/Thesis/Client/registration/printForm.html</file>
-            <file>file:/C:/wamp/www/Thesis/Client/web/index.php</file>
-            <file>file:/C:/wamp/www/Thesis/Client/client_validation/log_input.php</file>
-            <file>file:/C:/wamp/www/Thesis/Client/read_req/homerequirements.html</file>
-            <file>file:/C:/wamp/www/Thesis/Client/client_validation/log_input_credentials.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/read_req/homerequirements.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/registration/printForm.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/web/index.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/client_validation/credentials.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/client_validation/log_input.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/registration/processBpForm.php</file>
+            <file>file:/C:/wamp/www/CBAO/Client/registration/bpForm.php</file>
         </group>
     </open-files>
 </project-private>

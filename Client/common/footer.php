@@ -20,7 +20,7 @@
     
     <div class="footer-bottom">
         <div class="container">
-            <p class="pull-left"> Copyright © City Building and Architecture Office 2016. All right reserved. </p>
+            <p> Copyright © City Building and Architecture Office 2016. All right reserved. </p>
         </div>
     </div>
     <!--/.footer-bottom--> 

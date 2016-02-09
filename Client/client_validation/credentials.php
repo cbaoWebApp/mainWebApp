@@ -12,7 +12,7 @@
 global $database;
 
 //tables within the database are represented
-$track_account = "tracking_accounts";
+$applicant = "applicant";
 
 //common functions 
 function open_db_conn() {

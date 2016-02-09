@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2016 at 12:37 PM
+-- Generation Time: Feb 09, 2016 at 02:45 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -373,7 +373,8 @@ CREATE TABLE IF NOT EXISTS `personnel` (
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(32) DEFAULT NULL,
   `status` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`personnel_id`)
+  PRIMARY KEY (`personnel_id`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
@@ -382,23 +383,13 @@ CREATE TABLE IF NOT EXISTS `personnel` (
 
 INSERT INTO `personnel` (`personnel_id`, `last_name`, `first_name`, `middle_initial`, `section`, `access_level`, `username`, `password`, `status`) VALUES
 (1, 'Rafael', 'Emmanuel', 'R', 'Building', 'Head', 'Kim', '1234', 'FALSE'),
-(2, 'dela Cruz', 'Juana', 'C', 'Receiving', 'Head', 'juana', 'j1234', NULL),
+(2, 'dela Cruz', 'Juana', 'C', 'Receiving', 'Head', 'juana', 'j1234', 'TRUE'),
 (3, 'THE HUMAN', 'FINN', 'P', 'RECEIVING', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(4, 'DAMPILAG', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-122', '123123123', NULL),
-(5, 'SQUAREPANTS', 'SPONGEBOB', 'S', 'RECEIVING', 'SUBSTITUTE', '123-123-121', '123123123', NULL),
-(6, 'FABULOUS', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-111', '123QWEQWE', NULL),
-(7, 'ASD', 'ASD', 'A', 'ADMIN', 'HEAD', '123-123-111', '123123123', NULL),
-(8, 'THE DOG', 'JAKE', 'D', 'RECEIVING', 'HEAD', '123-123-120', '123123123', NULL),
-(9, 'FABULOUS', 'KARLA', 'H', 'RECEIVING', 'SUBSTITUTE', '123-123-101', '123123123', NULL),
-(10, 'DAMPILAG', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(11, 'FABULOUS', 'KARLA', 'A', 'RECEIVING', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(12, 'DAMPILAG', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(13, 'FABULOUS', 'KARLA', 'H', 'RECEIVING', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(14, 'FABULOUS', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(15, 'THE DOG', 'JAKE', 'G', 'RECEIVING', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(16, 'DAMPILAG', 'KARLA', 'H', 'ADMIN', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(17, 'THE DOG', 'JAKE', 'F', 'RECEIVING', 'HEAD', '123-123-123', '123123123', 'FALSE'),
-(18, 'ASD', 'ASD', 'A', 'ADMIN', 'HEAD', '123-123-123', '123123123', 'TRUE');
+(4, 'DAMPILAG', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-122', '123123123', 'TRUE'),
+(5, 'SQUAREPANTS', 'SPONGEBOB', 'S', 'RECEIVING', 'SUBSTITUTE', '123-123-121', '123123123', 'TRUE'),
+(6, 'FABULOUS', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-111', '123QWEQWE', 'TRUE'),
+(8, 'THE DOG', 'JAKE', 'D', 'RECEIVING', 'HEAD', '123-123-120', '123123123', 'TRUE'),
+(9, 'FABULOUS', 'KARLA', 'H', 'RECEIVING', 'SUBSTITUTE', '123-123-101', '123123123', 'TRUE');
 
 -- --------------------------------------------------------
 

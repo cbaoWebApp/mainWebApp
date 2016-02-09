@@ -8,11 +8,12 @@ session_start();
 
         <link rel="stylesheet" href="../css/homeReq.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
-
+        
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
+        <script src="../js/homerequirements.js"></script>
+    
         <?php
         if (!empty($_SESSION['login_error_msg'])) {
             echo "
@@ -23,16 +24,22 @@ session_start();
                             closeOnEscape: true,
                             open: function (event, ui){
                                 $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
-                            },                            
-                            height: 'auto',
-                            width: 'auto'  
+                            },
+                            position: {
+                                my: \"center center\",
+                                at: \"center center\",
+                                of: window,
+                                collision: \"none\"
+                            },
+                            height: 200,
+                            width: 400
                         });
                     });
 		</script>
             ";
         }
         ?>
-
+    
     </head>
 
     <body>
@@ -114,8 +121,7 @@ session_start();
                     <div class = "buttons">
                         <input type="button" id="apply" class="btn1" value="Apply" onclick="apply_redirect()"/>
                         <input type="button" id="trackApplication" class="btn2" value="Track Application"/>
-                        <br>
-                        <br>
+                        <input type="button" id="back" class="btn2" value="Back" onclick="back_redirect()"/>
                     </div>
                 </div>
             </div>
@@ -135,61 +141,12 @@ session_start();
                 <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
                 <br>
                 <input type="submit" id = "search" class="btn1" value="Search">
-                <input type="button" id="cancel" class="btn2" value="Cancel">                         
+                <input type="button" id="cancel" value="Cancel">                         
                 <input type="hidden" name="page_location" value="home_req">
             </form>
         </div>
-
+        
         <?php include '../common/footer.php'; ?>
-
-
-        <script>
-            $(document).ready(function () {
-                $(".collapsible .contents").hide();
-                $(".collapsible .rotate").click(function () {
-                    if ($(this).css("transform") === 'none') {
-                        $(this).css("transform", "rotate(90deg)");
-                        $(this).next().next().toggle();
-                    } else {
-                        $(this).css("transform", "");
-                        $(this).next().next().toggle();
-                    }
-                });
-            });
-
-            function apply_redirect() {
-                window.location.assign('../registration/bpForm.php');
-            }
-
-            $(function () {
-                $("#login-popup").dialog({
-                    autoOpen: false,
-                    closeOnEscape: true,
-                    open: function (event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },  
-                    position: {
-                        my: "center center",
-                        at: "center center",
-                        of: window,
-                        collision: "none"
-                    },
-                    height: 'auto',
-                    width: 'auto'
-                });
-
-                $("#trackApplication").click(function () {
-                    $("#err_area").html("");
-                    $("#login-popup").dialog("open");
-                });
-                $("#cancel").click(function () {
-                    $("#inputEmail").val("");
-                    $("#inputPassword").val("");
-                    $("#login-popup").dialog("close");
-                    $("#err_area").html("");
-                });
-            });
-        </script>
     </body>
 </html>
 
