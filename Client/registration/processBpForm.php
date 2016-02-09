@@ -1,10 +1,13 @@
 <?php
 	session_start();
+	$conn=mysqli_connect('localhost','root','','baguio_cbao');
 
 	function test_input($data) {
+	   global $conn;
 	   $data = trim($data);
 	   $data = stripslashes($data);
 	   $data = htmlspecialchars($data);
+	   $data = mysqli_real_escape_string($conn,$data);
 	   return $data;
 	}
 	
@@ -191,7 +194,7 @@
 			$_SESSION['$tec5'] = test_input($_POST["tec5"]);
 		}
 	
-		$_SESSION['$tec6'] = $_POST["tec1"]+ $_POST["tec2"]+$_POST["tec3"]+$_POST["tec4"]+$_POST["tec5"]+$_POST["tec6"];
+		$_SESSION['$tec6'] = $_POST["tec1"]+ $_POST["tec2"]+$_POST["tec3"]+$_POST["tec4"]+$_POST["tec5"];
 		
 	    if (empty($_POST["cei1"])) {
 			$_SESSION['$cei1Err'] = "*This field is required";
@@ -344,7 +347,7 @@
 		}
 		
 	    if (empty($_POST["tin"])) {
-			$_SESSION['$tinErr'] = "*Place Issued is required";
+			$_SESSION['$tinErr'] = "*TIN Issued is required";
 	    } else {
 			if(preg_match('/[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{3}/',$_POST["tin"], $matches)){
 				$_SESSION['$tin'] = test_input($_POST["tin"]);
@@ -432,18 +435,23 @@
 	    if (empty($_POST["pw"])) {
 			$_SESSION['$pwErr'] = "*Password is required";
 	    } else {
-			$_SESSION['$pw'] = test_input($_POST["pw"]);
+			if(preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}\z/',$_POST["pw"], $matches)){
+				$_SESSION['$pw'] = test_input($_POST["pw"]);
+			}else{
+				$_SESSION['$pwErr2'] = "Minimum of 8 characters and should contain at least 1 alphabet and 1 number";
+			}
 		}
 
 	    if (empty($_POST["cpw"])) {
-			$_SESSION['$cpwErr'] = "*Password is required";
+			$_SESSION['$cpwErr'] = "*Confirm password";
 	    } else {
-			$_SESSION['$cpw'] = test_input($_POST["cpw"]);
+			if(preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}\z/',$_POST["pw"], $matches)){
+				$_SESSION['$cpw'] = test_input($_POST["cpw"]);
+			}
 		}
 		
 		if($_SESSION['$pw'] != $_SESSION['$cpw']){
 			$_SESSION['$pwErr']="*Passwords do not match";
-			$_SESSION['$cpwErr']="*Passwords do not match";
 		}
 		
 		if( isset($_SESSION['$lnameErr'])||
@@ -516,11 +524,11 @@
 			isset($_SESSION['$OctcErr'])||
 			isset($_SESSION['$emailErr'])||
 			isset($_SESSION['$pwErr'])||
+			isset($_SESSION['$pwErr2'])||
 			isset($_SESSION['$cpwErr'])){
 		
 			header("Location: /CBAO/Client/registration/bpForm.php");
 		}else{
-			$conn=mysqli_connect('localhost','root','','baguio_cbao');
 			$db  =mysqli_select_db($conn,'baguio_cbao');
 
 			if (!$conn) {
@@ -593,7 +601,7 @@
 				echo "sql11:".mysqli_error($conn)."<br>";
 			}
 			
-			$sql12 = "INSERT INTO applicant(ctc_id) VALUES ('$ctc_id')";			
+			$sql12 = "UPDATE applicant SET ctc_id=$ctc_id WHERE applicant_id=$applicant_id";			
 			$sql13 = "INSERT INTO bpform(applicant_id, scope_of_work_id, type_of_occupancy_id, costs_id, equipment_id, storey_id, engr_plans_id, engr_oic_id, lot_owner_id) VALUES ('$applicant_id','$scope_of_work_id', '$type_of_occupancy_id', '$costs_id', '$equipment_id', '$storey_id', '$engr_plans_id', '$engr_oic_id', '$lot_owner_id')";
 			
 			if(!mysqli_query($conn, $sql12)){
