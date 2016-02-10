@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2016 at 02:45 PM
+-- Generation Time: Feb 10, 2016 at 04:40 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -37,18 +37,20 @@ CREATE TABLE IF NOT EXISTS `applicant` (
   `form_ownership` varchar(45) DEFAULT NULL,
   `main_economic_activity` varchar(45) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `password` varchar(8) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
   `ctc_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`applicant_id`),
   KEY `ctc_id_idx` (`ctc_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `applicant`
 --
 
 INSERT INTO `applicant` (`applicant_id`, `last_name`, `first_name`, `middle_initial`, `address`, `contact_number`, `tin`, `form_ownership`, `main_economic_activity`, `email`, `password`, `ctc_id`) VALUES
-(1, 'Alvarez', 'Neil Patrick', 'U', 'Bakakeng, Baguio City, Benguet, Philippines', 2147483647, '123-456-789-000', NULL, NULL, 'neilpatrick02@gmail.com', 'neil', 1);
+(1, 'Alvarez', 'Neil Patrick', 'U', 'Bakakeng, Baguio City, Benguet, Philippines', 2147483647, '123-456-789-000', NULL, NULL, 'neilpatrick02@gmail.com', 'neil', 1),
+(2, 'DELA CRUZ', 'JUAN', 'P', 'BAGUIO, BENGUET', 2147483647, '000-123-456-789', 'NONE', 'NONE', 'someone@idunno.org', '1234567890p', 2),
+(3, 'ASDF', 'A', 'A', '!@#$%^&AMP;*()ASDFASDFASDFASDFASDF', 2147483647, '000-111-222-333', 'A', 'A', 'someone@idunno.org', '1234567890p', 3);
 
 -- --------------------------------------------------------
 
@@ -106,14 +108,16 @@ CREATE TABLE IF NOT EXISTS `bpform` (
   KEY `engr_plans_id_idx` (`engr_plans_id`),
   KEY `engr_oic_id_idx` (`engr_oic_id`),
   KEY `lot_owner_id_idx` (`lot_owner_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `bpform`
 --
 
 INSERT INTO `bpform` (`bpform_id`, `application_no`, `permit_no`, `date_of_application`, `date_issued`, `location`, `applicant_id`, `scope_of_work_id`, `type_of_occupancy_id`, `costs_id`, `equipment_id`, `storey_id`, `fees_id`, `engr_plans_id`, `engr_oic_id`, `lot_owner_id`) VALUES
-(1, 1, 1, '2016-02-08', '0000-00-00', 'Aurora Hill, Baguio City', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+(1, 1, 1, '2016-02-08', '0000-00-00', 'Aurora Hill, Baguio City', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(3, NULL, NULL, NULL, NULL, NULL, 2, 2, 2, 2, 2, 2, NULL, 2, 2, 2),
+(5, NULL, NULL, NULL, NULL, NULL, 3, 3, 3, 3, 3, 3, NULL, 3, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -133,14 +137,16 @@ CREATE TABLE IF NOT EXISTS `checklist` (
   PRIMARY KEY (`checklist_id`),
   KEY `documents_id_idx` (`documents_id`),
   KEY `bpform_id_fk_idx` (`bpform_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `checklist`
 --
 
 INSERT INTO `checklist` (`checklist_id`, `documents_id`, `bpform_id`, `controlNum`, `permitNum`, `appNum`, `dateOfApp`, `status`) VALUES
-(1, 1, 1, '1', '1', '1', '0000-00-00', '1');
+(1, 1, 1, '1', '1', '1', '0000-00-00', '1'),
+(2, 2, 1, '2', '2', '2', '0000-00-00', '2016-01-10'),
+(3, 3, 5, '3', '3', '3', '0000-00-00', '2016-02-14');
 
 -- --------------------------------------------------------
 
@@ -181,14 +187,16 @@ CREATE TABLE IF NOT EXISTS `costs` (
   `others` decimal(9,2) DEFAULT NULL,
   `total_cost` decimal(9,2) DEFAULT NULL,
   PRIMARY KEY (`costs_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `costs`
 --
 
 INSERT INTO `costs` (`costs_id`, `building`, `electrical`, `mechanical`, `plumbing`, `others`, `total_cost`) VALUES
-(1, '15000.00', '0.00', '0.00', '0.00', '0.00', '15000.00');
+(1, '15000.00', '0.00', '0.00', '0.00', '0.00', '15000.00'),
+(2, '10000.00', '1.00', '1.00', '1.00', '1.00', '10004.00'),
+(3, '1.00', '1.00', '1.00', '1.00', '1.00', '5.00');
 
 -- --------------------------------------------------------
 
@@ -202,14 +210,16 @@ CREATE TABLE IF NOT EXISTS `ctc` (
   `date_issued` date DEFAULT NULL,
   `place_issued` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`ctc_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `ctc`
 --
 
 INSERT INTO `ctc` (`ctc_id`, `ctc_no`, `date_issued`, `place_issued`) VALUES
-(1, '1234567890', '2016-02-07', 'Baguio City');
+(1, '1234567890', '2016-02-07', 'Baguio City'),
+(2, 'asdf', '2015-03-11', 'BAGUIO CITY'),
+(3, 'asdf', '2015-03-11', 'ASDF');
 
 -- --------------------------------------------------------
 
@@ -253,14 +263,16 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `constAuth` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`documents_id`),
   KEY `personnel_id_idx` (`personnel_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `documents`
 --
 
 INSERT INTO `documents` (`documents_id`, `owner`, `notowner`, `trueTitle`, `surveyPlan`, `contractLease`, `deedSale`, `conDeedSale`, `taxDec`, `realPropTax`, `bpForm`, `BuilPlan`, `StrucDesign`, `BuildSpec`, `billMat`, `picSite`, `soilAnal`, `ecc`, `3stor`, `4stor`, `taxReceipt`, `zoningCert`, `FireCert`, `wmsCert`, `logbook`, `tarpaulin`, `clearance`, `dpwh`, `aviation`, `personnel_id`, `psg`, `notarized`, `constAuth`) VALUES
-(1, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false');
+(1, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false'),
+(2, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false'),
+(3, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false');
 
 -- --------------------------------------------------------
 
@@ -280,14 +292,16 @@ CREATE TABLE IF NOT EXISTS `engr_oic` (
   `place_issued` varchar(250) DEFAULT NULL,
   `tin` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`engr_oic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `engr_oic`
 --
 
 INSERT INTO `engr_oic` (`engr_oic_id`, `prc_reg_no`, `last_name`, `first_name`, `middle_initial`, `address`, `ptr_no`, `date_issued`, `place_issued`, `tin`) VALUES
-(1, 2147483647, 'De Vera', 'Pedro', 'C', 'Mandaluyong City, Manila', 2147483647, '2010-09-13', 'Manila', '0909-9898-8787');
+(1, 2147483647, 'De Vera', 'Pedro', 'C', 'Mandaluyong City, Manila', 2147483647, '2010-09-13', 'Manila', '0909-9898-8787'),
+(2, 12345, 'LAST NAME ARCH OIC', 'FIRST NAME OIC', 'A', 'ANGONO, RIZAL', 1, '2000-02-14', 'MAKATI CITY, MANILA', '123-123-123-123'),
+(3, 12345, '''LASD''', 'ASDF', 'A', 'AS#$%^&AMP;*()_(*&AMP;^%$ASDF', 123, '2000-02-14', 'ASDF', '123-123-123-123');
 
 -- --------------------------------------------------------
 
@@ -303,14 +317,16 @@ CREATE TABLE IF NOT EXISTS `engr_plans` (
   `middle_initial` varchar(1) DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`engr_plans_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `engr_plans`
 --
 
 INSERT INTO `engr_plans` (`engr_plans_id`, `prc_reg_no`, `last_name`, `first_name`, `middle_initial`, `address`) VALUES
-(1, 2147483647, 'Dela Cruz', 'Juan', 'P', 'Tayug, Pangasinan');
+(1, 2147483647, 'Dela Cruz', 'Juan', 'P', 'Tayug, Pangasinan'),
+(2, 12345, 'LAST NAME ARCH', 'FIRST NAME ARCH', 'A', 'TAYUG, PANGASINAN'),
+(3, 0, '''LASTN AME''', 'MEL-MEL', 'A', 'A#$%^&AMP;*())(*&AMP;^%$#');
 
 -- --------------------------------------------------------
 
@@ -324,14 +340,16 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `second_cost` decimal(9,2) DEFAULT NULL,
   `third_cost` decimal(9,2) DEFAULT NULL,
   PRIMARY KEY (`equipment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `equipment`
 --
 
 INSERT INTO `equipment` (`equipment_id`, `first_cost`, `second_cost`, `third_cost`) VALUES
-(1, '0.00', '0.00', '0.00');
+(1, '0.00', '0.00', '0.00'),
+(2, '1.00', '1.00', '1.00'),
+(3, '1.00', '1.00', '1.00');
 
 -- --------------------------------------------------------
 
@@ -355,7 +373,9 @@ CREATE TABLE IF NOT EXISTS `lot_owner` (
 --
 
 INSERT INTO `lot_owner` (`lot_owner_id`, `tct_oct_no`, `last_name`, `first_name`, `middle_initial`, `address`, `community_tax_certificate`) VALUES
-(1, '123456-7890987', 'Sy', 'Kenneth', 'U', 'Aurora Hill, Baguio City', '1234');
+(0, 'asdf', 'LOT OWNER LAST NAME', 'LOT OWNER FIRST NAME', 'P', 'A@#$%^&AMP;*()*&AMP;^%$#%^&AMP;*(ASDF', 'a'),
+(1, '123456-7890987', 'Sy', 'Kenneth', 'U', 'Aurora Hill, Baguio City', '1234'),
+(2, '12345671234567', 'LOT OWNER LAST NAME', 'LOT OWNER FIRST NAME', 'P', 'BONIFACIO ST., BAGUIO CITY', 'asdfasdf');
 
 -- --------------------------------------------------------
 
@@ -382,12 +402,12 @@ CREATE TABLE IF NOT EXISTS `personnel` (
 --
 
 INSERT INTO `personnel` (`personnel_id`, `last_name`, `first_name`, `middle_initial`, `section`, `access_level`, `username`, `password`, `status`) VALUES
-(1, 'Rafael', 'Emmanuel', 'R', 'Building', 'Head', 'Kim', '1234', 'FALSE'),
-(2, 'dela Cruz', 'Juana', 'C', 'Receiving', 'Head', 'juana', 'j1234', 'TRUE'),
+(1, 'Rafael', 'Emmanuel', 'R', 'Building', 'Head', '123-123-001', '123123123', 'FALSE'),
+(2, 'dela Cruz', 'Juana', 'C', 'Receiving', 'Head', '123-123-000', '123123123', 'TRUE'),
 (3, 'THE HUMAN', 'FINN', 'P', 'RECEIVING', 'HEAD', '123-123-123', '123123123', 'FALSE'),
 (4, 'DAMPILAG', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-122', '123123123', 'TRUE'),
-(5, 'SQUAREPANTS', 'SPONGEBOB', 'S', 'RECEIVING', 'SUBSTITUTE', '123-123-121', '123123123', 'TRUE'),
-(6, 'FABULOUS', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-111', '123QWEQWE', 'TRUE'),
+(5, 'SQUAREPANTS', 'SPONGEBOB', 'S', 'RECEIVING', 'SUBSTITUTE', '123-123-121', '123123123', 'FALSE'),
+(6, 'FABULOUS', 'KARLA', 'L', 'ADMIN', 'HEAD', '123-123-111', '123123123', 'TRUE'),
 (8, 'THE DOG', 'JAKE', 'D', 'RECEIVING', 'HEAD', '123-123-120', '123123123', 'TRUE'),
 (9, 'FABULOUS', 'KARLA', 'H', 'RECEIVING', 'SUBSTITUTE', '123-123-101', '123123123', 'TRUE');
 
@@ -572,14 +592,16 @@ CREATE TABLE IF NOT EXISTS `scope_of_work` (
   `no_of_units` int(200) DEFAULT NULL,
   `others2` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`scope_of_work_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `scope_of_work`
 --
 
 INSERT INTO `scope_of_work` (`scope_of_work_id`, `new_construction`, `addition`, `repair`, `renovation`, `demolition`, `others1`, `no_of_units`, `others2`) VALUES
-(1, '', 'Veranda', '', '', '', '', 1, '');
+(1, '', 'Veranda', '', '', '', '', 1, ''),
+(2, 'NONE', 'VERANDA', 'NONE', 'NONE', 'N/A', 'N/A of N/A', 1, 'N/A of N/A'),
+(3, 'A', 'A', 'A', 'A', 'A', 'A of 123123', 213, '123123 of 123123');
 
 -- --------------------------------------------------------
 
@@ -594,14 +616,16 @@ CREATE TABLE IF NOT EXISTS `storey` (
   `proposed_date_of_construction` date DEFAULT NULL,
   `material_of_construction` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`storey_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `storey`
 --
 
 INSERT INTO `storey` (`storey_id`, `no_of_storeys`, `total_floor_area`, `proposed_date_of_construction`, `material_of_construction`) VALUES
-(1, 1, '10.00', '2016-02-09', 'Concrete');
+(1, 1, '10.00', '2016-02-09', 'Concrete'),
+(2, 1, '10.00', '2016-02-14', 'wood'),
+(3, 1, '1.00', '2016-02-14', 'SELECT MATERIALS OF CONSTRUCTION');
 
 -- --------------------------------------------------------
 
@@ -637,14 +661,16 @@ CREATE TABLE IF NOT EXISTS `type_of_occupancy` (
   `general_type` varchar(50) DEFAULT NULL,
   `specific_type` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`type_of_occupancy_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `type_of_occupancy`
 --
 
 INSERT INTO `type_of_occupancy` (`type_of_occupancy_id`, `general_type`, `specific_type`) VALUES
-(1, 'Residential', 'Single');
+(1, 'Residential', 'Single'),
+(2, 'residential', 'single'),
+(3, 'residential', 'single');
 
 --
 -- Constraints for dumped tables

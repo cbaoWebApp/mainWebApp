@@ -35,8 +35,8 @@ p
 {
 	margin: 0 0 1.5em;
 	line-height: 1.5;
-	color: #fff;
-	text-align: center;
+	
+	//text-align: center;
 }
 
 
@@ -72,9 +72,17 @@ th, td
 Layout styles
 ------------------------*/
 
+#target, #target-2{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 600px;
+    border: solid 2px red;
+    width: 90em;
+}
+
 .container
 {
-	max-width: 50em;
+
 	margin: 0 auto;
 }
 

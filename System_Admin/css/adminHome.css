@@ -19,7 +19,8 @@ h1,h2,h3,h4,h5,h6
 
 }
 
-.content .main h1{
+.content .main h1
+{
 	 color: #9ddb9c;
 	 text-align: center;
 }
@@ -37,6 +38,7 @@ p
 	line-height: 1.5;
 	color: #fff;
 	text-align: center;
+         font-size: 17px;
 }
 
 
@@ -56,6 +58,7 @@ table
 	border-spacing: 0;
 	border-collapse: collapse;
 	border-top: 1px solid #ddd;
+         font-size: 17px;
 }
 
 th, td
@@ -64,10 +67,12 @@ th, td
 	vertical-align: top;
 	text-align: left;
 	border-bottom: 1px solid #ddd;
+         font-size: 17px;
 }
 
 
-.form-signin {
+.form-signin 
+{
   max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto; 
@@ -78,62 +83,81 @@ th, td
 Search
 ------------------------*/
 
-.dropdown.dropdown-lg .dropdown-menu {
+.dropdown.dropdown-lg .dropdown-menu 
+{
     margin-top: -1px;
     padding: 6px 20px;
 }
-.input-group-btn .btn-group {
+
+.input-group-btn .btn-group 
+{
     display: flex !important;
 }
-.btn-group .btn {
+
+.btn-group .btn 
+{
     border-radius: 0;
     margin-left: -1px;
 }
-.btn-group .btn:last-child {
+
+.btn-group .btn:last-child 
+{
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
 }
-.btn-group .form-horizontal .btn[type="submit"] {
+
+.btn-group .form-horizontal .btn[type="submit"] 
+{
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-.form-horizontal .form-group {
+
+.form-horizontal .form-group 
+{
     margin-left: 0;
     margin-right: 0;
 }
-.form-group .form-control:last-child {
+
+.form-group .form-control:last-child 
+{
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) 
+{
     #adv-search {
-        width: 400px;
+        width: 500px;
         margin: 0 auto;
     }
     .dropdown.dropdown-lg {
         position: static !important;
     }
+}
 
 /* -----------------------
 Table
 ------------------------*/
 
-h2 {
+h2 
+{
   text-align: center;
 }
 
-table caption {
+table caption 
+{
 	padding: .5em 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) 
+{
   table caption {
     border-bottom: 1px solid #ddd;
   }
 }
 
-.p {
+.p 
+{
   text-align: center;
   padding-top: 140px;
   font-size: 14px;
@@ -159,6 +183,7 @@ Layout styles
 .header
 {
 	color: #fff;
+         padding: 1em 1.25em;
 	
 }
 
@@ -172,17 +197,6 @@ Layout styles
 
 .content { padding: 1em 1.25em; }
 
-.footer
-{
-	background: -webkit-linear-gradient(top, rgb(226,226,226) 0%, rgb(219,219,219) 50%, rgb(209,209,209) 50%, rgb(254,254,254) 100%);
-	background-size: 100%;
-	font-size: 12px !important;
-	color: #9ddb9c;
-}
-
-.footer p{
-	color: #374039;
-}
 
 /* -----------------------
 Nav
@@ -209,7 +223,8 @@ Nav
 Sort
 ------------------------*/
 
-.col-md-4{
+.col-md-4
+{
 	width: 30px;
 }
 
@@ -217,12 +232,14 @@ Sort
 /* -----------------------
 Single styles
 ------------------------*/
-#addAccount{
+#addAccount
+{
 	margin-top: -20px;
 }
 
 
-#searchIcon, #filter, #addAccount, #viewReq{
+#searchIcon, #filter
+{
 	-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
 	box-shadow:inset 0px 1px 0px 0px #9acc85;
@@ -245,10 +262,40 @@ Single styles
 	text-decoration:none;
 	border-style: none !important;
 	text-align: center;
+        
+}
+
+ #addAccount, #viewReq
+ {
+	-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
+	box-shadow:inset 0px 1px 0px 0px #9acc85;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #68a54b));
+	background:-moz-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:-webkit-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:-o-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:-ms-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#68a54b',GradientType=0);
+	background-color:#74ad5a;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #3b6e22;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding:6px 12px;
+	text-decoration:none;
+	border-style: none !important;
+	text-align: center;
+        width: 10em;
+        font-size: 20px;
 }
 
 
-#searchIcon:hover, #filter:hover, #addAccount:hover,#viewReq:hover {
+#searchIcon:hover, #filter:hover, #addAccount:hover,#viewReq:hover 
+{
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
 	background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
 	background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
@@ -258,19 +305,23 @@ Single styles
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
 	background-color:#68a54b;
 }
-#searchIcon:active, #filter:active, #addAccount:active,#viewReq:active {
+
+#searchIcon:active, #filter:active, #addAccount:active,#viewReq:active 
+{
 	position:relative;
 	top:1px;
 }
 
-#viewReq{
+#viewReq
+{
 	border-radius: 4px;
 	background-color: #fff;
 	border: #fff outset 2px;
 
 }
 
-.col-md-6 p{
+.col-md-6 p
+{
 	text-align: left;
 }
 
@@ -329,26 +380,31 @@ Single styles
 	text-decoration: none;
 }
 
-.buttons{
+.buttons
+{
 	text-align: center;
 }
 
-#link{
+#link
+{
 	color: #9ddb9c;
 	text-decoration: underline;
 }
 
-#link:hover{
+#link:hover
+{
 	color: #fff;
 }
 
-.contact{
+.contact
+{
 	border-right: 2px solid #374039;
 	font-size: 12px !important;
 	color: #9ddb9c !important;
 }
 
-.contact2{
+.contact2
+{
 	margin-top: 40px;
 }
 
@@ -406,6 +462,11 @@ Wide styles
 /*Additional css for the popup (paki modify)*/
 #add-account-popup-div{
 	color: black;
+        max-width: 490px;
+    padding: 15px 35px 45px;
+    margin: 0 auto; 
+    min-width: 490px;
+        
 }
 
 #edit-account-popup-div{
@@ -451,9 +512,80 @@ Wide styles
 	text-decoration:none;
 	border-style: none !important;
 	text-align: center;
+        width: 7em;
+        font-size: 15px;
 }
 
 .view-account-p{
 	color: black;
 	text-align: left;
+}
+
+
+/* -----------------------
+Footer
+------------------------*/
+
+.footer {
+	background: #EDEFF1;
+	height: auto;
+	padding-bottom: 30px;
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+	border-top: 1px solid #DDDDDD;
+}
+.footer p {
+	margin: 0;
+        
+}
+
+.footer h3 {
+	border-bottom: 1px solid #BAC1C8;
+	color: #54697E;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 27px;
+	text-transform: uppercase;
+        text-align: center;
+}
+.footer ul {
+	font-size: 15px;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	color: #7F8C8D;
+        text-align: center;
+}
+.footer ul li a {
+	padding: 0 0 5px 0;
+	display: block;
+}
+.footer a {
+	color: #78828D
+}
+
+.bg-gray {
+	background-image: -moz-linear-gradient(center bottom, #BBBBBB 0%, #F0F0F0 100%);
+	box-shadow: 0 1px 0 #B4B3B3;
+}
+.footer-bottom {
+	background: #E3E3E3;
+	border-top: 1px solid #DDDDDD;
+	padding-top: 10px;
+	padding-bottom: 10px;
+        color: #000 !important;
+}
+.footer-bottom p {
+	padding-top: 6px;
+          color: #000 !important;
+         
+}
+
+.ui-dialog{
+	z-index: 1000;
+}
+
+#black{
+	color: black;
 }

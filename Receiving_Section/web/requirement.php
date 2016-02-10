@@ -255,7 +255,9 @@ if ($conn->connect_error) {
 			$_SESSION['notarized'] = "false";
    
 		}
-						
+		
+		
+		
 		
 		} else{
 			echo 'wrong';
@@ -297,6 +299,65 @@ if ($conn->connect_error) {
 			psg='$_SESSION[psg]',
 			notarized='$_SESSION[notarized]'	
 			WHERE documents_id='$_SESSION[id]'";
+
+		/**
+		
+		
+			
+			$sqls = 
+			UPDATE Requirement SET trueTitle=''{$_SESSION['trueTitle']}'',
+			surveyPlan=''{$_SESSION['surveyPlan']}'',
+			contractLease=''{$_SESSION['contractLease']}'',
+			deedSale=''{$_SESSION['deedSale']}'',
+			conDeedSale=''{$_SESSION['conDeedSale']}'',
+			constAuth=''{$_SESSION['constAuth']}'',
+			taxDec=''{$_SESSION['taxDec']}'',
+			realPropTax=''{$_SESSION['realPropTax']}'',
+			bpForm=''{$_SESSION['bpForm']}'',
+			BuilPlan=''{$_SESSION['BuilPlan']}'',
+			StrucDesign=''{$_SESSION['StrucDesign']}'',
+			BuildSpec=''{$_SESSION['BuildSpec']}'',
+			billMat=''{$_SESSION['billMat']}'',
+			picSite=''{$_SESSION['picSite']}'',
+			soilAnal=''{$_SESSION['soilAnal']}'',
+			ecc=''{$_SESSION['ecc']}'',
+			stor3=''{$_SESSION['stor3']}'',
+			stor4=''{$_SESSION['stor4']}'',
+			taxReceipt=''{$_SESSION['taxReceipt']}'',
+			zoningCert=''{$_SESSION['zoningCert']}'',
+			FireCert=''{$_SESSION['FireCert']}'',
+			wmsCert=''{$_SESSION['wmsCert']}'',
+			logbook=''{$_SESSION['logbook']}'',
+			tarpaulin=''{$_SESSION['tarpaulin']}'',
+			clearance=''{$_SESSION['clearance']}'',
+			dpwh=''{$_SESSION['dpwh']}'',
+			aviation=''{$_SESSION['aviation']}'',
+			psg=''{$_SESSION['psg']}'',
+			notarized=''{$_SESSION['notarized']}''	
+			WHERE id='$id';
+			
+			$sql     = "INSERT INTO Requirement 
+(owner,notowner,trueTitle,surveyPlan,contractLease,deedSale,conDeedSale,constAuth,taxDec,realPropTax,bpForm,BuilPlan,StrucDesign,BuildSpec,billMat,picSite,
+soilAnal,ecc,stor3,stor4,taxReceipt,zoningCert,FireCert,wmsCert,logbook,tarpaulin,clearance,dpwh,aviation,psg,notarized) 
+VALUES 
+('{$_SESSION['owner']}', 
+'{$_SESSION['notowner']}', 
+'{$_SESSION['trueTitle']}', 
+'{$_SESSION['surveyPlan']}', 
+'{$_SESSION['contractLease']}', 
+'{$_SESSION['deedSale']}', 
+'{$_SESSION['conDeedSale']}', 
+'{$_SESSION['constAuth']}', 
+'{$_SESSION['taxDec']}', 
+'{$_SESSION['realPropTax']}', 
+'{$_SESSION['bpForm']}', '{$_SESSION['BuilPlan']}', '{$_SESSION['StrucDesign']}', '{$_SESSION['BuildSpec']}', '{$_SESSION['billMat']}', '{$_SESSION['picSite']}', '{$_SESSION['soilAnal']}', 
+'{$_SESSION['ecc']}', '{$_SESSION['stor3']}', '{$_SESSION['stor4']}', '{$_SESSION['taxReceipt']}', '{$_SESSION['zoningCert']}', '{$_SESSION['FireCert']}', '{$_SESSION['wmsCert']}', '{$_SESSION['logbook']}',
+'{$_SESSION['tarpaulin']}', '{$_SESSION['clearance']}', '{$_SESSION['dpwh']}', '{$_SESSION['aviation']}', '{$_SESSION['psg']}', '{$_SESSION['notarized']}' )";
+		
+//('$trueTitle','$surveyPlan','$contractLease','$deedSale','$conDeedSale','$constAuth','$taxDec','$realPropTax','$bpForm','$BuilPlan','$StrucDesign',
+//'$BuildSpec','$billMat','$picSite','$soilAnal','$ecc','$stor3','$stor4','$taxReceipt','$zoningCert','$FireCert','$wmsCert','$logbook','$tarpaulin','$clearance','$dpwh',
+//'$aviation','$psg','$notarized')";		
+		*/
 		
 if ($conn->query($sqls) === TRUE) {
 			$message= "New record created successfully";
@@ -304,7 +365,10 @@ if ($conn->query($sqls) === TRUE) {
 		} else {
 			$message= "Error: " . $sqls . "<br>" . $conn->error;
 			echo $message;
-		}					
+		}
+		
+		
+		
 		
 		 $conn->close();
 		 header("Location: receivingHome.php");

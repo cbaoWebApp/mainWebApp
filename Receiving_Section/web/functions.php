@@ -37,7 +37,7 @@
             header("location: receivingHome.php"); 
             break;
           case 'Admin' : 
-            header("location: adminHome.php"); 
+            header("location: adminHome.php"); //not found
             break;
         }
     }
@@ -103,7 +103,7 @@ $fff= "raxe";
             header("location: receivingHome.php"); 
             break;
           case 'Admin' : 
-            header("location: adminHome.php"); 
+            header("location: adminHome.php"); //not found in folder
             break;
         }
       }

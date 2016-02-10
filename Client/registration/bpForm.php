@@ -118,6 +118,7 @@ if (isset($_SESSION['printForm'])) {
                 </div>
             </div>
 					
+            
             <div class = "col-md-9">
                 <div class = "scroll">
                         <h4>General Information</h4>
@@ -287,7 +288,7 @@ if (isset($_SESSION['printForm'])) {
 								
                             <!-- scope of work and use or type of occupancy code should go here-->
                      <!--   </form>-->
-                    <hr>
+                    
                         <h4>Total Estimated Cost</h4>
                             <label>Building</label>
                             <div class="form-group">
@@ -326,7 +327,7 @@ if (isset($_SESSION['printForm'])) {
                             </div>
 
                             <!-- Cost of Equipment Installed -->
-                            <hr>
+                            
                             <h4>Cost of Equipment Installed</h4>
                                 <div class="form-group">
                                     <label for="cei1" class="control-label col-xs-4">&#8369</label>
@@ -378,7 +379,7 @@ if (isset($_SESSION['printForm'])) {
                                 </div>
 
                            <!--   </form>-->
-                        <hr>
+                        
                         <h4>Architect/Civil Engineer</h4>
                         <h6>Signed and Sealed Plans and Specifications</h6>
                             <div class="form-group">
@@ -417,7 +418,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="Saddress" name="Saddress" value="<?php if(!empty($_SESSION['$Saddress'])){echo $_SESSION['$Saddress']; unset($_SESSION['$Saddress']);}?>"placeholder="Address"><span class="error-msg"><?php if(!empty($_SESSION['$SaddressErr'])){echo $_SESSION['$SaddressErr']; unset($_SESSION['$SaddressErr']);}?></span>
                                 </div>
                             </div>
-                        <hr>
+                        
                         <h4>Architect/Civil Engineer</h4>
                         <h6>In-charge of Construction</h6>
                             <div class="form-group">
@@ -480,7 +481,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="tin" name="tin" value="<?php if(!empty($_SESSION['$tin'])){echo $_SESSION['$tin']; unset($_SESSION['$tin']);}?>"placeholder="Tin"><span class="error-msg"><?php if(!empty($_SESSION['$tinErr'])){echo $_SESSION['$tinErr']; unset($_SESSION['$tinErr']);}?><?php if(!empty($_SESSION['$tinErr2'])){echo $_SESSION['$tinErr2']; unset($_SESSION['$tinErr2']);}?></span>
                                 </div>
                             </div> 
-                        <hr>
+                        
                         <h4>Community Tax Certificate</h4>
                         <div class="form-group">
                                 <label for="tin" class="control-label col-xs-4">Community Tax Certificate:</label>
@@ -506,7 +507,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="ctcPlace" name="ctcPlace" value="<?php if(!empty($_SESSION['$ctcPlace'])){echo $_SESSION['$ctcPlace']; unset($_SESSION['$ctcPlace']);}?>"placeholder="Place Issued"><span class="error-msg"><?php if(!empty($_SESSION['$ctcPlaceErr'])){echo $_SESSION['$ctcPlaceErr']; unset($_SESSION['$ctcPlaceErr']);}?></span>
                                 </div>
                         </div>   
-                        <hr>
+                        
                         <h4>To be Accomplished by Lot Owner</h4>
                             <div class="form-group">
                                 <label for="tct" class="control-label col-xs-4">TCT/OCT Number:</label>
@@ -544,7 +545,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="Octc" name="Octc" value="<?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?>" placeholder="Community tax Certificate"><span class="error-msg"><?php if(!empty($_SESSION['$OctcErr'])){echo $_SESSION['$OctcErr']; unset($_SESSION['$OctcErr']);}?></span>
                                 </div>
                             </div>
-                        <hr>
+                        
                         <h4>Tracking Account Credentials</h4>
                             <div class="form-group">
                                 <label for="email" class="control-label col-xs-4">Email Address:</label>

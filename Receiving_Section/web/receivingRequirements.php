@@ -174,11 +174,11 @@ session_start();
                </div>
                 <div class="col-md-3">
             <button id="viewReq" type="submit" name="viewReq" onclick="window.location='checkStatus.php'">Save</button> 
-            <button id="viewReq" name="viewReq" onclick="window.location.href='receivingHome.html'">Back</button> 
+            <button id="viewReq" name="viewReq" onclick="window.location.href='receivingHome.php'">Back</button> 
             </form>
         </div>
         <div class="col-md-2">
-          <button id="viewReq" name="viewReq" onclick="window.location.href='receivingRequirements.html'">Forward to CPO</button> 
+          <button id="viewReq" name="viewReq" onclick="window.location.href='receivingRequirements.php'">Forward to CPO</button> 
           </div>
           </div>
           <br>

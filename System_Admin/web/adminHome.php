@@ -4,6 +4,13 @@
   if(!isset($_SESSION['section'])){
    header("Location: index.php"); 
    exit();
+  }else if($_SESSION['section'] != "ADMIN"){
+    echo "<script type=\"text/javascript\">".
+          "alert('You are not an admin!');".
+          "window.location.href='index.php'".
+          "</script>";
+    header("Location: index.php"); 
+    exit();
   }
 ?>
 <html lang="en">
@@ -16,14 +23,15 @@
         <meta name="author" content="SLUSCIS">
         <meta name="robots" content="index, follow">
 
-        <link rel="stylesheet" href="css/adminHome.css">
-        <link rel="stylesheet" href="btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="../css/adminHome.css">
+        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script src="jquery-1.12.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="tablesorter-master/jquery.tablesorter.js"></script> 
+        <script type="text/javascript" src="../tablesorter-master/jquery.tablesorter.js"></script> 
         <!--<script src="jquery-ui.js"></script>-->
 
     </head>
@@ -31,7 +39,7 @@
     <div class="header">
             <div class = "row">
                 <div class = "col-md-4">
-                    <p><img class = "img-responsive" src="img/seal.png" alt=""></p>
+                    <p><img class = "img-responsive" src="../img/seal.png" alt=""></p>
                 </div>
                 <div class = "col-md-4">
                     <p>City Government of Baguio</p>
@@ -53,7 +61,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Accounts</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp; Log History</a></li>
-              <li><button id="admin-logout"><span class="glyphicon glyphicon-log-out"></span> Log out</button></li>
+              <li><a id="admin-logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
             </ul>
           </div>
         </nav>
@@ -93,9 +101,9 @@
                                   <div class="form-group">
                                     <label for="filter">Filter by</label>
                                     <select class="form-control" id="filter-options">
-                                        <option value="tinNo" selected>Tin No.</option>
+                                        <option value="username" selected>Username</option>
                                         <option value="name">Name</option>
-                                        <option value="position">Position</option>
+                                        <option value="access_level">Position</option>
                                         <option value="section">Section</option>
                                     </select>
                                   </div>
@@ -117,7 +125,7 @@
         <table id="admin-home-table" class="table table-radius table-hover">
           <thead>
             <tr>
-              <th>Tin Number</th>
+              <th>Username</th>
               <th>Account Name</th>
               <th>Position</th>
               <th>Section</th>
@@ -127,31 +135,32 @@
           </thead>
           <tbody>
             <?php
-              $conn = new mysqli('localhost', 'root', '', 'trial_system_admin');
+              $conn = new mysqli('localhost', 'root', '', 'baguio_cbao');
 
               if($conn->connect_error){
                 die("Connection failed: " . $conn->connect_error);
               }else{
-                $sql = "SELECT * FROM admin";
+                $sql = "SELECT * FROM personnel WHERE status != 'FALSE'";
                 $result = $conn->query($sql);
 
                 while($row = mysqli_fetch_array($result)){
-                  $tinNo = $row['tinNo'];
-                  $name = $row['name'];
-                  $position = $row['position'];
+                  $tinNo = $row['username'];
+                  $fName = $row['first_name'];
+                  $lName = $row['last_name'];
+                  $mInitial = $row['middle_initial'];
+                  $position = $row['access_level'];
                   $section = $row['section'];
-
+                  $name = $lName.", ".$fName." ".$mInitial.".";
                   //display in table
                   echo "<tr>";
                   echo "<td>".$tinNo."</td>";
                   echo "<td>".$name."</td>";
                   echo "<td>".$position."</td>";
                   echo "<td>".$section."</td>";
-                  echo "<td><button id = '$tinNo' class='editAcc' name='editAcc'>Edit</button>";
-                  echo "<td><button id = '$tinNo' class='delAcc' name='delAcc'>Delete</button>";
+                  echo "<td><button id = '$tinNo' class='editAcc' name='editAcc'>Edit</button></td>";
+                  echo "<td><button id = '$tinNo' class='delAcc' name='delAcc'>Delete</button></td>";
                   echo "</tr>";
-                }
-                //mysqli_close($conn);
+                } 
               }
             ?>
           </tbody>
@@ -172,12 +181,20 @@
 <div id="add-account-popup-div" title="Add Account">
   <form role="form">
     <div class="form-group">
-      <label for="tinNo">Tin #: </label>
+      <label for="tinNo">Username: </label>
       <input type="text" class="form-control" id="tinNo">
     </div>
     <div class="form-group">
-      <label for="name">Name: </label>
-      <input type="text" class="form-control" id="name">
+      <label for="name">First Name: </label>
+      <input type="text" class="form-control" id="fName">
+    </div>
+    <div class="form-group">
+      <label for="name">Last Name: </label>
+      <input type="text" class="form-control" id="lName">
+    </div>
+    <div class="form-group">
+      <label for="name">Middle Initial: </label>
+      <input type="text" class="form-control" id="mInitial">
     </div>
     <div class="form-group">
       <label for="section">Section: </label>
@@ -207,8 +224,16 @@
       <input type="text" class="form-control" id="tinNo-e">
     </div>
     <div class="form-group">
-      <label for="name">Name: </label>
-      <input type="text" class="form-control" id="name-e">
+      <label for="name">First Name: </label>
+      <input type="text" class="form-control" id="fName-e">
+    </div>
+    <div class="form-group">
+      <label for="name">Last Name: </label>
+      <input type="text" class="form-control" id="lName-e">
+    </div>
+    <div class="form-group">
+      <label for="name">Middle Initial: </label>
+      <input type="text" class="form-control" id="mInitial-e">
     </div>
     <div class="form-group">
       <label for="section">Section: </label>
@@ -232,7 +257,7 @@
 
 <!--HTML for delete button popup window-->
 <div id="delete-account-popup-div">
-  <p>Are you sure you want to permanently delete this account?</p>
+  <p id="black">Are you sure you want to permanently delete this account?</p>
 </div>
 <!--end of HTML for delete button popup window-->
 
@@ -261,42 +286,47 @@
 <!--Javascript-->
 <script>
   var tinNo;
-  var name;
+  var fName;
+  var lName;
+  var mInitial;
   var section;
   var position;
   var password;
   var confirm_password;
   var originalTin;
+  var windowHeight = $(window).height();
 
   //for Add Account popup window
   $(function() {
     $( "#add-account-popup-div" ).dialog({
         autoOpen: false,
         closeOnEscape: false,
-        open: function(event, ui) {
-          $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-        },
+        maxHeight: windowHeight-80,
         buttons: [
           {
             text: "Add",
             "class": 'dialog-add-account',
             click: function() {
               tinNo = $("#tinNo").val();
-              name = document.getElementById("name").value;
+              fName = document.getElementById("fName").value;
+              lName = document.getElementById("lName").value;
+              mInitial = document.getElementById("mInitial").value;
               section = document.getElementById("section").value;
               position = document.getElementById("position").value;
               password = document.getElementById("password").value;
               confirm_password = document.getElementById("confirm-password").value;
               if(password != confirm_password){
                 alert("Passwords did not match.");
-              }else if(tinNo=="" || name=="" || section=="" || position=="" || password=="" || confirm_password==""){
+              }else if(tinNo=="" || fName=="" || lName=="" || mInitial=="" || section=="" || position=="" || password=="" || confirm_password==""){
                 alert("Fields cannot be blank.");
               }else if(!checkTinNo(tinNo)){
-                alert("Invalid Tin Number.");
+                alert("Invalid Username.");
               }else if(!checkSection(section)){
                 alert("Invalid Section.");
               }else if(!checkPosition(position)){
-                alert("Invalid Position.")
+                alert("Invalid Position.");
+              }else if(!checkPassword(password)){
+                alert("Password must be alphanumeric and should be within 8-32 characters in length");
               }else{
                 performAddAccount();
               }
@@ -318,6 +348,14 @@
         modal: true,
         create: function (event, ui){
           $(event.target).parent().css('position', 'fixed');
+        },
+        open: function(event, ui) {
+          $('body').addClass('stop-scroll');
+          $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+          $('html, body').animate({scrollTop: '0px'}, 300);
+        },
+        beforeClose: function(){
+          $('body').removeClass('stop-scroll');
         }
     });
     $( "#addAccount" ).click(function() {
@@ -331,7 +369,7 @@
     var xml = new XMLHttpRequest();
     xml.onreadystatechange = function(){
       if(xml.readyState == 4 && xml.status ==200){
-        window.location.href = "functions.php?action=addAccount&tinNo=" + tinNo + "&name=" + name + "&section=" + section + "&position=" + position + "&password=" + password;
+        window.location.href = "functions.php?action=addAccount&tinNo=" + tinNo + "&fName=" + fName + "&lName=" + lName + "&mInitial=" + mInitial+ "&section=" + section + "&position=" + position + "&password=" + password;
       }
     };
     xml.open("GET", "functions.php", true);
@@ -343,26 +381,32 @@
     $( "#edit-account-popup-div" ).dialog({
         autoOpen: false,
         closeOnEscape: false,
-        open: function(event, ui) {
-          $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-        },
+        maxHeight: windowHeight-80,
         buttons: [
           {
             text: "Save",
             "class": 'dialog-buttons',
             click: function() {
               tinNo = document.getElementById("tinNo-e").value;
-              name = document.getElementById("name-e").value;
+              fName = document.getElementById("fName-e").value;
+              lName = document.getElementById("lName-e").value;
+              mInitial = document.getElementById("mInitial-e").value;
               section = document.getElementById("section-e").value;
               position = document.getElementById("position-e").value;
               password = document.getElementById("password-e").value;
               confirm_password = document.getElementById("confirm-password-e").value;
               if(password != confirm_password){
                 alert("Passwords did not match.");
-              }else if(tinNo=="" || name=="" || section=="" || position=="" || password=="" || confirm_password==""){
+              }else if(tinNo=="" || fName=="" || lName=="" || mInitial=="" || section=="" || position=="" || password=="" || confirm_password==""){
                 alert("Fields cannot be blank.");
               }else if(!checkTinNo(tinNo)){
-                alert("Invalid Tin Number.");
+                alert("Invalid Username.");
+              }else if(!checkSection(section)){
+                alert("Invalid Section.");
+              }else if(!checkPosition(position)){
+                alert("Invalid Position.");
+              }else if(!checkPassword(password)){
+                alert("Password must be alphanumeric and should be within 8-32 characters in length");
               }else{
                 performEditAccount();
               }
@@ -384,9 +428,17 @@
         modal: true,
         create: function (event, ui){
           $(event.target).parent().css('position', 'fixed');
+        },
+        open: function(){
+          $('body').addClass('stop-scroll');
+          $(".ui-dialog-titlebar-close").hide();
+          $('html, body').animate({scrollTop: '0px'}, 300);
+        },
+        beforeClose: function(){
+          $('body').removeClass('stop-scroll');
         }
     });
-    $( ".editAcc" ).click(function(event) {
+    $(".editAcc").click(function(event) {
         originalTin = event.target.id; 
         $( "#edit-account-popup-div" ).dialog( "open" );
     });
@@ -397,7 +449,7 @@ function performEditAccount(){
   var xml = new XMLHttpRequest();
   xml.onreadystatechange = function(){
     if(xml.readyState == 4 && xml.status ==200){
-      window.location.href = "functions.php?action=editAccount&tinNo=" + tinNo + "&name=" + name + "&section=" + section + "&position=" + position + "&password=" + password + "&originalTin=" + originalTin;
+      window.location.href = "functions.php?action=editAccount&tinNo=" + tinNo + "&fName=" + fName + "&lName=" + lName + "&mInitial=" + mInitial + "&section=" + section + "&position=" + position + "&password=" + password + "&originalTin=" + originalTin;
      }
   };
   xml.open("GET", "functions.php", true);
@@ -410,7 +462,12 @@ $(function() {
         autoOpen: false,
         closeOnEscape: false,
         open: function(event, ui) {
+          $('body').addClass('stop-scroll');
           $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+          $('html, body').animate({scrollTop: '0px'}, 300);
+        },
+        beforeClose: function(){
+          $('body').removeClass('stop-scroll');
         },
         buttons: [
           {
@@ -465,6 +522,7 @@ $(function() {
     var now = new Date();
     var hour = pad(now.getUTCHours()+8);
     var min = pad(now.getUTCMinutes());
+    var sec = pad(now.getSeconds());
     var newHour = hour;
     var ampm = "AM";
 
@@ -476,7 +534,7 @@ $(function() {
       newhour = 12;
     }
 
-    var s = newHour + ":" + min + " " + ampm;
+    var s = newHour + ":" + min + ":" + sec + " " + ampm;
 
     document.getElementById('time-display').innerHTML = s;
 
@@ -487,7 +545,7 @@ $(function() {
   //for validation of tin number input by user
   function checkTinNo(tinNo){
     //check if valid length
-    if(tinNo.length != 11){
+    if(tinNo.length != 15){
       return false;
     }
 
@@ -510,6 +568,12 @@ $(function() {
         return false;
       }
     }
+    for(var i = 12; i <= 14; i++){
+      var c = tinNo.charAt(i);
+      if(!(c >= '0' && c <= '9')){
+        return false;
+      }
+    }
 
     //check if valid format
     if(tinNo.charAt(3) != '-' || tinNo.charAt(7) != '-'){
@@ -520,27 +584,41 @@ $(function() {
   }
 
   //for validation of section input by user
-  function checkSection(section){
-    switch(section){
-      case "Line and Grade": return true; break;
-      case "Structural": return true; break;
-      case "Architectural": return true; break;
-      case "Electrical": return true; break;
-      case "Sanitary/Plumbing": return true; break;
-      case "Mechanical": return true; break;
-      case "Receiving": return true; break;
-      case "Admin": return true; break;
+  function checkSection(sectionGiven){
+    switch(sectionGiven.toLowerCase()){
+      case "line and Grade": return true; break;
+      case "structural": return true; break;
+      case "architectural": return true; break;
+      case "electrical": return true; break;
+      case "sanitary/Plumbing": return true; break;
+      case "mechanical": return true; break;
+      case "receiving": return true; break;
+      case "admin": return true; break;
       default: return false; break;
     }
   }
 
   //for validation of position input by user
-  function checkPosition(position){
-    switch(position){
-      case "Head": return true; break;
-      case "Substitute": return true; break;
+  function checkPosition(positionGiven){
+    switch(positionGiven.toLowerCase()){
+      case "head": return true; break;
+      case "substitute": return true; break;
       default: return false; break;
     }
+  }
+
+  //for password
+  function checkPassword(passwordGiven){
+    if(passwordGiven.length > 32 || passwordGiven.length < 8){
+      return false;
+    }
+    if(passwordGiven.match(/^[0-9a-zA-Z]+$/)){
+      return true;
+    }else{
+      return false;
+    }
+    
+    return true;
   }
 
   //for search feature
@@ -576,6 +654,9 @@ $(function() {
   $(document).ready(function() {
     $("#admin-home-table").tablesorter();
   });
+
+  //last parts is to fix popup (in terms of popup behavior)
+
 </script>
 
 <!--End of JavaScript-->
