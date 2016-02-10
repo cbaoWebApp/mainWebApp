@@ -1,13 +1,76 @@
 <?php
 session_start();
+if (isset($_SESSION['printForm'])) {
+   if (basename($_SERVER['PHP_SELF']) !== $_SESSION['printForm']) {
+        unset($_SESSION['$lName']);
+		unset($_SESSION['$fName']);
+        unset($_SESSION['$mName']);
+		unset($_SESSION['$formOfOwnership']);
+		unset($_SESSION['$kindOfBusiness']);
+		unset($_SESSION['$Address']);
+		unset($_SESSION['$contactNumber']);
+		unset($_SESSION['$location']);
+		unset($_SESSION['$newConstruction']);
+		unset($_SESSION['$additionOf']);
+		unset($_SESSION['$repairOf']);
+		unset($_SESSION['$renovationOf']);
+		unset($_SESSION['$demolitionOf']);
+		unset($_SESSION['$others1']);
+		unset($_SESSION['$others2']);
+		unset($_SESSION['$others3']);
+		unset($_SESSION['$others4']);
+		unset($_SESSION['$numberOfUnits']);
+		unset($_SESSION['$tec1']);
+		unset($_SESSION['$tec2']);
+		unset($_SESSION['$tec3']);
+		unset($_SESSION['$tec4']);
+		unset($_SESSION['$tec5']);
+		unset($_SESSION['$tec6']);
+		unset($_SESSION['$cei1']);
+		unset($_SESSION['$cei2']);
+		unset($_SESSION['$cei3']);
+		unset($_SESSION['$storey']);
+		unset($_SESSION['$floorArea']);
+		unset($_SESSION['$constructionDate']);
+		unset($_SESSION['$SPRC']);
+		unset($_SESSION['$SFirstName']);
+		unset($_SESSION['$SmiddleInitial']);
+		unset($_SESSION['$SlastName']);
+		unset($_SESSION['$Saddress']);
+		unset($_SESSION['$ctc']);
+		unset($_SESSION['$ctcDate']);
+		unset($_SESSION['$ctcPlace']);
+		unset($_SESSION['$CPRC']);
+		unset($_SESSION['$CFirstName']);
+		unset($_SESSION['$CmiddleInitial']);
+		unset($_SESSION['$ClastName']);
+		unset($_SESSION['$Ccaddress']);
+		unset($_SESSION['$ptrNo']);
+		unset($_SESSION['$dateIssued']);
+		unset($_SESSION['$placeIssued']);
+		unset($_SESSION['$tin']);
+		unset($_SESSION['$tct']);
+		unset($_SESSION['$OFirstName']); 
+		unset($_SESSION['$OmiddleInitial']); 
+		unset($_SESSION['$OlastName']);
+		unset($_SESSION['$Ocaddress']);
+		unset($_SESSION['$Octc']);
+   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../common/head.php'; ?>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CBAO Web Application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" lang="en" content="CBAO Web Application">
+        <meta name="author" content="SLUSCIS">
+        <meta name="robots" content="index, follow">
 
-        <link rel="stylesheet" href="../css/bpForm.css">
-        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="css/bpForm.css">
+        <link rel="stylesheet" href="btstrp/css/bootstrap.css">
 		
 		<style>
 			.right-inner-addon {
@@ -25,7 +88,7 @@ session_start();
 		
     </head>
     <body>  
-        <?php include '../common/header.php'; ?>
+        <?php include '../../Client/common/header.php'; ?>
 		
         <div class="content">
             <div class="main">
@@ -188,7 +251,7 @@ session_start();
 							<div class="form-group">
 								<label for="numberOfUnits" class="control-label col-xs-4">Number of units:</label>
 								<div class="col-xs-8">
-									<input type="number" class="form-control" id="numberOfUnits" name="numberOfUnits" value="<?php if(!empty($_SESSION['$numberOfUnits'])){echo $_SESSION['$numberOfUnits']; unset($_SESSION['$numberOfUnits']);}?>"/><span class="error-msg"><?php if(!empty($_SESSION['$numberOfUnitsErr'])){echo $_SESSION['$numberOfUnitsErr']; unset($_SESSION['$numberOfUnitsErr']);}?></span>
+									<input type="number" min="0" class="form-control" id="numberOfUnits" name="numberOfUnits" value="<?php if(!empty($_SESSION['$numberOfUnits'])){echo $_SESSION['$numberOfUnits']; unset($_SESSION['$numberOfUnits']);}?>"/><span class="error-msg"><?php if(!empty($_SESSION['$numberOfUnitsErr'])){echo $_SESSION['$numberOfUnitsErr']; unset($_SESSION['$numberOfUnitsErr']);}?></span>
 								</div>
 							</div>
 							<div class="form-group">
@@ -196,9 +259,9 @@ session_start();
 							</div>
 							<div class="form-group">
 									<span class="col-xs-4"></span>
-                                    <div class="col-xs-8">
+                                    <div class="col-xs-8"><span class="error-msg"><?php if(!empty($_SESSION['$parent_typeOfOccupancyErr'])){echo $_SESSION['$parent_typeOfOccupancyErr']; unset($_SESSION['$parent_typeOfOccupancyErr']);}?></span>
                                         <select id="parent_typeOfOccupancy"  name="parent_typeOfOccupancy">
-											<option option disabled selected>SELECT TYPE OF OCCUPANCY</option>
+											<option option disabled>SELECT TYPE OF OCCUPANCY</option>
                                             <option value="residential" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential') echo ' selected="selected"'; unset($_SESSION['$parent_typeOfOccupancy']);?>>RESIDENTIAL</option>
                                             <option value="commercial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'commercial') echo ' selected="selected"'; unset($_SESSION['$parent_typeOfOccupancy']);?>>COMMERCIAL</option>
                                             <option value="street furniture, landscaping, signboards" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'street furniture, landscaping, signboards') echo ' selected="selected"';unset($_SESSION['$parent_typeOfOccupancy']);?>>STREET FURNITURE, LANDSCAPING, SIGNBOARDS</option>
@@ -211,7 +274,7 @@ session_start();
                                 </div>
 								<div class="form-group">
 									<span class="col-xs-4"></span>
-									<div class="col-xs-8">
+									<div class="col-xs-8"><?php if(!empty($_SESSION['$select_typeOfOccupancyErr'])){echo $_SESSION['$select_typeOfOccupancyErr']; unset($_SESSION['$select_typeOfOccupancyErr']);}?></span>
 											<div id="child_typeOfOccupancy"></div>
 										</div>
 								</div>
@@ -261,13 +324,6 @@ session_start();
                                     <input type="number" class="form-control" step="1.00" min="0.00" id="tec5"  name="tec5" value="<?php if(!empty($_SESSION['$tec5'])){echo $_SESSION['$tec5']; unset($_SESSION['$tec5']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec5Err'])){echo $_SESSION['$tec5Err']; unset($_SESSION['$tec5Err']);}?></span>
                                 </div>
                             </div>
-                            <label>Total Cost</label>
-                            <div class="form-group">
-                                <label for="tec6" class="control-label col-xs-4">&#8369</label>
-                                <div class="col-xs-8">
-                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec6"   name="tec6" value="<?php if(!empty($_SESSION['$tec6'])){echo $_SESSION['$tec6']; unset($_SESSION['$tec6']);}?>" placeholder="0.00">
-                                </div>
-                            </div
 
                             <!-- Cost of Equipment Installed -->
                             <hr>
@@ -275,7 +331,7 @@ session_start();
                                 <div class="form-group">
                                     <label for="cei1" class="control-label col-xs-4">&#8369</label>
                                     <div class="col-xs-8">
-                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei1"  name="cei1" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei1'])){echo $_SESSION['$cei1']; unset($_SESSION['$cei1']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei1Err'])){echo $_SESSION['$cei1Err']; unset($_SESSION['$cei1Err']);}?></span>
+                                        <input type="number" class="form-control" step="0.01" id="cei1"  name="cei1" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei1'])){echo $_SESSION['$cei1']; unset($_SESSION['$cei1']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei1Err'])){echo $_SESSION['$cei1Err']; unset($_SESSION['$cei1Err']);}?></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -293,13 +349,13 @@ session_start();
                                 <div class="form-group">
                                     <label for="storey" class="control-label col-xs-4">Number of Storeys:</label>
                                     <div class="col-xs-8">
-                                        <input type="number" class="form-control" step="1" min="1"  id="storey" name="storey" value="<?php if(!empty($_SESSION['$storey'])){echo $_SESSION['$storey']; unset($_SESSION['$storey']);}?>"placeholder="0"><span class="error-msg"><?php if(!empty($_SESSION['$storeyErr'])){echo $_SESSION['$storeyErr']; unset($_SESSION['$storeyErr']);}?></span>
+                                        <input type="number" class="form-control" step="1" min="0"  id="storey" name="storey" value="<?php if(!empty($_SESSION['$storey'])){echo $_SESSION['$storey']; unset($_SESSION['$storey']);}?>"placeholder="0"><span class="error-msg"><?php if(!empty($_SESSION['$storeyErr'])){echo $_SESSION['$storeyErr']; unset($_SESSION['$storeyErr']);}?></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="floorArea" class="control-label col-xs-4">Total Floor Area:</label>
                                     <div class="col-xs-8">
-                                        <input type="number" class="form-control" step="1" min="1" id="floorArea" name="floorArea" value="<?php if(!empty($_SESSION['$floorArea'])){echo $_SESSION['$floorArea']; unset($_SESSION['$floorArea']);}?>"placeholder="0"><span class="error-msg"><?php if(!empty($_SESSION['$floorAreaErr'])){echo $_SESSION['$floorAreaErr']; unset($_SESSION['$floorAreaErr']);}?></span>
+                                        <input type="number" class="form-control" step="1" min="0" id="floorArea" name="floorArea" value="<?php if(!empty($_SESSION['$floorArea'])){echo $_SESSION['$floorArea']; unset($_SESSION['$floorArea']);}?>"placeholder="0"><span class="error-msg"><?php if(!empty($_SESSION['$floorAreaErr'])){echo $_SESSION['$floorAreaErr']; unset($_SESSION['$floorAreaErr']);}?></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -311,12 +367,12 @@ session_start();
                                 <div class="form-group">
                                     <label for="constructionDate" class="control-label col-xs-4">Materials of Conctruction:</label>
                                     <div class="col-xs-8">
-                                        <select id="o4"  name="o4">
-											<option>SELECT MATERIALS OF CONSTRUCTION</option>
-                                            <option value="wood">WOOD</option>
-                                            <option value="concrete">CONCRETE</option>
-                                            <option value="steel">STEEL</option>
-                                            <option value="mixed">MIXED</option>
+                                        <select id="o4"  name="o4"><span class="error-msg"><?php if(!empty($_SESSION['$o4Err'])){echo $_SESSION['$o4Err']; unset($_SESSION['$o4Err']);}?></span>
+											<option option disabled>SELECT MATERIALS OF CONSTRUCTION</option>
+                                            <option value="wood" <?php if(isset($_SESSION['$o4']) && $_SESSION['$o4'] == 'wood') echo ' selected="selected"'; unset($_SESSION['$o4']);?>>WOOD</option>
+                                            <option value="concrete" <?php if(isset($_SESSION['$o4']) && $_SESSION['$o4'] == 'wood') echo ' selected="selected"'; unset($_SESSION['$o4']);?>>CONCRETE</option>
+                                            <option value="steel" <?php if(isset($_SESSION['$o4']) && $_SESSION['$o4'] == 'wood') echo ' selected="selected"'; unset($_SESSION['$o4']);?>>STEEL</option>
+                                            <option value="mixed" <?php if(isset($_SESSION['$o4']) && $_SESSION['$o4'] == 'wood') echo ' selected="selected"'; unset($_SESSION['$o4']);?>>MIXED</option>
                                         </select>
                                     </div>
                                 </div>
@@ -523,7 +579,7 @@ session_start();
 </div>
 </div>
 
-<?php include '../common/footer.php'; ?>
+<?php include '../../Client/common/footer.php'; ?>
 
 <script>
 $(function () {
@@ -604,7 +660,7 @@ function validate(form) {
     });
 </script>
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script>
  $(document).ready(function () {
 var residential = [
@@ -709,10 +765,10 @@ var residential = [
 
 		//function to populate child select box
 		function list(array_list)
-		{
+		{	
 			$("#child_typeOfOccupancy").html(""); //reset child options
 			$("#child_typeOfOccupancy").append("<select name=\"select_typeOfOccupancy\" id=\"select_typeOfOccupancy\">");
-			$("#select_typeOfOccupancy").append("<option disabled selected>SELECT SPECIFIC TYPE OF OCCUPANCY</option>");
+			$("#select_typeOfOccupancy").append("<option disabled>SELECT SPECIFIC TYPE OF OCCUPANCY</option>");
 			$(array_list).each(function (i) { //populate child options 
 				$("#select_typeOfOccupancy").append("<option value=\""+array_list[i].value+"\">"+array_list[i].display+"</option>");
 			});
