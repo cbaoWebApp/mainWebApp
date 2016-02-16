@@ -9,8 +9,10 @@ session_start();
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>-->
+        <script src="jquery-1.12.0.min.js"></script>
+        <script src="jquery-ui.min.js"></script>
 
         <?php
         if (!empty($_SESSION['login_error_msg'])) {
@@ -39,8 +41,8 @@ session_start();
             <div class="content">
                 <div class="main">
 
-                    <h1 id = "heading">CBAO Section System Administrator Log In</h1>
-                    <p>Log-in for CBAO System Administrator</p>
+                    <h1 id = "heading">CBAO Section Personnel Log In</h1>
+                    <p>Log-in for CBAO Section Personnel</p>
                     <br>
 
                     <div class = "buttons">
@@ -71,7 +73,7 @@ session_start();
                 ?> 
             </div>            
             <br>
-            <form class="form-signin" id="logInputForm" action="functions.php" method="GET">
+            <form class="form-signin" id="logInputForm" action="functions.php" method="POST">
                 <input type="text" id="inputTinNo" class="form-control" placeholder="Tin Number" name="tinNo" required autofocus="true">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                 <br>

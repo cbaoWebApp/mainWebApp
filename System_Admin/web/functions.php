@@ -37,7 +37,7 @@
       $section = $_SESSION['section'];
       switch($section){
           case 'Receiving': 
-            header("location: receivingHome.php");//not found 
+            header("location: receivingHome.php"); 
             break;
           case 'Admin' : 
             header("location: adminHome.php"); 
@@ -65,6 +65,10 @@
     $password = $_GET['password'];
     $status = 'TRUE';
 
+    if($section == "ADMIN" || $section == "BUILDING OFFICIAL" || $section == "ASSISTANT BUILDING OFFICIAL" || $section == "CHIEF PROCESSING OFFICER"){
+      $position = "NULL";
+    }
+
     $conn = connectDb("localhost", "root", "", "baguio_cbao");
 
     $sql = "INSERT INTO personnel (username, first_name, last_name, middle_initial, section, access_level, password, status)
@@ -76,6 +80,7 @@
               window.location.href='adminHome.php';
               </script>");
     }else{
+      //echo "Error: " .$sql."<br>".$conn->error;
       echo ("<script type='text/javascript'>
               alert('CRITICAL ERROR: Please do not use duplicate usernames in adding and editing an account. Action was aborted.');
               window.location.href='adminHome.php';
@@ -134,6 +139,10 @@
     $status = 'TRUE';
 
     $conn = connectDb("localhost", "root", "", "baguio_cbao");
+
+    if($section == "ADMIN" || $section == "BUILDING OFFICIAL" || $section == "ASSISTANT BUILDING OFFICIAL" || $section == "CHIEF PROCESSING OFFICER"){
+      $position = "NULL";
+    }
     
     $sql = "UPDATE personnel SET username=?, first_name=?, last_name=?, middle_initial=?, section=?, access_level=?, password=?, status=? WHERE username = '$originalTin'";
     $stmt = $conn->prepare($sql);
@@ -141,6 +150,7 @@
     $stmt->execute();
 
     if($stmt->errno){
+      //echo "Error: " . $stmt->error;
       echo ("<script type='text/javascript'>
               alert('CRITICAL ERROR: Please do not use duplicate usernames in adding and editing an account. Action was aborted.');
               window.location.href='adminHome.php';
@@ -224,6 +234,7 @@
 
   function logout(){
     session_start();
+    //unset($_SESSION['section']);
     $_SESSION = array();
 
     if (ini_get("session.use_cookies")) {

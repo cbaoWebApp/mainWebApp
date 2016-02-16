@@ -8,7 +8,7 @@
             <p id = "cbao">CBAO</p>
         </div>
         <div class = "col-md-4">
-            <p id = "logOut"><a href = "../index.php">Log Out</a></p>
+            <p id = "logOut"><a href = "../index.html">Log Out</a></p>
         </div>
     </div>
 </div>

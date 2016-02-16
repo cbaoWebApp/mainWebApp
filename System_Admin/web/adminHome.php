@@ -15,13 +15,7 @@
 ?>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CBAO Web Application</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" lang="en" content="CBAO Web Application">
-        <meta name="author" content="SLUSCIS">
-        <meta name="robots" content="index, follow">
+        <?php include '../common/head.php'; ?>
 
         <link rel="stylesheet" href="../css/adminHome.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
@@ -36,19 +30,7 @@
 
     </head>
     <body>
-    <div class="header">
-            <div class = "row">
-                <div class = "col-md-4">
-                    <p><img class = "img-responsive" src="../img/seal.png" alt=""></p>
-                </div>
-                <div class = "col-md-4">
-                    <p>City Government of Baguio</p>
-                </div>
-                <div class = "col-md-4">
-                    <p id = "cbao">CBAO</p>
-                </div>
-            </div>
-        </div>
+    <?php include '../common/header.php'; ?>
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="container-fluid">
@@ -142,14 +124,22 @@
               }else{
                 $sql = "SELECT * FROM personnel WHERE status != 'FALSE'";
                 $result = $conn->query($sql);
+                //$result = mysqli_query($conn, $sql);
 
                 while($row = mysqli_fetch_array($result)){
                   $tinNo = $row['username'];
                   $fName = $row['first_name'];
                   $lName = $row['last_name'];
                   $mInitial = $row['middle_initial'];
-                  $position = $row['access_level'];
+                  $position;
+                  if($row['access_level'] == "NULL"){
+                    $position = "N/A";
+                  }else{
+                    $position = $row['access_level'];
+                  }
+                  
                   $section = $row['section'];
+
                   $name = $lName.", ".$fName." ".$mInitial.".";
                   //display in table
                   echo "<tr>";
@@ -160,7 +150,8 @@
                   echo "<td><button id = '$tinNo' class='editAcc' name='editAcc'>Edit</button></td>";
                   echo "<td><button id = '$tinNo' class='delAcc' name='delAcc'>Delete</button></td>";
                   echo "</tr>";
-                } 
+                }
+                //mysqli_close($conn);
               }
             ?>
           </tbody>
@@ -197,12 +188,30 @@
       <input type="text" class="form-control" id="mInitial">
     </div>
     <div class="form-group">
-      <label for="section">Section: </label>
-      <input type="text" class="form-control" id="section">
+      <!--<label for="section">Section: </label>
+      <input type="text" class="form-control" id="section">-->
+      <label for="section">Section</label>
+      <select class="form-control" id="section" onchange="sectionChange()"> 
+        <option value="receiving">Receiving</option>
+        <option value="releasing">Releasing</option>
+        <option value="line and grade">Line and Grade</option>
+        <option value="architetural">Architectural</option>
+        <option value="structural">Structural</option>
+        <option value="electrical">Electrical</option>
+        <option value="sanitary or plumbing">Sanitary or Plumbing</option>
+        <option value="technical">Technical</option>
+        <option value="building official">Building Official</option>
+        <option value="assistant building official">Assistant Building Official</option>
+        <option value="chief processing officer">Chief Processing Officer</option>
+        <option value="admin">Admin</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="position">Position: </label>
-      <input type="text" class="form-control" id="position">
+      <select class="form-control" id="position">
+        <option value="head" selected>Head</option>
+        <option value="substitute">Substitute</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="password">Password: </label>
@@ -236,12 +245,28 @@
       <input type="text" class="form-control" id="mInitial-e">
     </div>
     <div class="form-group">
-      <label for="section">Section: </label>
-      <input type="text" class="form-control" id="section-e">
+      <label for="section-e">Section</label>
+      <select class="form-control" id="section-e" onchange="sectionChangeE()"> 
+        <option value="receiving">Receiving</option>
+        <option value="releasing">Releasing</option>
+        <option value="line and grade">Line and Grade</option>
+        <option value="architetural">Architectural</option>
+        <option value="structural">Structural</option>
+        <option value="electrical">Electrical</option>
+        <option value="sanitary or plumbing">Sanitary or Plumbing</option>
+        <option value="technical">Technical</option>
+        <option value="building official">Building Official</option>
+        <option value="assistant building official">Assistant Building Official</option>
+        <option value="chief processing officer">Chief Processing Officer</option>
+        <option value="admin">Admin</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="position">Position: </label>
-      <input type="text" class="form-control" id="position-e">
+      <select class="form-control" id="position-e">
+        <option value="head" selected>Head</option>
+        <option value="substitute">Substitute</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="password">Password: </label>
@@ -261,25 +286,7 @@
 </div>
 <!--end of HTML for delete button popup window-->
 
- <div class="footer">
-            <div class = "row">
-                <div class = "col-xs-8">
-                    <div class="contact">
-                        <p>Contact Us</p>
-                        <p>(074)-998-7654<br>
-                            cbao_baguio@gmail.com<br>
-                            http:www.baguio.gov.ph<br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class = "col-xs-3">
-                    <div class="contact2">
-                        <p>&copy; Copyright 2016</p>
-                    </div>
-                </div>
-            </div>
-  </div>
+  <?php include '../common/footer.php'; ?>
 </body>
 </html>
 
@@ -295,13 +302,15 @@
   var confirm_password;
   var originalTin;
   var windowHeight = $(window).height();
+  var windowWidth = $(window).height();
 
   //for Add Account popup window
   $(function() {
     $( "#add-account-popup-div" ).dialog({
         autoOpen: false,
         closeOnEscape: false,
-        maxHeight: windowHeight-80,
+        height: windowHeight-80,
+        width: windowWidth-80,
         buttons: [
           {
             text: "Add",
@@ -381,7 +390,8 @@
     $( "#edit-account-popup-div" ).dialog({
         autoOpen: false,
         closeOnEscape: false,
-        maxHeight: windowHeight-80,
+        height: windowHeight-80,
+        width: windowWidth-80,
         buttons: [
           {
             text: "Save",
@@ -594,6 +604,9 @@ $(function() {
       case "mechanical": return true; break;
       case "receiving": return true; break;
       case "admin": return true; break;
+      case "building official": return true; break;
+      case "assistant building official": return true; break;
+      case "chief processing officer": return true; break;
       default: return false; break;
     }
   }
@@ -650,12 +663,31 @@ $(function() {
     xml.send();  
   })
 
-  //give table to tablesorter
+  
+  function sectionChange(){
+    var dropdown = document.getElementById("section");
+    var value = dropdown[dropdown.selectedIndex].value;
+    if(value=="admin" || value=="building official" || value=="assistant building official" || value=="chief processing officer"){
+      document.getElementById("position").disabled = true;
+    }else{
+      document.getElementById("position").disabled = false;
+    }
+  }
+  function sectionChangeE(){
+    var dropdown = document.getElementById("section-e");
+    var value = dropdown[dropdown.selectedIndex].value;
+    if(value=="admin" || value=="building official" || value=="assistant building official" || value=="chief processing officer"){
+      document.getElementById("position-e").disabled = true;
+    }else{
+      document.getElementById("position-e").disabled = false;
+    }
+  }
+
   $(document).ready(function() {
-    $("#admin-home-table").tablesorter();
+    $("#admin-home-table").tablesorter(); //give table to tablesorter
   });
 
-  //last parts is to fix popup (in terms of popup behavior)
+  
 
 </script>
 
