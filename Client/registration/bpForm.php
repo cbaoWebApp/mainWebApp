@@ -5,6 +5,7 @@ if (isset($_SESSION['printForm'])) {
         unset($_SESSION['$lName']);
 		unset($_SESSION['$fName']);
         unset($_SESSION['$mName']);
+		unset($_SESSION['$TaxAccNo']);
 		unset($_SESSION['$formOfOwnership']);
 		unset($_SESSION['$kindOfBusiness']);
 		unset($_SESSION['$Address']);
@@ -118,7 +119,6 @@ if (isset($_SESSION['printForm'])) {
                 </div>
             </div>
 					
-            
             <div class = "col-md-9">
                 <div class = "scroll">
                         <h4>General Information</h4>
@@ -260,35 +260,84 @@ if (isset($_SESSION['printForm'])) {
 							</div>
 							<div class="form-group">
 									<span class="col-xs-4"></span>
-                                    <div class="col-xs-8"><span class="error-msg"><?php if(!empty($_SESSION['$parent_typeOfOccupancyErr'])){echo $_SESSION['$parent_typeOfOccupancyErr']; unset($_SESSION['$parent_typeOfOccupancyErr']);}?></span>
+                                    <div class="col-xs-8"><span class="error-msg"><?php if(!empty($_SESSION['$others_typeOfOccupancyErr'])){echo $_SESSION['$others_typeOfOccupancyErr'];}?><?php if(!empty($_SESSION['$others_typeOfOccupancyErr2'])){echo $_SESSION['$others_typeOfOccupancyErr2'];}?></span>
                                         <select id="parent_typeOfOccupancy"  name="parent_typeOfOccupancy">
-											<option option disabled>SELECT TYPE OF OCCUPANCY</option>
-                                            <option value="residential" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential') echo ' selected="selected"'; unset($_SESSION['$parent_typeOfOccupancy']);?>>RESIDENTIAL</option>
-                                            <option value="commercial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'commercial') echo ' selected="selected"'; unset($_SESSION['$parent_typeOfOccupancy']);?>>COMMERCIAL</option>
-                                            <option value="street furniture, landscaping, signboards" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'street furniture, landscaping, signboards') echo ' selected="selected"';unset($_SESSION['$parent_typeOfOccupancy']);?>>STREET FURNITURE, LANDSCAPING, SIGNBOARDS</option>
-											<option value="industrial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'industrial') echo ' selected="selected"';unset($_SESSION['$parent_typeOfOccupancy']);?>>INDUSTRIAL</option>
-											<option value="institutional" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'institutional') echo ' selected="selected"';unset($_SESSION['$parent_typeOfOccupancy']);?>>INSTITUTIONAL</option>
-											<option value="agricultural" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'agricultural') echo ' selected="selected"';unset($_SESSION['$parent_typeOfOccupancy']);?>>AGRICULTURAL</option>
-											<option value="others" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'others') echo ' selected="selected"';unset($_SESSION['$parent_typeOfOccupancy']);?>>OTHER CONSTRUCTION</option>
+											<option option selected disabled>SELECT TYPE OF OCCUPANCY</option>
+                                            <option value="residential" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential'){echo ' selected="selected"';}?>>RESIDENTIAL</option>
+                                            <option value="commercial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'commercial'){echo ' selected="selected"';}?>>COMMERCIAL</option>
+                                            <option value="street" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'street'){echo ' selected="selected"';}?>>STREET FURNITURE, LANDSCAPING, SIGNBOARDS</option>
+											<option value="industrial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'industrial'){echo ' selected="selected"';}?>>INDUSTRIAL</option>
+											<option value="institutional" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'institutional'){echo ' selected="selected"';}?>>INSTITUTIONAL</option>
+											<option value="agricultural" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'agricultural'){echo ' selected="selected"';}?>>AGRICULTURAL</option>
+											<option value="others" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'others'){echo ' selected="selected"';}?>>OTHER CONSTRUCTION</option>
 										</select>
                                     </div>
                                 </div>
 								<div class="form-group">
 									<span class="col-xs-4"></span>
-									<div class="col-xs-8"><?php if(!empty($_SESSION['$select_typeOfOccupancyErr'])){echo $_SESSION['$select_typeOfOccupancyErr']; unset($_SESSION['$select_typeOfOccupancyErr']);}?></span>
-											<div id="child_typeOfOccupancy"></div>
+									<div class="col-xs-8">
+											<div id="child_typeOfOccupancy">
+												<select id="residential" name="residential" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential'){echo 'style="display:block";' ;}?>>
+													<option value="single" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'single'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>SINGLE</option>
+													<option value="duplex" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'duplex'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>DUPLEX</option>
+													<option value="rowhouse/accessoria" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'rowhouse/accessoria'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>ROWHOUSE/ACCESSORIA</option>
+													<option value="others" <?php if((isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential') && (isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'others')){echo ' selected="selected"';unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OTHERS</option>
+												</select>
+												<select id="commercial" name="commercial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'commercial'){echo 'style="display:block";' ;}?>>
+													<option value="bank" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'bank'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>BANK</option>
+													<option value="store" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'store'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>STORE</option>
+													<option value="hotel/motel,etc." <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'hotel/motel,etc.'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>HOTEL/MOTEL,ETC.</option>
+													<option value="office condominium/business building office" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'office condominium/business building office'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OFFICE CONDOMINIUM, BUSINESS OFFICE BUILDING</option>
+													<option value="restaurant,etc." <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'restaurant,etc.'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>RESTAURANT,ETC.</option>
+													<option value="shop (e.g dress shop, tailoring shop, barber shop, etc." <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'shop (e.g dress shop, tailoring shop, barber shop, etc.'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>SHOP (E.G DRESS SHOP, TAILORING SHOP, BARBER SHOP, ETC.)</option>
+													<option value="gasoline station" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'gasoline station'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>GASOLINE STATION</option>
+													<option value="market" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'market'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>MARKET</option>
+													<option value="dormitory or other lodging house" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'dormitory or other lodging house'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>DORMITORY OR OTHER LODGING HOUSE</option>
+													<option value="others" <?php if((isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'commercial') && (isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'others')){echo ' selected="selected"';unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OTHERS</option>
+												</select>
+												<input type="text" name="others" id="others" <?php if(!empty($_SESSION['$others_typeOfOccupancyErr'])||(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'others')){echo 'style="display:block";';unset($_SESSION['$others_typeOfOccupancyErr']);unset($_SESSION['$parent_typeOfOccupancy']);}?> value="<?php if(!empty($_SESSION['$others'])){echo $_SESSION['$others']; unset($_SESSION['$others']);}?>"></input>
+												<select id="street" name="street" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'street'){echo 'style="display:block";' ;}?>>
+													<option value="parks, plazas, monuments, pools, plant boxes, etc." <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'parks, plazas, monuments, pools, plant boxes, etc.'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>PARKS, PLAZAS, MONUMENTS, POOLS, PLANT BOXES, ETC.</option>
+													<option value="sidewalks, promenades, tarraces, lampposts, electric poles, telephone poles, etc." <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'sidewalks, promenades, tarraces, lampposts, electric poles, telephone poles, etc.'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>SIDEWALKS, PROMENADES, TARRACES, LAMPPOSTS, ELECTRIC POLES, TELEPHONE POLES, ETC.</option>
+													<option value="outdoor ads, signboards, etc" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'outdoor ads, signboards, etc'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OUTDOOR ADS, SIGNBOARDS, ETC</option>
+													<option value="others" <?php if((isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'street') && (isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'others')){echo ' selected="selected"';unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OTHERS</option>
+												</select>
+												<select id="industrial" name="industrial" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'industrial'){echo 'style="display:block";' ;}?>>
+													<option value="factory/plant"<?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'factory/plant'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);}?>>FACTORY/PLANT</option>
+													<option value="repair shop, machine shop" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'repair shop, machine shop'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>REPAIR SHOP, MACHINE SHOP</option>
+													<option value="refinery" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'refinery'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);}?>>REFINERY</option>
+													<option value="printing press" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'printing press'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>PRINTING PRESS</option>
+													<option value="warehouse" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'warehouse'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>WAREHOUSE</option>
+													<option value="others" <?php if((isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'industrial') && (isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'others')){echo ' selected="selected"';unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OTHERS</option>
+												</select>
+												<select id="institutional" name="institutional" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'institutional'){echo 'style="display:block";' ;}?>>
+													<option value="school" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'school'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>SCHOOL</option>
+													<option value="church and other religious structures" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'church and other religious structures'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>CHURCH AND OTHER RELIGIOUS STRUCTURES</option>
+													<option value="hospital or simular structure" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'hospital or simular structure'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>HOSPITAL OR SIMILAR STRUCTURE</option>
+													<option value="welfare and charitable structures" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'welfare and charitable structures'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>WELFARE AND CHARITABLE STRUCTURES</option>
+													<option value="theater, auditorium, gymnasium, court" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'theater, auditorium, gymnasium, court'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>THEATER, AUDITORIUM, GYMNASIUM, COURT</option>
+													<option value="others" <?php if((isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'institutional') && (isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'others')){echo ' selected="selected"';unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OTHERS</option>
+												</select>
+												<select id="agricultural" name="agricultural" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'agricultural'){echo 'style="display:block";' ;}?>>
+													<option value="barn(s) poultry house(s) etc." <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'barn(s) poultry house(s) etc.'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>BARN(S) POULTRY HOUSE(S) ETC.</option>
+													<option value="grain mill" <?php if(isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'grain mill'){echo ' selected="selected"'; unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>GRAIN MILL</option>
+													<option value="others" <?php if((isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'agricultural') && (isset($_SESSION['$child_typeOfOccupancy']) && $_SESSION['$child_typeOfOccupancy'] == 'others')){echo ' selected="selected"';unset($_SESSION['$child_typeOfOccupancy']);unset($_SESSION['$parent_typeOfOccupancy']);}?>>OTHERS</option>
+												</select>
+											</div>
 										</div>
 								</div>
 								<div class="form-group">
 									<span class="col-xs-4"></span>
 									<div class="col-xs-8">
-											<div id="other_typeOfOccupancy"></div>
+											<div id="other_typeOfOccupancy">
+												<input type="text" name="typeOfOccupancy_others" id="typeOfOccupancy_others" <?php if(!empty($_SESSION['$others_typeOfOccupancyErr2'])||!empty($_SESSION['$typeOfOccupancy_others'])){echo 'style="display:block";';unset($_SESSION['$others_typeOfOccupancyErr2']);unset($_SESSION['$child_typeOfOccupancy']);}?> value="<?php if(!empty($_SESSION['$typeOfOccupancy_others'])){echo $_SESSION['$typeOfOccupancy_others']; unset($_SESSION['$typeOfOccupancy_others']);}?>"></input>
+											</div>
 										</div>
 								</div>
 								
                             <!-- scope of work and use or type of occupancy code should go here-->
                      <!--   </form>-->
-                    
+                    <hr>
                         <h4>Total Estimated Cost</h4>
                             <label>Building</label>
                             <div class="form-group">
@@ -327,7 +376,7 @@ if (isset($_SESSION['printForm'])) {
                             </div>
 
                             <!-- Cost of Equipment Installed -->
-                            
+                            <hr>
                             <h4>Cost of Equipment Installed</h4>
                                 <div class="form-group">
                                     <label for="cei1" class="control-label col-xs-4">&#8369</label>
@@ -379,7 +428,7 @@ if (isset($_SESSION['printForm'])) {
                                 </div>
 
                            <!--   </form>-->
-                        
+                        <hr>
                         <h4>Architect/Civil Engineer</h4>
                         <h6>Signed and Sealed Plans and Specifications</h6>
                             <div class="form-group">
@@ -418,7 +467,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="Saddress" name="Saddress" value="<?php if(!empty($_SESSION['$Saddress'])){echo $_SESSION['$Saddress']; unset($_SESSION['$Saddress']);}?>"placeholder="Address"><span class="error-msg"><?php if(!empty($_SESSION['$SaddressErr'])){echo $_SESSION['$SaddressErr']; unset($_SESSION['$SaddressErr']);}?></span>
                                 </div>
                             </div>
-                        
+                        <hr>
                         <h4>Architect/Civil Engineer</h4>
                         <h6>In-charge of Construction</h6>
                             <div class="form-group">
@@ -481,7 +530,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="tin" name="tin" value="<?php if(!empty($_SESSION['$tin'])){echo $_SESSION['$tin']; unset($_SESSION['$tin']);}?>"placeholder="Tin"><span class="error-msg"><?php if(!empty($_SESSION['$tinErr'])){echo $_SESSION['$tinErr']; unset($_SESSION['$tinErr']);}?><?php if(!empty($_SESSION['$tinErr2'])){echo $_SESSION['$tinErr2']; unset($_SESSION['$tinErr2']);}?></span>
                                 </div>
                             </div> 
-                        
+                        <hr>
                         <h4>Community Tax Certificate</h4>
                         <div class="form-group">
                                 <label for="tin" class="control-label col-xs-4">Community Tax Certificate:</label>
@@ -507,7 +556,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="ctcPlace" name="ctcPlace" value="<?php if(!empty($_SESSION['$ctcPlace'])){echo $_SESSION['$ctcPlace']; unset($_SESSION['$ctcPlace']);}?>"placeholder="Place Issued"><span class="error-msg"><?php if(!empty($_SESSION['$ctcPlaceErr'])){echo $_SESSION['$ctcPlaceErr']; unset($_SESSION['$ctcPlaceErr']);}?></span>
                                 </div>
                         </div>   
-                        
+                        <hr>
                         <h4>To be Accomplished by Lot Owner</h4>
                             <div class="form-group">
                                 <label for="tct" class="control-label col-xs-4">TCT/OCT Number:</label>
@@ -545,7 +594,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="Octc" name="Octc" value="<?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?>" placeholder="Community tax Certificate"><span class="error-msg"><?php if(!empty($_SESSION['$OctcErr'])){echo $_SESSION['$OctcErr']; unset($_SESSION['$OctcErr']);}?></span>
                                 </div>
                             </div>
-                        
+                        <hr>
                         <h4>Tracking Account Credentials</h4>
                             <div class="form-group">
                                 <label for="email" class="control-label col-xs-4">Email Address:</label>
@@ -658,12 +707,231 @@ function validate(form) {
 		/**
 		* Select option.
 		*/
+		
     });
 </script>
 
 <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script>
- $(document).ready(function () {
+	$(document).ready(function () {
+		$("#parent_typeOfOccupancy").change(function() {
+			var parent = $("#parent_typeOfOccupancy").val(); //get option value from parent 
+			switch(parent){ //using switch compare selected option and populate child
+				case 'residential':
+					$("#commercial").css("display","none");
+					$("#commercial :selected").prop("selected", false);
+					$("#street").css("display","none");
+					$("#street :selected").prop("selected", false);
+					$("#industrial").css("display","none");
+					$("#industrial :selected").prop("selected", false);
+					$("#institutional").css("display","none");
+					$("#institutional :selected").prop("selected", false);
+					$("#agricultural").css("display","none");
+					$("#agricultural :selected").prop("selected", false);
+					$("#others").css("display","none");
+					$("#others").val("");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					$("#residential").css("display","block");
+					break;
+				case 'commercial':
+					$("#residential").css("display","none");
+					$("#residential :selected").prop("selected", false);
+					$("#street").css("display","none");
+					$("#street :selected").prop("selected", false);
+					$("#industrial").css("display","none");
+					$("#industrial :selected").prop("selected", false);
+					$("#institutional").css("display","none");
+					$("#institutional :selected").prop("selected", false);
+					$("#agricultural").css("display","none");
+					$("#agricultural :selected").prop("selected", false);
+					$("#others").css("display","none");
+					$("#others").val("");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					$("#commercial").css("display","block");
+					break;              
+				case 'street':
+					$("#residential").css("display","none");
+					$("#residential :selected").prop("selected", false);
+					$("#commercial").css("display","none");
+					$("#commercial :selected").prop("selected", false);
+					$("#industrial").css("display","none");
+					$("#industrial :selected").prop("selected", false);
+					$("#institutional").css("display","none");
+					$("#institutional :selected").prop("selected", false);
+					$("#agricultural").css("display","none");
+					$("#agricultural :selected").prop("selected", false);
+					$("#others").css("display","none");
+					$("#others").val("");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					$("#street").css("display","block");
+					break;
+				case 'industrial':
+					$("#residential").css("display","none");
+					$("#residential :selected").prop("selected", false);
+					$("#commercial").css("display","none");
+					$("#commercial :selected").prop("selected", false);
+					$("#street").css("display","none");
+					$("#street :selected").prop("selected", false);
+					$("#institutional").css("display","none");
+					$("#institutional :selected").prop("selected", false);
+					$("#agricultural").css("display","none");
+					$("#agricultural :selected").prop("selected", false);
+					$("#others").css("display","none");
+					$("#others").val("");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					$("#industrial").css("display","block");
+					break;
+				case 'institutional':
+					$("#residential").css("display","none");
+					$("#residential :selected").prop("selected", false);
+					$("#commercial").css("display","none");
+					$("#commercial :selected").prop("selected", false);
+					$("#street").css("display","none");
+					$("#street :selected").prop("selected", false);
+					$("#industrial").css("display","none");
+					$("#industrial :selected").prop("selected", false);
+					$("#agricultural").css("display","none");
+					$("#agricultural :selected").prop("selected", false);
+					$("#others").css("display","none");
+					$("#others").val("");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					$("#institutional").css("display","block");
+					break;              
+				case 'agricultural':
+					$("#residential").css("display","none");
+					$("#residential :selected").prop("selected", false);
+					$("#commercial").css("display","none");
+					$("#commercial :selected").prop("selected", false);
+					$("#street").css("display","none");
+					$("#street :selected").prop("selected", false);
+					$("#industrial").css("display","none");
+					$("#industrial :selected").prop("selected", false);
+					$("#institutional").css("display","none");
+					$("#institutional :selected").prop("selected", false);
+					$("#others").css("display","none");
+					$("#others").val("");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					$("#agricultural").css("display","block");
+					break;	
+				case 'others':
+					$("#residential").css("display","none");
+					$("#residential :selected").prop("selected", false);
+					$("#commercial").css("display","none");
+					$("#commercial :selected").prop("selected", false);
+					$("#street").css("display","none");
+					$("#street :selected").prop("selected", false);
+					$("#industrial").css("display","none");
+					$("#industrial :selected").prop("selected", false);
+					$("#institutional").css("display","none");
+					$("#institutional :selected").prop("selected", false);
+					$("#agricultural").css("display","none");
+					$("#agricultural :selected").prop("selected", false);
+					$("#others").css("display","block");
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").val("");
+					break;
+					}
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#residential", function(){
+			var residential = $(this).val();
+			
+			switch(residential){
+				case "others":
+					$("#typeOfOccupancy_others").css("display","block");
+					break;
+					
+				default:
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").removeAttr("value");
+					break;
+			}
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#commercial", function(){
+			var commercial = $(this).val();
+			
+			switch(commercial){
+				case "others":
+					$("#typeOfOccupancy_others").css("display","block");
+					break;
+					
+				default:
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").removeAttr("value");
+					break;
+			}
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#street", function(){
+			var street = $(this).val();
+			
+			switch(street){
+				case "others":
+					$("#typeOfOccupancy_others").css("display","block");
+					break;
+					
+				default:
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").removeAttr("value");
+					break;
+			}
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#industrial", function(){
+			var industrial = $(this).val();
+			
+			switch(industrial){
+				case "others":
+					$("#typeOfOccupancy_others").css("display","block");
+					break;
+					
+				default:
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").removeAttr("value");
+					break;
+			}
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#institutional", function(){
+			var institutional = $(this).val();
+			
+			switch(institutional){
+				case "others":
+					$("#typeOfOccupancy_others").css("display","block");
+					break;
+					
+				default:
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").removeAttr("value");
+					break;
+			}
+		});
+		
+		$("#child_typeOfOccupancy").on("change", "#agricultural", function(){
+			var agricultural = $(this).val();
+			
+			switch(agricultural){
+				case "others":
+					$("#typeOfOccupancy_others").css("display","block");
+					break;
+					
+				default:
+					$("#typeOfOccupancy_others").css("display","none");
+					$("#typeOfOccupancy_others").removeAttr("value");
+					break;
+			}
+		});
+	})(jQuery);
+</script>
+<script>
+/* $(document).ready(function () {
 var residential = [
 		{display:"SINGLE", value:"single"},
 		{display:"DUPLEX", value:"duplex"},
@@ -712,7 +980,8 @@ var residential = [
 		
 		//If parent option is changed
 		$("#parent_typeOfOccupancy").change(function() {
-				var parent = $(this).val(); //get option value from parent 
+				var parent = $("#parent_typeOfOccupancy").val(); //get option value from parent 
+				alert(parent);
 				
 				switch(parent){ //using switch compare selected option and populate child
 					case 'residential':
@@ -770,7 +1039,7 @@ var residential = [
 			$("#child_typeOfOccupancy").html(""); //reset child options
 			$("#child_typeOfOccupancy").append("<select name=\"select_typeOfOccupancy\" id=\"select_typeOfOccupancy\">");
 			$("#select_typeOfOccupancy").append("<option disabled>SELECT SPECIFIC TYPE OF OCCUPANCY</option>");
-			$(array_list).each(function (i) { //populate child options 
+			$(array_list).each(function (i) { //populate child options
 				$("#select_typeOfOccupancy").append("<option value=\""+array_list[i].value+"\">"+array_list[i].display+"</option>");
 			});
 			$("#child_typeOfOccupancy").append("</select>");
@@ -782,6 +1051,7 @@ var residential = [
 		}
 		
 		})(jQuery);
+*/
 </script>
  
 </body>
