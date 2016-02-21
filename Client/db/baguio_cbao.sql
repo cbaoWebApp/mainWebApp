@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2016 at 04:40 PM
--- Server version: 5.6.17
+-- Generation Time: Feb 21, 2016 at 12:02 PM
+-- Server version: 5.7.10-log
 -- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `applicant` (
   `first_name` varchar(250) DEFAULT NULL,
   `middle_initial` varchar(1) DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
-  `contact_number` int(12) DEFAULT NULL,
+  `contact_number` varchar(11) DEFAULT NULL,
   `tin` varchar(15) DEFAULT NULL,
   `form_ownership` varchar(45) DEFAULT NULL,
   `main_economic_activity` varchar(45) DEFAULT NULL,
@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `applicant` (
 --
 
 INSERT INTO `applicant` (`applicant_id`, `last_name`, `first_name`, `middle_initial`, `address`, `contact_number`, `tin`, `form_ownership`, `main_economic_activity`, `email`, `password`, `ctc_id`) VALUES
-(1, 'Alvarez', 'Neil Patrick', 'U', 'Bakakeng, Baguio City, Benguet, Philippines', 2147483647, '123-456-789-000', NULL, NULL, 'neilpatrick02@gmail.com', 'neil', 1),
-(2, 'DELA CRUZ', 'JUAN', 'P', 'BAGUIO, BENGUET', 2147483647, '000-123-456-789', 'NONE', 'NONE', 'someone@idunno.org', '1234567890p', 2),
-(3, 'ASDF', 'A', 'A', '!@#$%^&AMP;*()ASDFASDFASDFASDFASDF', 2147483647, '000-111-222-333', 'A', 'A', 'someone@idunno.org', '1234567890p', 3);
+(1, 'Alvarez', 'Neil Patrick', 'U', 'Bakakeng, Baguio City, Benguet, Philippines', '2147483647', '123-456-789-000', NULL, NULL, 'neilpatrick02@gmail.com', 'neil', 1),
+(2, 'DELA CRUZ', 'JUAN', 'P', 'BAGUIO, BENGUET', '2147483647', '000-123-456-789', 'NONE', 'NONE', 'someone@idunno.org', '1234567890p', 2),
+(3, 'ASDF', 'A', 'A', '!@#$%^&AMP;*()ASDFASDFASDFASDFASDF', '2147483647', '000-111-222-333', 'A', 'A', 'someone@idunno.org', '1234567890p', 3);
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,6 @@ INSERT INTO `bpform` (`bpform_id`, `application_no`, `permit_no`, `date_of_appli
 
 CREATE TABLE IF NOT EXISTS `checklist` (
   `checklist_id` int(11) NOT NULL AUTO_INCREMENT,
-  `documents_id` int(11) DEFAULT NULL,
   `bpform_id` int(11) DEFAULT NULL,
   `controlNum` varchar(45) DEFAULT NULL,
   `permitNum` varchar(45) DEFAULT NULL,
@@ -135,7 +134,6 @@ CREATE TABLE IF NOT EXISTS `checklist` (
   `dateOfApp` date DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`checklist_id`),
-  KEY `documents_id_idx` (`documents_id`),
   KEY `bpform_id_fk_idx` (`bpform_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
@@ -143,10 +141,10 @@ CREATE TABLE IF NOT EXISTS `checklist` (
 -- Dumping data for table `checklist`
 --
 
-INSERT INTO `checklist` (`checklist_id`, `documents_id`, `bpform_id`, `controlNum`, `permitNum`, `appNum`, `dateOfApp`, `status`) VALUES
-(1, 1, 1, '1', '1', '1', '0000-00-00', '1'),
-(2, 2, 1, '2', '2', '2', '0000-00-00', '2016-01-10'),
-(3, 3, 5, '3', '3', '3', '0000-00-00', '2016-02-14');
+INSERT INTO `checklist` (`checklist_id`, `bpform_id`, `controlNum`, `permitNum`, `appNum`, `dateOfApp`, `status`) VALUES
+(1, 1, '1', '1', '1', '0000-00-00', '1'),
+(2, 1, '2', '2', '2', '0000-00-00', '2016-01-10'),
+(3, 5, '3', '3', '3', '0000-00-00', '2016-02-14');
 
 -- --------------------------------------------------------
 
@@ -261,18 +259,20 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `psg` varchar(45) DEFAULT NULL,
   `notarized` varchar(45) DEFAULT NULL,
   `constAuth` varchar(45) DEFAULT NULL,
+  `checklist_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`documents_id`),
-  KEY `personnel_id_idx` (`personnel_id`)
+  KEY `personnel_id_idx` (`personnel_id`),
+  KEY `checklist_id_idx` (`checklist_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `documents`
 --
 
-INSERT INTO `documents` (`documents_id`, `owner`, `notowner`, `trueTitle`, `surveyPlan`, `contractLease`, `deedSale`, `conDeedSale`, `taxDec`, `realPropTax`, `bpForm`, `BuilPlan`, `StrucDesign`, `BuildSpec`, `billMat`, `picSite`, `soilAnal`, `ecc`, `3stor`, `4stor`, `taxReceipt`, `zoningCert`, `FireCert`, `wmsCert`, `logbook`, `tarpaulin`, `clearance`, `dpwh`, `aviation`, `personnel_id`, `psg`, `notarized`, `constAuth`) VALUES
-(1, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false'),
-(2, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false'),
-(3, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false');
+INSERT INTO `documents` (`documents_id`, `owner`, `notowner`, `trueTitle`, `surveyPlan`, `contractLease`, `deedSale`, `conDeedSale`, `taxDec`, `realPropTax`, `bpForm`, `BuilPlan`, `StrucDesign`, `BuildSpec`, `billMat`, `picSite`, `soilAnal`, `ecc`, `3stor`, `4stor`, `taxReceipt`, `zoningCert`, `FireCert`, `wmsCert`, `logbook`, `tarpaulin`, `clearance`, `dpwh`, `aviation`, `personnel_id`, `psg`, `notarized`, `constAuth`, `checklist_id`) VALUES
+(1, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false', NULL),
+(2, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false', NULL),
+(3, 'true', 'false', 'true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 2, 'true', 'true', 'false', NULL);
 
 -- --------------------------------------------------------
 
@@ -358,7 +358,7 @@ INSERT INTO `equipment` (`equipment_id`, `first_cost`, `second_cost`, `third_cos
 --
 
 CREATE TABLE IF NOT EXISTS `lot_owner` (
-  `lot_owner_id` int(11) NOT NULL,
+  `lot_owner_id` int(11) NOT NULL AUTO_INCREMENT,
   `tct_oct_no` varchar(14) DEFAULT NULL,
   `last_name` varchar(250) DEFAULT NULL,
   `first_name` varchar(250) DEFAULT NULL,
@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `lot_owner` (
   `address` varchar(250) DEFAULT NULL,
   `community_tax_certificate` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`lot_owner_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `lot_owner`
@@ -660,6 +660,7 @@ CREATE TABLE IF NOT EXISTS `type_of_occupancy` (
   `type_of_occupancy_id` int(11) NOT NULL AUTO_INCREMENT,
   `general_type` varchar(50) DEFAULT NULL,
   `specific_type` varchar(100) DEFAULT NULL,
+  `others` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`type_of_occupancy_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
@@ -667,10 +668,10 @@ CREATE TABLE IF NOT EXISTS `type_of_occupancy` (
 -- Dumping data for table `type_of_occupancy`
 --
 
-INSERT INTO `type_of_occupancy` (`type_of_occupancy_id`, `general_type`, `specific_type`) VALUES
-(1, 'Residential', 'Single'),
-(2, 'residential', 'single'),
-(3, 'residential', 'single');
+INSERT INTO `type_of_occupancy` (`type_of_occupancy_id`, `general_type`, `specific_type`, `others`) VALUES
+(1, 'Residential', 'Single', NULL),
+(2, 'residential', 'single', NULL),
+(3, 'residential', 'single', NULL);
 
 --
 -- Constraints for dumped tables
@@ -698,7 +699,7 @@ ALTER TABLE `bpform`
   ADD CONSTRAINT `engr_plans_id` FOREIGN KEY (`engr_plans_id`) REFERENCES `engr_plans` (`engr_plans_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fees_id` FOREIGN KEY (`fees_id`) REFERENCES `total_fees` (`fees_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `lot_owner_id` FOREIGN KEY (`lot_owner_id`) REFERENCES `lot_owner` (`lot_owner_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lot_owner_id` FOREIGN KEY (`lot_owner_id`) REFERENCES `lot_owner` (`lot_owner_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `scope_of_work_id` FOREIGN KEY (`scope_of_work_id`) REFERENCES `scope_of_work` (`scope_of_work_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `storey_id` FOREIGN KEY (`storey_id`) REFERENCES `storey` (`storey_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `type_of_occupancy_id` FOREIGN KEY (`type_of_occupancy_id`) REFERENCES `type_of_occupancy` (`type_of_occupancy_id`) ON UPDATE CASCADE;
@@ -707,8 +708,7 @@ ALTER TABLE `bpform`
 -- Constraints for table `checklist`
 --
 ALTER TABLE `checklist`
-  ADD CONSTRAINT `bpform_id_fk` FOREIGN KEY (`bpform_id`) REFERENCES `bpform` (`bpform_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `documents_id` FOREIGN KEY (`documents_id`) REFERENCES `documents` (`documents_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `bpform_id_fk` FOREIGN KEY (`bpform_id`) REFERENCES `bpform` (`bpform_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comments`
@@ -720,6 +720,7 @@ ALTER TABLE `comments`
 -- Constraints for table `documents`
 --
 ALTER TABLE `documents`
+  ADD CONSTRAINT `checklist_id` FOREIGN KEY (`checklist_id`) REFERENCES `checklist` (`checklist_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `personnel_id_fk` FOREIGN KEY (`personnel_id`) REFERENCES `personnel` (`personnel_id`) ON UPDATE CASCADE;
 
 --
