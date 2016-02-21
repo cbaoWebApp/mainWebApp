@@ -85,65 +85,109 @@
 		if (empty($_POST["newConstruction"])) {
 			$_SESSION['$newConstructionErr'] = "*This field is required";
 	    } else {
-			$_SESSION['$newConstruction'] = strtoupper(test_input($_POST["newConstruction"]));
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["newConstruction"], $matches)){
+				$_SESSION['$newConstruction'] = strtoupper(test_input($_POST["newConstruction"]));
+			}else{
+				$_SESSION['$newConstructionErr'] = "Invalid input.";
+			}
 		}
 		
 		if (empty($_POST["additionOf"])) {
 			$_SESSION['$additionOfErr'] = "*This field is required";
 	    } else {
-			$_SESSION['$additionOf'] = strtoupper(test_input($_POST["additionOf"]));
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["additionOf"], $matches)){
+				$_SESSION['$additionOf'] = strtoupper(test_input($_POST["additionOf"]));
+			}else{
+				$_SESSION['$additionOfErr'] = "Invalid input.";
+			}
 		}
 		
 		if (empty($_POST["repairOf"])) {
 			$_SESSION['$repairOfErr'] = "*This field is required";
 	    } else {
-			$_SESSION['$repairOf'] = strtoupper(test_input($_POST["repairOf"]));
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["repairOf"], $matches)){
+				$_SESSION['$repairOf'] = strtoupper(test_input($_POST["repairOf"]));
+			}else{
+				$_SESSION['$repairOfErr'] = "Invalid input.";
+			}
 		}
 		
 		if (empty($_POST["demolitionOf"])) {
 			$_SESSION['$demolitionOfErr'] = "*This field is required";
 	    } else {
-			$_SESSION['$demolitionOf'] = strtoupper(test_input($_POST["demolitionOf"]));
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["demolitionOf"], $matches)){
+				$_SESSION['$demolitionOf'] = strtoupper(test_input($_POST["demolitionOf"]));
+			}else{
+				$_SESSION['$demolitionOfErr'] = "Invalid input.";
+			}
 		}
 		
 		if (empty($_POST["renovationOf"])) {
 			$_SESSION['$renovationOfErr'] = "*This field is required";
 	    } else {
-			$_SESSION['$renovationOf'] = strtoupper(test_input($_POST["renovationOf"]));
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["renovationOf"], $matches)){
+				$_SESSION['$renovationOf'] = strtoupper(test_input($_POST["renovationOf"]));
+			}else{
+				$_SESSION['$renovationOfErr'] = "Invalid input.";
+			}
 		}
 		
 		if (empty($_POST["others1"]) || empty($_POST["others2"])) {
 			$_SESSION['$others1and2Err'] = "*These fields are required";
 	    } else {
-			$_SESSION['$others1'] = strtoupper(test_input($_POST["others1"]));
-			$_SESSION['$others2'] = strtoupper(test_input($_POST["others2"]));
-			$_SESSION['$others1and2'] = $_SESSION['$others1']." of ".$_SESSION['$others2'];
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["others1"], $matches)||preg_match('/^[a-z]+[\s]*\z/i',$_POST["others2"], $matches)){
+				$_SESSION['$others1'] = strtoupper(test_input($_POST["others1"]));
+				$_SESSION['$others2'] = strtoupper(test_input($_POST["others2"]));
+				$_SESSION['$others1and2'] = $_SESSION['$others1']." of ".$_SESSION['$others2'];
+			}else{
+				$_SESSION['$others1and2Err'] = "Invalid input.";
+			}
 		}
 		
 		if (empty($_POST["others3"]) || empty($_POST["others4"])) {
 			$_SESSION['$others3and4Err'] = "*These fields are required";
 	    } else {
-			$_SESSION['$others3'] = strtoupper(test_input($_POST["others3"]));
-			$_SESSION['$others4'] = strtoupper(test_input($_POST["others4"]));
-			$_SESSION['$others3and4'] = $_SESSION['$others3']." of ".$_SESSION['$others4'];
+			if(preg_match('/^[a-z]+[\s]*\z/i',$_POST["others3"], $matches)||preg_match('/^[a-z]+[\s]*\z/i',$_POST["others4"], $matches)){
+				$_SESSION['$others3'] = strtoupper(test_input($_POST["others3"]));
+				$_SESSION['$others4'] = strtoupper(test_input($_POST["others4"]));
+				$_SESSION['$others3and4'] = $_SESSION['$others3']." of ".$_SESSION['$others4'];
+			}else{
+				$_SESSION['$others3and4Err'] = "Invalid input";
+			}
 		}
 		
-		if (empty($_POST["numberOfUnits"])) {
-			$_SESSION['$numberOfUnitsErr'] = "*Number of units is required";
-	    } else {
-			$_SESSION['$numberOfUnits'] = test_input($_POST["numberOfUnits"]);
+		if($_POST["numberOfUnits"] == "0"){
+			$_SESSION['$numberOfUnits'] = "0.00";
+		}else{
+			if (empty($_POST["numberOfUnits"])) {
+				$_SESSION['$numberOfUnitsErr'] = "*Number of units is required";
+			} else {
+				$_SESSION['$numberOfUnits'] = test_input($_POST["numberOfUnits"]);
+			}
 		}
 		
-		if (empty($_POST["parent_typeOfOccupancy"])) {
-			$_SESSION['$parent_typeOfOccupancyErr'] = "*Please select type of occupancy";
-	    } else {
+		$child_typeOfOccupancy = $_POST["parent_typeOfOccupancy"];
+		if (($_POST["parent_typeOfOccupancy"] == "others" && empty($_POST["others"]))) {
+			$_SESSION['$others_typeOfOccupancyErr'] = "*Please don't leave any fields blank.";
 			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
-		}
-		
-		if (($_POST["parent_typeOfOccupancy"])&&empty($_POST["select_typeOfOccupancy"])) {
-			$_SESSION['$specific1Err'] = "*Please specify";
-	    } else {
-			$_SESSION['$specific1'] = test_input($_POST["select_typeOfOccupancy"]);
+			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST["others"]);
+			$_SESSION['$others'] = test_input($_POST["others"]);			
+	    }else if(($_POST["parent_typeOfOccupancy"] == "others" && !empty($_POST["others"]))){
+			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
+			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST["others"]);
+			$_SESSION['$others'] = test_input($_POST["others"]);	
+		}else if ($_POST[$child_typeOfOccupancy] == "others" && empty($_POST["typeOfOccupancy_others"])) {
+			$_SESSION['$others_typeOfOccupancyErr2'] = "*Please don't leave any fields blank part 2.";
+			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
+			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
+			$_SESSION['$typeOfOccupancy_others'] = test_input($_POST["typeOfOccupancy_others"]);
+		}else if($_POST[$child_typeOfOccupancy] == "others" && !empty($_POST["typeOfOccupancy_others"])){
+			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);	
+			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
+			$_SESSION['$typeOfOccupancy_others'] = test_input($_POST["typeOfOccupancy_others"]);
+		} else{
+			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);	
+			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
 		}
 		
 //		if ((($_POST["parent_typeOfOccupancy"])&&($_POST["specific1"]))&&empty($_POST["specific2"])) {
@@ -161,69 +205,113 @@
 	    if (empty($_POST["Address"])) {
 			$_SESSION['$AddressErr'] = "*Address is required";
 	    } else {
-			$_SESSION['$Address'] = strtoupper(test_input($_POST["Address"]));
+			if(preg_match('/[\^<\"@\/\{\}\(\)\*\$%\?\+_=>:\|;`~]/',$_POST["Address"],$matches)){
+				$_SESSION['$AddressErr'] = "Invalid input.";
+			}else{
+				$_SESSION['$Address'] = strtoupper(test_input($_POST["Address"]));
+			}
 		}
 		
-	    if (empty($_POST["tec1"])) {
-			$_SESSION['$tec1Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec1'] = test_input($_POST["tec1"]);
+		if($_POST["tec1"] == "0"){
+			$_SESSION['$tec1'] = "0.00";
+		}else{
+			if (empty($_POST["tec1"])) {
+				$_SESSION['$tec1Err'] = "*Cost is required";
+			} else {
+				$_SESSION['$tec1'] = test_input($_POST["tec1"]);
+			}
 		}
 		
-	    if (empty($_POST["tec2"])) {
-			$_SESSION['$tec2Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec2'] = test_input($_POST["tec2"]);
+		if($_POST["tec2"] == "0"){
+			$_SESSION['$tec2'] = "0.00";
+		}else{
+			if (empty($_POST["tec2"])) {
+				$_SESSION['$tec2Err'] = "*Cost is required";
+			} else {
+				$_SESSION['$tec2'] = test_input($_POST["tec2"]);
+			}
 		}
 		
-	    if (empty($_POST["tec3"])) {
-			$_SESSION['$tec3Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec3'] = test_input($_POST["tec3"]);
+		if($_POST["tec3"] == "0"){
+			$_SESSION['$tec3'] = "0.00";
+		}else{
+			if (empty($_POST["tec3"])) {
+				$_SESSION['$tec3Err'] = "*Cost is required";
+			} else {
+				$_SESSION['$tec3'] = test_input($_POST["tec3"]);
+			}
 		}
 		
-	    if (empty($_POST["tec4"])) {
-			$_SESSION['$tec4Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec4'] = test_input($_POST["tec4"]);
+		if($_POST["tec4"] == "0"){
+			$_SESSION['$tec4'] = "0.00";
+		}else{
+			if (empty($_POST["tec4"])) {
+				$_SESSION['$tec4Err'] = "*Cost is required";
+			} else {
+				$_SESSION['$tec4'] = test_input($_POST["tec4"]);
+			}
 		}
 		
-	    if (empty($_POST["tec5"])) {
-			$_SESSION['$tec5Err'] = "*Cost is required";
-	    } else {
-			$_SESSION['$tec5'] = test_input($_POST["tec5"]);
+	    if($_POST["tec5"] == "0"){
+			$_SESSION['$tec5'] = "0.00";
+		}else{
+			if (empty($_POST["tec5"])) {
+				$_SESSION['$tec5Err'] = "*Cost is required";
+			} else {
+				$_SESSION['$tec5'] = test_input($_POST["tec5"]);
+			}
 		}
 	
 		$_SESSION['$tec6'] = $_POST["tec1"]+ $_POST["tec2"]+$_POST["tec3"]+$_POST["tec4"]+$_POST["tec5"];
 		
-	    if (empty($_POST["cei1"])) {
-			$_SESSION['$cei1Err'] = "*This field is required";
-	    } else {
-			$_SESSION['$cei1'] = test_input($_POST["cei1"]);
+		if($_POST["cei1"] == "0"){
+			$_SESSION['$cei1'] = "0.00";
+		}else{
+			if (empty($_POST["cei1"])) {
+				$_SESSION['$cei1Err'] = "*This field is required";
+			} else {
+				$_SESSION['$cei1'] = test_input($_POST["cei1"]);
+			}
 		}
 		
-		if (empty($_POST["cei2"])) {
-			$_SESSION['$cei2Err'] = "*This field is required";
-	    } else {
-			$_SESSION['$cei2'] = test_input($_POST["cei2"]);
+		if($_POST["cei2"] == "0"){
+			$_SESSION['$cei2'] = "0.00";
+		}else{
+			if (empty($_POST["cei2"])) {
+				$_SESSION['$cei2Err'] = "*This field is required";
+			} else {
+				$_SESSION['$cei2'] = test_input($_POST["cei2"]);
+			}
 		}
 		
-		if (empty($_POST["cei3"])) {
-			$_SESSION['$cei3Err'] = "*This field is required";
-	    } else {
-			$_SESSION['$cei3'] = test_input($_POST["cei3"]);
+		if($_POST["cei3"] == "0"){
+			$_SESSION['$cei3'] = "0.00";
+		}else{
+			if (empty($_POST["cei3"])) {
+				$_SESSION['$cei3Err'] = "*This field is required";
+			} else {
+				$_SESSION['$cei3'] = test_input($_POST["cei3"]);
+			}
 		}
 		
-		if (empty($_POST["storey"])) {
-			$_SESSION['$storeyErr'] = "*Number of Storeys is required";
-	    } else {
-			$_SESSION['$storey'] = test_input($_POST["storey"]);
-		}	
+		if($_POST["storey"] == "0"){
+			$_SESSION['$storey'] = "0.00";
+		}else{
+			if (empty($_POST["storey"])) {
+				$_SESSION['$storeyErr'] = "*Number of Storeys is required";
+			} else {
+				$_SESSION['$storey'] = test_input($_POST["storey"]);
+			}	
+		}
 		
-	    if (empty($_POST["floorArea"])) {
-			$_SESSION['$floorAreaErr'] = "*Floor Area is required";
-	    } else {
-			$_SESSION['$floorArea'] = test_input($_POST["floorArea"]);
+		if($_POST["floorArea"] == "0"){
+			$_SESSION['$floorArea'] = "0.00";
+		}else{
+			if (empty($_POST["floorArea"])) {
+				$_SESSION['$floorAreaErr'] = "*Floor Area is required";
+			} else {
+				$_SESSION['$floorArea'] = test_input($_POST["floorArea"]);
+			}
 		}
 
 	    if (empty($_POST["constructionDate"])) {
@@ -280,7 +368,11 @@
 	    if (empty($_POST["Saddress"])) {
 			$_SESSION['$SaddressErr'] = "*Address is required";
 	    } else {
-			$_SESSION['$Saddress'] = strtoupper(test_input($_POST["Saddress"]));
+			if(preg_match('/[\^<\"@\/\{\}\(\)\*\$%\?\+_=>:\|;`~]/',$_POST["Saddress"],$matches)){
+				$_SESSION['$SaddressErr'] = "Invalid value.";
+			}else{
+				$_SESSION['$Saddress'] = strtoupper(test_input($_POST["Saddress"]));
+			}
 		}
 		
 	    if (empty($_POST["CPRC"])) {
@@ -325,7 +417,11 @@
 	    if (empty($_POST["Ccaddress"])) {
 			$_SESSION['$CcaddressErr'] = "*Address is required";
 	    } else {
-			$_SESSION['$Ccaddress'] = strtoupper(test_input($_POST["Ccaddress"]));
+			if(preg_match('/[\^<\"@\/\{\}\(\)\*\$%\?\+_=>:\|;`~]/',$_POST["Ccaddress"],$matches)){
+				$_SESSION['$CcaddressErr'] = "Invalid input.";
+			}else{
+				$_SESSION['$Ccaddress'] = strtoupper(test_input($_POST["Ccaddress"]));
+			}
 		}
 		
 	    if (empty($_POST["ptrNo"])) {
@@ -467,17 +563,16 @@
 			isset($_SESSION['$contactNumberErr'])||
 			isset($_SESSION['$contactNumberErr2'])||
 			isset($_SESSION['$kindOfBusinessErr'])||
-			isset($_SESSION['newConstructionErr'])||
-			isset($_SESSION['additionOfErr'])||
-			isset($_SESSION['repairOfErr'])||
-			isset($_SESSION['renovationOfErr'])||
-			isset($_SESSION['demolitionOfErr'])||
-			isset($_SESSION['others1and2Err'])||
-			isset($_SESSION['others3and4Err'])||
-			isset($_SESSION['numberOfUnits'])||
-			isset($_SESSION['parent_typeOfOccupancyErr'])||
-			isset($_SESSION['specific1Err'])||
-			isset($_SESSION['specific2Err'])||
+			isset($_SESSION['$newConstructionErr'])||
+			isset($_SESSION['$additionOfErr'])||
+			isset($_SESSION['$repairOfErr'])||
+			isset($_SESSION['$renovationOfErr'])||
+			isset($_SESSION['$demolitionOfErr'])||
+			isset($_SESSION['$others1and2Err'])||
+			isset($_SESSION['$others3and4Err'])||
+			isset($_SESSION['$numberOfUnitsErr'])||
+			isset($_SESSION['$others_typeOfOccupancyErr'])||
+			isset($_SESSION['$others_typeOfOccupancyErr2'])||
 			isset($_SESSION['$AddressErr'])||
 			isset($_SESSION['$locationErr'])||
 			isset($_SESSION['$tec1Err'])||
@@ -485,13 +580,13 @@
 			isset($_SESSION['$tec3Err'])||
 			isset($_SESSION['$tec4Err'])||
 			isset($_SESSION['$tec5Err'])||
-			isset($_SESSION['cei1Err'])||
-			isset($_SESSION['cei2Err'])||
-			isset($_SESSION['cei3Err'])||
+			isset($_SESSION['$cei1Err'])||
+			isset($_SESSION['$cei2Err'])||
+			isset($_SESSION['$cei3Err'])||
 			isset($_SESSION['$storeyErr'])||
 			isset($_SESSION['$floorAreaErr'])||
 			isset($_SESSION['$constructionDateErr'])||
-			isset($_SESSION['o4Err'])||
+			isset($_SESSION['$o4Err'])||
 			isset($_SESSION['$SPRCErr'])||
 			isset($_SESSION['$SlastNameErr'])||
 			isset($_SESSION['$SlastNameErr2'])||
@@ -527,7 +622,7 @@
 			isset($_SESSION['$pwErr2'])||
 			isset($_SESSION['$cpwErr'])){
 		
-			header("Location: bpForm.php");
+			header("Location: /CBAO/Client/registration/bpForm.php");
 		}else{
 			$db  =mysqli_select_db($conn,'baguio_cbao');
 
@@ -537,7 +632,7 @@
 			$sql1    = "INSERT INTO applicant (last_name,first_name,middle_initial,address,contact_number, tin, form_ownership, main_economic_activity, email, password) VALUES ('{$_SESSION['$lName']}','{$_SESSION['$fName']}','{$_SESSION['$mName']}','{$_SESSION['$Address']}','{$_SESSION['$contactNumber']}','{$_SESSION['$TaxAccNo']}','{$_SESSION['$formOfOwnership']}','{$_SESSION['$kindOfBusiness']}','{$_SESSION['$email']}','{$_SESSION['$pw']}')";
 			$sql2	 = "INSERT INTO ctc (ctc_no, date_issued, place_issued) VALUES ('{$_SESSION['$ctc']}', '{$_SESSION['$ctcDate']}','{$_SESSION['$ctcPlace']}')";
 			$sql3	 = "INSERT INTO scope_of_work(new_construction, addition, repair, renovation, demolition, others1, others2, no_of_units) VALUES ('{$_SESSION['$newConstruction']}','{$_SESSION['$additionOf']}','{$_SESSION['$repairOf']}','{$_SESSION['$renovationOf']}','{$_SESSION['$demolitionOf']}','{$_SESSION['$others1and2']}','{$_SESSION['$others3and4']}','{$_SESSION['$numberOfUnits']}')";
-			$sql4	 = "INSERT INTO type_of_occupancy(general_type, specific_type) VALUES ('{$_SESSION['$parent_typeOfOccupancy']}','{$_SESSION['$specific1']}')";
+			$sql4	 = "INSERT INTO type_of_occupancy(general_type, specific_type, others) VALUES ('{$_SESSION['$parent_typeOfOccupancy']}','{$_SESSION['$child_typeOfOccupancy']}','{$_SESSION['$typeOfOccupancy_others']}')";
 			$sql5	 = "INSERT INTO costs(building, electrical, mechanical, plumbing, others, total_cost) VALUES ('{$_SESSION['$tec1']}','{$_SESSION['$tec2']}','{$_SESSION['$tec3']}','{$_SESSION['$tec4']}','{$_SESSION['$tec5']}','{$_SESSION['$tec6']}')";
 			$sql6	 = "INSERT INTO equipment(first_cost, second_cost, third_cost) VALUES ('{$_SESSION['$cei1']}','{$_SESSION['$cei2']}','{$_SESSION['$cei3']}')";
 			$sql7 	 = "INSERT INTO storey(no_of_storeys, total_floor_area, proposed_date_of_construction, material_of_construction) VALUES ('{$_SESSION['$storey']}','{$_SESSION['$floorArea']}','{$_SESSION['$constructionDate']}','{$_SESSION['$o4']}')";
@@ -599,10 +694,12 @@
 			}
 			if(!mysqli_query($conn, $sql11)){
 				echo "sql11:".mysqli_error($conn)."<br>";
+			}else{
+				$bpform_id = mysqli_insert_id($conn);
 			}
 			
 			$sql12 = "UPDATE applicant SET ctc_id=$ctc_id WHERE applicant_id=$applicant_id";			
-			$sql13 = "INSERT INTO bpform(applicant_id, scope_of_work_id, type_of_occupancy_id, costs_id, equipment_id, storey_id, engr_plans_id, engr_oic_id, lot_owner_id) VALUES ('$applicant_id','$scope_of_work_id', '$type_of_occupancy_id', '$costs_id', '$equipment_id', '$storey_id', '$engr_plans_id', '$engr_oic_id', '$lot_owner_id')";
+			$sql13 = "UPDATE bpform SET applicant_id=$applicant_id, scope_of_work_id=$scope_of_work_id, type_of_occupancy_id=$type_of_occupancy_id, costs_id=$costs_id, equipment_id=$equipment_id, storey_id=$storey_id, engr_plans_id=$engr_plans_id, engr_oic_id=$engr_oic_id, lot_owner_id=$lot_owner_id WHERE bpform_id=$bpform_id";
 			
 			if(!mysqli_query($conn, $sql12)){
 				echo "sql12:".mysqli_error($conn)."<br>";
@@ -610,7 +707,30 @@
 			if(!mysqli_query($conn, $sql13)){
 				echo "sql13:".mysqli_error($conn)."<br>";
 			}
-			header("Location: printForm.php");
+			
+			$sql14 = "INSERT INTO assessed_costs(bpform_id) VALUES ('$bpform_id')";
+			$sql15 = "INSERT INTO routing_slip(bpform_id) VALUES ('$bpform_id')";
+			$sql16 = "INSERT INTO checklist (bpform_id) VALUES ('$bpform_id')";
+			
+			if(!mysqli_query($conn, $sql14)){
+				echo "sql14:".mysqli_error($conn)."<br>";
+			}
+			if(!mysqli_query($conn, $sql15)){
+				echo "sql15:".mysqli_error($conn)."<br>";
+			}
+			if(!mysqli_query($conn, $sql16)){
+				echo "sql16:".mysqli_error($conn)."<br>";
+			}else{
+				$checklist_id = mysqli_insert_id($conn);
+			}
+			
+			$sql17 = "INSERT INTO documents (checklist_id) VALUES ('$checklist_id')";
+			
+			if(!mysqli_query($conn, $sql17)){
+				echo "sql15:".mysqli_error($conn)."<br>";
+			}
+			
+			header("Location: /CBAO/Client/registration/printForm.php");
 		}
 $conn->close();
 	?>
