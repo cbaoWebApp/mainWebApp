@@ -166,36 +166,34 @@
 			}
 		}
 		
-		$child_typeOfOccupancy = $_POST["parent_typeOfOccupancy"];
-		if (($_POST["parent_typeOfOccupancy"] == "others" && empty($_POST["others"]))) {
-			$_SESSION['$others_typeOfOccupancyErr'] = "*Please don't leave any fields blank.";
-			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
-			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST["others"]);
-			$_SESSION['$others'] = test_input($_POST["others"]);			
-	    }else if(($_POST["parent_typeOfOccupancy"] == "others" && !empty($_POST["others"]))){
-			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
-			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST["others"]);
-			$_SESSION['$others'] = test_input($_POST["others"]);	
-		}else if ($_POST[$child_typeOfOccupancy] == "others" && empty($_POST["typeOfOccupancy_others"])) {
-			$_SESSION['$others_typeOfOccupancyErr2'] = "*Please don't leave any fields blank part 2.";
-			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
-			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
-			$_SESSION['$typeOfOccupancy_others'] = test_input($_POST["typeOfOccupancy_others"]);
-		}else if($_POST[$child_typeOfOccupancy] == "others" && !empty($_POST["typeOfOccupancy_others"])){
-			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);	
-			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
-			$_SESSION['$typeOfOccupancy_others'] = test_input($_POST["typeOfOccupancy_others"]);
-		} else{
-			$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);	
-			$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
+		if(!empty($_POST["parent_typeOfOccupancy"])){
+			$child_typeOfOccupancy = $_POST["parent_typeOfOccupancy"];
+			if (($_POST["parent_typeOfOccupancy"] == "others" && empty($_POST["others"]))) {
+				$_SESSION['$others_typeOfOccupancyErr'] = "*Please don't leave any fields blank.";
+				$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
+				$_SESSION['$child_typeOfOccupancy'] = test_input($_POST["others"]);
+				$_SESSION['$others'] = test_input($_POST["others"]);			
+			}else if(($_POST["parent_typeOfOccupancy"] == "others" && !empty($_POST["others"]))){
+				$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
+				$_SESSION['$child_typeOfOccupancy'] = test_input($_POST["others"]);
+				$_SESSION['$others'] = test_input($_POST["others"]);	
+			}else if ($_POST[$child_typeOfOccupancy] == "others" && empty($_POST["typeOfOccupancy_others"])) {
+				$_SESSION['$others_typeOfOccupancyErr2'] = "*Please don't leave any fields blank part 2.";
+				$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);
+				$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
+				$_SESSION['$typeOfOccupancy_others'] = test_input($_POST["typeOfOccupancy_others"]);
+			}else if($_POST[$child_typeOfOccupancy] == "others" && !empty($_POST["typeOfOccupancy_others"])){
+				$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);	
+				$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
+				$_SESSION['$typeOfOccupancy_others'] = test_input($_POST["typeOfOccupancy_others"]);
+			} else{
+				$_SESSION['$parent_typeOfOccupancy'] = test_input($_POST["parent_typeOfOccupancy"]);	
+				$_SESSION['$child_typeOfOccupancy'] = test_input($_POST[$child_typeOfOccupancy]);
+			}
+		}else{
+			$_SESSION['$typeOfOccupancyErr'] = "This field is required.";
 		}
-		
-//		if ((($_POST["parent_typeOfOccupancy"])&&($_POST["specific1"]))&&empty($_POST["specific2"])) {
-//			$_SESSION['$specific2Err'] = "*Please specify";
-//	    } else {
-//			$_SESSION['$specific2'] = test_input($_POST["specific2"]);
-//		}
-		
+
 	    if (empty($_POST["kindOfBusiness"])) {
 			$_SESSION['$kindOfBusinessErr'] = "*Kind of Business is required";
 	    } else {
@@ -571,6 +569,7 @@
 			isset($_SESSION['$others1and2Err'])||
 			isset($_SESSION['$others3and4Err'])||
 			isset($_SESSION['$numberOfUnitsErr'])||
+			isset($_SESSION['$typeOfOccupancyErr'])||
 			isset($_SESSION['$others_typeOfOccupancyErr'])||
 			isset($_SESSION['$others_typeOfOccupancyErr2'])||
 			isset($_SESSION['$AddressErr'])||
