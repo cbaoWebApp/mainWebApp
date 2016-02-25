@@ -260,7 +260,7 @@ if (isset($_SESSION['printForm'])) {
 							</div>
 							<div class="form-group">
 									<span class="col-xs-4"></span>
-                                    <div class="col-xs-8"><span class="error-msg"><?php if(!empty($_SESSION['$others_typeOfOccupancyErr'])){echo $_SESSION['$others_typeOfOccupancyErr'];}?><?php if(!empty($_SESSION['$others_typeOfOccupancyErr2'])){echo $_SESSION['$others_typeOfOccupancyErr2'];}?></span>
+                                    <div class="col-xs-8"><span class="error-msg"><?php if(!empty($_SESSION['$typeOfOccupancyErr'])){echo $_SESSION['$typeOfOccupancyErr']; unset($_SESSION['$typeOfOccupancyErr']);}?><?php if(!empty($_SESSION['$others_typeOfOccupancyErr'])){echo $_SESSION['$others_typeOfOccupancyErr']; unset($_SESSION['$others_typeOfOccupancyErr']);}?><?php if(!empty($_SESSION['$others_typeOfOccupancyErr2'])){echo $_SESSION['$others_typeOfOccupancyErr2'];unset($_SESSION['$others_typeOfOccupancyErr2']);}?></span>
                                         <select id="parent_typeOfOccupancy"  name="parent_typeOfOccupancy">
 											<option option selected disabled>SELECT TYPE OF OCCUPANCY</option>
                                             <option value="residential" <?php if(isset($_SESSION['$parent_typeOfOccupancy']) && $_SESSION['$parent_typeOfOccupancy'] == 'residential'){echo ' selected="selected"';}?>>RESIDENTIAL</option>
