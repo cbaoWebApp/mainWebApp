@@ -1,14 +1,16 @@
 <div class="header">
     <div class = "row">
         <div class = "col-md-4">
-            <p><img class = "img-responsive" src="../img/seal.png" alt=""></p>
+            <p><img class = "img-responsive" src="../img/seal.png" alt="Baguio City Hall Logo"></p>
         </div>
         <div class = "col-md-4">
             <p>City Government of Baguio</p>
             <p id = "cbao">CBAO</p>
         </div>
         <div class = "col-md-4">
-            <p id = "logOut"><a href = "../index.php">Log Out</a></p>
+            <form id="logout_form" action="../client_validation/logout.php">
+                <input type="submit" id="logOut" value="Log Out"/>
+            </form>            
         </div>
     </div>
 </div>

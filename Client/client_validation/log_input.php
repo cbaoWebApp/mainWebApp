@@ -21,10 +21,11 @@ if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
     if (isset($sanitized_email) &&
             isset($sanitized_pw)) {
 
-        $query = "SELECT email, password
-				 FROM $database.$applicant
-				 WHERE email = \"$sanitized_email\" AND
-				 password = \"$sanitized_pw\"";
+        $query = "SELECT applicant_id, status
+		FROM $database.$applicant INNER JOIN
+                $database.$bpform USING (applicant_id)
+		WHERE email = \"$sanitized_email\" AND
+		password = \"$sanitized_pw\"";
 
         $result = $conn->query($query);
 
@@ -33,23 +34,29 @@ if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
         }
 
         $size = $result->num_rows;
+        $app = $result->fetch_row();
 
-        if ($size == 1) {
-            echo "Successful log in!";
-            //allow client to track his own records
-        } else {
-            $_SESSION['login_error_msg'] = "Incorrect Credentials";
-            switch($page_loc){
-                case 'index':
-                    header("Location: ../web/index.php");
-                    break;
-                case 'home_req':
-                    header("Location: ../read_req/homerequirements.php");
-                    break;
-                default:
-					//place default error page
-                    break;
+        if ($app[1] === "true") {
+            if ($size == 1) {
+                $_SESSION['app_id'] = $app[0];
+                header("Location: ../track/trackAppHome.php");
+            } else {
+                $_SESSION['login_error_msg'] = "Incorrect Credentials";
+                switch ($page_loc) {
+                    case 'index':
+                        header("Location: ../web/index.php");
+                        break;
+                    case 'home_req':
+                        header("Location: ../read_req/homerequirements.php");
+                        break;
+                    default:
+                        //place default error page
+                        break;
+                }
             }
+        } else {
+            $_SESSION['login_error_msg'] = "Cancelled Application";
+            header("Location: ../web/index.php");
         }
     }
 

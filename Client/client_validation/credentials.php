@@ -13,6 +13,12 @@ global $database;
 
 //tables within the database are represented
 $applicant = "applicant";
+$bpform = "bpform";
+$routing_slip = "routing_slip";
+$comments = "comments";
+$personnel = "personnel";
+$documents = "documents";
+$checklist = "checklist";
 
 //common functions 
 function open_db_conn() {
@@ -30,14 +36,13 @@ function close_db_conn($conn) {
     $conn->close();
 }
 
-//not a pretty way of showing the error message
 function show_error_msg($err) {
     echo "
 			<p>We're sorry for the inconvenience.
 			The error found was:</p>
 			<p>$err</p>
 			<p>Please press the back button or click
-			<a href=\"\">here</a> to get back to the 
+			<a href=\"../web/index.php\">here</a> to get back to the 
 			home page. Thank you.
 			</p>
 		";

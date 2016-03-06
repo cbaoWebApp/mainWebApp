@@ -1,40 +1,3 @@
-<?php
-    require_once '../client_validation/requirements_data.php';
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <?php include_once '../common/head.php'; ?>
-
-        <link rel="stylesheet" href="../css/appReq.css">
-        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
-
-        <script src="../jquery/jquery-1.10.2.min.js"></script>
-    </head>
-    <body>	
-
-        <?php include_once '../common/track_header.php'; ?>
-
-        <div class="content">
-            <div class="main">
-                <h1 id = "heading">Application Requirements</h1>	
-            </div>
-        </div>
-        <div class="container">	
-            <div class = "col-md-3">
-                <div id="sidebar">
-                    <div id="nav-anchor"></div>
-                    <nav>
-                        <ul>
-                            <li><a href="trackAppHome.php"><div>Track Application</div></a></li>
-                            <li><a href="appReq.php"><div>Application Requirements</div></a></li>
-                            <li><a href="appRecord.php"><div>View Application Record</div></a></li>
-                            <li><input type="button" id="cancel" value="Cancel Application"/></li>
-                        </ul>
-                    </nav>
-                </div>
-
-            </div>
             <div class = "col-md-9">
                 <div class = "scroll">
                     <div>                        
@@ -179,11 +142,5 @@
 
                     </div>
                 </div>
-            </div>										
-        </div>	
-
-        <?php include_once '../common/footer.php'; ?>
-    </body>
-
-</html>
+            </div>
 

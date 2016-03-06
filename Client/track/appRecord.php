@@ -1,15 +1,18 @@
+<?php
+require_once '../client_validation/select_controller.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../../Client/common/head.php'; ?>
+        <?php include_once '../common/head.php'; ?>
 
-        <link rel="stylesheet" href="css/appRecord.css">
-        <link rel="stylesheet" href="btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="../css/appRecord.css">
+        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
     </head>
     <body>
-        
-        <?php include '../../Client/common/track_header.php'; ?>
-        
+
+        <?php include_once '../common/track_header.php'; ?>
+
         <div class="content">
             <div class="main">
                 <h1 id = "heading">Application Record</h1>	
@@ -21,10 +24,10 @@
                     <div id="nav-anchor"></div>
                     <nav>
                         <ul>
-                            <li><a href="trackAppHome.html"><div>Track Application</div></a></li>
-                            <li><a href="appReq.html"><div>Application Requirements</div></a></li>
-                            <li><a href="appRecord.html"><div>View Application Record</div></a></li>
-                            <li><a href="../index.html"><div>Cancel Application</div></a></li>
+                            <li><a href="trackAppHome.php"><div>Track Application</div></a></li>
+                            <li><a href="appReq.php"><div>Application Requirements</div></a></li>
+                            <li><a href="appRecord.php"><div>View Application Record</div></a></li>
+                            <li><input type="button" id="cancel" value="Cancel Application"/></li>
                         </ul>
                     </nav>
                 </div>
@@ -33,87 +36,69 @@
                 <div class = "scroll">
 
                     <div class = "sections">
-                        <h4>Architectural Section</h4>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="assessedTD" class="control-label col-xs-3">Time and Date Assessed:</label>
-                                <h5>Your application is currently being assessed</h5>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="control-label col-xs-3">Comments:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="appName" class="control-label col-xs-3">Fees:</label>
-                            </div>
-                        </form>
-                        <hr>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="assessedTD" class="control-label col-xs-3">Time and Date Assessed:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="control-label col-xs-3">Comments:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="appName" class="control-label col-xs-3">Fees:</label>
-                            </div>
-                        </form>
+                        <div id="lineandgrade">
+                            <h4>Line and Grade Section</h4>
+                            <form class="form-horizontal">
+                                <?php lg_create($lg_row_count, $lg_row_count_e, $lg_select)?>
+                            </form>
+                        </div>                      
 
-                        <h4>Structural Section</h4>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="assessedTD" class="control-label col-xs-3">Time and Date Assessed:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="control-label col-xs-3">Comments:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="appName" class="control-label col-xs-3">Fees:</label>
-                            </div>
-                        </form>
+                        <div id="architectural">
+                            <h4>Architectural Section</h4>
+                            <form class="form-horizontal">
+                                <?php a_create($a_row_count, $a_row_count_e, $a_select)?>
+                            </form>
+                        </div>
 
 
-                        <h4>Sanitary Section</h4>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="assessedTD" class="control-label col-xs-3">Time and Date Assessed:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="control-label col-xs-3">Comments:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="appName" class="control-label col-xs-3">Fees:</label>
-                            </div>
-                        </form>
+                        <div id="structural">
+                            <h4>Structural Section</h4>
+                            <form class="form-horizontal">
+                                <?php struc_create($struc_row_count, $struc_row_count_e, $struc_select)?>
+                            </form>
+                        </div>
 
+                        <div id="sanitary">
+                            <h4>Sanitary Section</h4>
+                            <form class="form-horizontal">
+                                <?php san_create($san_row_count, $san_row_count_e, $san_select)?>
+                            </form>
+                        </div>
 
-                        <h4>Electrical Section</h4>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="assessedTD" class="control-label col-xs-3">Time and Date Assessed:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="control-label col-xs-3">Comments:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="appName" class="control-label col-xs-3">Fees:</label>
-                            </div>
-                        </form>
+                        <div id="electrical">
+                            <h4>Electrical Section</h4>
+                            <form class="form-horizontal">
+                                <?php e_create($e_row_count, $e_row_count_e, $e_select)?>
+                            </form>
+                        </div>
 
+                        <div id="mechanical">
+                            <h4>Mechanical Section</h4>
+                            <form class="form-horizontal">
+                                <?php m_create($m_row_count, $m_row_count_e, $m_select)?>
+                            </form>
+                        </div>
 
+                        <div id="cpo">
+                            <h4>Chief Processing Officer (CPO)</h4>
+                            <form class="form-horizontal">
+                                <?php cpo_create($cpo_row_count, $cpo_row_count_e, $cpo_select)?>
+                            </form>
+                        </div>
 
-                        <h4>Mechanical Section</h4>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="assessedTD" class="control-label col-xs-3">Time and Date Assessed:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="control-label col-xs-3">Comments:</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="appName" class="control-label col-xs-3">Fees:</label>
-                            </div>
-                        </form>
+                        <div id="abo">
+                            <h4>Assistant Building Official</h4>
+                            <form class="form-horizontal">
+                                <?php cpo_create($abo_row_count, $abo_row_count_e, $abo_select)?>
+                            </form>
+                        </div>
+
+                        <div id="bo">
+                            <h4>Building Official (BO)</h4>
+                            <form class="form-horizontal">
+                                <?php cpo_create($bo_row_count, $bo_row_count_e, $bo_select)?>
+                            </form>
+                        </div>
 
 
                         <hr>
@@ -123,68 +108,8 @@
             </div>
         </div>
 
-        <?php include '../../Client/common/footer.php'; ?>
-        
-        <script>
-            $(document).ready(function () {
-                $(window).scroll(function () {
-                    var window_top = $(window).scrollTop() + 12; // the "12" should equal the margin-top value for nav.stick
-                    var div_top = $('#nav-anchor').offset().top;
-                    if (window_top > div_top) {
-                        $('nav').addClass('stick');
-                    } else {
-                        $('nav').removeClass('stick');
-                    }
-                });
+        <?php include_once '../common/footer.php'; ?>
 
-                /**
-                 * This part causes smooth scrolling using scrollto.js
-                 * We target all a tags inside the nav, and apply the scrollto.js to it.
-                 */
-                $("nav a").click(function (evn) {
-                    evn.preventDefault();
-                    $('html,body').scrollTo(this.hash, this.hash);
-                });
-
-                /**
-                 * This part handles the highlighting functionality.
-                 * We use the scroll functionality again, some array creation and 
-                 * manipulation, class adding and class removing, and conditional testing
-                 */
-                var aChildren = $("nav li").children(); // find the a children of the list items
-                var aArray = []; // create the empty aArray
-                for (var i = 0; i < aChildren.length; i++) {
-                    var aChild = aChildren[i];
-                    var ahref = $(aChild).attr('href');
-                    aArray.push(ahref);
-                } // this for loop fills the aArray with attribute href values
-
-                $(window).scroll(function () {
-                    var windowPos = $(window).scrollTop(); // get the offset of the window from the top of page
-                    var windowHeight = $(window).height(); // get the height of the window
-                    var docHeight = $(document).height();
-
-                    for (var i = 0; i < aArray.length; i++) {
-                        var theID = aArray[i];
-                        var divPos = $(theID).offset().top; // get the offset of the div from the top of page
-                        var divHeight = $(theID).height(); // get the height of the div in question
-                        if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
-                            $("a[href='" + theID + "']").addClass("nav-active");
-                        } else {
-                            $("a[href='" + theID + "']").removeClass("nav-active");
-                        }
-                    }
-
-                    if (windowPos + windowHeight == docHeight) {
-                        if (!$("nav li:last-child a").hasClass("nav-active")) {
-                            var navActiveCurrent = $(".nav-active").attr("href");
-                            $("a[href='" + navActiveCurrent + "']").removeClass("nav-active");
-                            $("nav li:last-child a").addClass("nav-active");
-                        }
-                    }
-                });
-            });
-        </script>
     </body>
 
 </html>

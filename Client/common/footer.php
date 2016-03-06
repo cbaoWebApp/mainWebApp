@@ -12,17 +12,13 @@
                     </ul>
                 </div>
             </div>
-            <!--/.row--> 
         </div>
-        <!--/.container--> 
     </div>
-    <!--/.footer-->
     
     <div class="footer-bottom">
         <div class="container">
             <p> Copyright © City Building and Architecture Office 2016. All right reserved. </p>
         </div>
     </div>
-    <!--/.footer-bottom--> 
 </footer>
 

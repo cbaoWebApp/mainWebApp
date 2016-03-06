@@ -4,13 +4,13 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../common/head.php'; ?>
+        <?php include_once '../common/head.php'; ?>
 
         <link rel="stylesheet" href="../css/styles.css"> 
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="../jquery/jquery-1.10.2.js"></script>
+        <script src="../jquery/jquery-ui.min.js"></script>
         <script src="../js/index.js"></script>
 
         <?php
@@ -35,7 +35,7 @@ session_start();
 
     </head>
     <body>
-        <?php include '../common/header.php'; ?>
+        <?php include_once '../common/header.php'; ?>
 
         <div class="container">
             <div class="content">
@@ -88,7 +88,7 @@ session_start();
             </form>
         </div>
 
-        <?php include '../common/footer.php'; ?>
+        <?php include_once '../common/footer.php'; ?>
 
     </body>
 </html>

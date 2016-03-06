@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include '../common/head.php'; ?>
+        <?php include_once '../common/head.php'; ?>
 
         <link rel="stylesheet" href="../css/homeReq.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
@@ -43,7 +43,7 @@ session_start();
     </head>
 
     <body>
-        <?php include '../common/header.php'; ?>
+        <?php include_once '../common/header.php'; ?>
 
         <div class = "container">
             <div class="content">
@@ -146,7 +146,7 @@ session_start();
             </form>
         </div>
         
-        <?php include '../common/footer.php'; ?>
+        <?php include_once '../common/footer.php'; ?>
     </body>
 </html>
 

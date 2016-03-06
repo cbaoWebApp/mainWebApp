@@ -62,16 +62,10 @@ if (isset($_SESSION['printForm'])) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CBAO Web Application</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" lang="en" content="CBAO Web Application">
-        <meta name="author" content="SLUSCIS">
-        <meta name="robots" content="index, follow">
+        <?php include_once '../common/head.php'; ?>
 
-        <link rel="stylesheet" href="css/bpForm.css">
-        <link rel="stylesheet" href="btstrp/css/bootstrap.css">
+        <link rel="stylesheet" href="../css/bpForm.css">
+        <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 		
 		<style>
 			.right-inner-addon {
@@ -89,7 +83,7 @@ if (isset($_SESSION['printForm'])) {
 		
     </head>
     <body>  
-        <?php include '../../Client/common/header.php'; ?>
+        <?php include_once '../common/header.php'; ?>
 		
         <div class="content">
             <div class="main">
@@ -115,7 +109,7 @@ if (isset($_SESSION['printForm'])) {
                 </div>
 
                 <div class = "buttons">
-                    <p><a href="../web/index.php" class="btn2" id ="cancel">Cancel Application</a></p>
+                    <p><a href="../web/index.php" class="btn2" id ="cancel">Cancel</a></p>
                 </div>
             </div>
 					
@@ -629,7 +623,7 @@ if (isset($_SESSION['printForm'])) {
 </div>
 </div>
 
-<?php include '../../Client/common/footer.php'; ?>
+<?php include_once '../common/footer.php'; ?>
 
 <script>
 $(function () {
@@ -643,9 +637,7 @@ $(function () {
 function validate(form) {
 	return confirm('All the information entered in the form can not be edited after submit. Do you really want to submit?');
 	}
-</script>
-
-<script>
+        
     $(document).ready(function () {
         $(window).scroll(function () {
             var window_top = $(window).scrollTop() + 12; // the "12" should equal the margin-top value for nav.stick
@@ -702,17 +694,9 @@ function validate(form) {
                     $("nav li:last-child a").addClass("nav-active");
                 }
             }
-        });
-		
-		/**
-		* Select option.
-		*/
-		
+        });		
     });
-</script>
 
-<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script>
 	$(document).ready(function () {
 		$("#parent_typeOfOccupancy").change(function() {
 			var parent = $("#parent_typeOfOccupancy").val(); //get option value from parent 
@@ -929,129 +913,6 @@ function validate(form) {
 			}
 		});
 	})(jQuery);
-</script>
-<script>
-/* $(document).ready(function () {
-var residential = [
-		{display:"SINGLE", value:"single"},
-		{display:"DUPLEX", value:"duplex"},
-		{display:"ROWHOUSE/ACCESSORIA", value:"rowhouse/accessoria"},
-		{display:"OTHERS", value:"others"}];
-		
-		var commercial = [
-		{display:"BANK", value:"bank"},
-		{display:"STORE", value:"store"},
-		{display:"HOTEL,MOTEL, ETC.", value:"hotel,motel, etc."},
-		{display:"OFFICE CONDOMINIUM/BUSINESS OFFICE BUILDING", value:"office condominium/business office building"},
-		{display:"RESTAURANT, ETC.", value:"restaurant, etc."},
-		{display:"SHOP (E.G. DRESS SHOP, TAILORING SHOP, BARBER SHOP, ETC.", value:"shop"},
-		{display:"GASOLINE STATION", value:"gasoline station"},
-		{display:"MARKET", value:"market"},
-		{display:"DORMITORY OR OTHER LODGING HOUSE", value:"dormitory or other lodging house"},
-		{display:"OTHERS", value:"others"}];
-				
-		var street = [
-		{display:"PARKS, PLAZAS, MONUMENTS, POOLS, PLANT BOXES, ETC.", value:"parks, plazas, monuments, pools, plant boxes, etc."},
-		{display:"SIDEWALKS, PROMENADES, TARRACES, LAMPPOSTS, ELECTRIC POLES, TELEPHONE POLES, ETC.", value:"duplex"},
-		{display:"OUTDOOR ADS, SIGNBOARDS, ETC.", value:"outdoor ads, signboards, etc."},
-		{display:"FENCE ENCLOSURE", value:"fence enclosure"}];
-
-		var industrial = [
-		{display:"FACTORY/PLANT", value:"factory/plant"},
-		{display:"REPAIR SHOP, MACHINE SHOP", value:"repair shop, machine shop"},
-		{display:"REFINERY", value:"refinery"},
-		{display:"PRINTING PRESS", value:"printing press"},
-		{display:"WAREHOUSE", value:"warehouse"},
-		{display:"OTHERS", value:"others"}];
-		
-		var institutional = [
-		{display:"SCHOOL", value:"school"},
-		{display:"CHURCH AND OTHER RELIGIOUS STRUCTURES", value:"church and other religious structures"},
-		{display:"HOSPITAL OR SIMILAR STRUCTURE", value:"hospital or similar structure"},
-		{display:"WELFARE AND CHARITABLE STRUCTURES", value:"welfare and charitable structures"},
-		{display:"THEATER, AUDITORIUM, GYMNASIUM, COURT", value:"theater, auditorium, gymnasium, court"},
-		{display:"OTHERS", value:"others"}];
-		
-		var agricultural = [
-		{display:"BARN(S) POULTRY HOUSE(S), ETC.", value:"barn(s) poultry house(s), etc."},
-		{display:"GRAIN MILL", value:"grain mill"},
-		{display:"OTHERS", value:"others"}];
-		
-		
-		//If parent option is changed
-		$("#parent_typeOfOccupancy").change(function() {
-				var parent = $("#parent_typeOfOccupancy").val(); //get option value from parent 
-				alert(parent);
-				
-				switch(parent){ //using switch compare selected option and populate child
-					case 'residential':
-						list(residential);
-						$("#other_typeOfOccupancy").html("");
-						break;
-					case 'commercial':
-						list(commercial);
-						$("#other_typeOfOccupancy").html("");
-						break;              
-					case 'street furniture, landscaping, signboards':
-						list(street);
-						$("#other_typeOfOccupancy").html("");
-						break;
-					
-					case 'industrial':
-						list(industrial);
-						$("#other_typeOfOccupancy").html("");
-						break;
-					
-					case 'institutional':
-						list(institutional);
-						$("#other_typeOfOccupancy").html("");
-						break;              
-					
-					case 'agricultural':
-						list(agricultural);
-						$("#other_typeOfOccupancy").html("");
-						break;
-						
-					case 'others':
-						createTextField();
-						$("#other_typeOfOccupancy").html("");
-						break;
-				   }
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#select_typeOfOccupancy", function(){
-			var child = $(this).val();
-			
-			switch(child){
-				case "others":
-					$("#other_typeOfOccupancy").append("<input type=\"text\" id=\"specific2\"/>");
-					break;
-					
-				default:
-					$("#other_typeOfOccupancy").html("");
-					break;
-			}
-		});
-
-		//function to populate child select box
-		function list(array_list)
-		{	
-			$("#child_typeOfOccupancy").html(""); //reset child options
-			$("#child_typeOfOccupancy").append("<select name=\"select_typeOfOccupancy\" id=\"select_typeOfOccupancy\">");
-			$("#select_typeOfOccupancy").append("<option disabled>SELECT SPECIFIC TYPE OF OCCUPANCY</option>");
-			$(array_list).each(function (i) { //populate child options
-				$("#select_typeOfOccupancy").append("<option value=\""+array_list[i].value+"\">"+array_list[i].display+"</option>");
-			});
-			$("#child_typeOfOccupancy").append("</select>");
-		}
-		
-		function createTextField(){
-			$("#child_typeOfOccupancy").html(""); 
-			$("#child_typeOfOccupancy").append("<input type=\"text\" id=\"specific1\">");
-		}
-		
-		})(jQuery);
-*/
 </script>
  
 </body>

@@ -194,6 +194,7 @@
 			$_SESSION['$typeOfOccupancyErr'] = "This field is required.";
 		}
 
+		
 	    if (empty($_POST["kindOfBusiness"])) {
 			$_SESSION['$kindOfBusinessErr'] = "*Kind of Business is required";
 	    } else {
@@ -569,7 +570,7 @@
 			isset($_SESSION['$others1and2Err'])||
 			isset($_SESSION['$others3and4Err'])||
 			isset($_SESSION['$numberOfUnitsErr'])||
-			isset($_SESSION['$typeOfOccupancyErr'])||
+                        isset($_SESSION['$typeOfOccupancyErr'])||
 			isset($_SESSION['$others_typeOfOccupancyErr'])||
 			isset($_SESSION['$others_typeOfOccupancyErr2'])||
 			isset($_SESSION['$AddressErr'])||
@@ -729,7 +730,7 @@
 				echo "sql15:".mysqli_error($conn)."<br>";
 			}
 			
-			header("Location: /CBAO/Client/registration/printForm.php");
+			header("Location: printForm.php");
 		}
 $conn->close();
 	?>
