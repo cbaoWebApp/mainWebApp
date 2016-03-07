@@ -104,6 +104,9 @@ Layout styles
 	color:red;
 }
 
+#residential, #commercial, #others, #street, #industrial, #institutional, #agricultural, #typeOfOccupancy_others{
+	display:none;
+}
 
 /* -----------------------
 Nav
