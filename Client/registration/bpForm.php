@@ -73,20 +73,10 @@ if (isset($_SESSION['printForm'])) {
         <link rel="stylesheet" href="../css/bpForm.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 		
-		<style>
-			.right-inner-addon {
-			position: relative;
-			}
-			.right-inner-addon input {
-			padding-right: 30px;    
-			}
-			.right-inner-addon span {
-			position: absolute;
-			right: 0px;
-			padding: 8px 10px;		
-			}
-		</style>
-		
+		<script src="../js/bpForm.js" type="text/javascript"></script>
+		<script src="../jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script src="../js/selectTypeOfOccupancy.js" type="text/javascript"></script>
+
     </head>
     <body>  
         <?php include '../../Client/common/header.php'; ?>
@@ -122,8 +112,9 @@ if (isset($_SESSION['printForm'])) {
             <div class = "col-md-9">
                 <div class = "scroll">
                         <h4>General Information</h4>
-						 <form class="form-horizontal" action="processBpForm.php" onsubmit="return validate(this);" method="post">
-                            <div class="form-group">
+						 <form class="form-horizontal" name="form" action="processBpForm.php" onsubmit="return validate(this);" method="post">
+                            <section id="box1">
+							<div class="form-group">
                                 <label for="lastName" class="control-label col-xs-4">* Last Name:</label>
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" id="lastName" name="lastName" value="<?php if(!empty($_SESSION['$lName'])){echo $_SESSION['$lName']; unset($_SESSION['$lName']);}?>" placeholder="Last Name"><span class="error-msg"><?php if(!empty($_SESSION['$lnameErr'])){echo $_SESSION['$lnameErr']; unset($_SESSION['$lnameErr']);}?><?php if(!empty($_SESSION['$lnameErr2'])){echo $_SESSION['$lnameErr2']; unset($_SESSION['$lnameErr2']);}?></span>  
@@ -189,8 +180,8 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control"  id="location" name="location" value="<?php if(!empty($_SESSION['$location'])){echo $_SESSION['$location']; unset($_SESSION['$location']);}?>" placeholder="Location of Construction"><span class="error-msg"><?php if(!empty($_SESSION['$locationErr'])){echo $_SESSION['$locationErr']; unset($_SESSION['$locationErr']);}?></span>
                                 </div>
                             </div>
-							<div class="form-group">
-								<label for="scope" class="control-label col-xs-4" >Scope of work</label>
+							<div class="form-group scope">
+								Scope of work
 							</div>
 							<div class="form-group">
 								<label for="newConstruction" class="control-label col-xs-4">* New construction:</label>
@@ -334,44 +325,53 @@ if (isset($_SESSION['printForm'])) {
 											</div>
 										</div>
 								</div>
+								</section>
 								
                             <!-- scope of work and use or type of occupancy code should go here-->
                      <!--   </form>-->
                     <hr>
                         <h4>Total Estimated Cost</h4>
+							<section id="box3A">
                             <label>* Building</label>
                             <div class="form-group">
                                 <label for="tec1" class="control-label col-xs-4">&#8369</label>
                                 <div class="col-xs-8">
-                                    <input type="number" class="form-control" step="1.00" min="0.00"  id="tec1" name="tec1"  value="<?php if(!empty($_SESSION['$tec1'])){echo $_SESSION['$tec1']; unset($_SESSION['$tec1']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec1Err'])){echo $_SESSION['$tec1Err']; unset($_SESSION['$tec1Err']);}?></span>
+                                    <input type="number" class="form-control" step="1.00" min="0.00"  id="tec1" name="tec1"  onChange="sumTEC()" value="<?php if(!empty($_SESSION['$tec1'])){echo $_SESSION['$tec1']; unset($_SESSION['$tec1']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec1Err'])){echo $_SESSION['$tec1Err']; unset($_SESSION['$tec1Err']);}?></span>
                                 </div>
                             </div>
                             <label>* Electrical</label>
                             <div class="form-group">
                                 <label for="tec2" class="control-label col-xs-4">&#8369</label>
                                 <div class="col-xs-8">
-                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec2" name="tec2" value="<?php if(!empty($_SESSION['$tec2'])){echo $_SESSION['$tec2']; unset($_SESSION['$tec2']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec2Err'])){echo $_SESSION['$tec2Err']; unset($_SESSION['$tec2Err']);}?></span>
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec2" name="tec2" onChange="sumTEC()" value="<?php if(!empty($_SESSION['$tec2'])){echo $_SESSION['$tec2']; unset($_SESSION['$tec2']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec2Err'])){echo $_SESSION['$tec2Err']; unset($_SESSION['$tec2Err']);}?></span>
                                 </div>
                             </div>
                             <label>* Mechanical</label>
                             <div class="form-group">
                                 <label for="tec3" class="control-label col-xs-4">&#8369</label>
                                 <div class="col-xs-8">
-                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec3" name="tec3" value="<?php if(!empty($_SESSION['$tec3'])){echo $_SESSION['$tec3']; unset($_SESSION['$tec3']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec3Err'])){echo $_SESSION['$tec3Err']; unset($_SESSION['$tec3Err']);}?></span>
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec3" name="tec3" onChange="sumTEC()" value="<?php if(!empty($_SESSION['$tec3'])){echo $_SESSION['$tec3']; unset($_SESSION['$tec3']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec3Err'])){echo $_SESSION['$tec3Err']; unset($_SESSION['$tec3Err']);}?></span>
                                 </div>
                             </div>
                             <label>* Plumbing</label>
                             <div class="form-group">
                                 <label for="tec4" class="control-label col-xs-4">&#8369</label>
                                 <div class="col-xs-8">
-                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec4"  name="tec4" value="<?php if(!empty($_SESSION['$tec4'])){echo $_SESSION['$tec4']; unset($_SESSION['$tec4']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec4Err'])){echo $_SESSION['$tec4Err']; unset($_SESSION['$tec4Err']);}?></span>
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec4"  name="tec4" onChange="sumTEC()" value="<?php if(!empty($_SESSION['$tec4'])){echo $_SESSION['$tec4']; unset($_SESSION['$tec4']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec4Err'])){echo $_SESSION['$tec4Err']; unset($_SESSION['$tec4Err']);}?></span>
                                 </div>
                             </div>
                             <label>* Others</label>
                             <div class="form-group">
                                 <label for="tec5" class="control-label col-xs-4">&#8369</label>
                                 <div class="col-xs-8">
-                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec5"  name="tec5" value="<?php if(!empty($_SESSION['$tec5'])){echo $_SESSION['$tec5']; unset($_SESSION['$tec5']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec5Err'])){echo $_SESSION['$tec5Err']; unset($_SESSION['$tec5Err']);}?></span>
+                                    <input type="number" class="form-control" step="1.00" min="0.00" id="tec5"  name="tec5" onChange="sumTEC()" value="<?php if(!empty($_SESSION['$tec5'])){echo $_SESSION['$tec5']; unset($_SESSION['$tec5']);}?>" placeholder="0.00"><span class="error-msg"><?php if(!empty($_SESSION['$tec5Err'])){echo $_SESSION['$tec5Err']; unset($_SESSION['$tec5Err']);}?></span>
+                                </div>
+                            </div>
+							<label>Total</label>
+                            <div class="form-group">
+                                <label for="totalTEC" class="control-label col-xs-4">&#8369</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" id="totalTEC"  name="totalTEC" readonly>
                                 </div>
                             </div>
 
@@ -381,21 +381,28 @@ if (isset($_SESSION['printForm'])) {
                                 <div class="form-group">
                                     <label for="cei1" class="control-label col-xs-4">&#8369</label>
                                     <div class="col-xs-8">
-                                        <input type="number" class="form-control" step="0.01" id="cei1"  name="cei1" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei1'])){echo $_SESSION['$cei1']; unset($_SESSION['$cei1']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei1Err'])){echo $_SESSION['$cei1Err']; unset($_SESSION['$cei1Err']);}?></span>
+                                        <input type="number" class="form-control" step="0.01" id="cei1"  name="cei1" placeholder="0.00" onChange="sumCEI()" value="<?php if(!empty($_SESSION['$cei1'])){echo $_SESSION['$cei1']; unset($_SESSION['$cei1']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei1Err'])){echo $_SESSION['$cei1Err']; unset($_SESSION['$cei1Err']);}?></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="cei1" class="control-label col-xs-4">&#8369</label>
                                     <div class="col-xs-8">
-                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei1" name="cei2" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei2'])){echo $_SESSION['$cei2']; unset($_SESSION['$cei2']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei2Err'])){echo $_SESSION['$cei2Err']; unset($_SESSION['$cei2Err']);}?></span>
+                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei2" name="cei2" placeholder="0.00" onChange="sumCEI()" value="<?php if(!empty($_SESSION['$cei2'])){echo $_SESSION['$cei2']; unset($_SESSION['$cei2']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei2Err'])){echo $_SESSION['$cei2Err']; unset($_SESSION['$cei2Err']);}?></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="cei1" class="control-label col-xs-4">&#8369</label>
                                     <div class="col-xs-8">
-                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei1" name="cei3" placeholder="0.00" value="<?php if(!empty($_SESSION['$cei3'])){echo $_SESSION['$cei3']; unset($_SESSION['$cei3']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei3Err'])){echo $_SESSION['$cei3Err']; unset($_SESSION['$cei3Err']);}?></span>
+                                        <input type="number" class="form-control" step="0.01" min="0.00" id="cei3" name="cei3" placeholder="0.00" onChange="sumCEI()" value="<?php if(!empty($_SESSION['$cei3'])){echo $_SESSION['$cei3']; unset($_SESSION['$cei3']);}?>"><span class="error-msg"><?php if(!empty($_SESSION['$cei3Err'])){echo $_SESSION['$cei3Err']; unset($_SESSION['$cei3Err']);}?></span>
                                     </div>
                                 </div>
+								<label>Total</label>
+								<div class="form-group">
+									<label for="totalCEI" class="control-label col-xs-4">&#8369</label>
+									<div class="col-xs-8">
+										<input type="number" class="form-control" id="totalCEI"  name="totalCEI" readonly>
+									</div>
+								</div>
                                 <div class="form-group">
                                     <label for="storey" class="control-label col-xs-4">* Number of Storeys:</label>
                                     <div class="col-xs-8">
@@ -426,11 +433,13 @@ if (isset($_SESSION['printForm'])) {
                                         </select>
                                     </div>
                                 </div>
+								</section>
 
                            <!--   </form>-->
                         <hr>
                         <h4>Architect/Civil Engineer</h4>
                         <h6>Signed and Sealed Plans and Specifications</h6>
+							<section id="box6">
                             <div class="form-group">
                                 <label for="SPRC" class="control-label col-xs-4">* PRC Reg. Number:</label>
                                 <div class="col-xs-8">
@@ -462,9 +471,11 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="Saddress" name="Saddress" value="<?php if(!empty($_SESSION['$Saddress'])){echo $_SESSION['$Saddress']; unset($_SESSION['$Saddress']);}?>"placeholder="Address"><span class="error-msg"><?php if(!empty($_SESSION['$SaddressErr'])){echo $_SESSION['$SaddressErr']; unset($_SESSION['$SaddressErr']);}?></span>
                                 </div>
                             </div>
+							</section>
                         <hr>
                         <h4>Architect/Civil Engineer</h4>
                         <h6>In-charge of Construction</h6>
+							<section id="box7">
                             <div class="form-group">
                                 <label for="CPRC" class="control-label col-xs-4">* PRC Reg. Number:</label>
                                 <div class="col-xs-8">
@@ -525,9 +536,11 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="tin" name="tin" value="<?php if(!empty($_SESSION['$tin'])){echo $_SESSION['$tin']; unset($_SESSION['$tin']);}?>"placeholder="Tin"><span class="error-msg"><?php if(!empty($_SESSION['$tinErr'])){echo $_SESSION['$tinErr']; unset($_SESSION['$tinErr']);}?><?php if(!empty($_SESSION['$tinErr2'])){echo $_SESSION['$tinErr2']; unset($_SESSION['$tinErr2']);}?></span>
                                 </div>
                             </div> 
+							</section>
                         <hr>
                         <h4>Community Tax Certificate</h4>
-                        <div class="form-group">
+                        <section id="box8">
+						<div class="form-group">
                                 <label for="tin" class="control-label col-xs-4">* Community Tax Certificate:</label>
                                 <div class="col-xs-8">
 										<input type="text" class="form-control" id="ctc" name="ctc" value="<?php if(!empty($_SESSION['$ctc'])){echo $_SESSION['$ctc']; unset($_SESSION['$ctc']);}?>"placeholder="Community Tax Certificate">
@@ -546,8 +559,10 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="ctcPlace" name="ctcPlace" value="<?php if(!empty($_SESSION['$ctcPlace'])){echo $_SESSION['$ctcPlace']; unset($_SESSION['$ctcPlace']);}?>"placeholder="Place Issued"><span class="error-msg"><?php if(!empty($_SESSION['$ctcPlaceErr'])){echo $_SESSION['$ctcPlaceErr']; unset($_SESSION['$ctcPlaceErr']);}?></span>
                                 </div>
                         </div>   
+						</section>
                         <hr>
                         <h4>To be Accomplished by Lot Owner</h4>
+						<section id="box9">
                             <div class="form-group">
                                 <label for="tct" class="control-label col-xs-4">* TCT/OCT Number:</label>
                                 <div class="col-xs-8">
@@ -584,8 +599,10 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="text" class="form-control" id="Octc" name="Octc" value="<?php if(!empty($_SESSION['$Octc'])){echo $_SESSION['$Octc']; unset($_SESSION['$Octc']);}?>" placeholder="Community tax Certificate"><span class="error-msg"><?php if(!empty($_SESSION['$OctcErr'])){echo $_SESSION['$OctcErr']; unset($_SESSION['$OctcErr']);}?></span>
                                 </div>
                             </div>
+							</section>
                         <hr>
-                        <h4>Tracking Account Credentials</h4>
+                        <h4>Application Credentials</h4>
+							<section id="trackingAcc">
                             <div class="form-group">
                                 <label for="email" class="control-label col-xs-4">* Email Address:</label>
                                 <div class="col-xs-8">
@@ -604,6 +621,7 @@ if (isset($_SESSION['printForm'])) {
                                     <input type="password" class="form-control" id="cpw"name="cpw" value="<?php if(!empty($_SESSION['$cpw'])){echo $_SESSION['$cpw']; unset($_SESSION['$cpw']);}?>" placeholder="Confirm Password"><span class="error-msg"><?php if(!empty($_SESSION['$cpwErr'])){echo $_SESSION['$cpwErr']; unset($_SESSION['$cpwErr']);}?></span>
                                 </div>
                             </div>
+							</section>
                             <h6>Note: This password will be used for tracking your application request</h6>
 					<!--   </form>-->
 					<div class = "buttons">
@@ -620,430 +638,6 @@ if (isset($_SESSION['printForm'])) {
 </div>
 
 <?php include '../../Client/common/footer.php'; ?>
-
-<script>
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip({
-        'html': true
-    });
-});
-</script>
-
-<script>
-function validate(form) {
-	return confirm('All the information entered in the form can not be edited after submit. Do you really want to submit?');
-	}
-</script>
-
-<script>
-    $(document).ready(function () {
-        $(window).scroll(function () {
-            var window_top = $(window).scrollTop() + 12; // the "12" should equal the margin-top value for nav.stick
-            var div_top = $('#nav-anchor').offset().top;
-            if (window_top > div_top) {
-                $('nav').addClass('stick');
-            } else {
-                $('nav').removeClass('stick');
-            }
-        });
-
-        /**
-         * This part causes smooth scrolling using scrollto.js
-         * We target all a tags inside the nav, and apply the scrollto.js to it.
-         */
-        $("nav a").click(function (evn) {
-            evn.preventDefault();
-            $('html,body').scrollTo(this.hash, this.hash);
-        });
-
-        /**
-         * This part handles the highlighting functionality.
-         * We use the scroll functionality again, some array creation and 
-         * manipulation, class adding and class removing, and conditional testing
-         */
-        var aChildren = $("nav li").children(); // find the a children of the list items
-        var aArray = []; // create the empty aArray
-        for (var i = 0; i < aChildren.length; i++) {
-            var aChild = aChildren[i];
-            var ahref = $(aChild).attr('href');
-            aArray.push(ahref);
-        } // this for loop fills the aArray with attribute href values
-
-        $(window).scroll(function () {
-            var windowPos = $(window).scrollTop(); // get the offset of the window from the top of page
-            var windowHeight = $(window).height(); // get the height of the window
-            var docHeight = $(document).height();
-
-            for (var i = 0; i < aArray.length; i++) {
-                var theID = aArray[i];
-                var divPos = $(theID).offset().top; // get the offset of the div from the top of page
-                var divHeight = $(theID).height(); // get the height of the div in question
-                if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
-                    $("a[href='" + theID + "']").addClass("nav-active");
-                } else {
-                    $("a[href='" + theID + "']").removeClass("nav-active");
-                }
-            }
-
-            if (windowPos + windowHeight == docHeight) {
-                if (!$("nav li:last-child a").hasClass("nav-active")) {
-                    var navActiveCurrent = $(".nav-active").attr("href");
-                    $("a[href='" + navActiveCurrent + "']").removeClass("nav-active");
-                    $("nav li:last-child a").addClass("nav-active");
-                }
-            }
-        });
-		
-		/**
-		* Select option.
-		*/
-		
-    });
-</script>
-
-<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script>
-	$(document).ready(function () {
-		$("#parent_typeOfOccupancy").change(function() {
-			var parent = $("#parent_typeOfOccupancy").val(); //get option value from parent 
-			switch(parent){ //using switch compare selected option and populate child
-				case 'residential':
-					$("#commercial").css("display","none");
-					$("#commercial :selected").prop("selected", false);
-					$("#street").css("display","none");
-					$("#street :selected").prop("selected", false);
-					$("#industrial").css("display","none");
-					$("#industrial :selected").prop("selected", false);
-					$("#institutional").css("display","none");
-					$("#institutional :selected").prop("selected", false);
-					$("#agricultural").css("display","none");
-					$("#agricultural :selected").prop("selected", false);
-					$("#others").css("display","none");
-					$("#others").val("");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					$("#residential").css("display","block");
-					break;
-				case 'commercial':
-					$("#residential").css("display","none");
-					$("#residential :selected").prop("selected", false);
-					$("#street").css("display","none");
-					$("#street :selected").prop("selected", false);
-					$("#industrial").css("display","none");
-					$("#industrial :selected").prop("selected", false);
-					$("#institutional").css("display","none");
-					$("#institutional :selected").prop("selected", false);
-					$("#agricultural").css("display","none");
-					$("#agricultural :selected").prop("selected", false);
-					$("#others").css("display","none");
-					$("#others").val("");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					$("#commercial").css("display","block");
-					break;              
-				case 'street':
-					$("#residential").css("display","none");
-					$("#residential :selected").prop("selected", false);
-					$("#commercial").css("display","none");
-					$("#commercial :selected").prop("selected", false);
-					$("#industrial").css("display","none");
-					$("#industrial :selected").prop("selected", false);
-					$("#institutional").css("display","none");
-					$("#institutional :selected").prop("selected", false);
-					$("#agricultural").css("display","none");
-					$("#agricultural :selected").prop("selected", false);
-					$("#others").css("display","none");
-					$("#others").val("");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					$("#street").css("display","block");
-					break;
-				case 'industrial':
-					$("#residential").css("display","none");
-					$("#residential :selected").prop("selected", false);
-					$("#commercial").css("display","none");
-					$("#commercial :selected").prop("selected", false);
-					$("#street").css("display","none");
-					$("#street :selected").prop("selected", false);
-					$("#institutional").css("display","none");
-					$("#institutional :selected").prop("selected", false);
-					$("#agricultural").css("display","none");
-					$("#agricultural :selected").prop("selected", false);
-					$("#others").css("display","none");
-					$("#others").val("");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					$("#industrial").css("display","block");
-					break;
-				case 'institutional':
-					$("#residential").css("display","none");
-					$("#residential :selected").prop("selected", false);
-					$("#commercial").css("display","none");
-					$("#commercial :selected").prop("selected", false);
-					$("#street").css("display","none");
-					$("#street :selected").prop("selected", false);
-					$("#industrial").css("display","none");
-					$("#industrial :selected").prop("selected", false);
-					$("#agricultural").css("display","none");
-					$("#agricultural :selected").prop("selected", false);
-					$("#others").css("display","none");
-					$("#others").val("");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					$("#institutional").css("display","block");
-					break;              
-				case 'agricultural':
-					$("#residential").css("display","none");
-					$("#residential :selected").prop("selected", false);
-					$("#commercial").css("display","none");
-					$("#commercial :selected").prop("selected", false);
-					$("#street").css("display","none");
-					$("#street :selected").prop("selected", false);
-					$("#industrial").css("display","none");
-					$("#industrial :selected").prop("selected", false);
-					$("#institutional").css("display","none");
-					$("#institutional :selected").prop("selected", false);
-					$("#others").css("display","none");
-					$("#others").val("");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					$("#agricultural").css("display","block");
-					break;	
-				case 'others':
-					$("#residential").css("display","none");
-					$("#residential :selected").prop("selected", false);
-					$("#commercial").css("display","none");
-					$("#commercial :selected").prop("selected", false);
-					$("#street").css("display","none");
-					$("#street :selected").prop("selected", false);
-					$("#industrial").css("display","none");
-					$("#industrial :selected").prop("selected", false);
-					$("#institutional").css("display","none");
-					$("#institutional :selected").prop("selected", false);
-					$("#agricultural").css("display","none");
-					$("#agricultural :selected").prop("selected", false);
-					$("#others").css("display","block");
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").val("");
-					break;
-					}
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#residential", function(){
-			var residential = $(this).val();
-			
-			switch(residential){
-				case "others":
-					$("#typeOfOccupancy_others").css("display","block");
-					break;
-					
-				default:
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").removeAttr("value");
-					break;
-			}
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#commercial", function(){
-			var commercial = $(this).val();
-			
-			switch(commercial){
-				case "others":
-					$("#typeOfOccupancy_others").css("display","block");
-					break;
-					
-				default:
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").removeAttr("value");
-					break;
-			}
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#street", function(){
-			var street = $(this).val();
-			
-			switch(street){
-				case "others":
-					$("#typeOfOccupancy_others").css("display","block");
-					break;
-					
-				default:
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").removeAttr("value");
-					break;
-			}
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#industrial", function(){
-			var industrial = $(this).val();
-			
-			switch(industrial){
-				case "others":
-					$("#typeOfOccupancy_others").css("display","block");
-					break;
-					
-				default:
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").removeAttr("value");
-					break;
-			}
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#institutional", function(){
-			var institutional = $(this).val();
-			
-			switch(institutional){
-				case "others":
-					$("#typeOfOccupancy_others").css("display","block");
-					break;
-					
-				default:
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").removeAttr("value");
-					break;
-			}
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#agricultural", function(){
-			var agricultural = $(this).val();
-			
-			switch(agricultural){
-				case "others":
-					$("#typeOfOccupancy_others").css("display","block");
-					break;
-					
-				default:
-					$("#typeOfOccupancy_others").css("display","none");
-					$("#typeOfOccupancy_others").removeAttr("value");
-					break;
-			}
-		});
-	})(jQuery);
-</script>
-<script>
-/* $(document).ready(function () {
-var residential = [
-		{display:"SINGLE", value:"single"},
-		{display:"DUPLEX", value:"duplex"},
-		{display:"ROWHOUSE/ACCESSORIA", value:"rowhouse/accessoria"},
-		{display:"OTHERS", value:"others"}];
-		
-		var commercial = [
-		{display:"BANK", value:"bank"},
-		{display:"STORE", value:"store"},
-		{display:"HOTEL,MOTEL, ETC.", value:"hotel,motel, etc."},
-		{display:"OFFICE CONDOMINIUM/BUSINESS OFFICE BUILDING", value:"office condominium/business office building"},
-		{display:"RESTAURANT, ETC.", value:"restaurant, etc."},
-		{display:"SHOP (E.G. DRESS SHOP, TAILORING SHOP, BARBER SHOP, ETC.", value:"shop"},
-		{display:"GASOLINE STATION", value:"gasoline station"},
-		{display:"MARKET", value:"market"},
-		{display:"DORMITORY OR OTHER LODGING HOUSE", value:"dormitory or other lodging house"},
-		{display:"OTHERS", value:"others"}];
-				
-		var street = [
-		{display:"PARKS, PLAZAS, MONUMENTS, POOLS, PLANT BOXES, ETC.", value:"parks, plazas, monuments, pools, plant boxes, etc."},
-		{display:"SIDEWALKS, PROMENADES, TARRACES, LAMPPOSTS, ELECTRIC POLES, TELEPHONE POLES, ETC.", value:"duplex"},
-		{display:"OUTDOOR ADS, SIGNBOARDS, ETC.", value:"outdoor ads, signboards, etc."},
-		{display:"FENCE ENCLOSURE", value:"fence enclosure"}];
-
-		var industrial = [
-		{display:"FACTORY/PLANT", value:"factory/plant"},
-		{display:"REPAIR SHOP, MACHINE SHOP", value:"repair shop, machine shop"},
-		{display:"REFINERY", value:"refinery"},
-		{display:"PRINTING PRESS", value:"printing press"},
-		{display:"WAREHOUSE", value:"warehouse"},
-		{display:"OTHERS", value:"others"}];
-		
-		var institutional = [
-		{display:"SCHOOL", value:"school"},
-		{display:"CHURCH AND OTHER RELIGIOUS STRUCTURES", value:"church and other religious structures"},
-		{display:"HOSPITAL OR SIMILAR STRUCTURE", value:"hospital or similar structure"},
-		{display:"WELFARE AND CHARITABLE STRUCTURES", value:"welfare and charitable structures"},
-		{display:"THEATER, AUDITORIUM, GYMNASIUM, COURT", value:"theater, auditorium, gymnasium, court"},
-		{display:"OTHERS", value:"others"}];
-		
-		var agricultural = [
-		{display:"BARN(S) POULTRY HOUSE(S), ETC.", value:"barn(s) poultry house(s), etc."},
-		{display:"GRAIN MILL", value:"grain mill"},
-		{display:"OTHERS", value:"others"}];
-		
-		
-		//If parent option is changed
-		$("#parent_typeOfOccupancy").change(function() {
-				var parent = $("#parent_typeOfOccupancy").val(); //get option value from parent 
-				alert(parent);
-				
-				switch(parent){ //using switch compare selected option and populate child
-					case 'residential':
-						list(residential);
-						$("#other_typeOfOccupancy").html("");
-						break;
-					case 'commercial':
-						list(commercial);
-						$("#other_typeOfOccupancy").html("");
-						break;              
-					case 'street furniture, landscaping, signboards':
-						list(street);
-						$("#other_typeOfOccupancy").html("");
-						break;
-					
-					case 'industrial':
-						list(industrial);
-						$("#other_typeOfOccupancy").html("");
-						break;
-					
-					case 'institutional':
-						list(institutional);
-						$("#other_typeOfOccupancy").html("");
-						break;              
-					
-					case 'agricultural':
-						list(agricultural);
-						$("#other_typeOfOccupancy").html("");
-						break;
-						
-					case 'others':
-						createTextField();
-						$("#other_typeOfOccupancy").html("");
-						break;
-				   }
-		});
-		
-		$("#child_typeOfOccupancy").on("change", "#select_typeOfOccupancy", function(){
-			var child = $(this).val();
-			
-			switch(child){
-				case "others":
-					$("#other_typeOfOccupancy").append("<input type=\"text\" id=\"specific2\"/>");
-					break;
-					
-				default:
-					$("#other_typeOfOccupancy").html("");
-					break;
-			}
-		});
-
-		//function to populate child select box
-		function list(array_list)
-		{	
-			$("#child_typeOfOccupancy").html(""); //reset child options
-			$("#child_typeOfOccupancy").append("<select name=\"select_typeOfOccupancy\" id=\"select_typeOfOccupancy\">");
-			$("#select_typeOfOccupancy").append("<option disabled>SELECT SPECIFIC TYPE OF OCCUPANCY</option>");
-			$(array_list).each(function (i) { //populate child options
-				$("#select_typeOfOccupancy").append("<option value=\""+array_list[i].value+"\">"+array_list[i].display+"</option>");
-			});
-			$("#child_typeOfOccupancy").append("</select>");
-		}
-		
-		function createTextField(){
-			$("#child_typeOfOccupancy").html(""); 
-			$("#child_typeOfOccupancy").append("<input type=\"text\" id=\"specific1\">");
-		}
-		
-		})(jQuery);
-*/
-</script>
- 
 </body>
 
 </html>
