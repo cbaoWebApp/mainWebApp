@@ -108,6 +108,27 @@ Layout styles
 	display:none;
 }
 
+.right-inner-addon {
+	position: relative;
+}
+			
+.right-inner-addon input {
+	padding-right: 30px;    
+}
+			
+.right-inner-addon span {
+	position: absolute;
+	right: 0px;
+	padding: 8px 10px;		
+}
+
+.scope{
+	text-align: center;
+	font-size: 20px;
+	font-family: "Century Gothic", Helvetica, Arial, sans-serif; 
+	font-weight:bold;
+}
+
 /* -----------------------
 Nav
 ------------------------*/
