@@ -8,21 +8,27 @@
       case 'addAccount': 
         addAccount();
         break;
-      case 'login':
-        login();
+      case 'loginAdmin':
+        loginAdmin();
         break;
+      /*case 'loginPersonnel':
+        loginPersonnel();
+        break;*/
       case 'editAccount':
         editAccount();
         break;
-      case 'deleteAccount';
+      case 'deleteAccount':
         deleteAccount();
         break;
       case 'search':
         search();
         break;
-      case 'logout';
-        logout();
+      case 'logoutAdmin':
+        logoutAdmin();
         break;
+      /*case 'logoutPersonnel':
+        logoutPersonnel();
+        break;*/
       case 'checkDuplicate';
         checkDuplicate();
         break;
@@ -30,7 +36,7 @@
         die('No such function!');
     }
   }else{
-    if(!isset($_SESSION['section'])){
+    /*if(!isset($_SESSION['section'])){
      header("Location: index.php"); 
      exit();
     }else{
@@ -43,7 +49,8 @@
             header("location: adminHome.php"); 
             break;
         }
-    }
+    }*/
+    echo "";
   }
 
   function connectDb($sn, $un, $p, $d){
@@ -90,7 +97,37 @@
     $conn->close();
   }
 
-  function login(){
+  function loginAdmin(){
+    $tinNo = $_GET['tinNo'];
+    $password = $_GET['password'];
+
+    $conn = connectDb("localhost", "root", "", "baguio_cbao");
+
+    $sql = "SELECT * FROM personnel WHERE username =  '$tinNo'  && password =  '$password' && section = 'ADMIN'";
+    $result = mysqli_query($conn, $sql);
+
+    if(!$result){
+      //row not found
+      echo "<script type=\"text/javascript\">".
+          "alert('Tin Number and/or Password Not Found.');".
+          "window.location.href='index_admin.php'".
+          "</script>";
+    }else{
+      //row found
+      session_start();
+
+      if($row = mysqli_fetch_array($result)){
+        $section = $row["section"];
+        $_SESSION['section'] = $section;
+      }
+
+      header("location: adminHome.php"); 
+    }
+
+    $conn->close();
+  }
+
+  /*function loginPersonnel(){
     $tinNo = $_GET['tinNo'];
     $password = $_GET['password'];
 
@@ -103,7 +140,7 @@
       //row not found
       echo "<script type=\"text/javascript\">".
           "alert('Tin Number and/or Password Not Found.');".
-          "window.location.href='index.php'".
+          "window.location.href='index_admin.php'".
           "</script>";
     }else{
       //row found
@@ -112,20 +149,13 @@
       if($row = mysqli_fetch_array($result)){
         $section = $row["section"];
         $_SESSION['section'] = $section;
-
-        switch($section){
-          case 'RECEIVING': 
-            header("location: receivingHome.php"); 
-            break;
-          case 'ADMIN' : 
-            header("location: adminHome.php"); 
-            break;
-        }
       }
+
+      header("location: adminHome.php"); 
     }
 
     $conn->close();
-  }
+  }*/
 
   function editAccount(){
     $originalTin = $_GET['originalTin'];
@@ -232,7 +262,7 @@
     }
   }
 
-  function logout(){
+  function logoutAdmin(){
     session_start();
     //unset($_SESSION['section']);
     $_SESSION = array();
@@ -246,7 +276,28 @@
     }
 
     session_destroy();
-    header("location: index.php");
+    //header("location: index_admin.php");
+    echo "<script type=\"text/javascript\">".
+          "window.location.href='index_admin.php'".
+          "</script>";
+
+  }
+
+  function logoutPersonnel(){
+    session_start();
+    //unset($_SESSION['section']);
+    $_SESSION = array();
+
+    if (ini_get("session.use_cookies")) {
+      $params = session_get_cookie_params();
+      setcookie(session_name(), '', time() - 42000,
+          $params["path"], $params["domain"],
+          $params["secure"], $params["httponly"]
+      );
+    }
+
+    session_destroy();
+    header("location: index_personnel.php");
   }
 
 ?>

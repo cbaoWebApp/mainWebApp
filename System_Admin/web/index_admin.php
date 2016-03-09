@@ -41,8 +41,8 @@ session_start();
             <div class="content">
                 <div class="main">
 
-                    <h1 id = "heading">CBAO Section Personnel Log In</h1>
-                    <p>Log-in for CBAO Section Personnel</p>
+                    <h1 id = "heading">System Admin Log In</h1>
+                    <p>Log-in for System Admin</p>
                     <br>
 
                     <div class = "buttons">
@@ -73,13 +73,13 @@ session_start();
                 ?> 
             </div>            
             <br>
-            <form class="form-signin" id="logInputForm" action="functions.php" method="POST">
+            <form class="form-signin" id="logInputForm" action="functions_karla.php" method="GET">
                 <input type="text" id="inputTinNo" class="form-control" placeholder="Tin Number" name="tinNo" required autofocus="true">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                 <br>
-                <input type="submit" id="personnel-login-btn" class="btn1" value="Log In">
+                <input type="submit" id="admin-login-btn" class="btn1" value="Log In">
                 <input type="button" id="cancel" class="btn2" value="Cancel">
-                <input type="hidden" name="action" value="login">
+                <input type="hidden" name="action" value="loginAdmin">
             </form>
 
         </div>
@@ -92,19 +92,20 @@ session_start();
                 }
 
                 //Code for personnel-login-btn
-                function login() {
+                /*function login() {
                     var tinNo = document.getElementById('inputTinNo').value;
                     var pw = document.getElementById('inputPassword').value;
 
                     var xml = new XMLHttpRequest();
                     xml.onreadystatechange = function () {
                         if (xml.readyState == 4 && xml.status == 200) {
-                            window.location.href = "functions.php?action=login&tinNo=" + tinNo + "&password=" + pw;
+                            window.location.href = "functions.php?action=loginAdmin&tinNo=" + tinNo + "&password=" + pw;
                         }
                     };
                     xml.open("GET", "functions.php", true);
                     xml.send();
                 }
+                */
 
                 $(function () {
                     $("#login-popup").dialog({

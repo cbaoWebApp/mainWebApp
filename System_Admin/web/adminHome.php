@@ -2,14 +2,14 @@
 <?php
   session_start();
   if(!isset($_SESSION['section'])){
-   header("Location: index.php"); 
+   header("Location: index_admin.php"); 
    exit();
   }else if($_SESSION['section'] != "ADMIN"){
     echo "<script type=\"text/javascript\">".
-          "alert('You are not an admin!');".
-          "window.location.href='index.php'".
+          "alert('You are not an admin! You will be logged out and redirected to your corresponding login page.');".
+          "window.location.href='index_personnel.php'".
           "</script>";
-    header("Location: index.php"); 
+  
     exit();
   }
 ?>
@@ -378,10 +378,10 @@
     var xml = new XMLHttpRequest();
     xml.onreadystatechange = function(){
       if(xml.readyState == 4 && xml.status ==200){
-        window.location.href = "functions.php?action=addAccount&tinNo=" + tinNo + "&fName=" + fName + "&lName=" + lName + "&mInitial=" + mInitial+ "&section=" + section + "&position=" + position + "&password=" + password;
+        window.location.href = "functions_karla.php?action=addAccount&tinNo=" + tinNo + "&fName=" + fName + "&lName=" + lName + "&mInitial=" + mInitial+ "&section=" + section + "&position=" + position + "&password=" + password;
       }
     };
-    xml.open("GET", "functions.php", true);
+    xml.open("GET", "functions_karla.php", true);
     xml.send();
   }
 
@@ -459,10 +459,10 @@ function performEditAccount(){
   var xml = new XMLHttpRequest();
   xml.onreadystatechange = function(){
     if(xml.readyState == 4 && xml.status ==200){
-      window.location.href = "functions.php?action=editAccount&tinNo=" + tinNo + "&fName=" + fName + "&lName=" + lName + "&mInitial=" + mInitial + "&section=" + section + "&position=" + position + "&password=" + password + "&originalTin=" + originalTin;
+      window.location.href = "functions_karla.php?action=editAccount&tinNo=" + tinNo + "&fName=" + fName + "&lName=" + lName + "&mInitial=" + mInitial + "&section=" + section + "&position=" + position + "&password=" + password + "&originalTin=" + originalTin;
      }
   };
-  xml.open("GET", "functions.php", true);
+  xml.open("GET", "functions_karla.php", true);
   xml.send();
 }
 
@@ -515,10 +515,10 @@ $(function() {
     var xml = new XMLHttpRequest();
     xml.onreadystatechange = function(){
       if(xml.readyState == 4 && xml.status == 200){
-        window.location.href = "functions.php?action=deleteAccount&tinNo=" + tinNo;
+        window.location.href = "functions_karla.php?action=deleteAccount&tinNo=" + tinNo;
        }
     };
-    xml.open("GET", "functions.php", true);
+    xml.open("GET", "functions_karla.php", true);
     xml.send();
   }
   
@@ -646,7 +646,7 @@ $(function() {
        }
     };
 
-    xml.open("GET", "functions.php?action=search&option=" + option + "&value=" + value, true);
+    xml.open("GET", "functions_karla.php?action=search&option=" + option + "&value=" + value, true);
     xml.send();    
   });
 
@@ -655,11 +655,11 @@ $(function() {
     var xml = new XMLHttpRequest();
     xml.onreadystatechange = function(){
       if(xml.readyState == 4 && xml.status == 200){
-        window.location.href = "functions.php?action=logout";
+        window.location.href = "functions_karla.php?action=logoutAdmin";
        }
     };
 
-    xml.open("GET", "functions.php", true);
+    xml.open("GET", "functions_karla.php", true);
     xml.send();  
   })
 
