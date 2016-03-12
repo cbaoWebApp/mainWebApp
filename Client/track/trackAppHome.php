@@ -32,9 +32,10 @@ require_once '../client_validation/applicant_data.php';
                             <li><a href="trackAppHome.php"><div>Track Application</div></a></li>
                             <li><a href="appReq.php"><div>Application Requirements</div></a></li>
                             <li><a href="appRecord.php"><div>View Application Record</div></a></li>
-                            <li><input type="button" id="cancel" value="Cancel Application"/></li>
+                            <li></li>
                         </ul>
                     </nav>
+					<input type="button" id="cancel" value="Cancel Application"/>
                 </div>
 
             </div>

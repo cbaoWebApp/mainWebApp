@@ -47,14 +47,14 @@ if (!empty($_SESSION['$cpw'])) {
             <div class="content">
                 <div class="main">
                     
-                    <h1 id = "heading">Print Form</h1>
-                    <p id="info">Print or Download the form to be submitted together with your permit requirements</p>
+                    <h1 id = "heading">Building Permit Preview</h1>
+                    <p id="info">A preview of your building permit application</p>
                     
                     <div id="bpform">
                         <div id="target">
                             <div id="header" class="fnt-tmplt">
                                 <p id="fhead">
-                                    Republic of the Philippines<br>
+                                    Republic of the Philippines<br>0
                                     OFFICE OF THE CITY BUILDING OFFICIAL<br>
                                     BAGUIO CITY                           
                                 </p>

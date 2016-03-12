@@ -169,7 +169,7 @@ if (isset($_SESSION['printForm'])) {
                                     </div>
                                 </div>
                                 <div class="form-group scope">
-                                     <label for="scope" class="control-label col-xs-4">Scope of work</label>
+                                     <label for="scope" class="control-label col-xs-4" id = "sow">Scope of work</label>
                                 </div>
                                 <div class="form-group">
                                     <label for="newConstruction" class="control-label col-xs-4">* New construction:</label>

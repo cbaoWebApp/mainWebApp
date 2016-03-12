@@ -73,7 +73,9 @@ th, td
     border-bottom: 1px solid #ddd;
 }
 
-
+#sow{
+	text-align: left !important;
+}
 
 /* -----------------------
 Layout styles

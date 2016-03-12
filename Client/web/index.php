@@ -43,8 +43,11 @@ session_start();
 
                     <h1 id = "heading">Building Permit Application</h1>
                     <p>Apply for a building permit now!</p>
-                    <br>
-
+                    
+					<br>
+                    <h4><a href="../read_req/homerequirements.php" id = "link">View Application Requirements</a></h4>
+					<br>
+					<br>
                     <div class = "buttons">
                         <input type ="button" id = "apply" value = "Apply"
                                onclick="apply_redirect()"/>
@@ -55,8 +58,7 @@ session_start();
                         <br>
                     </div>
 
-                    <br>
-                    <h4><a href="../read_req/homerequirements.php" id = "link">View Application Requirements</a></h4>
+                    
                     <!-- PC -->
 
                     <p><img class="img-responsive" src="../img/pc.png" alt=""></p>
