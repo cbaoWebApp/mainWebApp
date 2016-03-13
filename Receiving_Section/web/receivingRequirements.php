@@ -5,18 +5,13 @@ session_start();
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CBAO Web Application</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" lang="en" content="CBAO Web Application">
-        <meta name="author" content="SLUSCIS">
-        <meta name="robots" content="index, follow">
+        <?php include '../common/head.php'; ?>
 
         <link rel="stylesheet" href="../css/receivingRequirements.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-          <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
+        <script src="../jquery/jquery.min.js"></script>
+        <script src="../jquery/bootstrap.min.js"></script>
 		  
 		  <script language="javascript" type="text/javascript">
 			function uncheck(obj){
@@ -62,19 +57,7 @@ session_start();
 
     </head>
     <body>
-    <div class="header">
-            <div class = "row">
-                <div class = "col-md-5">
-                    <p><img class = "img-responsive" src="../img/seal.png" alt=""></p>
-                </div>
-                <div class = "col-md-5">
-                    <p>City Government of Baguio</p>
-                </div>
-                <div class = "col-md-1">
-                    <p id = "logOut"><a href = "../index.html">Log Out</a></p>
-                </div>
-            </div>
-        </div>
+    <?php include '../common/header.php'; ?>
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="container-fluid">
@@ -100,7 +83,7 @@ session_start();
                     <div class="collapsible">
                        
                         <div id="own" class="contents">
-						 <input type="checkbox" id="owner" name="owner" value="owner" onclick="javascript:uncheck(this);" <?php if(!empty($_SESSION["owner1"])){echo ($_SESSION["owner1"] == 'true' ? 'checked' : '');} ?> >Applicant is the registered owner</input>
+                            <input type="checkbox" id="owner" name="owner" value="owner" onclick="javascript:uncheck(this);" <?php if(!empty($_SESSION["owner1"])){echo ($_SESSION["owner1"] == 'true' ? 'checked' : '');} ?> >Applicant is the registered owner</input>
                             <ul>
                                 <input type="checkbox" id="trueTitle" name="trueTitle" value="trueTitle" <?php if(!empty($_SESSION["trueTitle1"])){echo ($_SESSION["trueTitle1"] == 'true' ? 'checked' : '');} ?> > Certified true copy of the title (updated for more than 3 mos.), or  
                                     Copy of Award </input><br>
@@ -174,11 +157,11 @@ session_start();
                </div>
                 <div class="col-md-3">
             <button id="viewReq" type="submit" name="viewReq" onclick="window.location='checkStatus.php'">Save</button> 
-            <button id="viewReq" name="viewReq" onclick="window.location.href='receivingHome.php'">Back</button> 
+            <button id="viewReq" name="viewReq" onclick="window.location.href='receivingHome.html'">Back</button> 
             </form>
         </div>
         <div class="col-md-2">
-          <button id="viewReq" name="viewReq" onclick="window.location.href='receivingRequirements.php'">Forward to CPO</button> 
+          <button id="viewReq" name="viewReq" onclick="window.location.href='receivingRequirements.html'">Forward to CPO</button> 
           </div>
           </div>
           <br>
@@ -187,25 +170,7 @@ session_start();
 
 
   
- <div class="footer">
-            <div class = "row">
-                <div class = "col-xs-8">
-                    <div class="contact">
-                        <p>Contact Us</p>
-                        <p>(074)-998-7654<br>
-                            cbao_baguio@gmail.com<br>
-                            http:www.baguio.gov.ph<br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class = "col-xs-3">
-                    <div class="contact2">
-                        <p>&copy; Copyright 2016</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <?php include '../common/footer.php'; ?>
       
   </body>
   </html>

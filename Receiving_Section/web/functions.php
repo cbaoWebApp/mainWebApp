@@ -37,7 +37,7 @@
             header("location: receivingHome.php"); 
             break;
           case 'Admin' : 
-            header("location: adminHome.php"); //not found
+            header("location: adminHome.php"); 
             break;
         }
     }
@@ -60,9 +60,7 @@
     $conn = connectDb("localhost", "root", "", "baguio_cbao");
 	
 	function clean($string) {
-	   
-
-		return $result = preg_replace("/[^a-zA-Z0-9]+/", "", $string); // Removes special chars.
+        	return $result = preg_replace("/[^a-zA-Z0-9]+/", "", $string); // Removes special chars.
 	}
 	clean($tinNo);
 	clean($password);
@@ -99,11 +97,11 @@ $fff= "raxe";
 		}
 
         switch($section){
-          case 'Receiving': 
+          case 'RECEIVING': 
             header("location: receivingHome.php"); 
             break;
-          case 'Admin' : 
-            header("location: adminHome.php"); //not found in folder
+          case 'ADMIN' : 
+            header("location: adminHome.php"); 
             break;
         }
       }
@@ -115,7 +113,6 @@ $fff= "raxe";
 
   function logout(){
     session_start();
-    //unset($_SESSION['section']);
     $_SESSION = array();
 
     if (ini_get("session.use_cookies")) {

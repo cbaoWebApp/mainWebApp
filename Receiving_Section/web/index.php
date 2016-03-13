@@ -9,8 +9,8 @@ session_start();
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
 
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="../jquery/jquery-1.10.2.js"></script>
+        <script src="../jquery/jquery-ui.min.js"></script>
 
         <?php
         if (!empty($_SESSION['login_error_msg'])) {
