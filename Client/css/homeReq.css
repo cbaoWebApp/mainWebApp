@@ -460,10 +460,11 @@ Footer
     border-top: 1px solid #DDDDDD;
     text-align: center !important;
 }
-.footer p {
-    margin: 0;
-    text-align: center !important;
 
+.footer p {
+	margin: 0;
+        color: #78828D;
+        
 }
 
 .footer h3 {

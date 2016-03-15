@@ -75,7 +75,29 @@ th, td
     padding: 15px 35px 45px;
     margin: 0 auto; 
     min-width: 490px;
-    background-color: black;
+    
+}
+
+#cancel_popup{
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    border-radius: 4px;
+      -webkit-box-shadow: 0px 0px 48px -3px rgba(55,64,57,1);
+-moz-box-shadow: 0px 0px 48px -3px rgba(55,64,57,1);
+box-shadow: 0px 0px 48px -3px rgba(55,64,57,1);
+       
+}
+
+#cancel_popup{
+    text-align: center;
+}
+
+.form-signin p{
+     color: #3b6e22 !important;
 }
 
 .form-group label{
@@ -253,8 +275,10 @@ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a
 	color: #9ddb9c;
 }
 
-.footer p{
-	color: #374039;
+.footer p {
+	margin: 0;
+        color: #78828D;
+        
 }
 
 /* -----------------------

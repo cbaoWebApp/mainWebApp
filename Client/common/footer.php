@@ -6,9 +6,9 @@
                 <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
                     <h3> Contact Us </h3>
                     <ul>
-                        <li> <a href="#"> (074)-998-7654 </a> </li>
-                        <li> <a href="#"> cbao_baguio@gmail.com </a> </li>
-                        <li> <a href="#"> http:www.baguio.gov.ph </a> </li>
+                        <li> <p> (074)-442-2503 </p> </li>
+                        <li> <p> webadmin@baguio.gov.ph </p> </li>
+                        <li> <a href="http://www.baguio.gov.ph"> http://www.baguio.gov.ph </a> </li>
                     </ul>
                 </div>
             </div>

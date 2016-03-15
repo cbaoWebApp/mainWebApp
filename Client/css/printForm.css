@@ -70,7 +70,7 @@ Single styles
 
 .img-responsive { max-width: 100%; }
 
-#myP
+#done
 {
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
@@ -99,7 +99,7 @@ Single styles
 		text-align: center !important;
 }
 
-#myP:hover{
+#done:hover{
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
 	background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
 	background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
@@ -194,8 +194,10 @@ Footer
 	border-top: 1px solid #DDDDDD;
 	text-align: center !important;
 }
+
 .footer p {
 	margin: 0;
+        color: #78828D;
         
 }
 

@@ -98,7 +98,7 @@ if (isset($_SESSION['printForm'])) {
                 </div>
 
                 <div class = "buttons">
-                    <p><a href="../web/index.php" class="btn2" id ="cancel">Cancel Application</a></p>
+                    <p><a href="../web/index.php" class="btn2" id ="cancel">Cancel</a></p>
                 </div>
             </div>
 					

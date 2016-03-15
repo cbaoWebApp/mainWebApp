@@ -387,6 +387,7 @@ Footer
 .footer p {
     margin: 0;
     text-align: center !important;
+    color: #78828D;
 }
 
 .footer h3 {
@@ -412,7 +413,7 @@ Footer
 }
 
 .footer a {
-    color: #78828D
+    color: #78828D;
 }
 
 .bg-gray {

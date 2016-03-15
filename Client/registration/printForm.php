@@ -1539,8 +1539,11 @@ if (!empty($_SESSION['$cpw'])) {
                     </div>
                 </div>
                 <br>
-                <div class = "buttons">
-                    <button id="myP" type="button" onclick="printForm('bpform')">Print</button>
+                <div class = "buttons">                    
+                    <form action="../client_validation/finish_app.php" method="POST">
+                        <input type="submit" id="done" value="Done"/>
+                        <input type="hidden" name="app_status" value="finished"/>
+                    </form>
                 </div>
             </div>
         </div>

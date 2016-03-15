@@ -8,6 +8,10 @@ require_once '../client_validation/select_controller.php';
 
         <link rel="stylesheet" href="../css/appRecord.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
+        
+        <script src="../jquery/jquery-1.10.2.min.js"></script>
+        <script src="../jquery/jquery-ui.min.js"></script>
+        <script src="../js/cancel.js"></script>
     </head>
     <body>
 
@@ -27,9 +31,9 @@ require_once '../client_validation/select_controller.php';
                             <li><a href="trackAppHome.php"><div>Track Application</div></a></li>
                             <li><a href="appReq.php"><div>Application Requirements</div></a></li>
                             <li><a href="appRecord.php"><div>View Application Record</div></a></li>
-                            <li><input type="button" id="cancel" value="Cancel Application"/></li>
                         </ul>
                     </nav>
+                    <input type="button" id="cancel" value="Cancel Application"/>
                 </div>
             </div>
             <div class = "col-md-9">
@@ -107,10 +111,31 @@ require_once '../client_validation/select_controller.php';
                 </div>										
             </div>
         </div>
+        
+        <div id="cancel_popup">
+            <form class="form-signin" id="cancel_popup_btns">
+                    <p>
+                        You are about to cancel your application. Please be advised
+                        to look at these links for our <a href="#">Terms of Agreement</a>
+                        and <a href="#">Rules</a> when canceling an application.
+                    </p>                                
 
+                <input type="button" id="cancel_btn" value="Yes, Cancel my application"/>
+                <input type="button" id="back_to_page" value="No, I do not want to cancel my application"/>
+            </form>
+        </div>
+        
+        <div id="accept_popup">
+            <form class="form-signin" action="../client_validation/cancel.php" method="POST">
+                    <p>
+                        Your application was successfully canceled. Please visit
+                        CBAO to acquire your documents and papers.
+                    </p>    
+                <input type="submit" id="accept_btn" value="Okay"/>                
+            </form>
+        </div>
+        
         <?php include_once '../common/footer.php'; ?>
-
     </body>
-
 </html>
 

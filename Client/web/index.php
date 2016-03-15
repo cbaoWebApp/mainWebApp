@@ -29,8 +29,14 @@ session_start();
                         });
                     });
 		</script>
-            ";
+            ";                     
         }
+        if (!empty($_SESSION['app_status'])){
+             echo "<script>
+                    alert(\"Your application has been submitted successfully. Please
+                     submit your requirements to DPS compound, Baguio City. Thank you.\");
+		</script>";
+         }
         ?>
 
     </head>
@@ -43,11 +49,10 @@ session_start();
 
                     <h1 id = "heading">Building Permit Application</h1>
                     <p>Apply for a building permit now!</p>
-                    
-					<br>
+                    <br>
                     <h4><a href="../read_req/homerequirements.php" id = "link">View Application Requirements</a></h4>
-					<br>
-					<br>
+                    <br>
+                    <br>
                     <div class = "buttons">
                         <input type ="button" id = "apply" value = "Apply"
                                onclick="apply_redirect()"/>
@@ -57,7 +62,6 @@ session_start();
                         <br>
                         <br>
                     </div>
-
                     
                     <!-- PC -->
 

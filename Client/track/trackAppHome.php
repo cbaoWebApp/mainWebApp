@@ -12,7 +12,7 @@ require_once '../client_validation/applicant_data.php';
 
         <script src="../jquery/jquery-1.10.2.js"></script>
         <script src="../jquery/jquery-ui.min.js"></script>
-        <script src="../js/trackAppHome.js"></script>
+        <script src="../js/cancel.js"></script>
     </head>
     <body>	
 
@@ -31,11 +31,10 @@ require_once '../client_validation/applicant_data.php';
                         <ul>
                             <li><a href="trackAppHome.php"><div>Track Application</div></a></li>
                             <li><a href="appReq.php"><div>Application Requirements</div></a></li>
-                            <li><a href="appRecord.php"><div>View Application Record</div></a></li>
-                            <li></li>
+                            <li><a href="appRecord.php"><div>View Application Record</div></a></li>                            
                         </ul>
                     </nav>
-					<input type="button" id="cancel" value="Cancel Application"/>
+                    <input type="button" id="cancel" value="Cancel Application"/>
                 </div>
 
             </div>
@@ -310,9 +309,8 @@ require_once '../client_validation/applicant_data.php';
                 <input type="submit" id="accept_btn" value="Okay"/>                
             </form>
         </div>
+        
         <?php include_once '../common/footer.php'; ?>
-
     </body>
-
 </html>
 

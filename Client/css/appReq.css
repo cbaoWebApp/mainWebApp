@@ -76,7 +76,17 @@ th, td
 	border-bottom: 1px solid #ddd;
 }
 
+.form-signin {
+    max-width: 490px;
+    padding: 15px 35px 45px;
+    margin: 0 auto; 
+    min-width: 490px;
+    background-color: black;
+}
 
+.form-group label{
+	font-size: 15px;
+}
 
 
 
@@ -123,6 +133,8 @@ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a
 	background-color:#68a54b;
 }
 
+
+
 #cancel{	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
          -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
          box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -163,6 +175,10 @@ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a
 #cancel:active {
     position:relative;
     top:1px;
+}
+
+#cancel_btn{
+    
 }
 
 .scroll{
@@ -210,8 +226,10 @@ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a
 	color: #9ddb9c;
 }
 
-.footer p{
-	color: #374039;
+.footer p {
+	margin: 0;
+        color: #78828D;
+        
 }
 
 /* -----------------------
