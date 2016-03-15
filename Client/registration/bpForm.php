@@ -1,66 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION['printForm'])) {
-   if (basename($_SERVER['PHP_SELF']) !== $_SESSION['printForm']) {
-        unset($_SESSION['$lNameFinal']);
-		unset($_SESSION['$fNameFinal']);
-        unset($_SESSION['$mNameFinal']);
-		unset($_SESSION['$TaxAccNoFinal']);
-		unset($_SESSION['$formOfOwnershipFinal']);
-		unset($_SESSION['$kindOfBusinessFinal']);
-		unset($_SESSION['$AddressFinal']);
-		unset($_SESSION['$contactNumberFinal']);
-		unset($_SESSION['$locationFinal']);
-		unset($_SESSION['$newConstructionFinal']);
-		unset($_SESSION['$additionOfFinal']);
-		unset($_SESSION['$repairOfFinal']);
-		unset($_SESSION['$renovationOfFinal']);
-		unset($_SESSION['$demolitionOfFinal']);
-		unset($_SESSION['$others1Final']);
-		unset($_SESSION['$others2Final']);
-		unset($_SESSION['$others3Final']);
-		unset($_SESSION['$others4Final']);
-		unset($_SESSION['$parent_typeOfOccupancyFinal']);
-		unset($_SESSION['$child_typeOfOccupancyFinal']);
-		unset($_SESSION['$typeOfOccupancy_othersFinal']);
-		unset($_SESSION['$numberOfUnitsFinal']);
-		unset($_SESSION['$tec1Final']);
-		unset($_SESSION['$tec2Final']);
-		unset($_SESSION['$tec3Final']);
-		unset($_SESSION['$tec4Final']);
-		unset($_SESSION['$tec5Final']);
-		unset($_SESSION['$tec6Final']);
-		unset($_SESSION['$cei1Final']);
-		unset($_SESSION['$cei2Final']);
-		unset($_SESSION['$cei3Final']);
-		unset($_SESSION['$storeyFinal']);
-		unset($_SESSION['$floorAreaFinal']);
-		unset($_SESSION['$constructionDateFinal']);
-		unset($_SESSION['$SPRCFinal']);
-		unset($_SESSION['$SFirstNameFinal']);
-		unset($_SESSION['$SmiddleInitialFinal']);
-		unset($_SESSION['$SlastNameFinal']);
-		unset($_SESSION['$SaddressFinal']);
-		unset($_SESSION['$ctcFinal']);
-		unset($_SESSION['$ctcDateFinal']);
-		unset($_SESSION['$ctcPlaceFinal']);
-		unset($_SESSION['$CPRCFinal']);
-		unset($_SESSION['$CFirstNameFinal']);
-		unset($_SESSION['$CmiddleInitialFinal']);
-		unset($_SESSION['$ClastNameFinal']);
-		unset($_SESSION['$CcaddressFinal']);
-		unset($_SESSION['$ptrNoFinal']);
-		unset($_SESSION['$dateIssuedFinal']);
-		unset($_SESSION['$placeIssuedFinal']);
-		unset($_SESSION['$tinFinal']);
-		unset($_SESSION['$tctFinal']);
-		unset($_SESSION['$OFirstNameFinal']); 
-		unset($_SESSION['$OmiddleInitialFinal']); 
-		unset($_SESSION['$OlastNameFinal']);
-		unset($_SESSION['$OcaddressFinal']);
-		unset($_SESSION['$OctcFinal']);
-   }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +17,7 @@ if (isset($_SESSION['printForm'])) {
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		
 		<script src="../js/bpForm.js" type="text/javascript"></script>
-		<script src="../js/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script src="../jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
 		<script src="../js/selectTypeOfOccupancy.js" type="text/javascript"></script>
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
