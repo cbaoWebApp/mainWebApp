@@ -260,22 +260,22 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r1-c1-d2" class="box-1-val-template">
                                                     <div id="r1-c1-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$lName'])) {
-                                                            echo $_SESSION['$lName'];
+                                                        if (!empty($_SESSION['$lNameFinal'])) {
+                                                            echo $_SESSION['$lNameFinal'];
                                                         }
                                                         ?>
                                                     </div>
                                                     <div id="r1-c1-d2-i2" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$fName'])) {
-                                                            echo $_SESSION['$fName'];
+                                                        if (!empty($_SESSION['$fNameFinal'])) {
+                                                            echo $_SESSION['$fNameFinal'];
                                                         }
                                                         ?>
                                                     </div>
                                                     <div id="r1-c1-d2-i3" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$mName'])) {
-                                                            echo $_SESSION['$mName'];
+                                                        if (!empty($_SESSION['$mNameFinal'])) {
+                                                            echo $_SESSION['$mNameFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -288,8 +288,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r1-c2-d2" class="box-1-val-template">
                                                     <div id="r1-c2-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$TaxAccNo'])) {
-                                                            echo $_SESSION['$TaxAccNo'];
+                                                        if (!empty($_SESSION['$TaxAccNoFinal'])) {
+                                                            echo $_SESSION['$TaxAccNoFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -310,8 +310,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r2-c2-d2" class="box-1-val-template">
                                                     <div id="r2-c2-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$formOfOwnership'])) {
-                                                            echo $_SESSION['$formOfOwnership'];
+                                                        if (!empty($_SESSION['$formOfOwnershipFinal'])) {
+                                                            echo $_SESSION['$formOfOwnershipFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -324,8 +324,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r2-c3-d2" class="box-1-val-template">
                                                     <div id="r2-c3-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$kindOfBusiness'])) {
-                                                            echo $_SESSION['$kindOfBusiness'];
+                                                        if (!empty($_SESSION['$kindOfBusinessFinal'])) {
+                                                            echo $_SESSION['$kindOfBusinessFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -340,8 +340,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r3-c1-d2" class="box-1-val-template">
                                                     <div id="r3-c1-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$Address'])) {
-                                                            echo $_SESSION['$Address'];
+                                                        if (!empty($_SESSION['$AddressFinal'])) {
+                                                            echo $_SESSION['$AddressFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -354,8 +354,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r3-c2-d2" class="box-1-val-template">
                                                     <div id="r3-c2-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$contactNumber'])) {
-                                                            echo $_SESSION['$contactNumber'];
+                                                        if (!empty($_SESSION['$contactNumberFinal'])) {
+                                                            echo $_SESSION['$contactNumberFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -370,8 +370,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <div id="r4-c1-d2" class="box-1-val-template">
                                                     <div id="r4-c1-d2-i1" class="box-1-val-template-i">
                                                         <?php
-                                                        if (!empty($_SESSION['$location'])) {
-                                                            echo $_SESSION['$location'];
+                                                        if (!empty($_SESSION['$locationFinal'])) {
+                                                            echo $_SESSION['$locationFinal'];
                                                         }
                                                         ?>
                                                     </div>
@@ -387,8 +387,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c2-dt1" class="sow-fnt-tmplt">1 NEW CONSTRUCTION</p>
                                                 <div id="r5-c2-dt1-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$newConstruction'])) {
-                                                        echo $_SESSION['$newConstruction'];
+                                                    if (!empty($_SESSION['$newConstructionFinal'])) {
+                                                        echo $_SESSION['$newConstructionFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -396,8 +396,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c2-dt2" class="sow-fnt-tmplt">2 ADDITION OF</p>
                                                 <div id="r5-c2-dt2-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$additionOf'])) {
-                                                        echo $_SESSION['$additionOf'];
+                                                    if (!empty($_SESSION['$additionOfFinal'])) {
+                                                        echo $_SESSION['$additionOfFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -405,8 +405,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c2-dt3" class="sow-fnt-tmplt">3 REPAIR OF</p>
                                                 <div id="r5-c2-dt3-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$repairOf'])) {
-                                                        echo $_SESSION['$repairOf'];
+                                                    if (!empty($_SESSION['$repairOfFinal'])) {
+                                                        echo $_SESSION['$repairOfFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -414,8 +414,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c2-dt4" class="sow-fnt-tmplt">4 RENOVATION OF</p>
                                                 <div id="r5-c2-dt4-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$renovationOf'])) {
-                                                        echo $_SESSION['$renovationOf'];
+                                                    if (!empty($_SESSION['$renovationOfFinal'])) {
+                                                        echo $_SESSION['$renovationOfFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -423,8 +423,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c2-dt5" class="sow-fnt-tmplt">5 DEMOLITION OF</p>
                                                 <div id="r5-c2-dt5-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$demolitionOf'])) {
-                                                        echo $_SESSION['$demolitionOf'];
+                                                    if (!empty($_SESSION['$demolitionOfFinal'])) {
+                                                        echo $_SESSION['$demolitionOfFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -436,16 +436,16 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c3-dt2" class="sow-fnt-tmplt">6</p>
                                                 <div id="r5-c3-dt2-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$others1'])) {
-                                                        echo $_SESSION['$others1'];
+                                                    if (!empty($_SESSION['$others1Final'])) {
+                                                        echo $_SESSION['$others1Final'];
                                                     }
                                                     ?>
                                                 </div>
                                                 <p id="r5-c3-dt3" class="sow-fnt-tmplt">OF</p>
                                                 <div id="r5-c3-dt3-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$others2'])) {
-                                                        echo $_SESSION['$others2'];
+                                                    if (!empty($_SESSION['$others2Final'])) {
+                                                        echo $_SESSION['$others2Final'];
                                                     }
                                                     ?>
                                                 </div>
@@ -453,16 +453,16 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c3-dt4" class="sow-fnt-tmplt">7</p>
                                                 <div id="r5-c3-dt4-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$others3'])) {
-                                                        echo $_SESSION['$others3'];
+                                                    if (!empty($_SESSION['$others3Final'])) {
+                                                        echo $_SESSION['$others3Final'];
                                                     }
                                                     ?>
                                                 </div>
                                                 <p id="r5-c3-dt5" class="sow-fnt-tmplt">OF</p>
                                                 <div id="r5-c3-dt5-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$others4'])) {
-                                                        echo $_SESSION['$others4'];
+                                                    if (!empty($_SESSION['$others4Final'])) {
+                                                        echo $_SESSION['$others4Final'];
                                                     }
                                                     ?>
                                                 </div>							
@@ -472,8 +472,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="r5-c4-dt1" class="sow-fnt-tmplt">NUMBER OF UNITS</p>
                                                 <div id="r5-c4-dt1-i" class="sow-i-tmplt">
                                                     <?php
-                                                    if (!empty($_SESSION['$numberOfUnits'])) {
-                                                        echo $_SESSION['$numberOfUnits'];
+                                                    if (!empty($_SESSION['$numberOfUnitsFinal'])) {
+                                                        echo $_SESSION['$numberOfUnitsFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -886,8 +886,8 @@ if (!empty($_SESSION['$cpw'])) {
                                         <p id="box-3a-r1-c1-d2-dt1">P</p>
                                         <div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$tec1'])) {
-                                                echo $_SESSION['$tec1'];
+                                            if (!empty($_SESSION['$tec1Final'])) {
+                                                echo $_SESSION['$tec1Final'];
                                             }
                                             ?>
                                         </div>
@@ -895,32 +895,32 @@ if (!empty($_SESSION['$cpw'])) {
                                         <p id="box-3a-r1-c1-d2-dt2">P</p>
                                         <div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$tec2'])) {
-                                                echo $_SESSION['$tec2'];
+                                            if (!empty($_SESSION['$tec2Final'])) {
+                                                echo $_SESSION['$tec2Final'];
                                             }
                                             ?>
                                         </div>
                                         <p id="box-3a-r1-c1-d2-dt3">P</p>
                                         <div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$tec3'])) {
-                                                echo $_SESSION['$tec3'];
+                                            if (!empty($_SESSION['$tec3Final'])) {
+                                                echo $_SESSION['$tec3Final'];
                                             }
                                             ?>
                                         </div>
                                         <p id="box-3a-r1-c1-d2-dt4">P</p>
                                         <div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$tec4'])) {
-                                                echo $_SESSION['$tec4'];
+                                            if (!empty($_SESSION['$tec4Final'])) {
+                                                echo $_SESSION['$tec4Final'];
                                             }
                                             ?>
                                         </div>
                                         <p id="box-3a-r1-c1-d2-dt5">P</p>
                                         <div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$tec5'])) {
-                                                echo $_SESSION['$tec5'];
+                                            if (!empty($_SESSION['$tec5Final'])) {
+                                                echo $_SESSION['$tec5Final'];
                                             }
                                             ?>
                                         </div>
@@ -928,8 +928,8 @@ if (!empty($_SESSION['$cpw'])) {
                                         <p id="box-3a-r1-c1-d2-dt6">P</p>
                                         <div id="box-3a-r1-c1-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$tec6'])) {
-                                                echo $_SESSION['$tec6'];
+                                            if (!empty($_SESSION['$tec6Final'])) {
+                                                echo $_SESSION['$tec6Final'];
                                             }
                                             ?>
                                         </div>
@@ -946,24 +946,24 @@ if (!empty($_SESSION['$cpw'])) {
                                         <p id="box-3a-r1-c2-d2-dt1">P</p>
                                         <div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$cei1'])) {
-                                                echo $_SESSION['$cei1'];
+                                            if (!empty($_SESSION['$cei1Final'])) {
+                                                echo $_SESSION['$cei1Final'];
                                             }
                                             ?>
                                         </div>
                                         <p id="box-3a-r1-c2-d2-dt2">P</p>
                                         <div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$cei2'])) {
-                                                echo $_SESSION['$cei2'];
+                                            if (!empty($_SESSION['$cei2Final'])) {
+                                                echo $_SESSION['$cei2Final'];
                                             }
                                             ?>
                                         </div>
                                         <p id="box-3a-r1-c2-d2-dt3">P</p>
                                         <div id="box-3a-r1-c2-d2-i" class="sow-i-tmplt">
                                             <?php
-                                            if (!empty($_SESSION['$cei3'])) {
-                                                echo $_SESSION['$cei3'];
+                                            if (!empty($_SESSION['$cei3Final'])) {
+                                                echo $_SESSION['$cei3Final'];
                                             }
                                             ?>
                                         </div>
@@ -974,8 +974,8 @@ if (!empty($_SESSION['$cpw'])) {
                                     <p id="box-3a-r1-c3-d1-dt1">NO. OF STOREYS</p>
                                     <div id="box-3a-r1-c3-d1-i-1" class="sow-i-tmplt">
                                         <?php
-                                        if (!empty($_SESSION['$storey'])) {
-                                            echo $_SESSION['$storey'];
+                                        if (!empty($_SESSION['$storeyFinal'])) {
+                                            echo $_SESSION['$storeyFinal'];
                                         }
                                         ?>
                                     </div>
@@ -983,8 +983,8 @@ if (!empty($_SESSION['$cpw'])) {
                                     <p id="box-3a-r1-c3-d1-dt3">AREA</p>
                                     <div id="box-3a-r1-c3-d1-i-2" class="sow-i-tmplt">
                                         <?php
-                                        if (!empty($_SESSION['$floorArea'])) {
-                                            echo $_SESSION['$floorArea'];
+                                        if (!empty($_SESSION['$floorAreaFinal'])) {
+                                            echo $_SESSION['$floorAreaFinal'];
                                         }
                                         ?>
                                     </div>
@@ -992,8 +992,8 @@ if (!empty($_SESSION['$cpw'])) {
                                     <p id="box-3a-r1-c3-d1-dt5">OF CONSTRUCTION</p>
                                     <div id="box-3a-r1-c3-d1-i-3" class="sow-i-tmplt">
                                         <?php
-                                        if (!empty($_SESSION['$constructionDate'])) {
-                                            echo $_SESSION['$constructionDate'];
+                                        if (!empty($_SESSION['$constructionDateFinal'])) {
+                                            echo $_SESSION['$constructionDateFinal'];
                                         }
                                         ?>
                                     </div>
@@ -1001,8 +1001,8 @@ if (!empty($_SESSION['$cpw'])) {
                                     <p id="box-3a-r1-c3-d1-dt7">(WOOD, CONC, STEEL, MIXED)</p>
                                     <div id="box-3a-r1-c3-d1-i-4" class="sow-i-tmplt">
                                         <?php
-                                        if (!empty($_SESSION['$o4'])) {
-                                            echo $_SESSION['$o4'];
+                                        if (!empty($_SESSION['$o4Final'])) {
+                                            echo $_SESSION['$o4Final'];
                                         }
                                         ?>
                                     </div>
@@ -1246,8 +1246,8 @@ if (!empty($_SESSION['$cpw'])) {
                                             <p id="box-6-r1-c2-dt1">PRC REG. NO</p>
                                             <div id="box-6-r1-c1-d1-i">
                                                 <?php
-                                                if (!empty($_SESSION['$SPRC'])) {
-                                                    echo $_SESSION['$SPRC'];
+                                                if (!empty($_SESSION['$SPRCFinal'])) {
+                                                    echo $_SESSION['$SPRCFinal'];
                                                 }
                                                 ?>
                                             </div>
@@ -1258,8 +1258,8 @@ if (!empty($_SESSION['$cpw'])) {
                                             <p id="box-6-r2-c1-dt1">PRINT NAME</p>
                                             <div id="box-6-r2-c1-i">
                                                 <?php
-                                                if (!empty($_SESSION['$SFirstName']) && !empty($_SESSION['$SmiddleInitial']) && !empty($_SESSION['$SlastName'])) {
-                                                    echo $_SESSION['$SFirstName'] . " " . $_SESSION['$SmiddleInitial'] . " " . $_SESSION['$SlastName'];
+                                                if (!empty($_SESSION['$SFirstNameFinal']) && !empty($_SESSION['$SmiddleInitialFinal']) && !empty($_SESSION['$SlastNameFinal'])) {
+                                                    echo $_SESSION['$SFirstNameFinal'] . " " . $_SESSION['$SmiddleInitialFinal'] . " " . $_SESSION['$SlastNameFinal'];
                                                 }
                                                 ?>
                                             </div>
@@ -1271,8 +1271,8 @@ if (!empty($_SESSION['$cpw'])) {
                                             <p id="box-6-r3-c1-d1-dt1">ADDRESS</p>
                                             <div id="box-6-r3-c1-d1-i">
                                                 <?php
-                                                if (!empty($_SESSION['$Saddress'])) {
-                                                    echo $_SESSION['$Saddress'];
+                                                if (!empty($_SESSION['$SaddressFinal'])) {
+                                                    echo $_SESSION['$SaddressFinal'];
                                                 }
                                                 ?>
                                             </div>
@@ -1315,22 +1315,22 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <tr>
                                                     <td>
                                                         <?php
-                                                        if (!empty($_SESSION['$ctc'])) {
-                                                            echo $_SESSION['$ctc'];
+                                                        if (!empty($_SESSION['$ctcFinal'])) {
+                                                            echo $_SESSION['$ctcFinal'];
                                                         }
                                                         ?>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        if (!empty($_SESSION['$ctcDate'])) {
-                                                            echo $_SESSION['$ctcDate'];
+                                                        if (!empty($_SESSION['$ctcDateFinal'])) {
+                                                            echo $_SESSION['$ctcDateFinal'];
                                                         }
                                                         ?>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        if (!empty($_SESSION['$ctcPlace'])) {
-                                                            echo $_SESSION['$ctcPlace'];
+                                                        if (!empty($_SESSION['$ctcPlaceFinal'])) {
+                                                            echo $_SESSION['$ctcPlaceFinal'];
                                                         }
                                                         ?>
                                                     </td>
@@ -1360,8 +1360,8 @@ if (!empty($_SESSION['$cpw'])) {
                                             <p id="box-7-r1-c2-dt1">PRC REG. NO</p>
                                             <div id="box-7-r1-c1-d1-i">
                                                 <?php
-                                                if (!empty($_SESSION['$CPRC'])) {
-                                                    echo $_SESSION['$CPRC'];
+                                                if (!empty($_SESSION['$CPRCFinal'])) {
+                                                    echo $_SESSION['$CPRCFinal'];
                                                 }
                                                 ?>
                                             </div>
@@ -1373,8 +1373,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-7-r2-c1-d1-dt1">PRINT NAME</p>
                                                 <div id="box-7-r2-c1-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$CFirstName']) && !empty($_SESSION['$CmiddleInitial']) && !empty($_SESSION['$ClastName'])) {
-                                                        echo $_SESSION['$CFirstName'] . " " . $_SESSION['$CmiddleInitial'] . " " . $_SESSION['$ClastName'];
+                                                    if (!empty($_SESSION['$CFirstNameFinal']) && !empty($_SESSION['$CmiddleInitialFinal']) && !empty($_SESSION['$ClastNameFinal'])) {
+                                                        echo $_SESSION['$CFirstNameFinal'] . " " . $_SESSION['$CmiddleInitialFinal'] . " " . $_SESSION['$ClastNameFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1388,8 +1388,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-7-r3-c1-d1-dt1">ADDRESS</p>
                                                 <div id="box-7-r3-c1-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$Ccaddress'])) {
-                                                        echo $_SESSION['$Ccaddress'];
+                                                    if (!empty($_SESSION['$CcaddressFinal'])) {
+                                                        echo $_SESSION['$CcaddressFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1403,8 +1403,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-7-r4-c1-d1-dt1">PTR NO.</p>
                                                 <div id="box-7-r4-c1-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$ptrNo'])) {
-                                                        echo $_SESSION['$ptrNo'];
+                                                    if (!empty($_SESSION['$ptrNoFinal'])) {
+                                                        echo $_SESSION['$ptrNoFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1416,8 +1416,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-7-r4-c2-d1-dt1">DATE ISSUED</p>
                                                 <div id="box-7-r4-c2-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$dateIssued'])) {
-                                                        echo $_SESSION['$dateIssued'];
+                                                    if (!empty($_SESSION['$dateIssuedFinal'])) {
+                                                        echo $_SESSION['$dateIssuedFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1429,8 +1429,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-7-r4-c3-d1-dt1">PLACE ISSUED</p>
                                                 <div id="box-7-r4-c3-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$placeIssued'])) {
-                                                        echo $_SESSION['$placeIssued'];
+                                                    if (!empty($_SESSION['$placeIssuedFinal'])) {
+                                                        echo $_SESSION['$placeIssuedFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1450,8 +1450,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-7-r5-c2-d1-dt1">TIN</p>
                                                 <div id="box-7-r5-c2-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$tin'])) {
-                                                        echo $_SESSION['$tin'];
+                                                    if (!empty($_SESSION['$tinFinal'])) {
+                                                        echo $_SESSION['$tinFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1475,8 +1475,8 @@ if (!empty($_SESSION['$cpw'])) {
                                             <p id="box-9-r1-c1-dt1">TCT/OCT NO.</p>
                                             <div id="box-9-r1-c1-i">
                                                 <?php
-                                                if (!empty($_SESSION['$tct'])) {
-                                                    echo $_SESSION['$tct'];
+                                                if (!empty($_SESSION['$tctFinal'])) {
+                                                    echo $_SESSION['$tctFinal'];
                                                 }
                                                 ?>
                                             </div>
@@ -1489,8 +1489,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-9-r2-c1-d1-dt1">PRINT NAME OF LOT OWNER</p>
                                                 <div id="box-9-r2-c1-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$OFirstName']) && !empty($_SESSION['$OmiddleInitial']) && !empty($_SESSION['$OlastName'])) {
-                                                        echo $_SESSION['$OFirstName'] . " " . $_SESSION['$OmiddleInitial'] . " " . $_SESSION['$OlastName'];
+                                                    if (!empty($_SESSION['$OFirstNameFinal']) && !empty($_SESSION['$OmiddleInitialFinal']) && !empty($_SESSION['$OlastNameFinal'])) {
+                                                        echo $_SESSION['$OFirstNameFinal'] . " " . $_SESSION['$OmiddleInitialFinal'] . " " . $_SESSION['$OlastNameFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1504,8 +1504,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-9-r3-c1-d1-dt1">ADDRESS</p>
                                                 <div id="box-9-r3-c1-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$Ocaddress'])) {
-                                                        echo $_SESSION['$Ocaddress'];
+                                                    if (!empty($_SESSION['$OcaddressFinal'])) {
+                                                        echo $_SESSION['$OcaddressFinal'];
                                                     }
                                                     ?>
                                                 </div>
@@ -1518,8 +1518,8 @@ if (!empty($_SESSION['$cpw'])) {
                                                 <p id="box-9-r4-c1-d1-dt1">COMMUNITY TAX CERT.</p>
                                                 <div id="box-9-r4-c1-d1-i">
                                                     <?php
-                                                    if (!empty($_SESSION['$Octc'])) {
-                                                        echo $_SESSION['$Octc'];
+                                                    if (!empty($_SESSION['$OctcFinal'])) {
+                                                        echo $_SESSION['$OctcFinal'];
                                                     }
                                                     ?>
                                                 </div>
