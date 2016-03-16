@@ -2,13 +2,16 @@
 
 session_start();
 
-require_once 'credentials.php';
+$logout_stat = $_SESSION['logout_stat'];
 
-$id = $_SESSION['bpform_id'];
+if ($logout_stat === "false") {
+    require_once 'credentials.php';
 
-$conn = open_db_conn();
+    $id = $_SESSION['bpform_id'];
 
-$query = "select trueTitle, award, surveyPlan, contractLease,
+    $conn = open_db_conn();
+
+    $query = "select trueTitle, award, surveyPlan, contractLease,
             deedSale, conDeedSale, constAuth, taxDec, realPropTax, bpForm, BuilPlan,
             StrucDesign, BuildSpec, billMat, picSite, soilAnal, 3stor,
             4stor, taxReceipt, zoningCert, FireCert, wmsCert, logbook,
@@ -17,23 +20,26 @@ $query = "select trueTitle, award, surveyPlan, contractLease,
             using (checklist_id)
             where bpform_id = \"$id\" ";
 
-$result = $conn->query($query);
+    $result = $conn->query($query);
 
-if (!$result) {
-    show_error_msg($conn->error);
+    if (!$result) {
+        show_error_msg($conn->error);
+    }
+
+    $record_size = $result->num_rows;
+    $row = $result->fetch_row();
+    $record_length = 28;
+    $count = 0;
+
+    if ($record_size == 1) {
+        while ($count < $record_length) {
+            $_SESSION['col_' . $count] = $row[$count];
+            $count++;
+        }
+    }
+
+    close_db_conn($conn);
+}else{
+    header("Location: ../web/index.php");
 }
-
-$record_size = $result->num_rows;
-$row = $result->fetch_row();
-$record_length = 28;
-$count = 0;
-
-if($record_size == 1){
-    while($count < $record_length){
-        $_SESSION['col_'.$count] = $row[$count];  
-        $count++;
-    }    
-}
-
-close_db_conn($conn);
 ?>

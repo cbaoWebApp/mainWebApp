@@ -1,33 +1,22 @@
 <!DOCTYPE HTML>
 <?php
   session_start();
-  if(!isset($_SESSION['section'])){
+  if(!isset($_SESSION['section']) || $_SESSION['section'] != "ADMIN"){
    header("Location: index_admin.php"); 
    exit();
-  }else if($_SESSION['section'] != "ADMIN"){
-    echo "<script type=\"text/javascript\">".
-          "alert('You are not an admin! You will be logged out and redirected to your corresponding login page.');".
-          "window.location.href='index_personnel.php'".
-          "</script>";
-  
-    exit();
   }
 ?>
 <html lang="en">
     <head>
         <?php include '../common/head.php'; ?>
-
+        <link rel="stylesheet" href="../css/jquery-ui.css">
         <link rel="stylesheet" href="../css/adminHome.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
 
-        <script src="jquery-1.12.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-ui.js"></script>
         <script type="text/javascript" src="../tablesorter-master/jquery.tablesorter.js"></script> 
-        <!--<script src="jquery-ui.js"></script>-->
-
     </head>
     <body>
     <?php include '../common/header.php'; ?>
@@ -172,7 +161,7 @@
 <div id="add-account-popup-div" title="Add Account">
   <form role="form">
     <div class="form-group">
-      <label for="tinNo">Username: </label>
+      <label for="tinNo">Username (TIN): </label>
       <input type="text" class="form-control" id="tinNo">
     </div>
     <div class="form-group">
@@ -229,7 +218,7 @@
 <div id="edit-account-popup-div">
   <form role="form">
     <div class="form-group">
-      <label for="tinNo">Tin #: </label>
+      <label for="tinNo">Username (TIN): </label>
       <input type="text" class="form-control" id="tinNo-e">
     </div>
     <div class="form-group">
@@ -591,6 +580,7 @@ $(function() {
     }
 
     return true;
+    
   }
 
   //for validation of section input by user

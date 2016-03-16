@@ -39,6 +39,7 @@ if (filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) === FALSE) {
         if ($app[1] === "true") {
             if ($size == 1) {
                 $_SESSION['app_id'] = $app[0];
+                $_SESSION['logout_stat'] = "false";
                 header("Location: ../track/trackAppHome.php");
             } else {
                 $_SESSION['login_error_msg'] = "Incorrect Credentials";

@@ -583,9 +583,13 @@ Footer
 }
 
 .ui-dialog{
-	z-index: 1000;
+	z-index: 90000;
 }
 
 #black{
 	color: black;
+}
+
+#admin-home-table th{
+	color: #404040;
 }

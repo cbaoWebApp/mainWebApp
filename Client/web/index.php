@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once '../client_validation/index_popup_control.php';
+//session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,33 +13,6 @@ session_start();
         <script src="../jquery/jquery-1.10.2.js"></script>
         <script src="../jquery/jquery-ui.min.js"></script>
         <script src="../js/index.js"></script>
-
-        <?php
-        if (!empty($_SESSION['login_error_msg'])) {
-            echo "
-		<script>
-                    $(function () {
-                        $(\"#login-popup\").dialog({
-                            autoOpen: true,
-                            closeOnEscape: true,
-                            open: function (event, ui){
-                                $(\".ui-dialog-titlebar-close\", ui.dialog | ui).hide();
-                            },                            
-                            height: 'auto',
-                            width: 'auto'                           
-                        });
-                    });
-		</script>
-            ";                     
-        }
-        if (!empty($_SESSION['app_status'])){
-             echo "<script>
-                    alert(\"Your application has been submitted successfully. Please
-                     submit your requirements to DPS compound, Baguio City. Thank you.\");
-		</script>";
-         }
-        ?>
-
     </head>
     <body>
         <?php include_once '../common/header.php'; ?>
@@ -62,7 +36,7 @@ session_start();
                         <br>
                         <br>
                     </div>
-                    
+
                     <!-- PC -->
 
                     <p><img class="img-responsive" src="../img/pc.png" alt=""></p>
@@ -88,10 +62,20 @@ session_start();
                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus="true">
                 <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="Password" required>                
                 <br>
-                <input type="submit" id = "search" class="btn1" value="Search">
+                <input type="submit" id = "search" value="Search">
                 <input type="button" id="cancel" value="Cancel"> 
                 <input type="hidden" name="page_location" value="index">
             </form>
+        </div> 
+
+        <div id="finish-popup">
+            <div id="finish_area">
+                <p>Thank you applying online. Please visit CBAO and submit your 
+                    requirements there.</p>
+            </div>    
+            <div id="finish-btns">
+                <input type="button" id="finish" value="Okay"> 
+            </div>
         </div>
 
         <?php include_once '../common/footer.php'; ?>

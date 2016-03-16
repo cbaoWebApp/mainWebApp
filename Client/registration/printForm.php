@@ -31,7 +31,7 @@ if (!empty($_SESSION['$cpw'])) {
         <link rel="stylesheet" href="../css/main2.css">            
         <link rel="stylesheet" href="../css/printForm.css">
         <link rel="stylesheet" href="../btstrp/css/bootstrap.css">
-		
+
         <script type="text/javascript" language="javascript" src="../jquery/jquery.js"></script>
         <script type="text/javascript" language="javascript" src="../jquery/html2canvas.min.js"></script>
         <script type="text/javascript" language="javascript" src="../jquery/jquery.plugin.html2canvas.js"></script>
@@ -39,17 +39,17 @@ if (!empty($_SESSION['$cpw'])) {
 
     </head>
     <body>
-        
+
         <?php include_once '../common/header.php'; ?>
-        
+
 
         <div class="container">
             <div class="content">
                 <div class="main">
-                    
+
                     <h1 id = "heading">Building Permit Preview</h1>
                     <p id="info">A preview of your building permit application</p>
-                    
+
                     <div id="bpform">
                         <div id="target">
                             <div id="header" class="fnt-tmplt">
@@ -1547,9 +1547,9 @@ if (!empty($_SESSION['$cpw'])) {
                 </div>
             </div>
         </div>
-    </div>
-    
-    <?php include_once '../common/footer.php'; ?>
-    
-</body>
+
+
+        <?php include_once '../common/footer.php'; ?>
+
+    </body>
 </html>

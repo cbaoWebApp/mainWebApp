@@ -24,6 +24,20 @@ $(function () {
         $("#login-popup").dialog("close");
         $("#err_area").html("");
     });
+    
+    $("#finish-popup").dialog({
+        autoOpen: false,
+        closeOnEscape: true,
+        open: function (event, ui) {
+            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+        },
+        height: 'auto',
+        width: 'auto'
+    });
+    
+    $("#finish").click(function () {
+        $("#finish-popup").dialog("close");
+    });
 });
 
 

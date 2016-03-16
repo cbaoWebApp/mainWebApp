@@ -11,8 +11,8 @@ session_start();
 
         <!--<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>-->
-        <script src="jquery-1.12.0.min.js"></script>
-        <script src="jquery-ui.min.js"></script>
+        <script src="../js/jquery-1.12.0.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
 
         <?php
         if (!empty($_SESSION['login_error_msg'])) {
@@ -42,7 +42,7 @@ session_start();
                 <div class="main">
 
                     <h1 id = "heading">System Admin Log In</h1>
-                    <p>Log-in for System Admin</p>
+                    <!--<p>Log-in for System Admin</p>-->
                     <br>
 
                     <div class = "buttons">

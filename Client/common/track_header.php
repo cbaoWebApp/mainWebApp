@@ -8,8 +8,9 @@
             <p id = "cbao">CBAO</p>
         </div>
         <div class = "col-md-4">
-            <form id="logout_form" action="../client_validation/logout.php">
+            <form id="logout_form" action="../client_validation/logout.php" method="POST">
                 <input type="submit" id="logOut" value="Log Out"/>
+                <input type="hidden" name="logout_btn" value="logout"/>
             </form>            
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php
     require_once 'credentials.php';
     
-    session_start();        
+    //session_start();        
     
     $id = $_SESSION['bpform_id'];
     

@@ -50,7 +50,7 @@
             break;
         }
     }*/
-    echo "";
+    echo "wut";
   }
 
   function connectDb($sn, $un, $p, $d){
@@ -89,7 +89,7 @@
     }else{
       //echo "Error: " .$sql."<br>".$conn->error;
       echo ("<script type='text/javascript'>
-              alert('CRITICAL ERROR: Please do not use duplicate usernames in adding and editing an account. Action was aborted.');
+              alert('This TIN or username has been used once already and cannot be used twice.');
               window.location.href='adminHome.php';
               </script>");
     }
@@ -103,14 +103,14 @@
 
     $conn = connectDb("localhost", "root", "", "baguio_cbao");
 
-    $sql = "SELECT * FROM personnel WHERE username =  '$tinNo'  && password =  '$password' && section = 'ADMIN'";
+    $sql = "SELECT * FROM personnel WHERE username =  '$tinNo'  && password =  '$password' && section = 'ADMIN' && status = 'TRUE'";
     $result = mysqli_query($conn, $sql);
 
     if(!$result){
       //row not found
-      echo "<script type=\"text/javascript\">".
-          "alert('Tin Number and/or Password Not Found.');".
-          "window.location.href='index_admin.php'".
+      echo "<script type='text/javascript'>".
+          "alert('TIN and/or Password Not Found.');".
+          "window.location.href='index_admin.php';".
           "</script>";
     }else{
       //row found
@@ -119,6 +119,7 @@
       if($row = mysqli_fetch_array($result)){
         $section = $row["section"];
         $_SESSION['section'] = $section;
+        $_SESSION['tinNo'] = $tinNo;
       }
 
       header("location: adminHome.php"); 
@@ -182,7 +183,7 @@
     if($stmt->errno){
       //echo "Error: " . $stmt->error;
       echo ("<script type='text/javascript'>
-              alert('CRITICAL ERROR: Please do not use duplicate usernames in adding and editing an account. Action was aborted.');
+              alert('This TIN/username has already been used once and cannot be used twice.');
               window.location.href='adminHome.php';
               </script>");
     }else{
@@ -196,22 +197,32 @@
   }
 
   function deleteAccount(){
+    session_start();
     $tinNo = $_GET['tinNo'];
     $conn = connectDb("localhost", "root", "", "baguio_cbao");
     $status = 'FALSE';
+    $currentTin = $_SESSION['tinNo'];
 
-    $sql = "UPDATE personnel SET status=? WHERE username = '$tinNo'";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $status);
-    $stmt->execute();
-
-    if($stmt->errno){
-      echo "Error: " . $stmt->error;
-    }else{
-          echo "<script type=\"text/javascript\">".
-          "alert('Account Successfully Deleted.');".
+    if($tinNo == $currentTin){
+      echo "<script type=\"text/javascript\">".
+          "alert('You may not delete your own account.');".
           "window.location.href='adminHome.php'".
           "</script>";
+    }else{
+
+      $sql = "UPDATE personnel SET status=? WHERE username = '$tinNo'";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param('s', $status);
+      $stmt->execute();
+
+      if($stmt->errno){
+        echo "Error: " . $stmt->error;
+      }else{
+            echo "<script type=\"text/javascript\">".
+            "alert('Account Successfully Deleted.');".
+            "window.location.href='adminHome.php'".
+            "</script>";
+      }
     }
   }
   
